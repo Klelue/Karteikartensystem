@@ -1,54 +1,66 @@
 ﻿
-using System.Data;
-using System.Data.SqlClient;
-
 namespace DatenbankEngine
 {
+    using System.Data;
+    using System.Data.SqlClient;
     public class SqlFileDatabaseEngine
     {
         private readonly string connectionString;
         private readonly SqlConnection connection;
+
         public SqlFileDatabaseEngine()
         {
 
-            this.connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\C#\database\db_test_login.mdf;Integrated Security=True;Connect Timeout=30";
+            this.connectionString =
+                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\C#\database\db_test_login.mdf;Integrated Security=True;Connect Timeout=30";
 
             this.connection = new SqlConnection(this.connectionString);
         }
 
-        public void OpenConnection()
+        
+        public DataTable ExecuteSelectQuery(SqlCommand sqlCommand)
         {
-            connection.Open();
-        }
-
-        public void CloseConnection()
-        {
-            connection.Close();
-        }
-
-        public DataTable ExecuteSql(string selectQuery)
-        {
-            SqlCommand sqlCommand = new SqlCommand(selectQuery, connection);
-
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter
-            {
-                SelectCommand = sqlCommand
-            };
 
             DataTable dataTable = new DataTable();
 
-            sqlDataAdapter.Fill(dataTable);
+            this.connection.Open();
+
+            try
+            {
+                sqlCommand.Connection = connection;
+
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter
+                {
+                    SelectCommand = sqlCommand
+                };
+
+                sqlDataAdapter.Fill(dataTable);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
 
             return dataTable;
         }
 
-        public int ExecuteQuery(string query)
+        public int ExecuteQuery(SqlCommand sqlCommand)
         {
-            SqlCommand sqlCommand = new SqlCommand(query, connection);
 
-            int deletedRows = sqlCommand.ExecuteNonQuery();
+            int rowsAffected = 0;
 
-            return deletedRows;
+            this.connection.Open();
+
+            try
+            {
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+
+            return rowsAffected;
         }
 
     }
