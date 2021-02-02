@@ -67,9 +67,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Fenster\HinzufuegenView.resx">
-      <DependentUpon>HinzufuegenView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Fenster\KartenUebersicht.resx">
       <DependentUpon>KartenUebersicht.cs</DependentUpon>
     </EmbeddedResource>

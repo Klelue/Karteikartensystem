@@ -1,7 +1,7 @@
 ﻿
 namespace WindowsFormsApp1.Fenster
 {
-    partial class HinzuguegenView
+    partial class HinzufuegenView
     {
         //// <summary>
         /// Required designer variable.
