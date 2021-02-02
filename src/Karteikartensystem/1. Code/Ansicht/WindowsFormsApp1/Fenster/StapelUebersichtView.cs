@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,27 +15,31 @@ namespace WindowsFormsApp1
 {
     public partial class StapelUebersichtView : Form
     {
-        private List<string> alleStapel = new List<string> ();
+        private List<Stapel.Stapel> alleStapel;
         private UebersichtMethoden methoden = new UebersichtMethoden();
 
         public StapelUebersichtView()
         {
             InitializeComponent(); // hier müsste die erste Abfrage drinstehen.
 
-            alleStapel = methoden.DatenbankAbfrage();
+            StapelRepository repository = new StapelRepository();
+                    
+            alleStapel = repository.GetAlleStapel().ToList();
             listView_Ausgabe.View = View.Details;
+            listView_Ausgabe.Columns.Add("ID");
             listView_Ausgabe.Columns.Add("Stapelname");
             listView_AusgabeAnzeigen(alleStapel);
 
         }
 
-        private void listView_AusgabeAnzeigen(List<string> anzeigen)
+        private void listView_AusgabeAnzeigen(List<Stapel.Stapel> anzeigen)
         {
             listView_Ausgabe.Items.Clear();
             List<ListViewItem> lvi = new List<ListViewItem>();
-            foreach(string s in anzeigen)
+            foreach(Stapel.Stapel s in anzeigen)
             {
-                lvi.Add(new ListViewItem(s));
+                lvi.Add(new ListViewItem(s.Name)) ;
+
             }
             listView_Ausgabe.Items.AddRange(lvi.ToArray());
         }
@@ -57,7 +62,7 @@ namespace WindowsFormsApp1
 
         private void StapelSucheAnzeigen(string eingabe)
         {
-            List<string> gefundenList = methoden.GetGefundenList(eingabe, alleStapel);
+            List<Stapel.Stapel> gefundenList = methoden.GetGefundenList(eingabe, alleStapel);
 
             if(gefundenList.Count < 1)
             {

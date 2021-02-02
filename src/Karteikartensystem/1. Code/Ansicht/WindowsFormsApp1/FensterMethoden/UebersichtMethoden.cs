@@ -23,16 +23,38 @@ namespace WindowsFormsApp1.FensterMethoden
                     gefundenList.Add(stapel);
                 }
             }
+            
+
+            return gefundenList;
+        }
+
+        public List<Stapel.Stapel> GetGefundenList(string eingabe, List<Stapel.Stapel> gesamtList)
+        {
+            List<Stapel.Stapel> gefundenList = new List<Stapel.Stapel>();
+            eingabe = eingabe.ToLower();
+
+            foreach (Stapel.Stapel stapel in gesamtList)
+            {
+                string stapelNameLower = stapel.Name.ToLower();
+
+                if (stapelNameLower.Contains(eingabe))
+                {
+                    gefundenList.Add(stapel);
+                }
+            }
+
 
             return gefundenList;
         }
 
         public List<string> DatenbankAbfrage()
         {
-            List<string> abfrageList = new List<string>();
-            abfrageList.Add("bubi");
-            abfrageList.Add("Stephan");
-            abfrageList.Add("bubicon");
+            List<string> abfrageList = new List<string>
+            {
+                "bubi",
+                "Stephan",
+                "bubicon"
+            };
             return abfrageList;
         }
 

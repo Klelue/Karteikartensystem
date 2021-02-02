@@ -30,12 +30,13 @@ namespace Repositories
                  int id = (int) dataTable.Rows[index][0];
                  string name =  dataTable.Rows[index][1].ToString();
 
-                 Stapel stapel = new Stapel();
+                Stapel stapel = new Stapel
+                {
+                    Id = id,
+                    Name = name
+                };
 
-                 stapel.Id = id;
-                 stapel.Name = name;
-
-                 stapelArray[index] = stapel;
+                stapelArray[index] = stapel;
             }
 
 
