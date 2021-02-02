@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class HinzufügenView : Form
+    public partial class HinzufuegenView : Form
     {
-        public HinzufügenView()
+        public HinzufuegenView()
         {
             InitializeComponent();
         }

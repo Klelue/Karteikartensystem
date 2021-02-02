@@ -1,7 +1,7 @@
 ﻿
 namespace WindowsFormsApp1
 {
-    partial class HinzufügenView
+    partial class HinzufuegenView
     {
         /// <summary>
         /// Required designer variable.

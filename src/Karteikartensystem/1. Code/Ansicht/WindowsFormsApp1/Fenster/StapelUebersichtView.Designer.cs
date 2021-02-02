@@ -56,6 +56,7 @@ namespace WindowsFormsApp1
             this.listView_Ausgabe.Size = new System.Drawing.Size(306, 292);
             this.listView_Ausgabe.TabIndex = 1;
             this.listView_Ausgabe.UseCompatibleStateImageBehavior = false;
+            this.listView_Ausgabe.Click += new System.EventHandler(this.listView_Ausgabe_Click);
             // 
             // lbl_SuchInfo
             // 

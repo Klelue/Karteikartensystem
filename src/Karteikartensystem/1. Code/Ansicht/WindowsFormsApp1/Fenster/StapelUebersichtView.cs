@@ -7,18 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.FensterMethoden;
 
 namespace WindowsFormsApp1
 {
     public partial class StapelUebersichtView : Form
     {
         private List<string> alleStapel = new List<string> ();
+        private UebersichtMethoden methoden = new UebersichtMethoden();
+
         public StapelUebersichtView()
         {
             InitializeComponent(); // hier müsste die erste Abfrage drinstehen.
-            alleStapel.Add("bubi");
-            alleStapel.Add("Stephan");
-            alleStapel.Add("bubicon");
+
+            alleStapel = methoden.DatenbankAbfrage();
             listView_Ausgabe.View = View.Details;
             listView_Ausgabe.Columns.Add("Stapelname");
             listView_AusgabeAnzeigen(alleStapel);
@@ -54,19 +56,9 @@ namespace WindowsFormsApp1
 
         private void StapelSucheAnzeigen(string eingabe)
         {
-            bool nichtGefunden = true;
-            List<string> gefundenList = new List<string>();
+            List<string> gefundenList = methoden.GetGefundenList(eingabe, alleStapel);
 
-            foreach(string s in alleStapel)
-            {
-                if (s.Contains(eingabe))
-                {
-                    nichtGefunden = false;
-                    gefundenList.Add(s);
-                }
-            }
-
-            if(nichtGefunden)
+            if(gefundenList.Count < 1)
             {
                 MessageBox.Show("Leider kein Eintrag gefunden", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -79,8 +71,15 @@ namespace WindowsFormsApp1
 
         private void btn_Hinzufuegen_Click(object sender, EventArgs e)
         {
-            Form hinzufuegenFenster = new HinzufügenView();
+            Form hinzufuegenFenster = new HinzufuegenView();
             hinzufuegenFenster.Show(this);
+        }
+
+        private void listView_Ausgabe_Click(object sender, EventArgs e)
+        {
+            Form kartenUebersicht = new KartenUebersicht(listView_Ausgabe.SelectedItems[0].Text);
+            kartenUebersicht.Show();
+
         }
     }
 }
