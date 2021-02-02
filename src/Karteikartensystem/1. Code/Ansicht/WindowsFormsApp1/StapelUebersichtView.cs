@@ -21,6 +21,7 @@ namespace WindowsFormsApp1
             alleStapel.Add("bubicon");
             listView_Ausgabe.View = View.Details;
             listView_Ausgabe.Columns.Add("Stapelname");
+            listView_AusgabeAnzeigen(alleStapel);
 
         }
 
@@ -76,6 +77,10 @@ namespace WindowsFormsApp1
             }
         }
 
-
+        private void btn_Hinzufuegen_Click(object sender, EventArgs e)
+        {
+            Form hinzufuegenFenster = new HinzufügenView();
+            hinzufuegenFenster.Show(this);
+        }
     }
 }
