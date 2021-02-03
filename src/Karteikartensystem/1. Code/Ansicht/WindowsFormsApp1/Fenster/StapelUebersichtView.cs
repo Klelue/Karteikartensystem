@@ -15,18 +15,19 @@ namespace WindowsFormsApp1
 {
     public partial class StapelUebersichtView : Form
     {
+        //OUT
         private List<Stapel.Stapel> alleStapel;
         private UebersichtMethoden methoden = new UebersichtMethoden();
-
+        //
         public StapelUebersichtView()
         {
             InitializeComponent(); 
-
+            //OUT
             StapelRepository repository = new StapelRepository();
             alleStapel = repository.GetAlleStapel().ToList();
-
+            //
             ListViewFormatieren();
-
+            listView_AusgabeAnzeigen(alleStapel);
         }
 
         private void ListViewFormatieren()
@@ -35,7 +36,6 @@ namespace WindowsFormsApp1
             listView_Ausgabe.Columns.Add("ID");
             listView_Ausgabe.Columns.Add("Stapelname").Width = 130;
             listView_Ausgabe.Columns.Add("Anzahl");
-            listView_AusgabeAnzeigen(alleStapel);
         }
 
         private void listView_AusgabeAnzeigen(List<Stapel.Stapel> anzeigen)
@@ -55,7 +55,8 @@ namespace WindowsFormsApp1
         {
             ListViewItem item = new ListViewItem(stapel.Id.ToString());
             item.SubItems.Add(stapel.Name);
-            item.SubItems.Add("0");
+            //item.SubItems.Add(stapel.Karten.Count.ToString());
+            item.SubItems.Add("-");
             return item;
         }
 
