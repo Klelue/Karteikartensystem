@@ -112,5 +112,13 @@ namespace WindowsFormsApp1
         {
             this.listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
+
+        private void btn_Entfernen_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Möchtest du es wirklich entfernen?", "Entfernen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                MessageBox.Show("Stapel wurde gelöscht", "Hat geklappt", MessageBoxButtons.OK); ;
+            }
+        }
     }
 }
