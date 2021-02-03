@@ -3,9 +3,13 @@ namespace DatenbankEngine
 {
     using System.Data;
     using System.Data.SqlClient;
+<<<<<<< HEAD
+    public class SqlFileDatabaseEngine : IDatenbankEngine
+=======
     using System.Configuration;
 
     public class SqlFileDatabaseEngine
+>>>>>>> develop
     {
         private readonly string connectionString;
         private readonly SqlConnection connection;
@@ -16,7 +20,11 @@ namespace DatenbankEngine
         {
 
             this.connectionString =
+<<<<<<< HEAD
+                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\C#\database\karteiverwaltung-db.mdf;Integrated Security=True;Connect Timeout=30";
+=======
                 @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + fileDatabasePath + "Integrated Security=True;Connect Timeout=30";
+>>>>>>> develop
 
             this.connection = new SqlConnection(this.connectionString);
         }
