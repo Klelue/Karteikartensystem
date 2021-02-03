@@ -3,7 +3,7 @@ namespace DatenbankEngine
 {
     using System.Data;
     using System.Data.SqlClient;
-    public class SqlFileDatabaseEngine
+    public class SqlFileDatabaseEngine : IDatenbankEngine
     {
         private readonly string connectionString;
         private readonly SqlConnection connection;
@@ -12,7 +12,7 @@ namespace DatenbankEngine
         {
 
             this.connectionString =
-                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\kluen\Documents\Umschulung\UmschulungsDatenbanken\karteiverwaltung-db.mdf;Integrated Security=True;Connect Timeout=30";
+                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\C#\database\karteiverwaltung-db.mdf;Integrated Security=True;Connect Timeout=30";
 
             this.connection = new SqlConnection(this.connectionString);
         }

@@ -1,14 +1,14 @@
 ﻿
-using System.Data;
-using System.Data.SqlClient;
-using DatenbankEngine;
-using Stapel;
-
 namespace KartenRepository
 {
+    using System.Data;
+    using System.Data.SqlClient;
+    using DatenbankEngine;
+    using Stapel;
+
     public class KarteRepository
     {
-        private readonly SqlFileDatabaseEngine databaseEngine;
+        private readonly IDatenbankEngine databaseEngine;
 
 
         public bool AddKarte(Karte karte)

@@ -1,14 +1,13 @@
 ﻿
-using System.Data;
-using System.Data.SqlClient;
-
 namespace Repositories
 {
     using DatenbankEngine;
+    using System.Data;
+    using System.Data.SqlClient;
     using Stapel;
     public class StapelRepository : IStapelRepository
     {
-        private readonly SqlFileDatabaseEngine databaseEngine;
+        private readonly IDatenbankEngine databaseEngine;
 
         public StapelRepository()
         {
