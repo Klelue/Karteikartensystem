@@ -3,16 +3,20 @@ namespace DatenbankEngine
 {
     using System.Data;
     using System.Data.SqlClient;
+    using System.Configuration;
+
     public class SqlFileDatabaseEngine
     {
         private readonly string connectionString;
         private readonly SqlConnection connection;
 
+        private string fileDatabasePath = ConfigurationManager.ConnectionStrings["Path"].ConnectionString;
+
         public SqlFileDatabaseEngine()
         {
 
             this.connectionString =
-                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\kluen\Documents\Umschulung\UmschulungsDatenbanken\karteiverwaltung-db.mdf;Integrated Security=True;Connect Timeout=30";
+                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + fileDatabasePath + "Integrated Security=True;Connect Timeout=30";
 
             this.connection = new SqlConnection(this.connectionString);
         }
