@@ -39,6 +39,10 @@
     <Compile Include="StapelController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Stapel\Stapel.csproj">
+      <Project>{244545ca-daee-4b76-8b74-9a1fc6d34b04}</Project>
+      <Name>Stapel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Repository\Repositories\Repositories.csproj">
       <Project>{6052aabf-2046-4beb-aef1-8e6d70173589}</Project>
       <Name>Repositories</Name>
