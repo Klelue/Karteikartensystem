@@ -32,13 +32,15 @@ namespace WindowsFormsApp1.Fenster
             this.txt_eingabe = new System.Windows.Forms.TextBox();
             this.lbl_Eingabe = new System.Windows.Forms.Label();
             this.btn_Speichern = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.pnl_hinzufuegen = new System.Windows.Forms.Panel();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.pnl_hinzufuegen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_eingabe
             // 
-            this.txt_eingabe.Location = new System.Drawing.Point(45, 79);
+            this.txt_eingabe.Location = new System.Drawing.Point(46, 83);
             this.txt_eingabe.Name = "txt_eingabe";
             this.txt_eingabe.Size = new System.Drawing.Size(309, 20);
             this.txt_eingabe.TabIndex = 0;
@@ -46,15 +48,15 @@ namespace WindowsFormsApp1.Fenster
             // lbl_Eingabe
             // 
             this.lbl_Eingabe.AutoSize = true;
-            this.lbl_Eingabe.Location = new System.Drawing.Point(141, 47);
+            this.lbl_Eingabe.Location = new System.Drawing.Point(107, 49);
             this.lbl_Eingabe.Name = "lbl_Eingabe";
-            this.lbl_Eingabe.Size = new System.Drawing.Size(99, 13);
+            this.lbl_Eingabe.Size = new System.Drawing.Size(187, 13);
             this.lbl_Eingabe.TabIndex = 1;
-            this.lbl_Eingabe.Text = "Gib dein Scheiß ein";
+            this.lbl_Eingabe.Text = "Gib den Namen des neuen Stapels an";
             // 
             // btn_Speichern
             // 
-            this.btn_Speichern.Location = new System.Drawing.Point(153, 128);
+            this.btn_Speichern.Location = new System.Drawing.Point(163, 132);
             this.btn_Speichern.Name = "btn_Speichern";
             this.btn_Speichern.Size = new System.Drawing.Size(75, 23);
             this.btn_Speichern.TabIndex = 2;
@@ -62,26 +64,32 @@ namespace WindowsFormsApp1.Fenster
             this.btn_Speichern.UseVisualStyleBackColor = true;
             this.btn_Speichern.Click += new System.EventHandler(this.btn_Speichern_Click);
             // 
-            // panel1
+            // pnl_hinzufuegen
             // 
-            this.panel1.Controls.Add(this.btn_Speichern);
-            this.panel1.Controls.Add(this.txt_eingabe);
-            this.panel1.Controls.Add(this.lbl_Eingabe);
-            this.panel1.Location = new System.Drawing.Point(199, 91);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(396, 203);
-            this.panel1.TabIndex = 3;
+            this.pnl_hinzufuegen.Controls.Add(this.btn_Speichern);
+            this.pnl_hinzufuegen.Controls.Add(this.txt_eingabe);
+            this.pnl_hinzufuegen.Controls.Add(this.lbl_Eingabe);
+            this.pnl_hinzufuegen.Location = new System.Drawing.Point(215, 83);
+            this.pnl_hinzufuegen.Name = "pnl_hinzufuegen";
+            this.pnl_hinzufuegen.Size = new System.Drawing.Size(396, 203);
+            this.pnl_hinzufuegen.TabIndex = 3;
             // 
-            // HinzufügenView
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
+            // HinzufuegenView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
-            this.Name = "HinzufügenView";
+            this.Controls.Add(this.pnl_hinzufuegen);
+            this.Name = "HinzufuegenView";
             this.Text = "Hinzufügen";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnl_hinzufuegen.ResumeLayout(false);
+            this.pnl_hinzufuegen.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -91,6 +99,7 @@ namespace WindowsFormsApp1.Fenster
         private System.Windows.Forms.TextBox txt_eingabe;
         private System.Windows.Forms.Label lbl_Eingabe;
         private System.Windows.Forms.Button btn_Speichern;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnl_hinzufuegen;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }

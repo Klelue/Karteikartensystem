@@ -81,6 +81,7 @@
     <Compile Include="Fenster\KartenUebersicht.Designer.cs">
       <DependentUpon>KartenUebersicht.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fenster\ListViewItemComparer.cs" />
     <Compile Include="Fenster\StapelUebersichtView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +90,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\ColumnClickEventHandler.cs" />
+    <EmbeddedResource Include="Fenster\HinzufuegenView.resx">
+      <DependentUpon>HinzufuegenView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fenster\KartenUebersicht.resx">
       <DependentUpon>KartenUebersicht.cs</DependentUpon>
     </EmbeddedResource>

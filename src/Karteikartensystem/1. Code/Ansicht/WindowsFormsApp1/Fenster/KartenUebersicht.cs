@@ -20,7 +20,14 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             lbl_StapelName.Text = stapelName;
+
+
             alleKarten = methoden.DatenbankAbfrage();
+            ListViewFormatieren();
+        }
+
+        private void ListViewFormatieren()
+        {
             listView_KartenAnzeige.View = View.Details;
             listView_KartenAnzeige.Columns.Add("Kartename");
             KartenAnzeigen(alleKarten);
@@ -28,29 +35,33 @@ namespace WindowsFormsApp1
 
         private void KartenAnzeigen(List<string> anzeigeList)
         {
-            listView_KartenAnzeige.Items.Clear();
-            List<ListViewItem> lvi = new List<ListViewItem>();
-            foreach (string s in anzeigeList)
+            List<ListViewItem> listViewItem = new List<ListViewItem>();
+
+            foreach (string stapel in anzeigeList)
             {
-                lvi.Add(new ListViewItem(s));
+                listViewItem.Add(new ListViewItem(stapel));
             }
-            listView_KartenAnzeige.Items.AddRange(lvi.ToArray());
+
+            listView_KartenAnzeige.Items.Clear();
+            listView_KartenAnzeige.Items.AddRange(listViewItem.ToArray());
         }
 
         private void txt_KartenSuche_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+
                 if (txt_KartenSuche.Text.Trim() == "")
                 {
                     KartenAnzeigen(alleKarten);
                 }
+
                 else
                 {
                     KartenSucheAnzeigen(txt_KartenSuche.Text);
                 }
-                txt_KartenSuche.Clear();
 
+                txt_KartenSuche.Clear();
             }
         }
 
@@ -61,12 +72,18 @@ namespace WindowsFormsApp1
             if (gefundenList.Count < 1)
             {
                 MessageBox.Show("Leider kein Eintrag gefunden", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                KartenAnzeigen(alleKarten);
             }
 
             else
             {
                 KartenAnzeigen(gefundenList);
             }
+        }
+
+        private void ListViewColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            this.listView_KartenAnzeige.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
 
         private void btn_home_Click(object sender, EventArgs e)

@@ -64,6 +64,7 @@ namespace WindowsFormsApp1
             this.listView_KartenAnzeige.Size = new System.Drawing.Size(138, 190);
             this.listView_KartenAnzeige.TabIndex = 1;
             this.listView_KartenAnzeige.UseCompatibleStateImageBehavior = false;
+            this.listView_KartenAnzeige.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(ListViewColumnClick);
             // 
             // txt_KartenSuche
             // 
@@ -106,5 +107,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.ListView listView_KartenAnzeige;
         private System.Windows.Forms.TextBox txt_KartenSuche;
         private System.Windows.Forms.Button btn_home;
+
+        
     }
 }
