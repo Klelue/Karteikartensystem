@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace WindowsFormsApp1.Fenster
 {
     public partial class HinzufuegenView : Form
     {
+        private readonly StapelRepository repository = new StapelRepository();
+        
         public HinzufuegenView()
         {
             InitializeComponent();
@@ -19,11 +22,12 @@ namespace WindowsFormsApp1.Fenster
 
         private void btn_Speichern_Click(object sender, EventArgs e)
         {
+
             string eingabe = txt_eingabe.Text;
             txt_eingabe.Clear();
-            //eingabe zu datenbank
+            // repository.AddStapel(eingabe);
             MessageBox.Show("Erfolgreich hinzugefügt", "Yippy", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            base.Dispose();
+           // base.Dispose();
         }
     }
 }

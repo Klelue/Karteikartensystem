@@ -61,7 +61,8 @@ namespace WindowsFormsApp1
 
         private void txt_StapelSuche_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter){
+            if(e.KeyCode == Keys.Enter)
+            {
 
                 if(txt_StapelSuche.Text.Trim() == "")
                 {
