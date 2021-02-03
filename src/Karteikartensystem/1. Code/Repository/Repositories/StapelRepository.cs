@@ -43,6 +43,25 @@ namespace Repositories
             return stapelArray;
         }
 
+        public bool AddStapel(Stapel stapel)
+        {
+            string sql = $"INSERT INTO Stapel (name) VALUES(@Name);";
+
+            SqlCommand sqlCommand = new SqlCommand(sql);
+
+            sqlCommand.Parameters.AddWithValue("@Name", stapel.Name);
+
+            int anzahlBetrofenderReihen = databaseEngine.ExecuteQuery(sqlCommand);
+
+            if (anzahlBetrofenderReihen == 0)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
+
 
     }
 }
