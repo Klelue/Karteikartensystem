@@ -2,11 +2,12 @@
 using System.Data;
 using System.Data.SqlClient;
 using DatenbankEngine;
+using Repositories;
 using Stapel;
 
 namespace KartenRepository
 {
-    public class KarteRepository
+    public class KarteRepository : IKarteRepository
     {
         private readonly SqlFileDatabaseEngine databaseEngine;
 
