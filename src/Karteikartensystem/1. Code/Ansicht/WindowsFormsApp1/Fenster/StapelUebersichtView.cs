@@ -20,43 +20,60 @@ namespace WindowsFormsApp1
 
         public StapelUebersichtView()
         {
-            InitializeComponent(); // hier müsste die erste Abfrage drinstehen.
+            InitializeComponent(); 
 
             StapelRepository repository = new StapelRepository();
-                    
             alleStapel = repository.GetAlleStapel().ToList();
+
+            ListViewFormatieren();
+
+        }
+
+        private void ListViewFormatieren()
+        {
             listView_Ausgabe.View = View.Details;
             listView_Ausgabe.Columns.Add("ID");
-            listView_Ausgabe.Columns.Add("Stapelname");
+            listView_Ausgabe.Columns.Add("Stapelname").Width = 130;
+            listView_Ausgabe.Columns.Add("Anzahl");
             listView_AusgabeAnzeigen(alleStapel);
-
         }
 
         private void listView_AusgabeAnzeigen(List<Stapel.Stapel> anzeigen)
         {
-            listView_Ausgabe.Items.Clear();
-            List<ListViewItem> lvi = new List<ListViewItem>();
-            foreach(Stapel.Stapel s in anzeigen)
-            {
-                lvi.Add(new ListViewItem(s.Name)) ;
+            List<ListViewItem> listViewItems= new List<ListViewItem>();
 
+            foreach(Stapel.Stapel stapel in anzeigen)
+            {
+                listViewItems.Add(ListViewItemErzeugen(stapel));
             }
-            listView_Ausgabe.Items.AddRange(lvi.ToArray());
+
+            listView_Ausgabe.Items.Clear();
+            listView_Ausgabe.Items.AddRange(listViewItems.ToArray());
+        }
+
+        private ListViewItem ListViewItemErzeugen(Stapel.Stapel stapel)
+        {
+            ListViewItem item = new ListViewItem(stapel.Id.ToString());
+            item.SubItems.Add(stapel.Name);
+            item.SubItems.Add("0");
+            return item;
         }
 
         private void txt_StapelSuche_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter){
+
                 if(txt_StapelSuche.Text.Trim() == "")
                 {
                     listView_AusgabeAnzeigen(alleStapel);
                 }
+
                 else
                 {
                     StapelSucheAnzeigen(txt_StapelSuche.Text);
                 }
-                txt_StapelSuche.Clear();
 
+                txt_StapelSuche.Clear();
             }
         }
 
@@ -64,14 +81,16 @@ namespace WindowsFormsApp1
         {
             List<Stapel.Stapel> gefundenList = methoden.GetGefundenList(eingabe, alleStapel);
 
-            if(gefundenList.Count < 1)
+            if(gefundenList.Count == 0)
             {
                 MessageBox.Show("Leider kein Eintrag gefunden", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listView_AusgabeAnzeigen(alleStapel);
             }
 
             else
             {
                 listView_AusgabeAnzeigen(gefundenList);
+
             }
         }
 
@@ -83,9 +102,14 @@ namespace WindowsFormsApp1
 
         private void listView_Ausgabe_Click(object sender, EventArgs e)
         {
-            Form kartenUebersicht = new KartenUebersicht(listView_Ausgabe.SelectedItems[0].Text);
+            Form kartenUebersicht = new KartenUebersicht(listView_Ausgabe.SelectedItems[0].SubItems[1].Text);
             kartenUebersicht.Show();
 
+        }
+
+        private void ListViewColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            this.listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
     }
 }
