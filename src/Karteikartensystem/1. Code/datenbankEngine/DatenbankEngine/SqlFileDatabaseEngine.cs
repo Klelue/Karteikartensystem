@@ -12,7 +12,7 @@ namespace DatenbankEngine
         {
 
             this.connectionString =
-                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\kluen\Documents\Umschulung\UmschulungsDatenbanken\karteiverwaltung-db.mdf;Integrated Security=True;Connect Timeout=30";
+                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\headless\Desktop\karteiverwaltung-db.mdf;Integrated Security=True;Connect Timeout=30";
 
             this.connection = new SqlConnection(this.connectionString);
         }
