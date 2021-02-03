@@ -16,27 +16,32 @@ namespace Controller
             kartenRepository = new KarteRepository();
         }
 
+        public List<Stapel.Stapel> GetAlleStapelGefülltMitKarten()
+        {
+            List<Stapel.Stapel> alleStapel = GetAlleStapel();
+            foreach (Stapel.Stapel stapel in alleStapel)
+            {
+                stapel.Karten = GetAlleKartenDatenVomStapel(stapel.Id);
+            }
 
-        public List<Stapel.Stapel> GetAlleStapel()
+            return alleStapel;
+        }
+
+        private List<Stapel.Stapel> GetAlleStapel()
         {
             return stapelRepository.GetAlleStapel().ToList();
+        }
+
+        private List<Karte> GetAlleKartenDatenVomStapel(int stapelId)
+        {
+            return kartenRepository.GetKarten(stapelId).ToList();
         }
 
         public List<Stapel.Stapel> GetAuswahlStapel(int stapelId)
         {
             return stapelRepository.GetAlleStapel().Where(Stapel => Stapel.Id == stapelId).ToList();
         }
-
-        public List<Karte> GetAlleStapelKarten(int stapelId)
-        {
-            return kartenRepository.GetKarten(stapelId).ToList();
-        }
-
-        private void AddAlleKartenToStapel(Stapel.Stapel stapel)
-        {
-            stapel.Karten = GetAlleStapelKarten(1);
-        }
-
+        
         public bool AddNewLeerStapel(string name)
         {
             Stapel.Stapel stapel = new Stapel.Stapel();
