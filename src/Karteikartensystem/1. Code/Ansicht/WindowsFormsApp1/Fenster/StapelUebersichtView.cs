@@ -58,9 +58,9 @@ namespace AnsichtsFenster.Fenster
                     //OLD
                     //listView_AusgabeAnzeigen(alleStapel);
                     //TODO ÜBERLADUNG ODER IMMER DB ABFRAGE? -ANDERS ZWISCHENSPEICHERN?
-                    //listView_Ausgabe = _stapelController.UpdateView(listView_Ausgabe);
-                    //TODO- ODER SO - WO STAPEL ZWISCHENSPEICHERN?:
-                    listView_Ausgabe = _stapelController.UpdateView(listView_Ausgabe, alleStapel);
+                    //listView_Ausgabe = _stapelController.ReloadView(listView_Ausgabe);
+                    //TODO - ODER SO - WO STAPEL ZWISCHENSPEICHERN?:
+                    listView_Ausgabe = _stapelController.ReloadView(listView_Ausgabe, alleStapel);
                 }
                 else
                 {
@@ -81,11 +81,9 @@ namespace AnsichtsFenster.Fenster
                 MessageBox.Show("Leider kein Eintrag gefunden", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 listView_AusgabeAnzeigen(alleStapel);
             }
-
             else
             {
                 listView_AusgabeAnzeigen(gefundenList);
-
             }
         }
 

@@ -42,7 +42,7 @@ namespace AnsichtsFenster.Controller
         }
 
         //TODO WAS BESSERES ALS ÜBERLADUNG FINDEN
-        public ListView UpdateView(ListView listView, List<Stapel> kartenStapelListe)
+        public ListView ReloadView(ListView listView, List<Stapel> kartenStapelListe)
         {
             List<ListViewItem> listViewItems = new List<ListViewItem>();
 
