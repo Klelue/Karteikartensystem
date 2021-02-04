@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
+using Model;
 
 namespace AnsichtsFenster.FensterMethoden
 {
     class UebersichtMethoden
     {
 
-        public List<string> GetGefundenList(string eingabe, List<string> gesamtList)
+        public List<Karte> GetGefundenList(string eingabe, List<Karte> gesamtList)
         {
-            List<string> gefundenList = new List<string>();
+            List<Karte> gefundenList = new List<Karte>();
             eingabe = eingabe.ToLower();
 
-            foreach (string stapel in gesamtList)
+            foreach (Karte karte in gesamtList)
             {
-                string stapelLower = stapel.ToLower();
+                string stapelLower = karte.Frage.ToLower();
 
                 if (stapelLower.Contains(eingabe))
                 {
-                    gefundenList.Add(stapel);
+                    gefundenList.Add(karte);
                 }
             }
             
@@ -24,12 +25,12 @@ namespace AnsichtsFenster.FensterMethoden
             return gefundenList;
         }
 
-        public List<Model.Stapel> GetGefundenList(string eingabe, List<Model.Stapel> gesamtList)
+        public List<Stapel> GetGefundenList(string eingabe, List<Stapel> gesamtList)
         {
-            List<Model.Stapel> gefundenList = new List<Model.Stapel>();
+            List<Stapel> gefundenList = new List<Stapel>();
             eingabe = eingabe.ToLower();
 
-            foreach (Model.Stapel stapel in gesamtList)
+            foreach (Stapel stapel in gesamtList)
             {
                 string stapelNameLower = stapel.Name.ToLower();
 
@@ -42,19 +43,6 @@ namespace AnsichtsFenster.FensterMethoden
 
             return gefundenList;
         }
-
-        public List<string> DatenbankAbfrage()
-        {
-            List<string> abfrageList = new List<string>
-            {
-                "bubi",
-                "Stephan",
-                "bubicon"
-            };
-            return abfrageList;
-        }
-
-
 
     }
 }

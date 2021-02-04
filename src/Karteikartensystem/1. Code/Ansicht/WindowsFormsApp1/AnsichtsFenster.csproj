@@ -84,6 +84,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FensterMethoden\UebersichtMethoden.cs" />
+    <Compile Include="Fenster\HinzufuegenKarten.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fenster\HinzufuegenKarten.Designer.cs">
+      <DependentUpon>HinzufuegenKarten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fenster\HinzufuegenView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fenster\HinzufuegenView.Designer.cs">
+      <DependentUpon>HinzufuegenView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fenster\KartenUebersicht.cs">
       <SubType>Form</SubType>
     </Compile>

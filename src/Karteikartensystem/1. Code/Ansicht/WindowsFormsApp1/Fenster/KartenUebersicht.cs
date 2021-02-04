@@ -2,38 +2,41 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using AnsichtsFenster.FensterMethoden;
+using Repositories;
+using Model;
+using System.Linq;
 
 namespace AnsichtsFenster.Fenster
 {
     public partial class KartenUebersicht : Form
     {
-        private List<string> alleKarten;
+        private List<Karte> alleKarten;
         private UebersichtMethoden methoden = new UebersichtMethoden();
 
-        public KartenUebersicht(string stapelName)
+        public KartenUebersicht(string stapelName, int stapelId)
         {
             InitializeComponent();
             lbl_StapelName.Text = stapelName;
 
-
-            alleKarten = methoden.DatenbankAbfrage();
+            KarteRepository repository = new KarteRepository();
+            alleKarten = repository.GetKarten(stapelId).ToList();
             ListViewFormatieren();
         }
 
         private void ListViewFormatieren()
         {
             listView_KartenAnzeige.View = View.Details;
-            listView_KartenAnzeige.Columns.Add("Kartename");
+            listView_KartenAnzeige.Columns.Add("Fragen");
             KartenAnzeigen(alleKarten);
         }
 
-        private void KartenAnzeigen(List<string> anzeigeList)
+        private void KartenAnzeigen(List<Karte> anzeigeList)
         {
             List<ListViewItem> listViewItem = new List<ListViewItem>();
 
-            foreach (string stapel in anzeigeList)
+            foreach (Karte karte in anzeigeList)
             {
-                listViewItem.Add(new ListViewItem(stapel));
+                listViewItem.Add(new ListViewItem(karte.Frage));
             }
 
             listView_KartenAnzeige.Items.Clear();
@@ -61,7 +64,7 @@ namespace AnsichtsFenster.Fenster
 
         private void KartenSucheAnzeigen(string eingabe)
         {
-            List<string> gefundenList = methoden.GetGefundenList(eingabe, alleKarten);
+            List<Karte> gefundenList = methoden.GetGefundenList(eingabe, alleKarten);
 
             if (gefundenList.Count < 1)
             {
@@ -77,7 +80,7 @@ namespace AnsichtsFenster.Fenster
 
         private void ListViewColumnClick(object sender, ColumnClickEventArgs e)
         {
-            listView_KartenAnzeige.ListViewItemSorter = new ListViewItemComparer(e.Column);
+            this.listView_KartenAnzeige.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
 
         private void btn_home_Click(object sender, EventArgs e)

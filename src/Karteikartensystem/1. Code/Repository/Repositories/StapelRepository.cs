@@ -4,6 +4,7 @@ namespace Repositories
     using DatenbankEngine;
     using System.Data;
     using System.Data.SqlClient;
+    using Model;
 
     public class StapelRepository : IStapelRepository
     {
@@ -14,7 +15,7 @@ namespace Repositories
             databaseEngine = new SqlFileDatabaseEngine();
         }
 
-        public Model.Stapel[] GetAlleStapel()
+        public Stapel[] GetAlleStapel()
         {
             string sql = "SELECT Id, name FROM Stapel";
 
@@ -22,7 +23,7 @@ namespace Repositories
             
             DataTable dataTable = databaseEngine.ExecuteSelectQuery(sqlCommand);
 
-            Model.Stapel[] stapelArray = new Model.Stapel[dataTable.Rows.Count];
+            Stapel[] stapelArray = new Stapel[dataTable.Rows.Count];
 
             for (int index = 0; index < dataTable.Rows.Count; index++)
             {
@@ -42,7 +43,7 @@ namespace Repositories
             return stapelArray;
         }
 
-        public bool AddStapel(Model.Stapel stapel)
+        public bool AddStapel(Stapel stapel)
         {
             string sql = $"INSERT INTO Stapel (name) VALUES(@Name);";
 

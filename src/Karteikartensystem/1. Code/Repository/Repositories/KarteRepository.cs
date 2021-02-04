@@ -10,6 +10,10 @@ namespace Repositories
     {
         private readonly IDatenbankEngine databaseEngine;
 
+        public KarteRepository()
+        {
+            databaseEngine = new SqlFileDatabaseEngine();
+        }
 
         public bool AddKarte(Karte karte)
         {
@@ -35,7 +39,7 @@ namespace Repositories
 
         public Karte[] GetKarten(int stapelId)
         {
-            string sql = "SELECT Id, frage, antwort, stapel_id FROM Karte WHEARE stapel_id = @StapelId;";
+            string sql = "SELECT Id, frage, antwort, stapel_id FROM Karte WHERE stapel_id = @StapelId;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
