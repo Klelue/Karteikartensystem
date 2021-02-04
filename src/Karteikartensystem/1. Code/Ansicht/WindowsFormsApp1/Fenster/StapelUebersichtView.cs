@@ -75,7 +75,8 @@ namespace AnsichtsFenster.Fenster
 
         private void ListViewColumnClick(object sender, ColumnClickEventArgs e)
         {
-            this.listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
+            _stapelController.SortAscending(listView_Ausgabe);
+            //this.listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
 
         private void btn_Entfernen_Click(object sender, EventArgs e)
