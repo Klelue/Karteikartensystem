@@ -57,6 +57,8 @@ namespace DatenbankEngine
 
             int rowsAffected = 0;
 
+            sqlCommand.Connection = connection; 
+
             connection.Open();
 
             try
