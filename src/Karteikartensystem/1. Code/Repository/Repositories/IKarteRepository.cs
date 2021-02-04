@@ -6,7 +6,7 @@ using Model;
 
 namespace Repositories
 {
-    interface IKarteRepository : IRepository
+    public interface IKarteRepository : IRepository
     {
         bool KarteHinzufügen(Karte karte);
         Karte[] GetAlleKartenEinesStapels(int stapelId);
