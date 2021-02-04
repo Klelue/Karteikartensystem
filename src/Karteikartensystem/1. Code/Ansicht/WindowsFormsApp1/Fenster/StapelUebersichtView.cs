@@ -12,7 +12,7 @@ namespace AnsichtsFenster.Fenster
     public partial class StapelUebersichtView : Form
     {
         //IN
-        private StapelListViewController _stapelListViewController;
+        private StapelViewController _stapelController;
 
         //LATER OUT - DATA TO CONTROLLER
         private List<Stapel> alleStapel;
@@ -22,70 +22,50 @@ namespace AnsichtsFenster.Fenster
         public StapelUebersichtView()
         {
             InitializeComponent();
-           
-            //IN MODULES
-            _stapelListViewController = new StapelListViewController();
-            //IN METHODS
-            listView_Ausgabe = _stapelListViewController.CreateView(listView_Ausgabe);
-            listView_Ausgabe = _stapelListViewController.UpdateView(listView_Ausgabe);
+            //NEW METHODS
+            _stapelController = new StapelViewController();
+            listView_Ausgabe = _stapelController.CreateView(listView_Ausgabe);
+            listView_Ausgabe = _stapelController.UpdateView(listView_Ausgabe);
             //
             //TODO: ANDERER WEG ALS DURCHSCHLEIFEN?
-            //listView_Ausgabe = _stapelListViewController.CreateView();
-            //listView_Ausgabe = _stapelListViewController.ListViewUpdate(listView_Ausgabe);
+            //listView_Ausgabe = _stapelController.CreateView();
+            //listView_Ausgabe = _stapelController.ListViewUpdate(listView_Ausgabe);
             //
-            //
-            alleStapel = _stapelListViewController.GetAlleStapelVonDatenbank();
             //OUT - OLD CODE
-            //ListViewFormatieren();
+            alleStapel = _stapelController.GetAlleStapelVonDatenbank();
             //listView_AusgabeAnzeigen(alleStapel);
         }
-
-        /*
-        private void ListViewFormatieren()
-        {
-            listView_Ausgabe.View = View.Details;
-            listView_Ausgabe.Columns.Add("ID");
-            listView_Ausgabe.Columns.Add("Stapelname").Width = 130;
-            listView_Ausgabe.Columns.Add("Anzahl");
-        }
-        */
-
+        
         private void listView_AusgabeAnzeigen(List<Stapel> anzeigen)
         {
             List<ListViewItem> listViewItems = new List<ListViewItem>();
 
             foreach (Stapel stapel in anzeigen)
             {
-                listViewItems.Add(ListViewItemErzeugen(stapel));
+                listViewItems.Add(_stapelController.CreateViewItem(stapel));
             }
 
             listView_Ausgabe.Items.Clear();
             listView_Ausgabe.Items.AddRange(listViewItems.ToArray());
         }
-
-        public ListViewItem ListViewItemErzeugen(Stapel stapel)
-        {
-            ListViewItem item = new ListViewItem(stapel.Id.ToString());
-            item.SubItems.Add(stapel.Name);
-            item.SubItems.Add("0");
-            return item;
-        }
-
+        
         private void txt_StapelSuche_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-
                 if (txt_StapelSuche.Text.Trim() == "")
                 {
-                    listView_AusgabeAnzeigen(alleStapel);
+                    //OLD
+                    //listView_AusgabeAnzeigen(alleStapel);
+                    //TODO ÜBERLADUNG ODER IMMER DB ABFRAGE? -ANDERS ZWISCHENSPEICHERN?
+                    //listView_Ausgabe = _stapelController.UpdateView(listView_Ausgabe);
+                    //TODO- ODER SO - WO STAPEL ZWISCHENSPEICHERN?:
+                    listView_Ausgabe = _stapelController.UpdateView(listView_Ausgabe, alleStapel);
                 }
-
                 else
                 {
                     StapelSucheAnzeigen(txt_StapelSuche.Text);
                 }
-
                 //listView_Ausgabe.
                 selectedItem = null;
                 txt_StapelSuche.Clear();

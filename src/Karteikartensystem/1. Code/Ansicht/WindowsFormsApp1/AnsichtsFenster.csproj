@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\IListViewController.cs" />
-    <Compile Include="Controller\StapelListViewController.cs" />
+    <Compile Include="Controller\StapelViewController.cs" />
     <Compile Include="FensterMethoden\UebersichtMethoden.cs" />
     <Compile Include="Fenster\HinzufuegenKarten.cs">
       <SubType>Form</SubType>

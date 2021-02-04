@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 using Repositories;
 
 namespace AnsichtsFenster.Controller
 {
-    public class StapelListViewController : IListViewController
+    public class StapelViewController : IListViewController
     {
-        //private ListView listView;
-        private List<ListViewItem> listViewItems;
-
-        //private KarteRepository karteRepository;
         private StapelRepository stapelRepository;
 
-        public StapelListViewController()
+        public StapelViewController()
         {
-            //karteRepository = new KarteRepository();
             stapelRepository = new StapelRepository();
         }
 
@@ -36,7 +29,7 @@ namespace AnsichtsFenster.Controller
         public ListView UpdateView(ListView listView)
         {
             List<Stapel> kartenStapelListe = GetAlleStapelVonDatenbank();
-            listViewItems = new List<ListViewItem>();
+            List<ListViewItem> listViewItems = new List<ListViewItem>();
 
             foreach (Stapel stapel in kartenStapelListe)
             {
@@ -48,10 +41,38 @@ namespace AnsichtsFenster.Controller
             return listView;
         }
 
+        //TODO WAS BESSERES ALS ÜBERLADUNG FINDEN
+        public ListView UpdateView(ListView listView, List<Stapel> kartenStapelListe)
+        {
+            List<ListViewItem> listViewItems = new List<ListViewItem>();
+
+            foreach (Stapel stapel in kartenStapelListe)
+            {
+                listViewItems.Add(CreateViewItem(stapel));
+            }
+
+            listView.Items.Clear();
+            listView.Items.AddRange(listViewItems.ToArray());
+            return listView;
+        }
+        //TODO
         public ListView ClearView(ListView listView)
         {
             throw new NotImplementedException();
         }
+
+        public ListView SortListViewAscending(ListView listView)
+        {
+            listView.Sorting = SortOrder.Ascending;
+            return listView;
+        }
+
+        public ListView SortListViewDescending(ListView listView)
+        {
+            listView.Sorting = SortOrder.Descending;
+            return listView;
+        }
+        
         //TODO LATER PRIVATE
         public List<Stapel> GetAlleStapelVonDatenbank()
         {
@@ -67,11 +88,6 @@ namespace AnsichtsFenster.Controller
             //TODO: ADD COUNT
             //item.SubItems.Add(stapel.Karten.Count());
             return item;
-        }
-
-        public void SortListView()
-        {
-            //sListView.Sorting;
         }
     }
 }
