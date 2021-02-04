@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
 
-namespace WindowsFormsApp1.FensterMethoden
+namespace AnsichtsFenster.FensterMethoden
 {
     class UebersichtMethoden
     {
@@ -26,12 +24,12 @@ namespace WindowsFormsApp1.FensterMethoden
             return gefundenList;
         }
 
-        public List<Stapel.Stapel> GetGefundenList(string eingabe, List<Stapel.Stapel> gesamtList)
+        public List<Model.Stapel> GetGefundenList(string eingabe, List<Model.Stapel> gesamtList)
         {
-            List<Stapel.Stapel> gefundenList = new List<Stapel.Stapel>();
+            List<Model.Stapel> gefundenList = new List<Model.Stapel>();
             eingabe = eingabe.ToLower();
 
-            foreach (Stapel.Stapel stapel in gesamtList)
+            foreach (Model.Stapel stapel in gesamtList)
             {
                 string stapelNameLower = stapel.Name.ToLower();
 

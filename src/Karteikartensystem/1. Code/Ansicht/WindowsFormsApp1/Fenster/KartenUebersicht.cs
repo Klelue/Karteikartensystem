@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApp1.FensterMethoden;
+using AnsichtsFenster.FensterMethoden;
 
-namespace WindowsFormsApp1
+namespace AnsichtsFenster.Fenster
 {
     public partial class KartenUebersicht : Form
     {
@@ -83,7 +77,7 @@ namespace WindowsFormsApp1
 
         private void ListViewColumnClick(object sender, ColumnClickEventArgs e)
         {
-            this.listView_KartenAnzeige.ListViewItemSorter = new ListViewItemComparer(e.Column);
+            listView_KartenAnzeige.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
 
         private void btn_home_Click(object sender, EventArgs e)

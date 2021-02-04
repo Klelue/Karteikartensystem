@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\datenbankEngine\DatenbankEngine\DatenbankEngine.csproj" />
-    <ProjectReference Include="..\..\Model\Stapel\Stapel.csproj" />
+    <ProjectReference Include="..\..\Datenbank\DatenbankEngine.csproj" />
+    <ProjectReference Include="..\..\Model\Stapel\Model.csproj" />
   </ItemGroup>
 
 </Project>

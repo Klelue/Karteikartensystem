@@ -1,21 +1,16 @@
-﻿using Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApp1.Fenster;
-using WindowsFormsApp1.FensterMethoden;
+using AnsichtsFenster.FensterMethoden;
+using Model;
+using Repositories;
 
-namespace WindowsFormsApp1
+namespace AnsichtsFenster.Fenster
 {
     public partial class StapelUebersichtView : Form
     {
-        private List<Stapel.Stapel> alleStapel;
+        private List<Stapel> alleStapel;
         private UebersichtMethoden methoden = new UebersichtMethoden();
 
         public StapelUebersichtView()
@@ -38,11 +33,11 @@ namespace WindowsFormsApp1
             listView_AusgabeAnzeigen(alleStapel);
         }
 
-        private void listView_AusgabeAnzeigen(List<Stapel.Stapel> anzeigen)
+        private void listView_AusgabeAnzeigen(List<Stapel> anzeigen)
         {
             List<ListViewItem> listViewItems= new List<ListViewItem>();
 
-            foreach(Stapel.Stapel stapel in anzeigen)
+            foreach(Stapel stapel in anzeigen)
             {
                 listViewItems.Add(ListViewItemErzeugen(stapel));
             }
@@ -51,7 +46,7 @@ namespace WindowsFormsApp1
             listView_Ausgabe.Items.AddRange(listViewItems.ToArray());
         }
 
-        private ListViewItem ListViewItemErzeugen(Stapel.Stapel stapel)
+        private ListViewItem ListViewItemErzeugen(Stapel stapel)
         {
             ListViewItem item = new ListViewItem(stapel.Id.ToString());
             item.SubItems.Add(stapel.Name);
@@ -80,7 +75,7 @@ namespace WindowsFormsApp1
 
         private void StapelSucheAnzeigen(string eingabe)
         {
-            List<Stapel.Stapel> gefundenList = methoden.GetGefundenList(eingabe, alleStapel);
+            List<Stapel> gefundenList = methoden.GetGefundenList(eingabe, alleStapel);
 
             if(gefundenList.Count == 0)
             {
@@ -97,8 +92,8 @@ namespace WindowsFormsApp1
 
         private void btn_Hinzufuegen_Click(object sender, EventArgs e)
         {
-            Form hinzufuegenFenster = new HinzufuegenView();
-            hinzufuegenFenster.Show(this);
+            //Form hinzufuegenFenster = new HinzufuegenView();
+            //hinzufuegenFenster.Show();
         }
 
         private void listView_Ausgabe_Click(object sender, EventArgs e)
@@ -110,7 +105,7 @@ namespace WindowsFormsApp1
 
         private void ListViewColumnClick(object sender, ColumnClickEventArgs e)
         {
-            this.listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
+            listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
 
         private void btn_Entfernen_Click(object sender, EventArgs e)

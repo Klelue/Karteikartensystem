@@ -1,6 +1,6 @@
 ﻿
 
-namespace Stapel
+namespace Model
 {
     public class Karte
     {

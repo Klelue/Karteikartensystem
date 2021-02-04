@@ -1,4 +1,4 @@
-﻿namespace Stapel
+﻿namespace Model
 {
     public class Stapel
     {

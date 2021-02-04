@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace AnsichtsFenster.Fenster
 {
     internal class ListViewItemComparer : IComparer
     {

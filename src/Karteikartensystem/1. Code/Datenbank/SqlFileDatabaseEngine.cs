@@ -17,12 +17,12 @@ namespace DatenbankEngine
         public SqlFileDatabaseEngine()
         {
 
-            this.connectionString =
+            connectionString =
 
                 @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + fileDatabasePath + "Integrated Security=True;Connect Timeout=30";
 
 
-            this.connection = new SqlConnection(this.connectionString);
+            connection = new SqlConnection(connectionString);
         }
 
         
@@ -31,7 +31,7 @@ namespace DatenbankEngine
 
             DataTable dataTable = new DataTable();
 
-            this.connection.Open();
+            connection.Open();
 
             try
             {
@@ -46,7 +46,7 @@ namespace DatenbankEngine
             }
             finally
             {
-                this.connection.Close();
+                connection.Close();
             }
 
             return dataTable;
@@ -57,7 +57,7 @@ namespace DatenbankEngine
 
             int rowsAffected = 0;
 
-            this.connection.Open();
+            connection.Open();
 
             try
             {
@@ -65,7 +65,7 @@ namespace DatenbankEngine
             }
             finally
             {
-                this.connection.Close();
+                connection.Close();
             }
 
             return rowsAffected;

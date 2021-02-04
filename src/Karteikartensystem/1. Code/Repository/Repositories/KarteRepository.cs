@@ -1,11 +1,11 @@
 ﻿
-namespace KartenRepository
-{
-    using System.Data;
-    using System.Data.SqlClient;
-    using DatenbankEngine;
-    using Stapel;
+using System.Data;
+using System.Data.SqlClient;
+using DatenbankEngine;
+using Model;
 
+namespace Repositories
+{
     public class KarteRepository
     {
         private readonly IDatenbankEngine databaseEngine;

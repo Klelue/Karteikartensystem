@@ -1,6 +1,7 @@
-﻿namespace Repositories
+﻿using Model;
+
+namespace Repositories
 {
-    using Stapel;
     public interface IStapelRepository : IRepository
     {
        Stapel[] GetAlleStapel();

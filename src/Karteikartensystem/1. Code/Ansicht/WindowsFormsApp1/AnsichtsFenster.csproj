@@ -6,12 +6,27 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{42340E70-49CD-4B34-9A8A-67E47AAA514A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WindowsFormsApp1</RootNamespace>
-    <AssemblyName>WindowsFormsApp1</AssemblyName>
+    <RootNamespace>AnsichtsFenster</RootNamespace>
+    <AssemblyName>AnsichtsFenster</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -69,12 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FensterMethoden\UebersichtMethoden.cs" />
-    <Compile Include="Fenster\HinzufuegenView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Fenster\HinzufuegenView.Designer.cs">
-      <DependentUpon>HinzufuegenView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Fenster\KartenUebersicht.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,9 +100,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\ColumnClickEventHandler.cs" />
-    <EmbeddedResource Include="Fenster\HinzufuegenView.resx">
-      <DependentUpon>HinzufuegenView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Fenster\KartenUebersicht.resx">
       <DependentUpon>KartenUebersicht.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,6 +111,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Fenster\StapelUebersichtView.resx">
       <DependentUpon>StapelUebersichtView.cs</DependentUpon>
@@ -124,14 +131,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Model\Stapel\Stapel.csproj">
+    <ProjectReference Include="..\..\Model\Stapel\Model.csproj">
       <Project>{244545ca-daee-4b76-8b74-9a1fc6d34b04}</Project>
-      <Name>Stapel</Name>
+      <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Repository\Repositories\Repositories.csproj">
       <Project>{6052aabf-2046-4beb-aef1-8e6d70173589}</Project>
       <Name>Repositories</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
