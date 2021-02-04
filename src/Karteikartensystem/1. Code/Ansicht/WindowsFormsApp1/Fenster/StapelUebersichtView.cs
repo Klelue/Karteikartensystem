@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using AnsichtsFenster.Controller;
-using AnsichtsFenster.FensterMethoden;
+using AnsichtsFenster.Utilities;
 using Model;
 using Repositories;
 
@@ -13,40 +13,24 @@ namespace AnsichtsFenster.Fenster
     {
         //IN
         private StapelViewController _stapelController;
-
         //LATER OUT - DATA TO CONTROLLER
         private List<Stapel> alleStapel;
-        private UebersichtMethoden methoden = new UebersichtMethoden();
         private ListViewItem selectedItem;
 
         public StapelUebersichtView()
         {
             InitializeComponent();
+
             //NEW METHODS
             _stapelController = new StapelViewController();
             listView_Ausgabe = _stapelController.CreateView(listView_Ausgabe);
             listView_Ausgabe = _stapelController.UpdateView(listView_Ausgabe);
-            //
             //TODO: ANDERER WEG ALS DURCHSCHLEIFEN?
             //listView_Ausgabe = _stapelController.CreateView();
             //listView_Ausgabe = _stapelController.ListViewUpdate(listView_Ausgabe);
-            //
-            //OUT - OLD CODE
-            alleStapel = _stapelController.GetAlleStapelVonDatenbank();
-            //listView_AusgabeAnzeigen(alleStapel);
-        }
-        
-        private void listView_AusgabeAnzeigen(List<Stapel> anzeigen)
-        {
-            List<ListViewItem> listViewItems = new List<ListViewItem>();
 
-            foreach (Stapel stapel in anzeigen)
-            {
-                listViewItems.Add(_stapelController.CreateViewItem(stapel));
-            }
-
-            listView_Ausgabe.Items.Clear();
-            listView_Ausgabe.Items.AddRange(listViewItems.ToArray());
+            //OUT - CODE
+            //alleStapel = _stapelController.GetAlleStapelVonDatenbank();
         }
         
         private void txt_StapelSuche_KeyDown(object sender, KeyEventArgs e)
@@ -55,38 +39,18 @@ namespace AnsichtsFenster.Fenster
             {
                 if (txt_StapelSuche.Text.Trim() == "")
                 {
-                    //OLD
-                    //listView_AusgabeAnzeigen(alleStapel);
-                    //TODO ÜBERLADUNG ODER IMMER DB ABFRAGE? -ANDERS ZWISCHENSPEICHERN?
-                    //listView_Ausgabe = _stapelController.ReloadView(listView_Ausgabe);
-                    //TODO - ODER SO - WO STAPEL ZWISCHENSPEICHERN?:
-                    listView_Ausgabe = _stapelController.ReloadView(listView_Ausgabe, alleStapel);
+                    listView_Ausgabe = _stapelController.UpdateView(listView_Ausgabe);
                 }
                 else
                 {
-                    StapelSucheAnzeigen(txt_StapelSuche.Text);
+                    listView_Ausgabe =_stapelController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
                 }
-                //listView_Ausgabe.
+                //TODO NEED TO NULL?
                 selectedItem = null;
                 txt_StapelSuche.Clear();
             }
         }
-
-        private void StapelSucheAnzeigen(string eingabe)
-        {
-            List<Stapel> gefundenList = methoden.GetGefundenList(eingabe, alleStapel);
-
-            if (gefundenList.Count == 0)
-            {
-                MessageBox.Show("Leider kein Eintrag gefunden", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                listView_AusgabeAnzeigen(alleStapel);
-            }
-            else
-            {
-                listView_AusgabeAnzeigen(gefundenList);
-            }
-        }
-
+        
         private void btn_StapelHinzufuegen_Click(object sender, EventArgs e)
         {
             Form hinzufuegenFenster = new HinzufuegenView();

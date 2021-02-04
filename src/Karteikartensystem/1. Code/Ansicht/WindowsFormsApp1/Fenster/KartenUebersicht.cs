@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using AnsichtsFenster.FensterMethoden;
 using Repositories;
 using Model;
 using System.Linq;
+using AnsichtsFenster.Utilities;
 
 namespace AnsichtsFenster.Fenster
 {
     public partial class KartenUebersicht : Form
     {
         private List<Karte> alleKarten;
-        private UebersichtMethoden methoden = new UebersichtMethoden();
 
         public KartenUebersicht(string stapelName, int stapelId)
         {
@@ -62,11 +61,11 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void KartenSucheAnzeigen(string eingabe)
+        private void KartenSucheAnzeigen(string suchbegriff)
         {
-            List<Karte> gefundenList = methoden.GetGefundenList(eingabe, alleKarten);
+            List<Karte> ergebnisListe = SuchlistenTool.GetSuchergebnis(suchbegriff, alleKarten);
 
-            if (gefundenList.Count < 1)
+            if (ergebnisListe.Count < 1)
             {
                 MessageBox.Show("Leider kein Eintrag gefunden", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 KartenAnzeigen(alleKarten);
@@ -74,7 +73,7 @@ namespace AnsichtsFenster.Fenster
 
             else
             {
-                KartenAnzeigen(gefundenList);
+                KartenAnzeigen(ergebnisListe);
             }
         }
 
