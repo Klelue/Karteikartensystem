@@ -8,11 +8,11 @@ namespace Repositories
 
     public class StapelRepository : IStapelRepository
     {
-        private readonly IDatenbankEngine databaseEngine;
+        private readonly IDatenbankEngine datenbankEngine;
 
         public StapelRepository()
         {
-            databaseEngine = new SqlFileDatabaseEngine();
+            datenbankEngine = new SqlFileDatabaseEngine();
         }
 
         public Stapel[] GetAlleStapel()
@@ -21,7 +21,7 @@ namespace Repositories
 
             SqlCommand sqlCommand = new SqlCommand(sql);
             
-            DataTable dataTable = databaseEngine.ExecuteSelectQuery(sqlCommand);
+            DataTable dataTable = datenbankEngine.ExecuteSelectQuery(sqlCommand);
 
             Stapel[] stapelArray = new Stapel[dataTable.Rows.Count];
 
@@ -30,7 +30,7 @@ namespace Repositories
                  int id = (int) dataTable.Rows[index][0];
                  string name =  dataTable.Rows[index][1].ToString();
 
-                Model.Stapel stapel = new Model.Stapel
+                 Stapel stapel = new Model.Stapel
                 {
                     Id = id,
                     Name = name
@@ -43,15 +43,15 @@ namespace Repositories
             return stapelArray;
         }
 
-        public bool AddStapel(Stapel stapel)
+        public bool StapelHinzufügen(Stapel stapel)
         {
-            string sql = $"INSERT INTO Stapel (name) VALUES(@Name);";
+            string sql = "INSERT INTO Stapel (name) VALUES(@Name);";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
             sqlCommand.Parameters.AddWithValue("@Name", stapel.Name);
 
-            int anzahlBetrofenderReihen = databaseEngine.ExecuteQuery(sqlCommand);
+            int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
             if (anzahlBetrofenderReihen == 0)
             {
@@ -60,6 +60,24 @@ namespace Repositories
 
             return true;
 
+        }
+
+        public bool StapelLöschen(int id)
+        {
+            string sql = "DELETE FROM Stapel WHERE Id = @Id";
+
+            SqlCommand sqlCommand = new SqlCommand(sql);
+
+            sqlCommand.Parameters.AddWithValue("@Id", id);
+
+            int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
+
+            if (anzahlBetrofenderReihen == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
 

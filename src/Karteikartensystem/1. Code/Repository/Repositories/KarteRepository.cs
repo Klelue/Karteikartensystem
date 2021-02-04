@@ -8,11 +8,11 @@ namespace Repositories
 {
     public class KarteRepository
     {
-        private readonly IDatenbankEngine databaseEngine;
+        private readonly IDatenbankEngine datenbankEngine;
 
         public KarteRepository()
         {
-            databaseEngine = new SqlFileDatabaseEngine();
+            datenbankEngine = new SqlFileDatabaseEngine();
         }
 
         public bool AddKarte(Karte karte)
@@ -26,7 +26,7 @@ namespace Repositories
                 sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
                 sqlCommand.Parameters.AddWithValue("@StapelId", karte.Id);
 
-                int anzahlBetrofenderReihen = databaseEngine.ExecuteQuery(sqlCommand);
+                int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
                 if (anzahlBetrofenderReihen == 0)
                 {
@@ -45,7 +45,7 @@ namespace Repositories
 
             sqlCommand.Parameters.AddWithValue("StapelId", stapelId);
 
-            DataTable dataTable = databaseEngine.ExecuteSelectQuery(sqlCommand);
+            DataTable dataTable = datenbankEngine.ExecuteSelectQuery(sqlCommand);
 
             Karte[] kartenArray = new Karte[dataTable.Rows.Count];
 
@@ -70,5 +70,22 @@ namespace Repositories
             return kartenArray;
         }
 
+        public bool RemoveKarte(int Id)
+        {
+            string sql = "DELETE FROM Karte WHERE Id = @Id";
+
+            SqlCommand sqlCommand = new SqlCommand(sql);
+
+            sqlCommand.Parameters.AddWithValue("@Id", Id);
+
+            int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
+
+            if (anzahlBetrofenderReihen == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
