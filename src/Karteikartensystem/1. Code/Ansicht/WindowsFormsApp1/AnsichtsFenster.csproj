@@ -83,7 +83,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\StapelUebersichtController.cs" />
+    <Compile Include="Controller\IListViewController.cs" />
+    <Compile Include="Controller\StapelListViewController.cs" />
     <Compile Include="FensterMethoden\UebersichtMethoden.cs" />
     <Compile Include="Fenster\HinzufuegenKarten.cs">
       <SubType>Form</SubType>

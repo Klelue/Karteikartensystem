@@ -9,51 +9,57 @@ using Repositories;
 
 namespace AnsichtsFenster.Controller
 {
-    public class StapelUebersichtController
+    public class StapelListViewController : IListViewController
     {
-        private ListView listView;
+        //private ListView listView;
         private List<ListViewItem> listViewItems;
 
-        private KarteRepository karteRepository;
+        //private KarteRepository karteRepository;
         private StapelRepository stapelRepository;
 
-        public StapelUebersichtController()
+        public StapelListViewController()
         {
-            karteRepository = new KarteRepository();
+            //karteRepository = new KarteRepository();
             stapelRepository = new StapelRepository();
         }
 
-        public List<Stapel> GetAlleStapelVonDatenbank()
+        public ListView CreateView(ListView listView)
         {
-            return stapelRepository.GetAlleStapel().ToList();
-        }
-
-        public ListView ListViewCreate()
-        {
-            listView = new ListView
-            {
-                View = View.Details
-            };
+            listView.View = View.Details;
             listView.Columns.Add("ID");
             listView.Columns.Add("Stapelname").Width = 140;
             listView.Columns.Add("Anzahl");
 
             return listView;
         }
-        public void ListViewUpdate(List<Stapel> kartenStapel)
+
+        public ListView UpdateView(ListView listView)
         {
+            List<Stapel> kartenStapelListe = GetAlleStapelVonDatenbank();
             listViewItems = new List<ListViewItem>();
 
-            foreach (Stapel stapel in kartenStapel)
+            foreach (Stapel stapel in kartenStapelListe)
             {
-                listViewItems.Add(ListViewItemCreate(stapel));
+                listViewItems.Add(CreateViewItem(stapel));
             }
 
             listView.Items.Clear();
             listView.Items.AddRange(listViewItems.ToArray());
+            return listView;
         }
 
-        private ListViewItem ListViewItemCreate(Stapel stapel)
+        public ListView ClearView(ListView listView)
+        {
+            throw new NotImplementedException();
+        }
+        //TODO LATER PRIVATE
+        public List<Stapel> GetAlleStapelVonDatenbank()
+        {
+            return stapelRepository.GetAlleStapel().ToList();
+        }
+
+        //TODO LATER PRIVATE
+        public ListViewItem CreateViewItem(Stapel stapel)
         {
             ListViewItem item = new ListViewItem(stapel.Id.ToString());
             item.SubItems.Add(stapel.Name);

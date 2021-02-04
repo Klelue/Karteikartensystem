@@ -12,9 +12,9 @@ namespace AnsichtsFenster.Fenster
     public partial class StapelUebersichtView : Form
     {
         //IN
-        private StapelUebersichtController stapelController;
+        private StapelListViewController _stapelListViewController;
 
-        //OUT
+        //LATER OUT - DATA TO CONTROLLER
         private List<Stapel> alleStapel;
         private UebersichtMethoden methoden = new UebersichtMethoden();
         private ListViewItem selectedItem;
@@ -22,19 +22,25 @@ namespace AnsichtsFenster.Fenster
         public StapelUebersichtView()
         {
             InitializeComponent();
-            //IN
-            stapelController = new StapelUebersichtController();
-            alleStapel = stapelController.GetAlleStapelVonDatenbank();
-            stapelController.ListViewCreate();
-            stapelController.ListViewUpdate(alleStapel);
-
-            //OUT
-            //StapelRepository repository = new StapelRepository();
-            //alleStapel = repository.GetAlleStapel().ToList();
+           
+            //IN MODULES
+            _stapelListViewController = new StapelListViewController();
+            //IN METHODS
+            listView_Ausgabe = _stapelListViewController.CreateView(listView_Ausgabe);
+            listView_Ausgabe = _stapelListViewController.UpdateView(listView_Ausgabe);
+            //
+            //TODO: ANDERER WEG ALS DURCHSCHLEIFEN?
+            //listView_Ausgabe = _stapelListViewController.CreateView();
+            //listView_Ausgabe = _stapelListViewController.ListViewUpdate(listView_Ausgabe);
+            //
+            //
+            alleStapel = _stapelListViewController.GetAlleStapelVonDatenbank();
+            //OUT - OLD CODE
             //ListViewFormatieren();
             //listView_AusgabeAnzeigen(alleStapel);
         }
 
+        /*
         private void ListViewFormatieren()
         {
             listView_Ausgabe.View = View.Details;
@@ -42,6 +48,7 @@ namespace AnsichtsFenster.Fenster
             listView_Ausgabe.Columns.Add("Stapelname").Width = 130;
             listView_Ausgabe.Columns.Add("Anzahl");
         }
+        */
 
         private void listView_AusgabeAnzeigen(List<Stapel> anzeigen)
         {
@@ -56,7 +63,7 @@ namespace AnsichtsFenster.Fenster
             listView_Ausgabe.Items.AddRange(listViewItems.ToArray());
         }
 
-        private ListViewItem ListViewItemErzeugen(Stapel stapel)
+        public ListViewItem ListViewItemErzeugen(Stapel stapel)
         {
             ListViewItem item = new ListViewItem(stapel.Id.ToString());
             item.SubItems.Add(stapel.Name);
@@ -131,6 +138,7 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_Entfernen_Click(object sender, EventArgs e)
         {
+            //TODO: TRY FOR NULL!
             if (MessageBox.Show("Möchtest du es wirklich den Stapel \"" + selectedItem.SubItems[1].Text + "\" entfernen?", "Entfernen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 MessageBox.Show("Stapel wurde gelöscht", "Hat geklappt", MessageBoxButtons.OK); ;
