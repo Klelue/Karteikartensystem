@@ -5,6 +5,8 @@ namespace Repositories
     public interface IStapelRepository : IRepository
     {
        Stapel[] GetAlleStapel();
-       bool AddStapel(Stapel stapel);
+       bool StapelHinzufügen(Stapel stapel);
+
+       bool StapelLöschen(int Id);
     }
 }

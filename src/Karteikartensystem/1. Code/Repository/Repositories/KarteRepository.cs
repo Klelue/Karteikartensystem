@@ -6,19 +6,19 @@ using Model;
 
 namespace Repositories
 {
-    public class KarteRepository
+    public class KarteRepository : IKarteRepository
     {
-        private readonly IDatenbankEngine databaseEngine;
+        private readonly IDatenbankEngine datenbankEngine;
 
         public KarteRepository()
         {
-            databaseEngine = new SqlFileDatabaseEngine();
+            datenbankEngine = new SqlFileDatabaseEngine();
         }
 
-        public bool AddKarte(Karte karte)
+        public bool KarteHinzufügen(Karte karte)
         {
-         
-                string sql = $"INSERT INTO Karte (frage, antwort, stapel_id) VALUES(@Frage, @Antwort, @StapelId);";
+
+            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id) VALUES(@Frage, @Antwort, @StapelId);";
 
                 SqlCommand sqlCommand = new SqlCommand(sql);
 
@@ -26,7 +26,7 @@ namespace Repositories
                 sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
                 sqlCommand.Parameters.AddWithValue("@StapelId", karte.Id);
 
-                int anzahlBetrofenderReihen = databaseEngine.ExecuteQuery(sqlCommand);
+                int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
                 if (anzahlBetrofenderReihen == 0)
                 {
@@ -37,7 +37,7 @@ namespace Repositories
 
         }
 
-        public Karte[] GetKarten(int stapelId)
+        public Karte[] GetAlleKartenEinesStapels(int stapelId)
         {
             string sql = "SELECT Id, frage, antwort, stapel_id FROM Karte WHERE stapel_id = @StapelId;";
 
@@ -45,7 +45,7 @@ namespace Repositories
 
             sqlCommand.Parameters.AddWithValue("StapelId", stapelId);
 
-            DataTable dataTable = databaseEngine.ExecuteSelectQuery(sqlCommand);
+            DataTable dataTable = datenbankEngine.ExecuteSelectQuery(sqlCommand);
 
             Karte[] kartenArray = new Karte[dataTable.Rows.Count];
 
@@ -70,5 +70,23 @@ namespace Repositories
             return kartenArray;
         }
 
+
+        public bool KarteLöschen(int Id)
+        {
+            string sql = "DELETE FROM Karte WHERE Id = @Id";
+
+            SqlCommand sqlCommand = new SqlCommand(sql);
+
+            sqlCommand.Parameters.AddWithValue("@Id", Id);
+
+            int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
+
+            if (anzahlBetrofenderReihen == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
