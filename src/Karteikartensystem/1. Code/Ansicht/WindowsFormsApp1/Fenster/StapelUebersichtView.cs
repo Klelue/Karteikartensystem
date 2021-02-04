@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using AnsichtsFenster.Controller;
 using AnsichtsFenster.FensterMethoden;
 using Model;
 using Repositories;
@@ -10,6 +11,10 @@ namespace AnsichtsFenster.Fenster
 {
     public partial class StapelUebersichtView : Form
     {
+        //IN
+        private StapelUebersichtController stapelController;
+
+        //OUT
         private List<Stapel> alleStapel;
         private UebersichtMethoden methoden = new UebersichtMethoden();
         private ListViewItem selectedItem;
@@ -17,11 +22,17 @@ namespace AnsichtsFenster.Fenster
         public StapelUebersichtView()
         {
             InitializeComponent();
+            //IN
+            stapelController = new StapelUebersichtController();
+            alleStapel = stapelController.GetAlleStapelVonDatenbank();
+            stapelController.ListViewCreate();
+            stapelController.ListViewUpdate(alleStapel);
 
-            StapelRepository repository = new StapelRepository();
-            alleStapel = repository.GetAlleStapel().ToList();
-            ListViewFormatieren();
-
+            //OUT
+            //StapelRepository repository = new StapelRepository();
+            //alleStapel = repository.GetAlleStapel().ToList();
+            //ListViewFormatieren();
+            //listView_AusgabeAnzeigen(alleStapel);
         }
 
         private void ListViewFormatieren()
@@ -30,7 +41,6 @@ namespace AnsichtsFenster.Fenster
             listView_Ausgabe.Columns.Add("ID");
             listView_Ausgabe.Columns.Add("Stapelname").Width = 130;
             listView_Ausgabe.Columns.Add("Anzahl");
-            listView_AusgabeAnzeigen(alleStapel);
         }
 
         private void listView_AusgabeAnzeigen(List<Stapel> anzeigen)
