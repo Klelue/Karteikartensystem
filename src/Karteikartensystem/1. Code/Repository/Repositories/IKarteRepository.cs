@@ -8,7 +8,8 @@ namespace Repositories
 {
     interface IKarteRepository : IRepository
     {
-        bool AddKarte(Karte karte);
-        Karte[] GetKarten(int stapelId);
+        bool KarteHinzufügen(Karte karte);
+        Karte[] GetAlleKartenEinesStapels(int stapelId);
+        bool KarteLöschen(int id);
     }
 }

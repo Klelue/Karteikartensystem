@@ -6,7 +6,7 @@ using Model;
 
 namespace Repositories
 {
-    public class KarteRepository
+    public class KarteRepository : IKarteRepository
     {
         private readonly IDatenbankEngine datenbankEngine;
 
@@ -15,7 +15,7 @@ namespace Repositories
             datenbankEngine = new SqlFileDatabaseEngine();
         }
 
-        public bool AddKarte(Karte karte)
+        public bool KarteHinzufügen(Karte karte)
         {
          
                 string sql = $"INSERT INTO Karte (frage, antwort, stapel_id) VALUES(@Frage, @Antwort, @StapelId);";
@@ -37,7 +37,7 @@ namespace Repositories
 
         }
 
-        public Karte[] GetKarten(int stapelId)
+        public Karte[] GetAlleKartenEinesStapels(int stapelId)
         {
             string sql = "SELECT Id, frage, antwort, stapel_id FROM Karte WHERE stapel_id = @StapelId;";
 
@@ -70,7 +70,8 @@ namespace Repositories
             return kartenArray;
         }
 
-        public bool RemoveKarte(int Id)
+
+        public bool KarteLöschen(int Id)
         {
             string sql = "DELETE FROM Karte WHERE Id = @Id";
 

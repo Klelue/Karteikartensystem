@@ -6,5 +6,7 @@ namespace Repositories
     {
        Stapel[] GetAlleStapel();
        bool StapelHinzufügen(Stapel stapel);
+
+       bool StapelLöschen(int Id);
     }
 }
