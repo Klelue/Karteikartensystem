@@ -24,7 +24,7 @@ namespace Repositories
 
                 sqlCommand.Parameters.AddWithValue("@Frage", karte.Frage);
                 sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
-                sqlCommand.Parameters.AddWithValue("@StapelId", karte.Id);
+                sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
 
                 int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
