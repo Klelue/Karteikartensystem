@@ -47,9 +47,7 @@ namespace AnsichtsFenster.Fenster
                 StapelHinzufuegen(stapelName);
             }
         }
-
         
-
         private void listView_Ausgabe_Click(object sender, EventArgs e)
         {
             selectedItem =  listController.SelectItem(listView_Ausgabe);
@@ -71,11 +69,12 @@ namespace AnsichtsFenster.Fenster
             {
                 if (viewController.GetMessageBoxChoiceStapelLoeschen(selectedItem))
                 {
-                    listView_Ausgabe = listController.DeleteItem(listView_Ausgabe, selectedItem);
-                        //TODO CHECK FOR SUCCESS
+                    listView_Ausgabe = listController.DeleteItem(listView_Ausgabe, selectedItem, out bool geloescht);
+                    if (geloescht)
+                    {
                         viewController.GetMessageBoxStapelErfolgreichGeloescht();
-
-                        viewController.GetMessageBoxStapelLoeschenNichtMoeglich();
+                    }
+                    viewController.GetMessageBoxStapelLoeschenNichtMoeglich();
                 }
             }
             else

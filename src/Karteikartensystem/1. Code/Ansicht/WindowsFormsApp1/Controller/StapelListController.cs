@@ -65,6 +65,7 @@ namespace AnsichtsFenster.Controller
 
         public ListViewItem SelectItem(ListView listView)
         {
+            //TODO TRY FOR NULL
             return listView.SelectedItems[0];
         }
 
@@ -102,9 +103,10 @@ namespace AnsichtsFenster.Controller
             return item;
         }
 
-        public ListView DeleteItem(ListView listView, ListViewItem listViewItem)
+        public ListView DeleteItem(ListView listView, ListViewItem listViewItem, out bool geloescht)
         {
-            //out  bool geloescht
+            int itemDatenbankIndex = Convert.ToInt32(listViewItem.SubItems[0].Text);
+            geloescht = stapelRepository.StapelLöschen(itemDatenbankIndex);
             listView.Items.Remove(listViewItem);
             return listView;
         }
