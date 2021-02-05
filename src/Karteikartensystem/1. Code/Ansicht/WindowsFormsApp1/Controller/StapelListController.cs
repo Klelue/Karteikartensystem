@@ -77,7 +77,7 @@ namespace AnsichtsFenster.Controller
 
             if (ergebnisListe.Count == 0)
             {
-                new ViewController().GetMessageBoxKeinEintragGefunden();
+                new ViewController().ShowMessageBoxKeinEintragGefunden();
                 return ReloadView(listView, alleStapel);
             }
             else

@@ -20,22 +20,22 @@ namespace AnsichtsFenster.Controller
             return new HinzufuegenKarten(panelName, Convert.ToInt32(item.SubItems[0].Text));
         }
 
-        internal void GetMessageBoxKeinStapelGewaehlt()
+        internal void ShowMessageBoxKeinStapelGewaehlt()
         {
             MessageBox.Show("Es wurde kein Stapel ausgewählt", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        internal void GetMessageBoxStapelErfolgreichGeloescht()
+        internal void ShowMessageBoxStapelErfolgreichGeloescht()
         {
             MessageBox.Show("Stapel wurde gelöscht", "Gelöscht", MessageBoxButtons.OK); ;
         }
 
-        internal void GetMessageBoxKeinEintragGefunden()
+        internal void ShowMessageBoxKeinEintragGefunden()
         {
             MessageBox.Show("Leider kein Eintrag gefunden", "Kein passender Eintrag!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        internal bool GetMessageBoxChoiceStapelLoeschen(ListViewItem item)
+        internal bool ShowMessageBoxChoiceStapelLoeschen(ListViewItem item)
         {
             return MessageBox.Show(
                 "Möchtest du es wirklich den \"" + item.SubItems[1].Text +
@@ -43,7 +43,7 @@ namespace AnsichtsFenster.Controller
                 MessageBoxIcon.Warning) == DialogResult.Yes;
         }
 
-        internal void GetMessageBoxStapelLoeschenNichtMoeglich()
+        internal void ShowMessageBoxStapelLoeschenNichtMoeglich()
         {
             MessageBox.Show("Löschen nicht möglich", "Achtung!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

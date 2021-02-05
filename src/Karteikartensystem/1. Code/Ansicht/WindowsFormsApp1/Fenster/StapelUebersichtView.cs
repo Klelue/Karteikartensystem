@@ -68,22 +68,22 @@ namespace AnsichtsFenster.Fenster
         {
             if (selectedItem != null)
             {
-                if (viewController.GetMessageBoxChoiceStapelLoeschen(selectedItem))
+                if (viewController.ShowMessageBoxChoiceStapelLoeschen(selectedItem))
                 {
                     listView_Ausgabe = listController.DeleteItem(listView_Ausgabe, selectedItem, out bool geloescht);
                     if (geloescht)
                     {
-                        viewController.GetMessageBoxStapelErfolgreichGeloescht();
+                        viewController.ShowMessageBoxStapelErfolgreichGeloescht();
                     }
                     else
                     {
-                        viewController.GetMessageBoxStapelLoeschenNichtMoeglich();
+                        viewController.ShowMessageBoxStapelLoeschenNichtMoeglich();
                     }
                 }
             }
             else
             {
-                viewController.GetMessageBoxKeinStapelGewaehlt();
+                viewController.ShowMessageBoxKeinStapelGewaehlt();
             }
         }
 
@@ -97,7 +97,7 @@ namespace AnsichtsFenster.Fenster
             }
             else
             {
-                viewController.GetMessageBoxKeinStapelGewaehlt();
+                viewController.ShowMessageBoxKeinStapelGewaehlt();
             }
         }
 
