@@ -64,16 +64,11 @@ namespace AnsichtsFenster.Fenster
             {
                 if (viewController.GetMessageBoxChoiceStapelLoeschen(selectedItem))
                 {
-
-                    //listView_Ausgabe = listController.DeleteItem(listView_Ausgabe, selectedItem);
-                    if ()
-                    {
+                    listView_Ausgabe = listController.DeleteItem(listView_Ausgabe, selectedItem);
+                        //TODO CHECK FOR SUCCESS
                         viewController.GetMessageBoxStapelErfolgreichGeloescht();
-                    }
-                    else
-                    {
+
                         viewController.GetMessageBoxStapelLoeschenNichtMoeglich();
-                    }
                 }
             }
             else
