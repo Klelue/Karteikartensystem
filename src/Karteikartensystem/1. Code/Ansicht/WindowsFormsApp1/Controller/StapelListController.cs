@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using AnsichtsFenster.Utilities;
@@ -7,7 +8,7 @@ using Repositories;
 
 namespace AnsichtsFenster.Controller
 {
-    public class StapelListController : IListViewController
+    public class StapelListController : IStapelListView
     {
         private StapelRepository stapelRepository;
 
@@ -41,11 +42,11 @@ namespace AnsichtsFenster.Controller
             return listView;
         }
 
-        public ListView ReloadView(ListView listView, List<Stapel> kartenStapelListe)
+        public ListView ReloadView(ListView listView, List<Stapel> stapellListe)
         {
             List<ListViewItem> listViewItems = new List<ListViewItem>();
 
-            foreach (Stapel stapel in kartenStapelListe)
+            foreach (Stapel stapel in stapellListe)
             {
                 listViewItems.Add(CreateViewItem(stapel));
             }
@@ -65,6 +66,11 @@ namespace AnsichtsFenster.Controller
         public ListViewItem SelectItem(ListView listView)
         {
             return listView.SelectedItems[0];
+        }
+
+        public void ClearItem()
+        {
+            throw new NotImplementedException();
         }
 
         public ListView UpdateSuchergebnis(string suchbegriff, ListView listView)
@@ -100,17 +106,10 @@ namespace AnsichtsFenster.Controller
             //item.SubItems.Add(stapel.Karten.Count().ToString());
             return item;
         }
-    }
-    //CHECK NEED
-        /*public ListView SortAscending(ListView listView)
-    {
-        listView.Sorting = SortOrder.Ascending;
-        return listView;
-    }
 
-    public ListView SortDescending(ListView listView)
-    {
-        listView.Sorting = SortOrder.Descending;
-        return listView;
-    }*/
+        public ListViewItem ClearItem(ListView listView)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

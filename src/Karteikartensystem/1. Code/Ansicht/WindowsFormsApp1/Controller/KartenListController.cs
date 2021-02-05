@@ -1,9 +1,11 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using Model;
 using Repositories;
 
 namespace AnsichtsFenster.Controller
 {
-    public class KartenListController : IListViewController
+    public class KartenListController : IKartenListView
     {
         private KarteRepository karteRepository;
 
@@ -22,12 +24,12 @@ namespace AnsichtsFenster.Controller
             throw new System.NotImplementedException();
         }
 
-        public ListView UpdateSuchergebnis(string suchbegriff, ListView listView)
+        public ListView ClearView(ListView listView)
         {
             throw new System.NotImplementedException();
         }
 
-        public ListView ClearView(ListView listView)
+        public ListView UpdateSuchergebnis(string suchbegriff, ListView listView)
         {
             throw new System.NotImplementedException();
         }
@@ -37,17 +39,17 @@ namespace AnsichtsFenster.Controller
             throw new System.NotImplementedException();
         }
 
-        public ListViewItem GetSelectItem(ListView listView)
+        public ListViewItem ClearItem(ListView listView)
         {
             throw new System.NotImplementedException();
         }
 
-        public ListView SortAscending(ListView listView)
+        public ListViewItem CreateViewItem(Karte karte)
         {
             throw new System.NotImplementedException();
         }
 
-        public ListView SortDescending(ListView listView)
+        public ListView ReloadView(ListView listView, List<Karte> kartenListe)
         {
             throw new System.NotImplementedException();
         }
