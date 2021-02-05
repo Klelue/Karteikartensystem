@@ -6,11 +6,6 @@ namespace AnsichtsFenster.Controller
 {
     internal class ViewController
     {
-        internal HinzufuegenView BuildHinzufuegenView()
-        {
-            return new HinzufuegenView();
-        }
-
         internal KartenUebersicht BuildKartenUebersicht(ListViewItem item)
         {
             string panelName = item.SubItems[1].Text;
@@ -22,7 +17,7 @@ namespace AnsichtsFenster.Controller
         internal HinzufuegenKarten BuildHinzufuegenKarten(ListViewItem item)
         {
             string panelName = item.SubItems[1].Text;
-            return new HinzufuegenKarten(panelName);
+            return new HinzufuegenKarten(panelName, Convert.ToInt32(item.SubItems[0].Text));
         }
 
         internal void GetMessageBoxKeinStapelGewaehlt()
