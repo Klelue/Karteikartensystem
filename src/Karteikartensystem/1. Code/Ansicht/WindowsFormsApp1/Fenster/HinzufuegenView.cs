@@ -30,7 +30,7 @@ namespace AnsichtsFenster.Fenster
             Stapel stapel = new Stapel();
             stapel.Name = eingabe;
 
-            if (repository.AddStapel(stapel))
+            if (repository.StapelHinzufügen(stapel))
             {
                 MessageBox.Show("Erfolgreich hinzugefügt", "Yippy", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

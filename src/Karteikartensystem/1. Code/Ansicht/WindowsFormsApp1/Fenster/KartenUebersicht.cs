@@ -18,7 +18,7 @@ namespace AnsichtsFenster.Fenster
             lbl_StapelName.Text = stapelName;
 
             KarteRepository repository = new KarteRepository();
-            alleKarten = repository.GetKarten(stapelId).ToList();
+            alleKarten = repository.GetAlleKartenEinesStapels(stapelId).ToList();
             ListViewFormatieren();
         }
 
