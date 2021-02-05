@@ -30,7 +30,7 @@ namespace AnsichtsFenster.Controller
             MessageBox.Show("Es wurde kein Stapel ausgewählt", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        internal void GetMessageBoxStapelGeloescht()
+        internal void GetMessageBoxStapelErfolgreichGeloescht()
         {
             MessageBox.Show("Stapel wurde gelöscht", "Gelöscht", MessageBoxButtons.OK); ;
         }
@@ -46,6 +46,11 @@ namespace AnsichtsFenster.Controller
                 "Möchtest du es wirklich den \"" + item.SubItems[1].Text +
                 "\" und alle darin enthaltenen Karten entfernen?", "Entfernen", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning) == DialogResult.Yes;
+        }
+
+        internal void GetMessageBoxStapelLoeschenNichtMoeglich()
+        {
+            MessageBox.Show("Löschen nicht möglich", "Achtung!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

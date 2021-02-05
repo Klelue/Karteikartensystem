@@ -39,7 +39,7 @@ namespace AnsichtsFenster.Controller
             throw new System.NotImplementedException();
         }
 
-        public ListViewItem ClearItem(ListView listView)
+        public ListView DeleteItem(ListView listView, ListViewItem listViewItem)
         {
             throw new System.NotImplementedException();
         }

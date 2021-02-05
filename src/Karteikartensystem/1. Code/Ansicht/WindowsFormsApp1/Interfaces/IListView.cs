@@ -14,7 +14,7 @@ namespace AnsichtsFenster.Controller
         //
         
         ListViewItem SelectItem(ListView listView);
-        ListViewItem ClearItem(ListView listView);
+        ListView DeleteItem(ListView listView, ListViewItem listViewItem);
 
         //TODO CHECK FOR NEED
         /*ListView SortAscending(ListView listView);

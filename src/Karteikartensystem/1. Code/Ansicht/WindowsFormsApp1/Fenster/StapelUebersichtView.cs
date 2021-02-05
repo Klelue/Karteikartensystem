@@ -64,10 +64,16 @@ namespace AnsichtsFenster.Fenster
             {
                 if (viewController.GetMessageBoxChoiceStapelLoeschen(selectedItem))
                 {
-                    //TODO DELETE OBJECT
-                    //TODO DELETE DATABASE ENTRY - INCLUDE  Karte WITH Stapel Id
-                    //TODO UPDATE VIEW
-                    viewController.GetMessageBoxStapelGeloescht();
+
+                    //listView_Ausgabe = listController.DeleteItem(listView_Ausgabe, selectedItem);
+                    if ()
+                    {
+                        viewController.GetMessageBoxStapelErfolgreichGeloescht();
+                    }
+                    else
+                    {
+                        viewController.GetMessageBoxStapelLoeschenNichtMoeglich();
+                    }
                 }
             }
             else

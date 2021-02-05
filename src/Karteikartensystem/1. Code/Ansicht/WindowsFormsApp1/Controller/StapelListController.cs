@@ -68,11 +68,6 @@ namespace AnsichtsFenster.Controller
             return listView.SelectedItems[0];
         }
 
-        public void ClearItem()
-        {
-            throw new NotImplementedException();
-        }
-
         public ListView UpdateSuchergebnis(string suchbegriff, ListView listView)
         {
             //TODO alleStapel von DB lösen
@@ -107,9 +102,11 @@ namespace AnsichtsFenster.Controller
             return item;
         }
 
-        public ListViewItem ClearItem(ListView listView)
+        public ListView DeleteItem(ListView listView, ListViewItem listViewItem)
         {
-            throw new NotImplementedException();
+            //out  bool geloescht
+            listView.Items.Remove(listViewItem);
+            return listView;
         }
     }
 }
