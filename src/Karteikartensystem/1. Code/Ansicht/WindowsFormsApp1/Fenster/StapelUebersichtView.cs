@@ -6,12 +6,11 @@ namespace AnsichtsFenster.Fenster
 {
     public partial class StapelUebersichtView : Form
     {
-        private StapelListController listController;
-        private ViewController viewController;
-
-        //TODO SINNVOLL AUSZULAGERN? - KLEMENS FRAGEN
         //TODO OTHER WAY TO STORE ITEM STATE?
         private ListViewItem selectedItem;
+        //
+        private StapelListController listController;
+        private ViewController viewController;
 
         public StapelUebersichtView()
         {
@@ -19,7 +18,6 @@ namespace AnsichtsFenster.Fenster
             listController = new StapelListController();
             viewController = new ViewController();
 
-            //TODO: ANDERER WEG BESSER ALS DURCHSCHLEIFEN?
             listView_Ausgabe = listController.CreateView(listView_Ausgabe);
             listView_Ausgabe = listController.UpdateView(listView_Ausgabe);
         }
@@ -47,13 +45,11 @@ namespace AnsichtsFenster.Fenster
 
         private void listView_Ausgabe_Click(object sender, EventArgs e)
         {
-            //TODO OTHER WAY TO STORE ITEM STATE?
             selectedItem =  listController.SelectItem(listView_Ausgabe);
         }
 
         private void listView_Ausgabe_DoubleClick(object sender, EventArgs e)
         {
-            //TODO OTHER WAY TO STORE ITEM STATE?
             viewController.BuildKartenUebersicht(selectedItem).Show();
         }
 
@@ -64,13 +60,13 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_Entfernen_Click(object sender, EventArgs e)
         {
-            //TODO DELETE OBJECT
-            //TODO DELETE DATABASE ENTRY - INCLUDE  Karte WITH Stapel Id
-
             if (selectedItem != null)
             {
                 if (viewController.GetMessageBoxChoiceStapelLoeschen(selectedItem))
                 {
+                    //TODO DELETE OBJECT
+                    //TODO DELETE DATABASE ENTRY - INCLUDE  Karte WITH Stapel Id
+                    //TODO UPDATE VIEW
                     viewController.GetMessageBoxStapelGeloescht();
                 }
             }

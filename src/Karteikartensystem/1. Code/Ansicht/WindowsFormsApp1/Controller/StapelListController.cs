@@ -41,7 +41,6 @@ namespace AnsichtsFenster.Controller
             return listView;
         }
 
-        //TODO WAS BESSERES ALS ÜBERLADUNG FINDEN
         public ListView ReloadView(ListView listView, List<Stapel> kartenStapelListe)
         {
             List<ListViewItem> listViewItems = new List<ListViewItem>();
@@ -50,7 +49,7 @@ namespace AnsichtsFenster.Controller
             {
                 listViewItems.Add(CreateViewItem(stapel));
             }
-            //TODO REFACTOR TO ARRAY?
+
             listView.Items.Clear();
             listView.Items.AddRange(listViewItems.ToArray());
 
@@ -65,21 +64,9 @@ namespace AnsichtsFenster.Controller
 
         public ListViewItem SelectItem(ListView listView)
         {
-            return listView.SelectedItems[0]; 
+            return listView.SelectedItems[0];
         }
 
-        /*public ListView SortAscending(ListView listView)
-        {
-            listView.Sorting = SortOrder.Ascending;
-            return listView;
-        }
-
-        public ListView SortDescending(ListView listView)
-        {
-            listView.Sorting = SortOrder.Descending;
-            return listView;
-        }*/
-        
         public ListView UpdateSuchergebnis(string suchbegriff, ListView listView)
         {
             //TODO alleStapel von DB lösen
@@ -88,8 +75,7 @@ namespace AnsichtsFenster.Controller
 
             if (ergebnisListe.Count == 0)
             {
-                //TODO KONSTANTEN AUSLAGERN - SETZEN AUS ELTERNKLASSE?
-                MessageBox.Show("Leider kein Eintrag gefunden", "Kein Eintrag!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new ViewController().GetMessageBoxKeinEintragGefunden();
                 return ReloadView(listView, alleStapel);
             }
             else
@@ -115,4 +101,16 @@ namespace AnsichtsFenster.Controller
             return item;
         }
     }
+    //CHECK NEED
+        /*public ListView SortAscending(ListView listView)
+    {
+        listView.Sorting = SortOrder.Ascending;
+        return listView;
+    }
+
+    public ListView SortDescending(ListView listView)
+    {
+        listView.Sorting = SortOrder.Descending;
+        return listView;
+    }*/
 }
