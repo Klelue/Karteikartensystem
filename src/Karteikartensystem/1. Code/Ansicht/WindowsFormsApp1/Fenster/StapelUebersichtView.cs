@@ -74,7 +74,10 @@ namespace AnsichtsFenster.Fenster
                     {
                         viewController.GetMessageBoxStapelErfolgreichGeloescht();
                     }
-                    viewController.GetMessageBoxStapelLoeschenNichtMoeglich();
+                    else
+                    {
+                        viewController.GetMessageBoxStapelLoeschenNichtMoeglich();
+                    }
                 }
             }
             else
