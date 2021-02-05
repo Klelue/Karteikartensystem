@@ -39,6 +39,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
         
+        // TODO schauen, ob Stapel mindestens eine Karte besitzt
         private void btn_StapelHinzufuegen_Click(object sender, EventArgs e)
         {
             string stapelName = ShowDialog("Gib den Namen des Stapels an", "Stapel hinzufügen");
