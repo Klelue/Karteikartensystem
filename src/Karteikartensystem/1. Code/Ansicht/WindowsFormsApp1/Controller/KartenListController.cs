@@ -3,15 +3,14 @@ using Repositories;
 
 namespace AnsichtsFenster.Controller
 {
-    public class KartenViewController : IListViewController
+    public class KartenListController : IListViewController
     {
         private KarteRepository karteRepository;
 
-        public KartenViewController()
+        public KartenListController()
         {
             karteRepository = new KarteRepository();
         }
-
 
         public ListView CreateView(ListView listView)
         {
@@ -29,6 +28,16 @@ namespace AnsichtsFenster.Controller
         }
 
         public ListView ClearView(ListView listView)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ListViewItem SelectItem(ListView listView)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ListViewItem GetSelectItem(ListView listView)
         {
             throw new System.NotImplementedException();
         }

@@ -3,7 +3,7 @@ using Model;
 
 namespace AnsichtsFenster.Utilities
 {
-    public static class SuchlistenTool
+    public static class StringSuchTool
     {
         //TODO Karte/Stapel als Interface Typ IModel bekommen?
         public static List<Karte> GetSuchergebnis(string suchbegriff, List<Karte> suchliste)

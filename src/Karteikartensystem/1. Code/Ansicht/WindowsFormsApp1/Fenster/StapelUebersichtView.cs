@@ -11,26 +11,20 @@ namespace AnsichtsFenster.Fenster
 {
     public partial class StapelUebersichtView : Form
     {
-        //IN
-        private StapelViewController _stapelController;
-        //LATER OUT - DATA TO CONTROLLER
-        private List<Stapel> alleStapel;
+        private StapelListController stapelListController;
+
+        //TODO SINNVOLL AUSZULAGERN? - KLEMENS FRAGEN
+        //TODO OTHER WAY TO STORE ITEM STATE?
         private ListViewItem selectedItem;
 
         public StapelUebersichtView()
         {
             InitializeComponent();
+            stapelListController = new StapelListController();
 
-            //NEW METHODS
-            _stapelController = new StapelViewController();
-            listView_Ausgabe = _stapelController.CreateView(listView_Ausgabe);
-            listView_Ausgabe = _stapelController.UpdateView(listView_Ausgabe);
             //TODO: ANDERER WEG ALS DURCHSCHLEIFEN?
-            //listView_Ausgabe = _stapelController.CreateView();
-            //listView_Ausgabe = _stapelController.ListViewUpdate(listView_Ausgabe);
-
-            //OUT - CODE
-            //alleStapel = _stapelController.GetAlleStapelVonDatenbank();
+            listView_Ausgabe = stapelListController.CreateView(listView_Ausgabe);
+            listView_Ausgabe = stapelListController.UpdateView(listView_Ausgabe);
         }
         
         private void txt_StapelSuche_KeyDown(object sender, KeyEventArgs e)
@@ -39,49 +33,43 @@ namespace AnsichtsFenster.Fenster
             {
                 if (txt_StapelSuche.Text.Trim() == "")
                 {
-                    listView_Ausgabe = _stapelController.UpdateView(listView_Ausgabe);
+                    listView_Ausgabe = stapelListController.UpdateView(listView_Ausgabe);
                 }
                 else
                 {
-                    listView_Ausgabe =_stapelController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
+                    listView_Ausgabe =stapelListController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
                 }
-                //TODO NEED TO NULL?
-                selectedItem = null;
                 txt_StapelSuche.Clear();
             }
         }
         
         private void btn_StapelHinzufuegen_Click(object sender, EventArgs e)
         {
-            Form hinzufuegenFenster = new HinzufuegenView();
-            hinzufuegenFenster.Show(this);
+            new ViewController().BuildHinzufuegenView().Show(this);
         }
 
         private void listView_Ausgabe_Click(object sender, EventArgs e)
         {
-            selectedItem = listView_Ausgabe.SelectedItems[0];
+            //TODO OTHER WAY TO STORE ITEM STATE?
+            selectedItem =  stapelListController.SelectItem(listView_Ausgabe);
         }
 
         private void listView_Ausgabe_DoubleClick(object sender, EventArgs e)
         {
-            ListViewItem item = listView_Ausgabe.SelectedItems[0];
-
-            string panelName = item.SubItems[1].Text;
-            int panelId = Convert.ToInt32(item.SubItems[0].Text);
-
-            Form kartenUebersicht = new KartenUebersicht(panelName, panelId);
-            kartenUebersicht.Show();
+            //TODO OTHER WAY TO STORE ITEM STATE?
+            new ViewController().BuildKartenUebersicht(selectedItem).Show();
         }
 
         private void ListViewColumnClick(object sender, ColumnClickEventArgs e)
         {
-            _stapelController.SortAscending(listView_Ausgabe);
-            //this.listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
+            this.listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
 
         private void btn_Entfernen_Click(object sender, EventArgs e)
         {
             //TODO: TRY FOR NULL!
+            //TODO DELETE OBJECT
+            //TODO DELETE DATABASE ENTRY
             if (MessageBox.Show("Möchtest du es wirklich den Stapel \"" + selectedItem.SubItems[1].Text + "\" entfernen?", "Entfernen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 MessageBox.Show("Stapel wurde gelöscht", "Hat geklappt", MessageBoxButtons.OK); ;

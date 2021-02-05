@@ -7,11 +7,11 @@ using Repositories;
 
 namespace AnsichtsFenster.Controller
 {
-    public class StapelViewController : IListViewController
+    public class StapelListController : IListViewController
     {
         private StapelRepository stapelRepository;
 
-        public StapelViewController()
+        public StapelListController()
         {
             stapelRepository = new StapelRepository();
         }
@@ -35,9 +35,9 @@ namespace AnsichtsFenster.Controller
             {
                 listViewItems.Add(CreateViewItem(stapel));
             }
-
             listView.Items.Clear();
             listView.Items.AddRange(listViewItems.ToArray());
+
             return listView;
         }
 
@@ -53,6 +53,7 @@ namespace AnsichtsFenster.Controller
             //TODO REFACTOR TO ARRAY?
             listView.Items.Clear();
             listView.Items.AddRange(listViewItems.ToArray());
+
             return listView;
         }
 
@@ -62,7 +63,12 @@ namespace AnsichtsFenster.Controller
             return listView;
         }
 
-        public ListView SortAscending(ListView listView)
+        public ListViewItem SelectItem(ListView listView)
+        {
+            return listView.SelectedItems[0]; 
+        }
+
+        /*public ListView SortAscending(ListView listView)
         {
             listView.Sorting = SortOrder.Ascending;
             return listView;
@@ -72,35 +78,17 @@ namespace AnsichtsFenster.Controller
         {
             listView.Sorting = SortOrder.Descending;
             return listView;
-        }
-        
-        //TODO LATER PRIVATE PLUS TRY CATCH!
-        public List<Stapel> GetAlleStapelVonDatenbank()
-        {
-            return stapelRepository.GetAlleStapel().ToList();
-        }
-
-        //TODO LATER PRIVATE
-        //TODO INTERFACE TYP IMODEL ODER NUR KARTEN
-        public ListViewItem CreateViewItem(Stapel stapel)
-        {
-            ListViewItem item = new ListViewItem(stapel.Id.ToString());
-            item.SubItems.Add(stapel.Name);
-            item.SubItems.Add("0");
-            //TODO: ADD COUNT
-            //item.SubItems.Add(stapel.Karten.Count());
-            return item;
-        }
+        }*/
         
         public ListView UpdateSuchergebnis(string suchbegriff, ListView listView)
         {
             //TODO alleStapel von DB lösen
             List<Stapel> alleStapel = GetAlleStapelVonDatenbank();
-            List<Stapel> ergebnisListe = SuchlistenTool.GetSuchergebnis(suchbegriff, alleStapel);
+            List<Stapel> ergebnisListe = StringSuchTool.GetSuchergebnis(suchbegriff, alleStapel);
 
             if (ergebnisListe.Count == 0)
             {
-                //TODO KONSTANTEN SETZEN AUS ELTERNKLASSE
+                //TODO KONSTANTEN AUSLAGERN - SETZEN AUS ELTERNKLASSE?
                 MessageBox.Show("Leider kein Eintrag gefunden", "Kein Eintrag!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return ReloadView(listView, alleStapel);
             }
@@ -108,6 +96,23 @@ namespace AnsichtsFenster.Controller
             {
                 return ReloadView(listView, ergebnisListe);
             }
+        }
+
+        //TODO TRY CATCH!
+        private List<Stapel> GetAlleStapelVonDatenbank()
+        {
+            return stapelRepository.GetAlleStapel().ToList();
+        }
+
+        //TODO INTERFACE TYP IMODEL ODER NUR KARTEN STATT STAPEL UND KARTEN
+        public ListViewItem CreateViewItem(Stapel stapel)
+        {
+            ListViewItem item = new ListViewItem(stapel.Id.ToString());
+            item.SubItems.Add(stapel.Name);
+            item.SubItems.Add("0");
+            //TODO: ADD COUNT
+            //item.SubItems.Add(stapel.Karten.Count().ToString());
+            return item;
         }
     }
 }

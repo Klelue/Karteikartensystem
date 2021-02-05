@@ -63,7 +63,7 @@ namespace AnsichtsFenster.Fenster
 
         private void KartenSucheAnzeigen(string suchbegriff)
         {
-            List<Karte> ergebnisListe = SuchlistenTool.GetSuchergebnis(suchbegriff, alleKarten);
+            List<Karte> ergebnisListe = StringSuchTool.GetSuchergebnis(suchbegriff, alleKarten);
 
             if (ergebnisListe.Count < 1)
             {

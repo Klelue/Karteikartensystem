@@ -9,9 +9,11 @@ namespace AnsichtsFenster.Controller
         ListView UpdateSuchergebnis(string suchbegriff, ListView listView);
         ListView ClearView(ListView listView);
 
+        ListViewItem SelectItem(ListView listView);
+        //ListViewItem ClearItem(ListView listView);
 
-        ListView SortAscending(ListView listView);
-        ListView SortDescending(ListView listView);
+        /*ListView SortAscending(ListView listView);
+        ListView SortDescending(ListView listView);*/
 
         //TODO INTERFACE TYP IMODEL ODER NUR KARTEN
         //ListViewItem CreateViewItem(IModel iModel);
