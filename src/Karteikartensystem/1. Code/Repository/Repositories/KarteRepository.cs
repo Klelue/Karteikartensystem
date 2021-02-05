@@ -24,7 +24,7 @@ namespace Repositories
 
                 sqlCommand.Parameters.AddWithValue("@Frage", karte.Frage);
                 sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
-                sqlCommand.Parameters.AddWithValue("@StapelId", karte.Id);
+                sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
 
                 int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
@@ -78,6 +78,41 @@ namespace Repositories
             SqlCommand sqlCommand = new SqlCommand(sql);
 
             sqlCommand.Parameters.AddWithValue("@Id", Id);
+
+            int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
+
+            if (anzahlBetrofenderReihen == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public int AlleKartenEinesStapelsLöschen(int stapelId)
+        {
+            string sql = "DELETE FROM Karte WHERE stapel_id = @StapelId";
+
+            SqlCommand sqlCommand = new SqlCommand(sql);
+
+            sqlCommand.Parameters.AddWithValue("@StapelId", stapelId);
+
+            int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
+
+
+            return anzahlBetrofenderReihen;
+        }
+
+        public bool KarteAktualisieren(Karte karte)
+        {
+
+            string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, stapel_id = @StapelId WHERE Id = @id;";
+
+            SqlCommand sqlCommand = new SqlCommand(sql);
+
+            sqlCommand.Parameters.AddWithValue("@Frage", karte.Frage);
+            sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
+            sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
 
             int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
