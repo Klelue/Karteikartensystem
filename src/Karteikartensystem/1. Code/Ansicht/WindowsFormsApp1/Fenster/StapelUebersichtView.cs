@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using AnsichtsFenster.Controller;
-using AnsichtsFenster.Utilities;
-using Model;
-using Repositories;
 
 namespace AnsichtsFenster.Fenster
 {
     public partial class StapelUebersichtView : Form
     {
-        private StapelListController stapelListController;
+        private StapelListController listController;
+        private ViewController viewController;
 
         //TODO SINNVOLL AUSZULAGERN? - KLEMENS FRAGEN
         //TODO OTHER WAY TO STORE ITEM STATE?
@@ -20,11 +16,12 @@ namespace AnsichtsFenster.Fenster
         public StapelUebersichtView()
         {
             InitializeComponent();
-            stapelListController = new StapelListController();
+            listController = new StapelListController();
+            viewController = new ViewController();
 
-            //TODO: ANDERER WEG ALS DURCHSCHLEIFEN?
-            listView_Ausgabe = stapelListController.CreateView(listView_Ausgabe);
-            listView_Ausgabe = stapelListController.UpdateView(listView_Ausgabe);
+            //TODO: ANDERER WEG BESSER ALS DURCHSCHLEIFEN?
+            listView_Ausgabe = listController.CreateView(listView_Ausgabe);
+            listView_Ausgabe = listController.UpdateView(listView_Ausgabe);
         }
         
         private void txt_StapelSuche_KeyDown(object sender, KeyEventArgs e)
@@ -33,11 +30,11 @@ namespace AnsichtsFenster.Fenster
             {
                 if (txt_StapelSuche.Text.Trim() == "")
                 {
-                    listView_Ausgabe = stapelListController.UpdateView(listView_Ausgabe);
+                    listView_Ausgabe = listController.UpdateView(listView_Ausgabe);
                 }
                 else
                 {
-                    listView_Ausgabe =stapelListController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
+                    listView_Ausgabe =listController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
                 }
                 txt_StapelSuche.Clear();
             }
@@ -45,19 +42,19 @@ namespace AnsichtsFenster.Fenster
         
         private void btn_StapelHinzufuegen_Click(object sender, EventArgs e)
         {
-            new ViewController().BuildHinzufuegenView().Show(this);
+            viewController.BuildHinzufuegenView().Show(this);
         }
 
         private void listView_Ausgabe_Click(object sender, EventArgs e)
         {
             //TODO OTHER WAY TO STORE ITEM STATE?
-            selectedItem =  stapelListController.SelectItem(listView_Ausgabe);
+            selectedItem =  listController.SelectItem(listView_Ausgabe);
         }
 
         private void listView_Ausgabe_DoubleClick(object sender, EventArgs e)
         {
             //TODO OTHER WAY TO STORE ITEM STATE?
-            new ViewController().BuildKartenUebersicht(selectedItem).Show();
+            viewController.BuildKartenUebersicht(selectedItem).Show();
         }
 
         private void ListViewColumnClick(object sender, ColumnClickEventArgs e)
@@ -67,12 +64,19 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_Entfernen_Click(object sender, EventArgs e)
         {
-            //TODO: TRY FOR NULL!
             //TODO DELETE OBJECT
-            //TODO DELETE DATABASE ENTRY
-            if (MessageBox.Show("Möchtest du es wirklich den Stapel \"" + selectedItem.SubItems[1].Text + "\" entfernen?", "Entfernen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            //TODO DELETE DATABASE ENTRY - INCLUDE  Karte WITH Stapel Id
+
+            if (selectedItem != null)
             {
-                MessageBox.Show("Stapel wurde gelöscht", "Hat geklappt", MessageBoxButtons.OK); ;
+                if (viewController.GetMessageBoxChoiceStapelLoeschen(selectedItem))
+                {
+                    viewController.GetMessageBoxStapelGeloescht();
+                }
+            }
+            else
+            {
+                viewController.GetMessageBoxKeinStapelGewaehlt();
             }
         }
 
@@ -80,13 +84,11 @@ namespace AnsichtsFenster.Fenster
         {
             if (selectedItem != null)
             {
-                Form kartenHinzufuegenFenster = new HinzufuegenKarten(selectedItem.SubItems[1].Text);
-                kartenHinzufuegenFenster.Show();
+                viewController.BuildHinzufuegenKarten(selectedItem).Show();
             }
-
             else
             {
-                MessageBox.Show("Es wurde kein Stapel ausgewählt", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                viewController.GetMessageBoxKeinStapelGewaehlt();
             }
         }
     }
