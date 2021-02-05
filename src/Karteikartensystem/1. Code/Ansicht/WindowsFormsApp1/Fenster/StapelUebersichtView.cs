@@ -22,7 +22,7 @@ namespace AnsichtsFenster.Fenster
             listView_Ausgabe = listController.CreateView(listView_Ausgabe);
             listView_Ausgabe = listController.UpdateView(listView_Ausgabe);
         }
-        
+
         private void txt_StapelSuche_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -33,12 +33,12 @@ namespace AnsichtsFenster.Fenster
                 }
                 else
                 {
-                    listView_Ausgabe =listController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
+                    listView_Ausgabe = listController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
                 }
                 txt_StapelSuche.Clear();
             }
         }
-        
+
         // TODO schauen, ob Stapel mindestens eine Karte besitzt
         private void btn_StapelHinzufuegen_Click(object sender, EventArgs e)
         {
@@ -48,10 +48,10 @@ namespace AnsichtsFenster.Fenster
                 StapelHinzufuegen(stapelName);
             }
         }
-        
+
         private void listView_Ausgabe_Click(object sender, EventArgs e)
         {
-            selectedItem =  listController.SelectItem(listView_Ausgabe);
+            selectedItem = listController.SelectItem(listView_Ausgabe);
         }
 
         private void listView_Ausgabe_DoubleClick(object sender, EventArgs e)
@@ -73,17 +73,17 @@ namespace AnsichtsFenster.Fenster
                     listView_Ausgabe = listController.DeleteItem(listView_Ausgabe, selectedItem, out bool geloescht);
                     if (geloescht)
                     {
-                        viewController.ShowMessageBoxStapelErfolgreichGeloescht();
+                        viewController.ShowMessageBoxErfolgreichGeloescht();
                     }
                     else
                     {
-                        viewController.ShowMessageBoxStapelLoeschenNichtMoeglich();
+                        viewController.ShowMessageBoxLoeschenNichtErfolgreich();
                     }
                 }
             }
             else
             {
-                viewController.ShowMessageBoxKeinStapelGewaehlt();
+                viewController.ShowMessageBoxKeinElementGewaehlt();
             }
         }
 
@@ -97,7 +97,7 @@ namespace AnsichtsFenster.Fenster
             }
             else
             {
-                viewController.ShowMessageBoxKeinStapelGewaehlt();
+                viewController.ShowMessageBoxKeinElementGewaehlt();
             }
         }
 
@@ -123,28 +123,25 @@ namespace AnsichtsFenster.Fenster
             return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "Es wurde nichts angegeben";
         }
 
-        private void StapelHinzufuegen(string Stapelname)
+        private void StapelHinzufuegen(string stapelname)
         {
-            if (Stapelname.Trim().Length != 0)
+            if (stapelname.Trim().Length != 0)
             {
                 Stapel stapel = new Stapel();
-                stapel.Name = Stapelname;
+                stapel.Name = stapelname;
 
                 if (new Repositories.StapelRepository().StapelHinzufügen(stapel))
                 {
-                    MessageBox.Show("Erfolgreich hinzugefügt", "Yippy", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    viewController.ShowMessageBoxHinzufuegenErfolgreich();
                 }
-
                 else
                 {
-                    MessageBox.Show("Es hat leider nicht geklappt", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
                 }
             }
-
             else
             {
-                MessageBox.Show("Es wurde kein Stapelname angegeben", "Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                viewController.ShowMessageBoxKeineEingabe();
             }
         }
     }

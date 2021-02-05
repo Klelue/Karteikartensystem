@@ -20,21 +20,6 @@ namespace AnsichtsFenster.Controller
             return new HinzufuegenKarten(panelName, Convert.ToInt32(item.SubItems[0].Text));
         }
 
-        internal void ShowMessageBoxKeinStapelGewaehlt()
-        {
-            MessageBox.Show("Es wurde kein Stapel ausgewählt", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        internal void ShowMessageBoxStapelErfolgreichGeloescht()
-        {
-            MessageBox.Show("Stapel wurde gelöscht", "Gelöscht", MessageBoxButtons.OK); ;
-        }
-
-        internal void ShowMessageBoxKeinEintragGefunden()
-        {
-            MessageBox.Show("Leider kein Eintrag gefunden", "Kein passender Eintrag!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         internal bool ShowMessageBoxChoiceStapelLoeschen(ListViewItem item)
         {
             return MessageBox.Show(
@@ -43,9 +28,45 @@ namespace AnsichtsFenster.Controller
                 MessageBoxIcon.Warning) == DialogResult.Yes;
         }
 
-        internal void ShowMessageBoxStapelLoeschenNichtMoeglich()
+        internal void ShowMessageBoxErfolgreichGeloescht()
         {
-            MessageBox.Show("Löschen nicht möglich", "Achtung!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Erfolgreich gelöscht", "Gelöscht", 
+                MessageBoxButtons.OK); ;
+        }
+        internal void ShowMessageBoxLoeschenNichtErfolgreich()
+        {
+            MessageBox.Show("Löschen nicht möglich", "Achtung!", 
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        internal void ShowMessageBoxHinzufuegenErfolgreich()
+        {
+            MessageBox.Show("Erfolgreich hinzugefügt!", "Hinzugefügt", 
+                MessageBoxButtons.OK);
+        }
+
+        internal void ShowMessageBoxHinzufuegenNichtErfolgreich()
+        {
+            MessageBox.Show("Hinzufügen nicht möglich", "Achtung!", 
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        internal void ShowMessageBoxKeinElementGewaehlt()
+        {
+            MessageBox.Show("Es wurde kein Element ausgewählt", "Achtung!", 
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        internal void ShowMessageBoxKeinEintragGefunden()
+        {
+            MessageBox.Show("Kein Eintrag gefunden", "Kein passender Eintrag!", 
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public void ShowMessageBoxKeineEingabe()
+        {
+            MessageBox.Show("Es wurde kein Name angegeben", "Kein Name angebenen!", 
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

@@ -102,7 +102,6 @@ namespace AnsichtsFenster.Controller
             //item.SubItems.Add(stapel.Karten.Count().ToString());
             return item;
         }
-
         public ListView DeleteItem(ListView listView, ListViewItem listViewItem, out bool geloescht)
         {
             int itemDatenbankIndex = Convert.ToInt32(listViewItem.SubItems[0].Text);

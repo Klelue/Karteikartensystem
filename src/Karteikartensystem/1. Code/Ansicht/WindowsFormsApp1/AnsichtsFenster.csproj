@@ -83,6 +83,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ListController.cs" />
     <Compile Include="Interfaces\IKartenListView.cs" />
     <Compile Include="Interfaces\IListView.cs" />
     <Compile Include="Interfaces\IStapelListView.cs" />
