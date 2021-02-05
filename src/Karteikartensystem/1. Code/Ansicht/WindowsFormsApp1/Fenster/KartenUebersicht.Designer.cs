@@ -54,7 +54,7 @@ namespace AnsichtsFenster.Fenster
             // 
             // richTxt_Antwort
             // 
-            this.richTxt_Antwort.Location = new System.Drawing.Point(37, 64);
+            this.richTxt_Antwort.Location = new System.Drawing.Point(37, 61);
             this.richTxt_Antwort.Name = "richTxt_Antwort";
             this.richTxt_Antwort.Size = new System.Drawing.Size(297, 189);
             this.richTxt_Antwort.TabIndex = 4;
@@ -71,7 +71,7 @@ namespace AnsichtsFenster.Fenster
             this.pnl_Antwort.Location = new System.Drawing.Point(174, 97);
             this.pnl_Antwort.Name = "pnl_Antwort";
             this.pnl_Antwort.Size = new System.Drawing.Size(413, 308);
-            this.pnl_Antwort.TabIndex = 5; 
+            this.pnl_Antwort.TabIndex = 5;
             // 
             // btn_Random
             // 

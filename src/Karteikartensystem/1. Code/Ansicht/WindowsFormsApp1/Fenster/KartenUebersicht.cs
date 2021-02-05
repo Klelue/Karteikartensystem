@@ -20,7 +20,18 @@ namespace AnsichtsFenster.Fenster
 
             KarteRepository repository = new KarteRepository();
             alleKarten = repository.GetAlleKartenEinesStapels(stapelId).ToList();
-            selectedKarte = alleKarten[0];
+
+            if (alleKarten.Count >= 1)
+            {
+                selectedKarte = alleKarten[0];
+            }
+            else // falls keine Karten vorhanden
+            {
+                Karte karte = new Karte();
+                karte.Frage = "Leider ist diese Liste leer";
+                karte.Antwort = "Da keine Karten vorhanden sind, \n sind auch keine Antworten vorhanden";
+                selectedKarte = karte;
+            }
             lbl_FrageSetzen();
         }
         
