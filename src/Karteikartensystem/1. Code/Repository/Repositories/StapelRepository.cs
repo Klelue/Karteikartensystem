@@ -80,6 +80,27 @@ namespace Repositories
             return true;
         }
 
+        public bool StapelAktualisieren(Stapel stapel)
+        {
+
+            string sql = "UPDATE Stapel SET name = @Name WHERE Id = @id;";
+
+            SqlCommand sqlCommand = new SqlCommand(sql);
+
+            sqlCommand.Parameters.AddWithValue("@Id", stapel.Id);
+            sqlCommand.Parameters.AddWithValue("@Name", stapel.Name); 
+            
+
+            int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
+
+            if (anzahlBetrofenderReihen == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
 
     }
 }
