@@ -3,10 +3,10 @@ using Model;
 
 namespace AnsichtsFenster.Utilities
 {
-    public static class StringSuchTool
+    internal static class StringSuchTool
     {
         //TODO Karte/Stapel als Interface Typ IModel bekommen?
-        public static List<Karte> GetSuchergebnis(string suchbegriff, List<Karte> suchliste)
+        internal static List<Karte> GetSuchergebnis(string suchbegriff, List<Karte> suchliste)
         {
             List<Karte> ergebnisListe = new List<Karte>();
             suchbegriff = suchbegriff.ToLower();
@@ -24,7 +24,7 @@ namespace AnsichtsFenster.Utilities
             return ergebnisListe;
         }
 
-        public static List<Stapel> GetSuchergebnis(string suchbegriff, List<Stapel> suchliste)
+        internal static List<Stapel> GetSuchergebnis(string suchbegriff, List<Stapel> suchliste)
         {
             List<Stapel> ergebnisListe = new List<Stapel>();
             suchbegriff = suchbegriff.ToLower();

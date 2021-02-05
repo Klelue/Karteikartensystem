@@ -83,7 +83,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IKartenListView.cs" />
+    <Compile Include="Interfaces\IListView.cs" />
     <Compile Include="Controller\IListViewController.cs" />
+    <Compile Include="Interfaces\IStapelListView.cs" />
     <Compile Include="Controller\KartenListController.cs" />
     <Compile Include="Controller\StapelListController.cs" />
     <Compile Include="Controller\ViewController.cs" />

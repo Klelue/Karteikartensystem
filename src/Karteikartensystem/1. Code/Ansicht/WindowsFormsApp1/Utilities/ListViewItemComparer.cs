@@ -7,7 +7,7 @@ namespace AnsichtsFenster.Fenster
     {
         private int column;
 
-        public ListViewItemComparer(int column)
+        internal ListViewItemComparer(int column)
         {
             this.column = column;
         }

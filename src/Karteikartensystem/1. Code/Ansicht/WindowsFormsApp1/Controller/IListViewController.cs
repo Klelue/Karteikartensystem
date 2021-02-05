@@ -16,6 +16,7 @@ namespace AnsichtsFenster.Controller
         ListView SortDescending(ListView listView);*/
 
         //TODO INTERFACE TYP IMODEL ODER NUR KARTEN
+        //TODO ODER DURCH INTERFACE VERERBUNG
         //ListViewItem CreateViewItem(IModel iModel);
        // ListView ReloadView(ListView listView, List<IModel> datenliste)
     }
