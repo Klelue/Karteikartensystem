@@ -11,6 +11,7 @@ namespace AnsichtsFenster.Fenster
     public partial class KartenUebersicht : Form
     {
         private List<Karte> alleKarten;
+        private Karte selectedKarte;
 
         public KartenUebersicht(string stapelName, int stapelId)
         {
@@ -20,6 +21,8 @@ namespace AnsichtsFenster.Fenster
             KarteRepository repository = new KarteRepository();
             alleKarten = repository.GetAlleKartenEinesStapels(stapelId).ToList();
             ListViewFormatieren();
+            selectedKarte = alleKarten[0];
+            lbl_FrageSetzen();
         }
 
         private void ListViewFormatieren()
@@ -85,6 +88,74 @@ namespace AnsichtsFenster.Fenster
         private void btn_home_Click(object sender, EventArgs e)
         {
             base.Dispose();
+        }
+
+        private void btn_Antwort_Click(object sender, EventArgs e)
+        {
+            if (selectedKarte != null)
+            { 
+                richTxt_Antwort.Text = selectedKarte.Antwort;
+            }
+        }
+
+        private void btn_Random_Click(object sender, EventArgs e)
+        {
+            if (alleKarten.Count > 1)
+            {
+                Random random = new Random();
+                Karte newKarte = null;
+
+                while (newKarte == null)
+                {
+                    int index = random.Next(alleKarten.Count);
+                    if (alleKarten[index] != selectedKarte)
+                    {
+                        newKarte = alleKarten[index]; ;
+                    }
+                }
+
+                selectedKarte = newKarte;
+                lbl_FrageSetzen();
+            }
+           
+
+        }
+
+        private void btn_Next_Click(object sender, EventArgs e)
+        {
+            if (alleKarten.Count > 1)
+            {
+                int aktuellerId = selectedKarte.Id;
+
+                if (aktuellerId < alleKarten.Count)
+                {
+                    selectedKarte = alleKarten[aktuellerId];
+                }
+
+                else
+                {
+                    selectedKarte = alleKarten[0];
+                }
+
+                lbl_FrageSetzen();
+            }
+        }
+
+        private void lbl_FrageSetzen()
+        {
+            lbl_Frage.Text = "Frage: " + selectedKarte.Frage;
+            richTxt_Antwort.Clear();
+        }
+
+        private Karte SelectedKarteAsKarte(string karteFrage)
+        {
+            return alleKarten.Find(karte => karte.Frage == karteFrage);
+        }
+
+        private void listView_KartenAnzeige_MouseClick(object sender, MouseEventArgs e)
+        {
+            selectedKarte = SelectedKarteAsKarte(listView_KartenAnzeige.SelectedItems[0].Text);
+            lbl_FrageSetzen();
         }
     }
 }
