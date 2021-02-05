@@ -37,8 +37,8 @@ namespace AnsichtsFenster.Fenster
             this.btn_StapelHinzufuegen = new System.Windows.Forms.Button();
             this.btn_Statisken = new System.Windows.Forms.Button();
             this.pnl_btn = new System.Windows.Forms.Panel();
-            this.btn_Entfernen = new System.Windows.Forms.Button();
             this.btn_KartenHinzufuegen = new System.Windows.Forms.Button();
+            this.btn_Entfernen = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.pnl_btn.SuspendLayout();
             this.SuspendLayout();
@@ -84,7 +84,7 @@ namespace AnsichtsFenster.Fenster
             // 
             // btn_StapelHinzufuegen
             // 
-            this.btn_StapelHinzufuegen.Location = new System.Drawing.Point(4, 72);
+            this.btn_StapelHinzufuegen.Location = new System.Drawing.Point(4, 133);
             this.btn_StapelHinzufuegen.Name = "btn_StapelHinzufuegen";
             this.btn_StapelHinzufuegen.Size = new System.Drawing.Size(180, 35);
             this.btn_StapelHinzufuegen.TabIndex = 4;
@@ -105,12 +105,22 @@ namespace AnsichtsFenster.Fenster
             // 
             this.pnl_btn.Controls.Add(this.btn_KartenHinzufuegen);
             this.pnl_btn.Controls.Add(this.btn_Entfernen);
-            this.pnl_btn.Controls.Add(this.btn_Statisken);
             this.pnl_btn.Controls.Add(this.btn_StapelHinzufuegen);
+            this.pnl_btn.Controls.Add(this.btn_Statisken);
             this.pnl_btn.Location = new System.Drawing.Point(551, 196);
             this.pnl_btn.Name = "pnl_btn";
             this.pnl_btn.Size = new System.Drawing.Size(193, 242);
             this.pnl_btn.TabIndex = 6;
+            // 
+            // btn_KartenHinzufuegen
+            // 
+            this.btn_KartenHinzufuegen.Location = new System.Drawing.Point(4, 73);
+            this.btn_KartenHinzufuegen.Name = "btn_KartenHinzufuegen";
+            this.btn_KartenHinzufuegen.Size = new System.Drawing.Size(180, 35);
+            this.btn_KartenHinzufuegen.TabIndex = 8;
+            this.btn_KartenHinzufuegen.Text = "Karten Editieren";
+            this.btn_KartenHinzufuegen.UseVisualStyleBackColor = true;
+            this.btn_KartenHinzufuegen.Click += new System.EventHandler(this.btn_KartenHinzufuegen_Click);
             // 
             // btn_Entfernen
             // 
@@ -118,19 +128,9 @@ namespace AnsichtsFenster.Fenster
             this.btn_Entfernen.Name = "btn_Entfernen";
             this.btn_Entfernen.Size = new System.Drawing.Size(180, 35);
             this.btn_Entfernen.TabIndex = 7;
-            this.btn_Entfernen.Text = "Entfernen";
+            this.btn_Entfernen.Text = "Stapel Entfernen";
             this.btn_Entfernen.UseVisualStyleBackColor = true;
             this.btn_Entfernen.Click += new System.EventHandler(this.btn_Entfernen_Click);
-            // 
-            // btn_KartenHinzufuegen
-            // 
-            this.btn_KartenHinzufuegen.Location = new System.Drawing.Point(4, 131);
-            this.btn_KartenHinzufuegen.Name = "btn_KartenHinzufuegen";
-            this.btn_KartenHinzufuegen.Size = new System.Drawing.Size(180, 35);
-            this.btn_KartenHinzufuegen.TabIndex = 8;
-            this.btn_KartenHinzufuegen.Text = "Karten Hinzufügen";
-            this.btn_KartenHinzufuegen.UseVisualStyleBackColor = true;
-            this.btn_KartenHinzufuegen.Click += new System.EventHandler(this.btn_KartenHinzufuegen_Click);
             // 
             // StapelUebersichtView
             // 
