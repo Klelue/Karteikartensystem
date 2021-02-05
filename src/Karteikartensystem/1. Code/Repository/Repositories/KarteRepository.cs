@@ -106,10 +106,11 @@ namespace Repositories
         public bool KarteAktualisieren(Karte karte)
         {
 
-            string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, stapel_id = @StapelId WHERE Id = @id;";
+            string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, stapel_id = @StapelId WHERE Id = @Id;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
+            sqlCommand.Parameters.AddWithValue("@Id", karte.Id);
             sqlCommand.Parameters.AddWithValue("@Frage", karte.Frage);
             sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
             sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);

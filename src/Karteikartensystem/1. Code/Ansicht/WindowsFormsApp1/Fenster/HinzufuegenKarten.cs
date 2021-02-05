@@ -15,7 +15,7 @@ namespace AnsichtsFenster.Fenster
     public partial class HinzufuegenKarten : Form
     {
         private readonly List<Karte> alleKarten;
-        private Karte selectedKarte;
+        private Karte selectedKarte = null;
         private KarteRepository repository;
         private readonly int stapelID;
 
@@ -125,12 +125,41 @@ namespace AnsichtsFenster.Fenster
                 }
 
                 txt_KartenSuche.Clear();
+                selectedKarte = null;
             }
         }
 
         private void listView_KartenAnzeige_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             this.listView_KartenAnzeige.ListViewItemSorter = new ListViewItemComparer(e.Column);
+        }
+
+        private void btn_Delete_Click(object sender, EventArgs e)
+        {
+            if (selectedKarte != null)
+            {
+                if (repository.KarteLöschen(selectedKarte.Id))
+                {
+                    selectedKarte = null;
+                    MessageBox.Show("Es hat geklappt", "Yeah", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+  
+            }
+        }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            if (selectedKarte != null)
+            {
+                selectedKarte.Frage = richTxt_Vorderseite.Text;
+                selectedKarte.Antwort = richTxt_Rueckseite.Text;
+                if (repository.KarteAktualisieren(selectedKarte))
+                { 
+                    selectedKarte = null;
+                    MessageBox.Show("Es hat geklappt", "Yeah", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+               
+            }
         }
     }
 }
