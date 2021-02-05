@@ -8,7 +8,6 @@ using System.Text;
 using Repositories;
 using System.Windows.Forms;
 using Model;
-using Repositories;
 using AnsichtsFenster.Utilities;
 
 namespace AnsichtsFenster.Fenster
