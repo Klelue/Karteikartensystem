@@ -11,5 +11,7 @@ namespace Repositories
         bool KarteHinzufügen(Karte karte);
         Karte[] GetAlleKartenEinesStapels(int stapelId);
         bool KarteLöschen(int id);
+        bool KarteAktualisieren(Karte karte);
+        int AlleKartenEinesStapelsLöschen(int stapelId);
     }
 }

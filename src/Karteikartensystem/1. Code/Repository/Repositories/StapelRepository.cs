@@ -64,11 +64,35 @@ namespace Repositories
 
         public bool StapelLöschen(int id)
         {
+            KarteRepository karteRepository = new KarteRepository();
+
+            karteRepository.AlleKartenEinesStapelsLöschen(id);
+
             string sql = "DELETE FROM Stapel WHERE Id = @Id";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
             sqlCommand.Parameters.AddWithValue("@Id", id);
+
+            int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
+
+            if (anzahlBetrofenderReihen == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool StapelAktualisieren(Stapel stapel)
+        {
+
+            string sql = "UPDATE Stapel SET name = @Name WHERE Id = @id;";
+
+            SqlCommand sqlCommand = new SqlCommand(sql);
+
+            sqlCommand.Parameters.AddWithValue("@Name", stapel.Name); 
+            
 
             int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
