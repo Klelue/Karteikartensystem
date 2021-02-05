@@ -64,6 +64,10 @@ namespace Repositories
 
         public bool StapelLöschen(int id)
         {
+            KarteRepository karteRepository = new KarteRepository();
+
+            karteRepository.AlleKartenEinesStapelsLöschen(id);
+
             string sql = "DELETE FROM Stapel WHERE Id = @Id";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
@@ -87,7 +91,6 @@ namespace Repositories
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
-            sqlCommand.Parameters.AddWithValue("@Id", stapel.Id);
             sqlCommand.Parameters.AddWithValue("@Name", stapel.Name); 
             
 
