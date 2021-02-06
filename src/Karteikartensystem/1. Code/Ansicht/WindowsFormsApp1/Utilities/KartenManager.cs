@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 
-namespace AnsichtsFenster.KartenManager
+namespace AnsichtsFenster.Utilities
 {
-    public class StapelManager
+    public class KartenManager
     {
         private List<Karte> leichteKarten { get; }
         private List<Karte> mittelKarten { get; }
         private List<Karte> schwereKarten { get; }
         private List<Karte> gelernteKarten { get; }
 
-        public int counter;
+        private int zähler;
 
-        public StapelManager(Karte[] karten)
+        public KartenManager(Karte[] karten)
         {
             leichteKarten = new List<Karte>();
             mittelKarten = new List<Karte>();
@@ -24,15 +22,13 @@ namespace AnsichtsFenster.KartenManager
             gelernteKarten = new List<Karte>();
 
             KartenAufDieStapelVerteilen(karten);
-
-            this.counter = 0;
         }
 
         public void Reset()
         {
             List<Karte> karten = new List<Karte>();
 
-            foreach (Karte karte in getAlleKarten())
+            foreach (Karte karte in GetAlleKarten())
             {
                 karte.Status = 0;
                 karten.Add(karte);
@@ -118,19 +114,18 @@ namespace AnsichtsFenster.KartenManager
             karte.Status = 3;
             gelernteKarten.Add(karte);
         }
-
         public Karte GetNextKarte()
         {
-            counter++;
+            zähler++;
             Random random = new Random();
 
-            if (counter % 5 == 0 && leichteKarten.Count > 0)
+            if (zähler % 5 == 0 && leichteKarten.Count > 0)
             {
                 int index = random.Next(leichteKarten.Count);
                 return leichteKarten[index];
             }
 
-            if (counter % 3 == 0 && mittelKarten.Count > 0)
+            if (zähler % 3 == 0 && mittelKarten.Count > 0)
             {
                 int index = random.Next(mittelKarten.Count);
                 return mittelKarten[index];
@@ -157,7 +152,7 @@ namespace AnsichtsFenster.KartenManager
             return null;
         }
 
-        public Karte[] getAlleKarten()
+        public Karte[] GetAlleKarten()
         {
             return schwereKarten.Concat(mittelKarten).Concat(leichteKarten).Concat(gelernteKarten).ToArray();
         }

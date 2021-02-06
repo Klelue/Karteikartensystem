@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using Repositories;
 using Model;
 using System.Linq;
-using AnsichtsFenster.KartenManager;
+using AnsichtsFenster.Utilities;
 
 
 namespace AnsichtsFenster.Fenster
@@ -13,7 +13,7 @@ namespace AnsichtsFenster.Fenster
     {
         private List<Karte> alleKarten;
         private Karte selectedKarte;
-        private StapelManager stapelManager;
+        private KartenManager _kartenManager;
         private KarteRepository repository;
 
         public KartenUebersicht(string stapelName, int stapelId)
@@ -23,11 +23,11 @@ namespace AnsichtsFenster.Fenster
 
             repository = new KarteRepository();
             alleKarten = repository.GetAlleKartenEinesStapels(stapelId).ToList();
-            stapelManager = new StapelManager(alleKarten.ToArray());
+            _kartenManager = new KartenManager(alleKarten.ToArray());
 
             if (alleKarten.Count >= 1)
             {
-                selectedKarte = stapelManager.GetNextKarte();
+                selectedKarte = _kartenManager.GetNextKarte();
             }
             else // falls keine Karten vorhanden
             {
@@ -42,7 +42,7 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_home_Click(object sender, EventArgs e)
         {
-            Karte[] karten = stapelManager.getAlleKarten();
+            Karte[] karten = _kartenManager.GetAlleKarten();
 
             foreach (Karte karte in karten)
             {
@@ -67,8 +67,8 @@ namespace AnsichtsFenster.Fenster
             if (selectedKarte == null)
             {
                 MessageBox.Show("Sie haben alle Karten aus diesen Stapel gelernt");
-                stapelManager.Reset();
-                selectedKarte = stapelManager.GetNextKarte();
+                _kartenManager.Reset();
+                selectedKarte = _kartenManager.GetNextKarte();
             }
 
             lbl_Frage.Text = "Frage: " + selectedKarte.Frage;
@@ -79,8 +79,8 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_Nochmal(object sender, EventArgs e)
         {
-            stapelManager.AddZuSchwereKarten(selectedKarte);
-            selectedKarte = stapelManager.GetNextKarte();
+            _kartenManager.AddZuSchwereKarten(selectedKarte);
+            selectedKarte = _kartenManager.GetNextKarte();
             lbl_FrageSetzen();
             pnl_Antwort.Visible = false;
             btn_Antwort.Visible = true;
@@ -88,8 +88,8 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_Gut_Click(object sender, EventArgs e)
         {
-            stapelManager.AddZuMittelKarten(selectedKarte);
-            selectedKarte = stapelManager.GetNextKarte();
+            _kartenManager.AddZuMittelKarten(selectedKarte);
+            selectedKarte = _kartenManager.GetNextKarte();
             lbl_FrageSetzen();
             pnl_Antwort.Visible = false;
             btn_Antwort.Visible = true;
@@ -97,8 +97,8 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_Einfach(object sender, EventArgs e)
         {
-            stapelManager.AddZuLeichteKarten(selectedKarte);
-            selectedKarte = stapelManager.GetNextKarte();
+            _kartenManager.AddZuLeichteKarten(selectedKarte);
+            selectedKarte = _kartenManager.GetNextKarte();
             lbl_FrageSetzen();
             pnl_Antwort.Visible = false;
             btn_Antwort.Visible = true;
@@ -106,8 +106,8 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_nichtNochmal(object sender, EventArgs e)
         {
-            stapelManager.AddZuGelerntenKarten(selectedKarte);
-            selectedKarte = stapelManager.GetNextKarte();
+            _kartenManager.AddZuGelerntenKarten(selectedKarte);
+            selectedKarte = _kartenManager.GetNextKarte();
             lbl_FrageSetzen();
             pnl_Antwort.Visible = false;
             btn_Antwort.Visible = true;

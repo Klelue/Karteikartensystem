@@ -102,7 +102,7 @@
     <Compile Include="Fenster\KartenUebersicht.Designer.cs">
       <DependentUpon>KartenUebersicht.cs</DependentUpon>
     </Compile>
-    <Compile Include="KartenManager\StapelManager.cs" />
+    <Compile Include="Utilities\KartenManager.cs" />
     <Compile Include="Utilities\ListViewItemComparer.cs" />
     <Compile Include="Fenster\StapelUebersichtView.cs">
       <SubType>Form</SubType>
