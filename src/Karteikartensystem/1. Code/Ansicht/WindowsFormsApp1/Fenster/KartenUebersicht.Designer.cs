@@ -32,6 +32,7 @@ namespace AnsichtsFenster.Fenster
             this.btn_home = new System.Windows.Forms.Button();
             this.richTxt_Antwort = new System.Windows.Forms.RichTextBox();
             this.pnl_Antwort = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_Random = new System.Windows.Forms.Button();
             this.btn_Next = new System.Windows.Forms.Button();
@@ -39,13 +40,12 @@ namespace AnsichtsFenster.Fenster
             this.btn_Antwort = new System.Windows.Forms.Button();
             this.lbl_Frage = new System.Windows.Forms.Label();
             this.lbl_StapelName = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.pnl_Antwort.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_home
             // 
-            this.btn_home.Location = new System.Drawing.Point(286, 13);
+            this.btn_home.Location = new System.Drawing.Point(381, 13);
             this.btn_home.Margin = new System.Windows.Forms.Padding(4);
             this.btn_home.Name = "btn_home";
             this.btn_home.Size = new System.Drawing.Size(245, 28);
@@ -78,6 +78,17 @@ namespace AnsichtsFenster.Fenster
             this.pnl_Antwort.Size = new System.Drawing.Size(722, 379);
             this.pnl_Antwort.TabIndex = 5;
             this.pnl_Antwort.Visible = false;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(475, 296);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(174, 28);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Nicht nochmal anzeigen";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btn_nichtNochmal);
             // 
             // button1
             // 
@@ -136,7 +147,7 @@ namespace AnsichtsFenster.Fenster
             // lbl_Frage
             // 
             this.lbl_Frage.AutoSize = true;
-            this.lbl_Frage.Location = new System.Drawing.Point(464, 87);
+            this.lbl_Frage.Location = new System.Drawing.Point(158, 89);
             this.lbl_Frage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Frage.Name = "lbl_Frage";
             this.lbl_Frage.Size = new System.Drawing.Size(53, 17);
@@ -152,17 +163,6 @@ namespace AnsichtsFenster.Fenster
             this.lbl_StapelName.Size = new System.Drawing.Size(85, 17);
             this.lbl_StapelName.TabIndex = 2;
             this.lbl_StapelName.Text = "StapelName";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(475, 296);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(174, 28);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Nicht nochmal anzeigen";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btn_nichtNochmal);
             // 
             // KartenUebersicht
             // 
