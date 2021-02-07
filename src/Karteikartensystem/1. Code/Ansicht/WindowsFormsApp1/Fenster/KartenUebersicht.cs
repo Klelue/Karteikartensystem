@@ -13,6 +13,7 @@ namespace AnsichtsFenster.Fenster
         private Karte selectedKarte;
         private KartenManager kartenManager;
         private KarteRepository repository;
+        private Stoppuhr stoppuhr;
 
         public KartenUebersicht(string stapelName, int stapelId)
         {
@@ -34,6 +35,9 @@ namespace AnsichtsFenster.Fenster
                 karte.Antwort = "Da keine Karten vorhanden sind, \n sind auch keine Antworten vorhanden";
                 selectedKarte = karte;
             }
+            
+            stoppuhr = new Stoppuhr();
+            stoppuhr.Start();
 
             lbl_FrageSetzen();
         }
@@ -46,6 +50,8 @@ namespace AnsichtsFenster.Fenster
             {
                 repository.KarteAktualisieren(karte);
             }
+
+            stoppuhr.Stop();
 
             base.Dispose();
         }
@@ -64,7 +70,7 @@ namespace AnsichtsFenster.Fenster
         {
             if (selectedKarte == null)
             {
-                MessageBox.Show("Sie haben alle Karten aus diesen Stapel gelernt");
+                MessageBox.Show($"Sie haben in {stoppuhr.GetZeit()} Minuten den Stapel gelernt" );
                 kartenManager.Reset();
                 selectedKarte = kartenManager.GetNextKarte();
             }

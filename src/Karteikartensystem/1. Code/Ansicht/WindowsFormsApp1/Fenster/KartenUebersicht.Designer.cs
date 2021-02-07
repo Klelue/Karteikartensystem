@@ -29,6 +29,7 @@ namespace AnsichtsFenster.Fenster
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KartenUebersicht));
             this.btn_home = new System.Windows.Forms.Button();
             this.richTxt_Antwort = new System.Windows.Forms.RichTextBox();
             this.pnl_Antwort = new System.Windows.Forms.Panel();
@@ -57,10 +58,13 @@ namespace AnsichtsFenster.Fenster
             // 
             // richTxt_Antwort
             // 
-            this.richTxt_Antwort.Location = new System.Drawing.Point(37, 44);
+            this.richTxt_Antwort.BackColor = System.Drawing.SystemColors.Control;
+            this.richTxt_Antwort.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTxt_Antwort.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTxt_Antwort.Location = new System.Drawing.Point(122, 50);
             this.richTxt_Antwort.Margin = new System.Windows.Forms.Padding(4);
             this.richTxt_Antwort.Name = "richTxt_Antwort";
-            this.richTxt_Antwort.Size = new System.Drawing.Size(612, 232);
+            this.richTxt_Antwort.Size = new System.Drawing.Size(709, 212);
             this.richTxt_Antwort.TabIndex = 4;
             this.richTxt_Antwort.Text = "";
             // 
@@ -72,16 +76,16 @@ namespace AnsichtsFenster.Fenster
             this.pnl_Antwort.Controls.Add(this.btn_Next);
             this.pnl_Antwort.Controls.Add(this.lbl_Anwort);
             this.pnl_Antwort.Controls.Add(this.richTxt_Antwort);
-            this.pnl_Antwort.Location = new System.Drawing.Point(161, 119);
+            this.pnl_Antwort.Location = new System.Drawing.Point(27, 76);
             this.pnl_Antwort.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Antwort.Name = "pnl_Antwort";
-            this.pnl_Antwort.Size = new System.Drawing.Size(722, 379);
+            this.pnl_Antwort.Size = new System.Drawing.Size(1014, 416);
             this.pnl_Antwort.TabIndex = 5;
             this.pnl_Antwort.Visible = false;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(475, 296);
+            this.button2.Location = new System.Drawing.Point(603, 311);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(174, 28);
@@ -92,7 +96,7 @@ namespace AnsichtsFenster.Fenster
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(325, 296);
+            this.button1.Location = new System.Drawing.Point(439, 311);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(128, 28);
@@ -103,7 +107,7 @@ namespace AnsichtsFenster.Fenster
             // 
             // btn_Random
             // 
-            this.btn_Random.Location = new System.Drawing.Point(172, 296);
+            this.btn_Random.Location = new System.Drawing.Point(263, 311);
             this.btn_Random.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Random.Name = "btn_Random";
             this.btn_Random.Size = new System.Drawing.Size(128, 28);
@@ -114,7 +118,7 @@ namespace AnsichtsFenster.Fenster
             // 
             // btn_Next
             // 
-            this.btn_Next.Location = new System.Drawing.Point(37, 296);
+            this.btn_Next.Location = new System.Drawing.Point(122, 311);
             this.btn_Next.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Next.Name = "btn_Next";
             this.btn_Next.Size = new System.Drawing.Size(100, 28);
@@ -126,10 +130,11 @@ namespace AnsichtsFenster.Fenster
             // lbl_Anwort
             // 
             this.lbl_Anwort.AutoSize = true;
-            this.lbl_Anwort.Location = new System.Drawing.Point(94, 23);
+            this.lbl_Anwort.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Anwort.Location = new System.Drawing.Point(34, 10);
             this.lbl_Anwort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Anwort.Name = "lbl_Anwort";
-            this.lbl_Anwort.Size = new System.Drawing.Size(59, 17);
+            this.lbl_Anwort.Size = new System.Drawing.Size(91, 26);
             this.lbl_Anwort.TabIndex = 7;
             this.lbl_Anwort.Text = "Antwort:";
             // 
@@ -147,20 +152,22 @@ namespace AnsichtsFenster.Fenster
             // lbl_Frage
             // 
             this.lbl_Frage.AutoSize = true;
-            this.lbl_Frage.Location = new System.Drawing.Point(158, 89);
+            this.lbl_Frage.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Frage.Location = new System.Drawing.Point(144, 76);
             this.lbl_Frage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Frage.Name = "lbl_Frage";
-            this.lbl_Frage.Size = new System.Drawing.Size(53, 17);
+            this.lbl_Frage.Size = new System.Drawing.Size(69, 28);
             this.lbl_Frage.TabIndex = 5;
             this.lbl_Frage.Text = "Frage: ";
             // 
             // lbl_StapelName
             // 
             this.lbl_StapelName.AutoSize = true;
-            this.lbl_StapelName.Location = new System.Drawing.Point(158, 50);
+            this.lbl_StapelName.Font = new System.Drawing.Font("Yu Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_StapelName.Location = new System.Drawing.Point(22, 34);
             this.lbl_StapelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_StapelName.Name = "lbl_StapelName";
-            this.lbl_StapelName.Size = new System.Drawing.Size(85, 17);
+            this.lbl_StapelName.Size = new System.Drawing.Size(125, 26);
             this.lbl_StapelName.TabIndex = 2;
             this.lbl_StapelName.Text = "StapelName";
             // 
@@ -174,6 +181,7 @@ namespace AnsichtsFenster.Fenster
             this.Controls.Add(this.btn_home);
             this.Controls.Add(this.btn_Antwort);
             this.Controls.Add(this.lbl_Frage);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "KartenUebersicht";
             this.Text = "b";
