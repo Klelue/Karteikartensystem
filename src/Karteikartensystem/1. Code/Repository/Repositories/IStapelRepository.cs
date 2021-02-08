@@ -7,7 +7,7 @@ namespace Repositories
        Stapel[] GetAlleStapel();
        bool StapelHinzufügen(Stapel stapel);
 
-       bool StapelLöschen(int Id);
+       bool StapelLöschen(long Id);
 
        bool StapelAktualisieren(Stapel stapel);
     }

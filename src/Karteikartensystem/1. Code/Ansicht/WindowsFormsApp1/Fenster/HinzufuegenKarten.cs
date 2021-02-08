@@ -14,10 +14,10 @@ namespace AnsichtsFenster.Fenster
         private List<Karte> alleKarten;
         private Karte selectedKarte;
         private KarteRepository repository;
-        private int stapelId;
+        private long stapelId;
         private Stapel[] allesStapel = new StapelRepository().GetAlleStapel();
 
-        public HinzufuegenKarten(string stapelName, int stapelId)
+        public HinzufuegenKarten(string stapelName, long stapelId)
         {
             InitializeComponent();
             this.stapelId = stapelId;

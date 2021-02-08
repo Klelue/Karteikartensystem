@@ -27,7 +27,7 @@ namespace Repositories
 
             for (int index = 0; index < dataTable.Rows.Count; index++)
             {
-                 int id = (int) dataTable.Rows[index][0];
+                 long id = (long) dataTable.Rows[index][0];
                  string name =  dataTable.Rows[index][1].ToString();
                  long gelernteZeitInMinuten = (long) dataTable.Rows[index][2];
 
@@ -65,7 +65,7 @@ namespace Repositories
 
         }
 
-        public bool StapelLöschen(int id)
+        public bool StapelLöschen(long id)
         {
             KarteRepository karteRepository = new KarteRepository();
 

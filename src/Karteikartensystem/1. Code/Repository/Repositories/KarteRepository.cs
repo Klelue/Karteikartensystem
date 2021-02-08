@@ -18,14 +18,14 @@ namespace Repositories
         public bool KarteHinzufügen(Karte karte)
         {
 
-            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id, status) VALUES(@Frage, @Antwort, @StapelId, @Status);";
+            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id, schwierigkeitsgrad) VALUES(@Frage, @Antwort, @StapelId, @Schwierigkeitsgrad;";
 
                 SqlCommand sqlCommand = new SqlCommand(sql);
 
                 sqlCommand.Parameters.AddWithValue("@Frage", karte.Frage);
                 sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
                 sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
-                sqlCommand.Parameters.AddWithValue("@Status", karte.Status);
+                sqlCommand.Parameters.AddWithValue("@Schwierigkeitsgrad", karte.Schwierigkeitsgrad);
 
                 int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
@@ -38,9 +38,9 @@ namespace Repositories
 
         }
 
-        public Karte[] GetAlleKartenEinesStapels(int stapelId)
+        public Karte[] GetAlleKartenEinesStapels(long stapelId)
         {
-            string sql = "SELECT Id, frage, antwort, stapel_id, status FROM Karte WHERE stapel_id = @StapelId;";
+            string sql = "SELECT Id, frage, antwort, stapel_id, schwierigkeitsgrad FROM Karte WHERE stapel_id = @StapelId;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
@@ -52,10 +52,10 @@ namespace Repositories
 
             for (int index = 0; index < dataTable.Rows.Count; index++)
             {
-                int id = (int)dataTable.Rows[index][0];
+                long id = (long) dataTable.Rows[index][0];
                 string frage = dataTable.Rows[index][1].ToString();
                 string antwort = dataTable.Rows[index][2].ToString();
-                int stapelidentifikation = (int) dataTable.Rows[index][3];
+                long stapelidentifikation = (long) dataTable.Rows[index][3];
                 int status= (int) dataTable.Rows[index][4];
 
                 Karte karte = new Karte();
@@ -64,7 +64,7 @@ namespace Repositories
                 karte.Frage = frage;
                 karte.Antwort = antwort;
                 karte.StapelId = stapelidentifikation;
-                karte.Status = status;
+                karte.Schwierigkeitsgrad = status;
 
                 kartenArray[index] = karte;
             }
@@ -74,7 +74,7 @@ namespace Repositories
         }
 
 
-        public bool KarteLöschen(int Id)
+        public bool KarteLöschen(long Id)
         {
             string sql = "DELETE FROM Karte WHERE Id = @Id";
 
@@ -92,7 +92,7 @@ namespace Repositories
             return true;
         }
 
-        public int AlleKartenEinesStapelsLöschen(int stapelId)
+        public int AlleKartenEinesStapelsLöschen(long stapelId)
         {
             string sql = "DELETE FROM Karte WHERE stapel_id = @StapelId";
 
@@ -109,7 +109,7 @@ namespace Repositories
         public bool KarteAktualisieren(Karte karte)
         {
 
-            string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, stapel_id = @StapelId, status = @Status WHERE Id = @Id;";
+            string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, stapel_id = @StapelId, schwierigkeitsgrad = @Schwierigkeitsgrad WHERE Id = @Id;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
@@ -117,7 +117,7 @@ namespace Repositories
             sqlCommand.Parameters.AddWithValue("@Frage", karte.Frage);
             sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
             sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
-            sqlCommand.Parameters.AddWithValue("@Status", karte.Status);
+            sqlCommand.Parameters.AddWithValue("@Schwierigkeitsgrad", karte.Schwierigkeitsgrad);
 
             int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
