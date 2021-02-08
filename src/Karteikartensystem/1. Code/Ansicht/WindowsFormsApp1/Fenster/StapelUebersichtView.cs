@@ -144,5 +144,12 @@ namespace AnsichtsFenster.Fenster
                 viewController.ShowMessageBoxKeineEingabe();
             }
         }
+
+        private void JetztLernenEvent(object sender, EventArgs e)
+        {
+            JetztLernenView jetztLernenView = new JetztLernenView();
+
+            jetztLernenView.Show();
+        }
     }
 }
