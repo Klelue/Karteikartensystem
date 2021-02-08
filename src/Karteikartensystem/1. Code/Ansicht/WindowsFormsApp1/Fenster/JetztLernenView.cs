@@ -20,7 +20,9 @@ namespace AnsichtsFenster.Fenster
         private void StapelBoxClick(object sender, EventArgs e)
         {
             Stapel selectedStapel = (Stapel) listBoxLampe.SelectedItem;
-            KartenUebersicht kartenUebersicht = new KartenUebersicht(selectedStapel.Name, selectedStapel.Id);
+
+            KartenUebersicht kartenUebersicht = new KartenUebersicht(selectedStapel);
+
             this.Hide();
             kartenUebersicht.Show();
         }

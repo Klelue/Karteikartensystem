@@ -34,7 +34,6 @@ namespace AnsichtsFenster.Fenster
             this.richTxt = new System.Windows.Forms.RichTextBox();
             this.pnl_Antwort = new System.Windows.Forms.Panel();
             this.lblZeitAngabe = new System.Windows.Forms.Label();
-            this.imgParty = new System.Windows.Forms.PictureBox();
             this.btnStapelErneutLernen = new System.Windows.Forms.Button();
             this.btnNichtNochmal = new System.Windows.Forms.Button();
             this.btnEinfach = new System.Windows.Forms.Button();
@@ -45,7 +44,7 @@ namespace AnsichtsFenster.Fenster
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnl_Antwort.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgParty)).BeginInit();
+
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,7 +88,6 @@ namespace AnsichtsFenster.Fenster
             // 
             this.pnl_Antwort.BackColor = System.Drawing.Color.White;
             this.pnl_Antwort.Controls.Add(this.lblZeitAngabe);
-            this.pnl_Antwort.Controls.Add(this.imgParty);
             this.pnl_Antwort.Controls.Add(this.btnStapelErneutLernen);
             this.pnl_Antwort.Controls.Add(this.btnNichtNochmal);
             this.pnl_Antwort.Controls.Add(this.btnEinfach);
@@ -107,7 +105,7 @@ namespace AnsichtsFenster.Fenster
             // 
             this.lblZeitAngabe.AutoSize = true;
             this.lblZeitAngabe.Font = new System.Drawing.Font("Yu Gothic UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZeitAngabe.Location = new System.Drawing.Point(38, 164);
+            this.lblZeitAngabe.Location = new System.Drawing.Point(182, 145);
             this.lblZeitAngabe.Name = "lblZeitAngabe";
             this.lblZeitAngabe.Size = new System.Drawing.Size(91, 38);
             this.lblZeitAngabe.TabIndex = 15;
@@ -116,13 +114,7 @@ namespace AnsichtsFenster.Fenster
             // 
             // imgParty
             // 
-            this.imgParty.Image = global::AnsichtsFenster.Properties.Resources.celebration;
-            this.imgParty.Location = new System.Drawing.Point(15, 0);
-            this.imgParty.Name = "imgParty";
-            this.imgParty.Size = new System.Drawing.Size(683, 439);
-            this.imgParty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgParty.TabIndex = 14;
-            this.imgParty.TabStop = false;
+            
             // 
             // btnStapelErneutLernen
             // 
@@ -288,7 +280,6 @@ namespace AnsichtsFenster.Fenster
             this.Text = "Karten lernen";
             this.pnl_Antwort.ResumeLayout(false);
             this.pnl_Antwort.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgParty)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -307,7 +298,6 @@ namespace AnsichtsFenster.Fenster
         private System.Windows.Forms.Button btnNichtNochmal;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnStapelErneutLernen;
-        private System.Windows.Forms.PictureBox imgParty;
         private System.Windows.Forms.Label lblZeitAngabe;
         private System.Windows.Forms.Panel panel2;
     }
