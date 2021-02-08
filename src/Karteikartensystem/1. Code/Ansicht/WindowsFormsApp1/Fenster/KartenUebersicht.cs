@@ -11,17 +11,19 @@ namespace AnsichtsFenster.Fenster
     public partial class KartenUebersicht : Form
     {
         private Karte selectedKarte;
+        private Stapel selectetStapel;
         private KartenManager kartenManager;
         private KarteRepository repository;
         private Stoppuhr stoppuhr;
 
-        public KartenUebersicht(string stapelName, int stapelId)
+        public KartenUebersicht(Stapel stapel)
         {
             InitializeComponent();
-            lbl_StapelName.Text = stapelName;
+            selectetStapel = stapel;
+            lbl_StapelName.Text = stapel.Name;
 
             repository = new KarteRepository();
-            var alleKarten = repository.GetAlleKartenEinesStapels(stapelId).ToList();
+            var alleKarten = repository.GetAlleKartenEinesStapels(stapel.Id).ToList();
             kartenManager = new KartenManager(alleKarten.ToArray());
 
             if (alleKarten.Count >= 1)
@@ -36,7 +38,7 @@ namespace AnsichtsFenster.Fenster
                 selectedKarte = karte;
             }
 
-            lblZeitAngabe.Parent = imgParty;
+          //  lblZeitAngabe.Parent = imgParty;
             stoppuhr = new Stoppuhr();
             stoppuhr.Start();
             lblZeitAngabe.Visible = false;
@@ -45,7 +47,13 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_home_Click(object sender, EventArgs e)
         {
+            stoppuhr.Stop();
+
             Karte[] karten = kartenManager.GetAlleKarten();
+
+            selectetStapel.GelernteZeitInMinuten = stoppuhr.GetZeit();
+
+            new StapelRepository().StapelAktualisieren(selectetStapel);
 
             foreach (Karte karte in karten)
             {
@@ -54,7 +62,11 @@ namespace AnsichtsFenster.Fenster
 
             stoppuhr.Stop();
 
-            base.Dispose();
+            // base.Dispose();
+            this.Hide();
+            StapelUebersichtView stubvView = new StapelUebersichtView();
+            stubvView.Show();
+
         }
 
         private void btn_Antwort_Click(object sender, EventArgs e)
@@ -78,7 +90,7 @@ namespace AnsichtsFenster.Fenster
         private void FrageSetzen()
         {
 
-            imgParty.Visible = false;
+           // imgParty.Visible = false;
             selectedKarte = kartenManager.GetNextKarte();
             btnEinfach.Visible = false;
             btnNochmal.Visible = false;
@@ -87,7 +99,7 @@ namespace AnsichtsFenster.Fenster
 
             if (selectedKarte == null)
             {
-                imgParty.Visible = true;
+            //    imgParty.Visible = true;
                 lblZeitAngabe.Visible = true;
                 lblZeitAngabe.Text = $" Herzlichen Glückwunsch sie haben den Stapel in {stoppuhr.GetZeit()} Minuten gelernt";
                 richTxt.Visible = false;

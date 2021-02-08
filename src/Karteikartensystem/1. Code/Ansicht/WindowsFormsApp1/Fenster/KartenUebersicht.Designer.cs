@@ -42,11 +42,10 @@ namespace AnsichtsFenster.Fenster
             this.btnNochmal = new System.Windows.Forms.Button();
             this.lbl_StapelName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.imgParty = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnl_Antwort.SuspendLayout();
+
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgParty)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_home
@@ -89,7 +88,6 @@ namespace AnsichtsFenster.Fenster
             // 
             this.pnl_Antwort.BackColor = System.Drawing.Color.White;
             this.pnl_Antwort.Controls.Add(this.lblZeitAngabe);
-            this.pnl_Antwort.Controls.Add(this.imgParty);
             this.pnl_Antwort.Controls.Add(this.btnStapelErneutLernen);
             this.pnl_Antwort.Controls.Add(this.btnNichtNochmal);
             this.pnl_Antwort.Controls.Add(this.btnEinfach);
@@ -107,12 +105,16 @@ namespace AnsichtsFenster.Fenster
             // 
             this.lblZeitAngabe.AutoSize = true;
             this.lblZeitAngabe.Font = new System.Drawing.Font("Yu Gothic UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZeitAngabe.Location = new System.Drawing.Point(38, 164);
+            this.lblZeitAngabe.Location = new System.Drawing.Point(182, 145);
             this.lblZeitAngabe.Name = "lblZeitAngabe";
             this.lblZeitAngabe.Size = new System.Drawing.Size(91, 38);
             this.lblZeitAngabe.TabIndex = 15;
             this.lblZeitAngabe.Text = "label1";
             this.lblZeitAngabe.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // imgParty
+            // 
+            
             // 
             // btnStapelErneutLernen
             // 
@@ -254,16 +256,6 @@ namespace AnsichtsFenster.Fenster
             this.panel1.Size = new System.Drawing.Size(1121, 67);
             this.panel1.TabIndex = 7;
             // 
-            // imgParty
-            // 
-            this.imgParty.Image = global::AnsichtsFenster.Properties.Resources.celebration;
-            this.imgParty.Location = new System.Drawing.Point(15, 0);
-            this.imgParty.Name = "imgParty";
-            this.imgParty.Size = new System.Drawing.Size(683, 439);
-            this.imgParty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgParty.TabIndex = 14;
-            this.imgParty.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.Location = new System.Drawing.Point(479, 536);
@@ -284,12 +276,12 @@ namespace AnsichtsFenster.Fenster
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "KartenUebersicht";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Karten lernen";
             this.pnl_Antwort.ResumeLayout(false);
             this.pnl_Antwort.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgParty)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -306,7 +298,6 @@ namespace AnsichtsFenster.Fenster
         private System.Windows.Forms.Button btnNichtNochmal;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnStapelErneutLernen;
-        private System.Windows.Forms.PictureBox imgParty;
         private System.Windows.Forms.Label lblZeitAngabe;
         private System.Windows.Forms.Panel panel2;
     }

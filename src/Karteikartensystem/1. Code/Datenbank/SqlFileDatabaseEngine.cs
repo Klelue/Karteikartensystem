@@ -16,11 +16,9 @@ namespace DatenbankEngine
 
         public SqlFileDatabaseEngine()
         {
-
-            connectionString =
-
-                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + fileDatabasePath + "Integrated Security=True;Connect Timeout=30";
-
+            connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" 
+                               + fileDatabasePath 
+                               + "Integrated Security=True;Connect Timeout=30";
 
             connection = new SqlConnection(connectionString);
         }
@@ -28,7 +26,6 @@ namespace DatenbankEngine
         
         public DataTable ExecuteSelectQuery(SqlCommand sqlCommand)
         {
-
             DataTable dataTable = new DataTable();
 
             connection.Open();

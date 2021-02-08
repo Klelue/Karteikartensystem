@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using AnsichtsFenster.Fenster;
+using Model;
 
 namespace AnsichtsFenster.Controller
 {
@@ -8,10 +9,15 @@ namespace AnsichtsFenster.Controller
     {
         internal KartenUebersicht BuildKartenUebersicht(ListViewItem item)
         {
+            
             string panelName = item.SubItems[1].Text;
             int panelId = Convert.ToInt32(item.SubItems[0].Text);
 
-            return new KartenUebersicht(panelName, panelId);
+            Stapel stapel = new Stapel();
+            stapel.Name = panelName;
+            stapel.Id = panelId;
+
+            return new KartenUebersicht(stapel);
         }
 
         internal HinzufuegenKarten BuildHinzufuegenKarten(ListViewItem item)

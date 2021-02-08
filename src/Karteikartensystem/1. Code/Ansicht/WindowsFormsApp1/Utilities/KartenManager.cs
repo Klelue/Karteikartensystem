@@ -30,7 +30,7 @@ namespace AnsichtsFenster.Utilities
 
             foreach (Karte karte in GetAlleKarten())
             {
-                karte.Status = 0;
+                karte.Schwierigkeitsgrad = 0;
                 karten.Add(karte);
             }
 
@@ -41,22 +41,22 @@ namespace AnsichtsFenster.Utilities
         {
             foreach (Karte karte in karten)
             {
-                if (karte.Status == 0)
+                if (karte.Schwierigkeitsgrad == 0)
                 {
                     schwereKarten.Add(karte);
                 }
 
-                if (karte.Status == 1)
+                if (karte.Schwierigkeitsgrad == 1)
                 {
                     mittelKarten.Add(karte);
                 }
 
-                if (karte.Status == 2)
+                if (karte.Schwierigkeitsgrad == 2)
                 {
                     leichteKarten.Add(karte);
                 }
 
-                if (karte.Status == 3)
+                if (karte.Schwierigkeitsgrad == 3)
                 {
                     gelernteKarten.Add(karte);
                 }
@@ -67,17 +67,17 @@ namespace AnsichtsFenster.Utilities
 
         public void RemoveKarte(Karte karte)
         {
-            if (karte.Status == 0)
+            if (karte.Schwierigkeitsgrad == 0)
             {
                 schwereKarten.Remove(karte);
             }
 
-            if (karte.Status == 1)
+            if (karte.Schwierigkeitsgrad == 1)
             {
                 mittelKarten.Remove(karte);
             }
 
-            if (karte.Status == 2)
+            if (karte.Schwierigkeitsgrad == 2)
             {
                 leichteKarten.Remove(karte);
             }
@@ -88,7 +88,7 @@ namespace AnsichtsFenster.Utilities
         public void AddZuSchwereKarten(Karte karte)
         {
             RemoveKarte(karte);
-            karte.Status = 0;
+            karte.Schwierigkeitsgrad = 0;
             schwereKarten.Add(karte);
             
         }
@@ -97,21 +97,21 @@ namespace AnsichtsFenster.Utilities
         {
 
             RemoveKarte(karte);
-            karte.Status = 1;
+            karte.Schwierigkeitsgrad = 1;
             mittelKarten.Add(karte);
         }
 
         public void AddZuLeichteKarten(Karte karte)
         {
             RemoveKarte(karte);
-            karte.Status = 2;
+            karte.Schwierigkeitsgrad = 2;
             leichteKarten.Add(karte);
         }
 
         public void AddZuGelerntenKarten(Karte karte)
         {
             RemoveKarte(karte);
-            karte.Status = 3;
+            karte.Schwierigkeitsgrad = 3;
             gelernteKarten.Add(karte);
         }
         public Karte GetNextKarte()

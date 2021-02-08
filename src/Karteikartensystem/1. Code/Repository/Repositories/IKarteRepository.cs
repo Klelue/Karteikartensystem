@@ -9,9 +9,9 @@ namespace Repositories
     public interface IKarteRepository : IRepository
     {
         bool KarteHinzufügen(Karte karte);
-        Karte[] GetAlleKartenEinesStapels(int stapelId);
-        bool KarteLöschen(int id);
+        Karte[] GetAlleKartenEinesStapels(long stapelId);
+        bool KarteLöschen(long id);
         bool KarteAktualisieren(Karte karte);
-        int AlleKartenEinesStapelsLöschen(int stapelId);
+        int AlleKartenEinesStapelsLöschen(long stapelId);
     }
 }
