@@ -34,6 +34,7 @@ namespace AnsichtsFenster.Fenster
             this.richTxt = new System.Windows.Forms.RichTextBox();
             this.pnl_Antwort = new System.Windows.Forms.Panel();
             this.lblZeitAngabe = new System.Windows.Forms.Label();
+            this.imgParty = new System.Windows.Forms.PictureBox();
             this.btnStapelErneutLernen = new System.Windows.Forms.Button();
             this.btnNichtNochmal = new System.Windows.Forms.Button();
             this.btnEinfach = new System.Windows.Forms.Button();
@@ -42,11 +43,10 @@ namespace AnsichtsFenster.Fenster
             this.btnNochmal = new System.Windows.Forms.Button();
             this.lbl_StapelName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.imgParty = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnl_Antwort.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgParty)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_home
@@ -113,6 +113,16 @@ namespace AnsichtsFenster.Fenster
             this.lblZeitAngabe.TabIndex = 15;
             this.lblZeitAngabe.Text = "label1";
             this.lblZeitAngabe.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // imgParty
+            // 
+            this.imgParty.Image = global::AnsichtsFenster.Properties.Resources.celebration;
+            this.imgParty.Location = new System.Drawing.Point(15, 0);
+            this.imgParty.Name = "imgParty";
+            this.imgParty.Size = new System.Drawing.Size(683, 439);
+            this.imgParty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgParty.TabIndex = 14;
+            this.imgParty.TabStop = false;
             // 
             // btnStapelErneutLernen
             // 
@@ -254,16 +264,6 @@ namespace AnsichtsFenster.Fenster
             this.panel1.Size = new System.Drawing.Size(1121, 67);
             this.panel1.TabIndex = 7;
             // 
-            // imgParty
-            // 
-            this.imgParty.Image = global::AnsichtsFenster.Properties.Resources.celebration;
-            this.imgParty.Location = new System.Drawing.Point(15, 0);
-            this.imgParty.Name = "imgParty";
-            this.imgParty.Size = new System.Drawing.Size(683, 439);
-            this.imgParty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgParty.TabIndex = 14;
-            this.imgParty.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.Location = new System.Drawing.Point(479, 536);
@@ -284,12 +284,13 @@ namespace AnsichtsFenster.Fenster
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "KartenUebersicht";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Karten lernen";
             this.pnl_Antwort.ResumeLayout(false);
             this.pnl_Antwort.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgParty)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgParty)).EndInit();
             this.ResumeLayout(false);
 
         }
