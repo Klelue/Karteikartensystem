@@ -22,7 +22,7 @@ namespace AnsichtsFenster.Fenster
         private int falscheAntworten;
         private readonly int abschlussZeit;
 
-        public ChallengeView(int time, int anzahl, int stapelId)
+        public ChallengeView(int time, int anzahl, long stapelId)
         {
             InitializeComponent();
             repository = new KarteRepository();

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using AnsichtsFenster.Controller;
 using Model;
+using Repositories;
 
 namespace AnsichtsFenster.Fenster
 {
@@ -102,7 +104,7 @@ namespace AnsichtsFenster.Fenster
                 Stapel stapel = new Stapel();
                 stapel.Name = stapelname;
 
-                if (new Repositories.StapelRepository().StapelHinzufügen(stapel))
+                if (new StapelRepository().StapelHinzufügen(stapel))
                     viewController.ShowMessageBoxHinzufuegenErfolgreich();
                 else
                     viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
@@ -261,7 +263,9 @@ namespace AnsichtsFenster.Fenster
                 {
                     if (Int32.TryParse(txt_KartenAnzahl.Text, out int anzahl) && anzahl > 0)
                     {
-                        ChallengeView challengeView = new ChallengeView(time, anzahl, Convert.ToInt32(selectedItem.SubItems[0].Text));
+                        Stapel[] alleStapel = new StapelRepository().GetAlleStapel();
+                        Stapel stapelMitAusgewähltenName = alleStapel.First(stapel => stapel.Name == selectedItem.SubItems[0].Text);
+                        ChallengeView challengeView = new ChallengeView(time, anzahl, stapelMitAusgewähltenName.Id);
                         challengeView.Show();
                     }
 

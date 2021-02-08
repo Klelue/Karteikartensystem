@@ -20,9 +20,10 @@ namespace AnsichtsFenster.Controller
         public ListView CreateView(ListView listView)
         {
             listView.View = View.Details;
-            listView.Columns.Add("ID");
-            listView.Columns.Add("Stapelname").Width = 140;
-            listView.Columns.Add("Anzahl");
+            listView.Columns.Add("Stapelname").Width = 180;
+            listView.Columns.Add("Zeit").Width = 180;
+            listView.Columns.Add("Anzahl gelernter Karten").Width = 180;
+          
 
             return listView;
         }
@@ -95,16 +96,33 @@ namespace AnsichtsFenster.Controller
         //TODO INTERFACE TYP IMODEL ODER NUR KARTEN STATT STAPEL UND KARTEN
         public ListViewItem CreateViewItem(Stapel stapel)
         {
-            ListViewItem item = new ListViewItem(stapel.Id.ToString());
-            item.SubItems.Add(stapel.Name);
-            item.SubItems.Add("0");
+
+            ListViewItem item = new ListViewItem((stapel.Name));
+            item.SubItems.Add(stapel.GelernteZeitInMinuten + " Minuten");
+
+            int gelernteKarten = GelernteKartenBerechnen(stapel);
+
+            item.SubItems.Add(gelernteKarten.ToString());
             //TODO: ADD COUNT
             //item.SubItems.Add(stapel.Karten.Count().ToString());
             return item;
         }
+
+        private int GelernteKartenBerechnen(Stapel stapel)
+        {
+            Karte[] alleKartenEinesStapels = new KarteRepository().GetAlleKartenEinesStapels(stapel.Id);
+
+            return alleKartenEinesStapels.Count(karte => karte.Schwierigkeitsgrad == 3);
+
+        }
+
         public ListView DeleteItem(ListView listView, ListViewItem listViewItem, out bool geloescht)
         {
-            int itemDatenbankIndex = Convert.ToInt32(listViewItem.SubItems[0].Text);
+            Stapel[] alleStapel = stapelRepository.GetAlleStapel();
+            Stapel stapelMitAusgewähltenName = alleStapel.First(stapel => stapel.Name == listViewItem.SubItems[0].Text);
+
+            int itemDatenbankIndex = Convert.ToInt32(stapelMitAusgewähltenName.Id);
+
             geloescht = stapelRepository.StapelLöschen(itemDatenbankIndex);
             listView.Items.Remove(listViewItem);
             return listView;

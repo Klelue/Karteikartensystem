@@ -29,7 +29,7 @@ namespace AnsichtsFenster.Controller
         internal bool ShowMessageBoxChoiceStapelLoeschen(ListViewItem item)
         {
             return MessageBox.Show(
-                "Möchtest du es wirklich den \"" + item.SubItems[1].Text +
+                "Möchtest du es wirklich den \"" + item.SubItems[0].Text +
                 "\" und alle darin enthaltenen Karten entfernen?", "Entfernen", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning) == DialogResult.Yes;
         }
