@@ -35,11 +35,12 @@ namespace AnsichtsFenster.Fenster
                 karte.Antwort = "Da keine Karten vorhanden sind, \n sind auch keine Antworten vorhanden";
                 selectedKarte = karte;
             }
-            
+
+            lblZeitAngabe.Parent = imgParty;
             stoppuhr = new Stoppuhr();
             stoppuhr.Start();
-
-            lbl_FrageSetzen();
+            lblZeitAngabe.Visible = false;
+            FrageSetzen();
         }
 
         private void btn_home_Click(object sender, EventArgs e)
@@ -60,61 +61,79 @@ namespace AnsichtsFenster.Fenster
         {
             if (selectedKarte != null)
             {
-                pnl_Antwort.Visible = true;
-                richTxt_Antwort.Text = selectedKarte.Antwort;
-                btn_Antwort.Visible = false;
+                AntwortSetzen();
             }
         }
 
-        private void lbl_FrageSetzen()
+        private void AntwortSetzen()
         {
+            richTxt.Text = selectedKarte.Antwort;
+            btn_Antwort.Visible = false;
+            btnEinfach.Visible = true;
+            btnNochmal.Visible = true;
+            btnGut.Visible = true;
+            btnNichtNochmal.Visible = true;
+        }
+
+        private void FrageSetzen()
+        {
+
+            imgParty.Visible = false;
+            selectedKarte = kartenManager.GetNextKarte();
+            btnEinfach.Visible = false;
+            btnNochmal.Visible = false;
+            btnGut.Visible = false;
+            btnNichtNochmal.Visible = false;
+
             if (selectedKarte == null)
             {
-                MessageBox.Show($"Sie haben in {stoppuhr.GetZeit()} Minuten den Stapel gelernt" );
-                kartenManager.Reset();
-                selectedKarte = kartenManager.GetNextKarte();
+                imgParty.Visible = true;
+                lblZeitAngabe.Visible = true;
+                lblZeitAngabe.Text = $" Herzlichen Glückwunsch sie haben den Stapel in {stoppuhr.GetZeit()} Minuten gelernt";
+                richTxt.Visible = false;
+                btnStapelErneutLernen.Visible = true;
+                btn_Antwort.Visible = false;
             }
 
-            lbl_Frage.Text = "Frage: " + selectedKarte.Frage;
-            richTxt_Antwort.Clear();
-        }
+            else
+            {
+                richTxt.Text = selectedKarte.Frage;
+                btn_Antwort.Visible = true;
+                btnStapelErneutLernen.Visible = false;
+            }
 
-  
+        }
 
         private void btn_Nochmal(object sender, EventArgs e)
         {
             kartenManager.AddZuSchwereKarten(selectedKarte);
-            selectedKarte = kartenManager.GetNextKarte();
-            lbl_FrageSetzen();
-            pnl_Antwort.Visible = false;
-            btn_Antwort.Visible = true;
+            FrageSetzen();
         }
 
         private void btn_Gut_Click(object sender, EventArgs e)
         {
             kartenManager.AddZuMittelKarten(selectedKarte);
-            selectedKarte = kartenManager.GetNextKarte();
-            lbl_FrageSetzen();
-            pnl_Antwort.Visible = false;
-            btn_Antwort.Visible = true;
+            FrageSetzen();
         }
 
         private void btn_Einfach(object sender, EventArgs e)
         {
             kartenManager.AddZuLeichteKarten(selectedKarte);
-            selectedKarte = kartenManager.GetNextKarte();
-            lbl_FrageSetzen();
-            pnl_Antwort.Visible = false;
-            btn_Antwort.Visible = true;
+            FrageSetzen();
         }
 
         private void btn_nichtNochmal(object sender, EventArgs e)
         {
             kartenManager.AddZuGelerntenKarten(selectedKarte);
-            selectedKarte = kartenManager.GetNextKarte();
-            lbl_FrageSetzen();
-            pnl_Antwort.Visible = false;
-            btn_Antwort.Visible = true;
+            FrageSetzen();
+        }
+
+        private void btnErneutLernen(object sender, EventArgs e)
+        {
+            kartenManager.Reset();
+            richTxt.Visible = true;
+            lblZeitAngabe.Visible = false;
+            FrageSetzen();
         }
     }
 }

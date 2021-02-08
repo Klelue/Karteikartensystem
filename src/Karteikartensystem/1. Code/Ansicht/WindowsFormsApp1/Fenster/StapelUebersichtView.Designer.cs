@@ -47,7 +47,7 @@ namespace AnsichtsFenster.Fenster
             // txt_StapelSuche
             // 
             this.txt_StapelSuche.Location = new System.Drawing.Point(23, 89);
-            this.txt_StapelSuche.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_StapelSuche.Margin = new System.Windows.Forms.Padding(4);
             this.txt_StapelSuche.Name = "txt_StapelSuche";
             this.txt_StapelSuche.Size = new System.Drawing.Size(407, 22);
             this.txt_StapelSuche.TabIndex = 0;
@@ -57,7 +57,7 @@ namespace AnsichtsFenster.Fenster
             // 
             this.listView_Ausgabe.HideSelection = false;
             this.listView_Ausgabe.Location = new System.Drawing.Point(23, 142);
-            this.listView_Ausgabe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView_Ausgabe.Margin = new System.Windows.Forms.Padding(4);
             this.listView_Ausgabe.Name = "listView_Ausgabe";
             this.listView_Ausgabe.Size = new System.Drawing.Size(407, 358);
             this.listView_Ausgabe.TabIndex = 1;
@@ -82,7 +82,7 @@ namespace AnsichtsFenster.Fenster
             this.panel1.Controls.Add(this.lbl_SuchInfo);
             this.panel1.Controls.Add(this.txt_StapelSuche);
             this.panel1.Location = new System.Drawing.Point(16, 15);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(461, 524);
             this.panel1.TabIndex = 3;
@@ -90,7 +90,7 @@ namespace AnsichtsFenster.Fenster
             // btn_StapelHinzufuegen
             // 
             this.btn_StapelHinzufuegen.Location = new System.Drawing.Point(5, 164);
-            this.btn_StapelHinzufuegen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_StapelHinzufuegen.Margin = new System.Windows.Forms.Padding(4);
             this.btn_StapelHinzufuegen.Name = "btn_StapelHinzufuegen";
             this.btn_StapelHinzufuegen.Size = new System.Drawing.Size(240, 43);
             this.btn_StapelHinzufuegen.TabIndex = 4;
@@ -101,12 +101,13 @@ namespace AnsichtsFenster.Fenster
             // btn_Statisken
             // 
             this.btn_Statisken.Location = new System.Drawing.Point(5, 18);
-            this.btn_Statisken.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Statisken.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Statisken.Name = "btn_Statisken";
             this.btn_Statisken.Size = new System.Drawing.Size(240, 43);
             this.btn_Statisken.TabIndex = 5;
             this.btn_Statisken.Text = "Statistiken";
             this.btn_Statisken.UseVisualStyleBackColor = true;
+            this.btn_Statisken.Click += new System.EventHandler(this.JetztLernenEvent);
             // 
             // pnl_btn
             // 
@@ -115,7 +116,7 @@ namespace AnsichtsFenster.Fenster
             this.pnl_btn.Controls.Add(this.btn_StapelHinzufuegen);
             this.pnl_btn.Controls.Add(this.btn_Statisken);
             this.pnl_btn.Location = new System.Drawing.Point(735, 241);
-            this.pnl_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_btn.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_btn.Name = "pnl_btn";
             this.pnl_btn.Size = new System.Drawing.Size(257, 298);
             this.pnl_btn.TabIndex = 6;
@@ -123,7 +124,7 @@ namespace AnsichtsFenster.Fenster
             // btn_KartenHinzufuegen
             // 
             this.btn_KartenHinzufuegen.Location = new System.Drawing.Point(5, 90);
-            this.btn_KartenHinzufuegen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_KartenHinzufuegen.Margin = new System.Windows.Forms.Padding(4);
             this.btn_KartenHinzufuegen.Name = "btn_KartenHinzufuegen";
             this.btn_KartenHinzufuegen.Size = new System.Drawing.Size(240, 43);
             this.btn_KartenHinzufuegen.TabIndex = 8;
@@ -134,7 +135,7 @@ namespace AnsichtsFenster.Fenster
             // btn_Entfernen
             // 
             this.btn_Entfernen.Location = new System.Drawing.Point(5, 231);
-            this.btn_Entfernen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Entfernen.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Entfernen.Name = "btn_Entfernen";
             this.btn_Entfernen.Size = new System.Drawing.Size(240, 43);
             this.btn_Entfernen.TabIndex = 7;
@@ -150,7 +151,7 @@ namespace AnsichtsFenster.Fenster
             this.Controls.Add(this.pnl_btn);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "StapelUebersichtView";
             this.Text = "Stapel Übersicht";

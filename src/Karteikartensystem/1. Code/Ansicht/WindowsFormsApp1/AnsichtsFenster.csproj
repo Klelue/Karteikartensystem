@@ -87,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ListController.cs" />
+    <Compile Include="Fenster\JetztLernenView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fenster\JetztLernenView.Designer.cs">
+      <DependentUpon>JetztLernenView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IKartenListView.cs" />
     <Compile Include="Interfaces\IListView.cs" />
     <Compile Include="Interfaces\IStapelListView.cs" />
@@ -119,6 +125,9 @@
     <Compile Include="Utilities\StringSuchTool.cs" />
     <EmbeddedResource Include="Fenster\HinzufuegenKarten.resx">
       <DependentUpon>HinzufuegenKarten.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fenster\JetztLernenView.resx">
+      <DependentUpon>JetztLernenView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fenster\KartenUebersicht.resx">
       <DependentUpon>KartenUebersicht.cs</DependentUpon>
@@ -174,6 +183,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Media-Design-Hydropro-V2-Folder-Documents.ico" />
+    <None Include="Resources\party-pfeife.png" />
+    <None Include="Resources\feuerwerk.png" />
+    <None Include="Resources\feier.png" />
+    <None Include="Resources\feier1.png" />
+    <None Include="Resources\video-tutorials.png" />
+    <None Include="Resources\study.png" />
+    <None Include="Resources\study %281%29.png" />
+    <None Include="Resources\study %281%291.png" />
+    <None Include="Resources\online-education.png" />
+    <None Include="Resources\study %282%29.png" />
+    <None Include="Resources\study %283%29.png" />
+    <None Include="Resources\celebration.png" />
     <Content Include="Uriy1966-Steel-System-Documents.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
