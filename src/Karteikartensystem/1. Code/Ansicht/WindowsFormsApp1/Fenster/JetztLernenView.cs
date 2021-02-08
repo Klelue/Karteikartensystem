@@ -21,7 +21,7 @@ namespace AnsichtsFenster.Fenster
         {
             Stapel selectedStapel = (Stapel) listBoxLampe.SelectedItem;
 
-            KartenUebersicht kartenUebersicht = new KartenUebersicht(selectedStapel.Name, selectedStapel.Id);
+            KartenUebersicht kartenUebersicht = new KartenUebersicht(selectedStapel);
 
             this.Hide();
 

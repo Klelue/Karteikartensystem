@@ -17,7 +17,7 @@ namespace Repositories
 
         public Stapel[] GetAlleStapel()
         {
-            string sql = "SELECT Id, name FROM Stapel";
+            string sql = "SELECT Id, name, gelernte_zeit_in_minuten FROM Stapel";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
             
@@ -29,11 +29,13 @@ namespace Repositories
             {
                  int id = (int) dataTable.Rows[index][0];
                  string name =  dataTable.Rows[index][1].ToString();
+                 long gelernteZeitInMinuten = (long) dataTable.Rows[index][2];
 
                  Stapel stapel = new Stapel
                 {
                     Id = id,
-                    Name = name
+                    Name = name,
+                    GelernteZeitInMinuten = gelernteZeitInMinuten
                 };
 
                 stapelArray[index] = stapel;
@@ -45,11 +47,12 @@ namespace Repositories
 
         public bool StapelHinzufügen(Stapel stapel)
         {
-            string sql = "INSERT INTO Stapel (name) VALUES(@Name);";
+            string sql = "INSERT INTO Stapel (name, gelernte_zeit_in_minuten) VALUES(@Name, @GelernteZeitInMinuten);";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
             sqlCommand.Parameters.AddWithValue("@Name", stapel.Name);
+            sqlCommand.Parameters.AddWithValue("@GelernteZeitInMinuten", stapel.GelernteZeitInMinuten);
 
             int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
@@ -87,11 +90,13 @@ namespace Repositories
         public bool StapelAktualisieren(Stapel stapel)
         {
 
-            string sql = "UPDATE Stapel SET name = @Name WHERE Id = @id;";
+            string sql = "UPDATE Stapel SET name = @Name, gelernte_zeit_in_minuten = @GelernteZeitInMinuten WHERE Id = @Id;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
-            sqlCommand.Parameters.AddWithValue("@Name", stapel.Name); 
+            sqlCommand.Parameters.AddWithValue("@Id", stapel.Id);
+            sqlCommand.Parameters.AddWithValue("@Name", stapel.Name);
+            sqlCommand.Parameters.AddWithValue("@GelernteZeitInMinuten", stapel.GelernteZeitInMinuten); 
             
 
             int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
