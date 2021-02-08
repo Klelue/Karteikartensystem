@@ -60,7 +60,13 @@ namespace AnsichtsFenster.Fenster
                 repository.KarteAktualisieren(karte);
             }
 
-            base.Dispose();
+            stoppuhr.Stop();
+
+            // base.Dispose();
+            this.Hide();
+            StapelUebersichtView stubvView = new StapelUebersichtView();
+            stubvView.Show();
+
         }
 
         private void btn_Antwort_Click(object sender, EventArgs e)

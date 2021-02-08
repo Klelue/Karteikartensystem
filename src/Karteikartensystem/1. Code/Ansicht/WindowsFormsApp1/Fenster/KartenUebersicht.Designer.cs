@@ -44,6 +44,7 @@ namespace AnsichtsFenster.Fenster
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnl_Antwort.SuspendLayout();
+
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,6 +111,10 @@ namespace AnsichtsFenster.Fenster
             this.lblZeitAngabe.TabIndex = 15;
             this.lblZeitAngabe.Text = "label1";
             this.lblZeitAngabe.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // imgParty
+            // 
+            
             // 
             // btnStapelErneutLernen
             // 
@@ -271,6 +276,7 @@ namespace AnsichtsFenster.Fenster
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "KartenUebersicht";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Karten lernen";
             this.pnl_Antwort.ResumeLayout(false);
             this.pnl_Antwort.PerformLayout();
