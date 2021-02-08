@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using AnsichtsFenster.Utilities;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Model;
 using Repositories;
 
@@ -17,12 +18,11 @@ namespace AnsichtsFenster.Fenster
         private Karte selectedKarte;
         private KarteRepository repository;
         private List<Karte> alleKarten;
-        private Stoppuhr stoppuhr;
         private int richtigeAntworten;
         private int falscheAntworten;
-        private readonly int abschlussZeit;
+        private int abschlussZeit;
 
-        public ChallengeView(int time, int anzahl, int stapelId)
+        public ChallengeView(int abschlussZeit, int anzahl, int stapelId)
         {
             InitializeComponent();
             repository = new KarteRepository();
@@ -40,12 +40,18 @@ namespace AnsichtsFenster.Fenster
                 selectedKarte = karte;
             }
 
-            stoppuhr = new Stoppuhr();
-            stoppuhr.Start();
-            lbl_ZeitAngabe.Text = stoppuhr.ToString();
+            this.abschlussZeit = (abschlussZeit * 60 * 1000);
+            TimerAnzeige();
+
             lbl_Auswertung.Visible = false;
             FrageSetzen();
             
+        }
+
+        private void TimerAnzeige()
+        {
+            timer_Anzeige.Interval = 1000;
+            timer_Anzeige.Start();
         }
 
         private void IsCorrect()
@@ -144,6 +150,7 @@ namespace AnsichtsFenster.Fenster
 
         private void Auswertung()
         {
+            timer_Anzeige.Stop();
             pnl_FrageAntwort.Visible = false;
             btn_finish.Visible = false;
             lbl_Auswertung.Visible = true;
@@ -151,8 +158,33 @@ namespace AnsichtsFenster.Fenster
             
             lbl_Auswertung.Text = "Richtige Antworten: " + richtigeAntworten +
                                   "\nFalsche Antworten: " + falscheAntworten + 
-                                  "\nRichtig in Prozent: "+ ((richtigeAntworten * 100 )/ alleKarten.Count) + "%";
+                                  "\nRichtig in Prozent: " + ((richtigeAntworten * 100 )/ alleKarten.Count) + "%"+
+                                  "\nDu hast " + ZeitUmrechnung(abschlussZeit) + " gebraucht";
             
+        }
+
+        private string ZeitUmrechnung(int zeitInMiliSekunden)
+        {
+            int zeitInSekunden = zeitInMiliSekunden / 1000 -1;
+            int minuten = zeitInSekunden / 60;
+            int sekunden = zeitInSekunden & 60;
+            return minuten + " : " + sekunden;
+
+
+        }
+
+        private void timer_Anzeige_Tick(object sender, EventArgs e)
+        {
+            if (abschlussZeit > 0)
+            {
+                lbl_Zeit.Text = ZeitUmrechnung(abschlussZeit);
+                abschlussZeit -= 1000;
+            }
+            else
+            {
+                IsCorrect();
+                Auswertung();
+            }
         }
     }
 }

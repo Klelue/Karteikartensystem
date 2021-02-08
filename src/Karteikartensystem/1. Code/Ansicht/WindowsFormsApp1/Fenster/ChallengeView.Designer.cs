@@ -29,7 +29,7 @@ namespace AnsichtsFenster.Fenster
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_ZeitAngabe = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
             this.btn_Next = new System.Windows.Forms.Button();
             this.btn_finish = new System.Windows.Forms.Button();
             this.lbl_Frage = new System.Windows.Forms.Label();
@@ -39,17 +39,10 @@ namespace AnsichtsFenster.Fenster
             this.radioButtonAntwort4 = new System.Windows.Forms.RadioButton();
             this.pnl_FrageAntwort = new System.Windows.Forms.Panel();
             this.lbl_Auswertung = new System.Windows.Forms.Label();
+            this.lbl_Zeit = new System.Windows.Forms.Label();
+            this.timer_Anzeige = new System.Windows.Forms.Timer(this.components);
             this.pnl_FrageAntwort.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lbl_ZeitAngabe
-            // 
-            this.lbl_ZeitAngabe.AutoSize = true;
-            this.lbl_ZeitAngabe.Location = new System.Drawing.Point(623, 49);
-            this.lbl_ZeitAngabe.Name = "lbl_ZeitAngabe";
-            this.lbl_ZeitAngabe.Size = new System.Drawing.Size(62, 13);
-            this.lbl_ZeitAngabe.TabIndex = 0;
-            this.lbl_ZeitAngabe.Text = "ZeitAngabe";
             // 
             // btn_Next
             // 
@@ -145,16 +138,30 @@ namespace AnsichtsFenster.Fenster
             this.lbl_Auswertung.Size = new System.Drawing.Size(63, 13);
             this.lbl_Auswertung.TabIndex = 15;
             this.lbl_Auswertung.Text = "Auswertung";
+
+            // 
+            // lbl_Zeit
+            // 
+            this.lbl_Zeit.AutoSize = true;
+            this.lbl_Zeit.Location = new System.Drawing.Point(666, 37);
+            this.lbl_Zeit.Name = "lbl_Zeit";
+            this.lbl_Zeit.Size = new System.Drawing.Size(25, 13);
+            this.lbl_Zeit.TabIndex = 16;
+            this.lbl_Zeit.Text = "Zeit";
+            // 
+            // timer_Anzeige
+            // 
+            this.timer_Anzeige.Tick += new System.EventHandler(this.timer_Anzeige_Tick);
             // 
             // ChallengeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_Zeit);
             this.Controls.Add(this.lbl_Auswertung);
             this.Controls.Add(this.pnl_FrageAntwort);
             this.Controls.Add(this.btn_finish);
-            this.Controls.Add(this.lbl_ZeitAngabe);
             this.Name = "ChallengeView";
             this.Text = "ChallengeView";
             this.pnl_FrageAntwort.ResumeLayout(false);
@@ -165,8 +172,6 @@ namespace AnsichtsFenster.Fenster
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbl_ZeitAngabe;
         private System.Windows.Forms.Button btn_Next;
         private System.Windows.Forms.Button btn_finish;
         private System.Windows.Forms.Label lbl_Frage;
@@ -176,5 +181,7 @@ namespace AnsichtsFenster.Fenster
         private System.Windows.Forms.RadioButton radioButtonAntwort4;
         private System.Windows.Forms.Panel pnl_FrageAntwort;
         private System.Windows.Forms.Label lbl_Auswertung;
+        private System.Windows.Forms.Label lbl_Zeit;
+        private System.Windows.Forms.Timer timer_Anzeige;
     }
 }

@@ -129,6 +129,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Stoppuhr.cs" />
     <Compile Include="Utilities\StringSuchTool.cs" />
+    <EmbeddedResource Include="Fenster\ChallengeView.resx">
+      <DependentUpon>ChallengeView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fenster\HinzufuegenKarten.resx">
       <DependentUpon>HinzufuegenKarten.cs</DependentUpon>
     </EmbeddedResource>
