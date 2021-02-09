@@ -292,5 +292,12 @@ namespace AnsichtsFenster.Fenster
             MessageBox.Show(text, "Error", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
         }
+
+        private void StapelBearbeiten_Click(object sender, EventArgs e)
+        {
+            StapelBearbeitenView stapelBearbeitenView = new StapelBearbeitenView();
+
+            stapelBearbeitenView.Show();
+        }
     }
 }

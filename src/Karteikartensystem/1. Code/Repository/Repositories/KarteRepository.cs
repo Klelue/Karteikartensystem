@@ -18,7 +18,7 @@ namespace Repositories
         public bool KarteHinzufügen(Karte karte)
         {
 
-            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id, schwierigkeitsgrad) VALUES(@Frage, @Antwort, @StapelId, @Schwierigkeitsgrad;";
+            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id, schwierigkeitsgrad) VALUES(@Frage, @Antwort, @StapelId, @Schwierigkeitsgrad);";
 
                 SqlCommand sqlCommand = new SqlCommand(sql);
 
