@@ -138,7 +138,6 @@ namespace AnsichtsFenster.Fenster
             this.lbl_Auswertung.Size = new System.Drawing.Size(63, 13);
             this.lbl_Auswertung.TabIndex = 15;
             this.lbl_Auswertung.Text = "Auswertung";
-
             // 
             // lbl_Zeit
             // 
@@ -151,6 +150,7 @@ namespace AnsichtsFenster.Fenster
             // 
             // timer_Anzeige
             // 
+            this.timer_Anzeige.Interval = 1000;
             this.timer_Anzeige.Tick += new System.EventHandler(this.timer_Anzeige_Tick);
             // 
             // ChallengeView

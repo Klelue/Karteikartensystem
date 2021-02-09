@@ -48,7 +48,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Uriy1966-Steel-System-Documents.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -192,7 +193,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Media-Design-Hydropro-V2-Folder-Documents.ico" />
     <None Include="Resources\party-pfeife.png" />
     <None Include="Resources\feuerwerk.png" />
     <None Include="Resources\feier.png" />
@@ -205,7 +205,6 @@
     <None Include="Resources\study %282%29.png" />
     <None Include="Resources\study %283%29.png" />
     <None Include="Resources\celebration.png" />
-    <Content Include="Uriy1966-Steel-System-Documents.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
