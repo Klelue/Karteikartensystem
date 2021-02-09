@@ -1,64 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using AnsichtsFenster.Utilities;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using Model;
-using Repositories;
 
 namespace AnsichtsFenster.Fenster
 {
     public partial class ChallengeView : Form
     {
         private Karte selectedKarte;
-        private KarteRepository repository;
-        private List<Karte> alleKarten;
+        private readonly List<Karte> kartenListe;
         private int richtigeAntworten;
         private int falscheAntworten;
         private int abschlussZeit;
 
 
-        public ChallengeView(int abschlussZeit, int anzahl, long stapelId)
+        public ChallengeView(int abschlussZeit, int anzahl, Stapel aktuellerStapel, List<Karte> alleKarten)
 
         {
             InitializeComponent();
-            repository = new KarteRepository();
-            alleKarten = repository.GetAlleKartenEinesStapels(stapelId).ToList();
 
-            if (alleKarten.Count >= 1)
-            {
-                selectedKarte = alleKarten[0];
-            }
-            else // falls keine Karten vorhanden
-            {
-                Karte karte = new Karte();
-                karte.Frage = "Leider ist diese Liste leer";
-                karte.Antwort = "Da keine Karten vorhanden sind, \n sind auch keine Antworten vorhanden";
-                selectedKarte = karte;
-            }
+            kartenListe = RandomKartenFromAlleKarten(anzahl, alleKarten);
 
-            this.abschlussZeit = (abschlussZeit * 60 * 1000);
-            TimerAnzeige();
+            selectedKarte = kartenListe[0];
 
+            this.abschlussZeit = abschlussZeit * 60;
+
+            timer_Anzeige.Start();
             lbl_Auswertung.Visible = false;
             FrageSetzen();
-            
+
         }
 
-        private void TimerAnzeige()
-        {
-            timer_Anzeige.Interval = 1000;
-            timer_Anzeige.Start();
-        }
 
         private void IsCorrect()
         {
-            var checkedRadioButton = pnl_FrageAntwort.Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked == true);
+            RadioButton checkedRadioButton = pnl_FrageAntwort.Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked == true);
             if (selectedKarte.Antwort == checkedRadioButton.Text)
             {
                 richtigeAntworten++;
@@ -69,13 +46,9 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-
         private void FrageSetzen()
         {
-            radioButtonAntwort1.Checked = true;
-
-
-            if (selectedKarte == null)  //|| stoppuhr.GetZeit() <= abschlussZeit)
+            if (selectedKarte == null)
             {
                 Auswertung();
             }
@@ -83,7 +56,7 @@ namespace AnsichtsFenster.Fenster
             else
             {
                 lbl_Frage.Text = selectedKarte.Frage;
-               
+
                 RadioButtonsAnlegen();
             }
         }
@@ -91,36 +64,105 @@ namespace AnsichtsFenster.Fenster
         private void RadioButtonsAnlegen()
         {
             List<string> antworten = RandomAntwortenAnordnung();
+
+
             radioButtonAntwort1.Text = antworten[0];
             radioButtonAntwort2.Text = antworten[1];
-            radioButtonAntwort3.Text = antworten[2];
-            radioButtonAntwort4.Text = antworten[3];
 
+            if (antworten.Count > 2)
+            {
+                radioButtonAntwort3.Visible = true;
+                radioButtonAntwort3.Text = antworten[2];
+            }
+            else
+            {
+                radioButtonAntwort3.Visible = false;
+            }
+
+
+            if (antworten.Count > 3)
+            {
+                radioButtonAntwort4.Visible = true;
+                radioButtonAntwort4.Text = antworten[3];
+            }
+            else
+            {
+                radioButtonAntwort4.Visible = false;
+            }
+
+            radioButtonAntwort1.Checked = true;
         }
 
         private List<string> RandomAntwortenAnordnung()
         {
             List<string> antworten = new List<string>();
             antworten.Add(selectedKarte.Antwort);
-           // antworten.Add(selectedKarte.FakeAntwort1);
-           // antworten.Add(selectedKarte.FakeAntwort2);
-           // antworten.Add(selectedKarte.FakeAntwort3);
+            antworten.Add(selectedKarte.FalschAntwort1);
+            antworten.Add(selectedKarte.FalschAntwort2);
+            antworten.Add(selectedKarte.FalschAntwort3);
 
-           antworten.Add("test1");
-           antworten.Add("test2");
-           antworten.Add("test3");
+            antworten = LeerEintraegeEntfernen(antworten);
 
-           Random random = new Random();
+            if (antworten.Count < 2)
+            {
+                antworten.Add("Keien Fakeantwort vorhanden");
+            }
 
-           for (int i = 0; i < antworten.Count; i++)
-           {
-               int j = random.Next(antworten.Count);
-               string antwort = antworten[j];
-               antworten[j] = antworten[i];
-               antworten[i] = antwort;
-           }
+            Random random = new Random();
+
+            for (int i = 0; i < antworten.Count; i++)
+            {
+                int j = random.Next(antworten.Count);
+                string antwort = antworten[j];
+                antworten[j] = antworten[i];
+                antworten[i] = antwort;
+            }
 
             return antworten;
+        }
+
+        private List<string> LeerEintraegeEntfernen(List<string> antworten)
+        {
+            List<string> listeOhneLeereintreage = antworten;
+
+            for(int i = listeOhneLeereintreage.Count -1 ; i >= 0 ; i--)
+            {
+                if (listeOhneLeereintreage[i].Trim() == "")
+                {
+                    listeOhneLeereintreage.RemoveAt(i);
+                }
+            }
+
+            return listeOhneLeereintreage;
+        }
+
+        private List<Karte> RandomKartenFromAlleKarten(int anzahl, List<Karte> alleKarten)
+        {
+            List<Karte> bearbeitendeList = alleKarten;
+            List<Karte> randomKarten = new List<Karte>();
+
+            Random random = new Random();
+            for (int i = 0; i < anzahl; i++)
+            {
+               // bool minEineFalscheAntwort = false;
+               // while (!minEineFalscheAntwort)
+               // {
+
+                    int randomIndex = random.Next(bearbeitendeList.Count - i);
+
+                  //  if (bearbeitendeList[randomIndex].FalschAntwort1.Trim() != "")
+                  //  {
+
+                        randomKarten.Add(bearbeitendeList[randomIndex]);
+                        bearbeitendeList.RemoveAt(randomIndex);
+
+                 //       minEineFalscheAntwort = true;
+                 //   }
+                 //}
+                
+            }
+
+            return randomKarten;
         }
 
         private void btn_Next_Click(object sender, EventArgs e)
@@ -133,10 +175,12 @@ namespace AnsichtsFenster.Fenster
         {
 
             IsCorrect();
-            int indexAktuell = alleKarten.IndexOf(selectedKarte);
-            if (indexAktuell+1 < alleKarten.Count)
+
+            int indexAktuell = kartenListe.IndexOf(selectedKarte);
+
+            if (indexAktuell + 1 < kartenListe.Count)
             {
-                selectedKarte = alleKarten[indexAktuell + 1];
+                selectedKarte = kartenListe[indexAktuell + 1];
             }
             else
             {
@@ -156,23 +200,20 @@ namespace AnsichtsFenster.Fenster
             pnl_FrageAntwort.Visible = false;
             btn_finish.Visible = false;
             lbl_Auswertung.Visible = true;
-            
+            lbl_Zeit.Visible = false;
             
             lbl_Auswertung.Text = "Richtige Antworten: " + richtigeAntworten +
-                                  "\nFalsche Antworten: " + falscheAntworten + 
-                                  "\nRichtig in Prozent: " + ((richtigeAntworten * 100 )/ alleKarten.Count) + "%"+
-                                  "\nDu hast " + ZeitUmrechnung(abschlussZeit) + " gebraucht";
-            
+                                  "\nFalsche Antworten: " + falscheAntworten +
+                                  "\nUnbeantwortete Fragen: " + (kartenListe.Count - richtigeAntworten - falscheAntworten) +
+                                  "\nRichtig in Prozent: " + ((richtigeAntworten * 100) / kartenListe.Count) + "%" +
+                                  "\nDu hast " + ZeitUmrechnung(abschlussZeit) + " übrig gehabt";
         }
 
-        private string ZeitUmrechnung(int zeitInMiliSekunden)
+        private string ZeitUmrechnung(int zeitInSekunden)
         {
-            int zeitInSekunden = zeitInMiliSekunden / 1000 -1;
             int minuten = zeitInSekunden / 60;
-            int sekunden = zeitInSekunden & 60;
+            int sekunden = zeitInSekunden % 60;
             return minuten + " : " + sekunden;
-
-
         }
 
         private void timer_Anzeige_Tick(object sender, EventArgs e)
@@ -180,7 +221,7 @@ namespace AnsichtsFenster.Fenster
             if (abschlussZeit > 0)
             {
                 lbl_Zeit.Text = ZeitUmrechnung(abschlussZeit);
-                abschlussZeit -= 1000;
+                abschlussZeit -= 1;
             }
             else
             {

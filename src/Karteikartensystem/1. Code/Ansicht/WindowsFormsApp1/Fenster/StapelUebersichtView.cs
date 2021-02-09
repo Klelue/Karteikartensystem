@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -259,13 +260,17 @@ namespace AnsichtsFenster.Fenster
 
             if (ChallengeWerte.ShowDialog() == DialogResult.OK)
             {
-                if (Int32.TryParse(txt_Zeit.Text, out int time))
+                if (Int32.TryParse(txt_Zeit.Text, out int time) && time > 0)
                 {
-                    if (Int32.TryParse(txt_KartenAnzahl.Text, out int anzahl) && anzahl > 0)
+                    Stapel[] alleStapel = new StapelRepository().GetAlleStapel();
+                    Stapel stapelMitAusgewähltenName = alleStapel.First(stapel => stapel.Name == selectedItem.SubItems[0].Text);
+                    KarteRepository repository = new KarteRepository();
+                        List<Karte> alleKartenDerID = repository.GetAlleKartenEinesStapels(stapelMitAusgewähltenName.Id)
+                            .ToList();
+
+                    if (Int32.TryParse(txt_KartenAnzahl.Text, out int anzahl) && anzahl > 0 && anzahl <= alleKartenDerID.Count)
                     {
-                        Stapel[] alleStapel = new StapelRepository().GetAlleStapel();
-                        Stapel stapelMitAusgewähltenName = alleStapel.First(stapel => stapel.Name == selectedItem.SubItems[0].Text);
-                        ChallengeView challengeView = new ChallengeView(time, anzahl, stapelMitAusgewähltenName.Id);
+                        ChallengeView challengeView = new ChallengeView(time, anzahl, stapelMitAusgewähltenName, alleKartenDerID);
                         challengeView.Show();
                     }
 
