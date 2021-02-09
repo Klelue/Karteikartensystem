@@ -32,6 +32,7 @@ namespace AnsichtsFenster.Fenster
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StapelUebersichtView));
             this.dachPanel = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.ChallengeButton = new System.Windows.Forms.Button();
             this.MinimierenButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@ namespace AnsichtsFenster.Fenster
             this.btn_KartenHinzufuegen = new System.Windows.Forms.Button();
             this.btn_Entfernen = new System.Windows.Forms.Button();
             this.InhaltPanel = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
             this.dachPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnl_btn.SuspendLayout();
@@ -69,6 +69,24 @@ namespace AnsichtsFenster.Fenster
             this.dachPanel.TabIndex = 7;
             this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseDown);
             this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseMove);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
+            this.button4.Location = new System.Drawing.Point(703, 7);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(150, 40);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "Challenge";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.StapelBearbeiten_Click);
             // 
             // ChallengeButton
             // 
@@ -223,7 +241,7 @@ namespace AnsichtsFenster.Fenster
             this.pnl_btn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnl_btn.Controls.Add(this.btn_KartenHinzufuegen);
             this.pnl_btn.Controls.Add(this.btn_Entfernen);
-            this.pnl_btn.Location = new System.Drawing.Point(37, 89);
+            this.pnl_btn.Location = new System.Drawing.Point(29, 89);
             this.pnl_btn.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_btn.Name = "pnl_btn";
             this.pnl_btn.Size = new System.Drawing.Size(262, 158);
@@ -281,24 +299,6 @@ namespace AnsichtsFenster.Fenster
             this.InhaltPanel.Name = "InhaltPanel";
             this.InhaltPanel.Size = new System.Drawing.Size(1200, 595);
             this.InhaltPanel.TabIndex = 3;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.button4.Location = new System.Drawing.Point(703, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(150, 40);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Challenge";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.StapelBearbeiten_Click);
             // 
             // StapelUebersichtView
             // 

@@ -88,6 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ListController.cs" />
+    <Compile Include="Fenster\ChallengeAbfrageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fenster\ChallengeAbfrageView.Designer.cs">
+      <DependentUpon>ChallengeAbfrageView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fenster\ChallengeView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     <Compile Include="Utilities\StapelFileHandler.cs" />
     <Compile Include="Utilities\Stoppuhr.cs" />
     <Compile Include="Utilities\StringSuchTool.cs" />
+    <EmbeddedResource Include="Fenster\ChallengeAbfrageView.resx">
+      <DependentUpon>ChallengeAbfrageView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fenster\ChallengeView.resx">
       <DependentUpon>ChallengeView.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +223,9 @@
     <None Include="Resources\study %282%29.png" />
     <None Include="Resources\study %283%29.png" />
     <None Include="Resources\celebration.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\award.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -59,7 +59,7 @@ namespace Repositories
                 string falschAntwort2 = dataTable.Rows[index][4].ToString();
                 string falschAntwort3 = dataTable.Rows[index][5].ToString();
                 long stapelidentifikation = (long) dataTable.Rows[index][6];
-                int status= (int) dataTable.Rows[index][7];
+                int status = (int) dataTable.Rows[index][7];
                 
 
                 Karte karte = new Karte();
@@ -81,13 +81,13 @@ namespace Repositories
         }
 
 
-        public bool KarteLöschen(long Id)
+        public bool KarteLöschen(long id)
         {
             string sql = "DELETE FROM Karte WHERE Id = @Id";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
-            sqlCommand.Parameters.AddWithValue("@Id", Id);
+            sqlCommand.Parameters.AddWithValue("@Id", id);
 
             int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 

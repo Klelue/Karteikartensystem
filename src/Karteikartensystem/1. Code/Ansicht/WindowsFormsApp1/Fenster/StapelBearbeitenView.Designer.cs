@@ -43,6 +43,7 @@ namespace AnsichtsFenster.Fenster
             this.button1 = new System.Windows.Forms.Button();
             this.stapelAktualisieren = new System.Windows.Forms.Button();
             this.listBoxStapel = new System.Windows.Forms.ListBox();
+            this.stapelLöschen = new System.Windows.Forms.Button();
             this.dachPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@ namespace AnsichtsFenster.Fenster
             // 
             this.textBoxStapelName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxStapelName.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxStapelName.Location = new System.Drawing.Point(594, 112);
+            this.textBoxStapelName.Location = new System.Drawing.Point(434, 93);
             this.textBoxStapelName.Name = "textBoxStapelName";
             this.textBoxStapelName.Size = new System.Drawing.Size(448, 23);
             this.textBoxStapelName.TabIndex = 0;
@@ -63,7 +64,7 @@ namespace AnsichtsFenster.Fenster
             this.stapelAnlegen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.stapelAnlegen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stapelAnlegen.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stapelAnlegen.Location = new System.Drawing.Point(610, 141);
+            this.stapelAnlegen.Location = new System.Drawing.Point(434, 141);
             this.stapelAnlegen.Name = "stapelAnlegen";
             this.stapelAnlegen.Size = new System.Drawing.Size(165, 43);
             this.stapelAnlegen.TabIndex = 1;
@@ -84,7 +85,7 @@ namespace AnsichtsFenster.Fenster
             this.dateiAuswählen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.dateiAuswählen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dateiAuswählen.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateiAuswählen.Location = new System.Drawing.Point(693, 387);
+            this.dateiAuswählen.Location = new System.Drawing.Point(364, 547);
             this.dateiAuswählen.Name = "dateiAuswählen";
             this.dateiAuswählen.Size = new System.Drawing.Size(363, 35);
             this.dateiAuswählen.TabIndex = 2;
@@ -100,7 +101,7 @@ namespace AnsichtsFenster.Fenster
             this.StapelExportieren.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.StapelExportieren.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StapelExportieren.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StapelExportieren.Location = new System.Drawing.Point(400, 387);
+            this.StapelExportieren.Location = new System.Drawing.Point(61, 547);
             this.StapelExportieren.Name = "StapelExportieren";
             this.StapelExportieren.Size = new System.Drawing.Size(297, 37);
             this.StapelExportieren.TabIndex = 3;
@@ -229,7 +230,7 @@ namespace AnsichtsFenster.Fenster
             this.stapelAktualisieren.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.stapelAktualisieren.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stapelAktualisieren.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stapelAktualisieren.Location = new System.Drawing.Point(793, 141);
+            this.stapelAktualisieren.Location = new System.Drawing.Point(630, 141);
             this.stapelAktualisieren.Name = "stapelAktualisieren";
             this.stapelAktualisieren.Size = new System.Drawing.Size(263, 43);
             this.stapelAktualisieren.TabIndex = 10;
@@ -248,11 +249,28 @@ namespace AnsichtsFenster.Fenster
             this.listBoxStapel.Size = new System.Drawing.Size(313, 392);
             this.listBoxStapel.TabIndex = 11;
             // 
+            // stapelLöschen
+            // 
+            this.stapelLöschen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.stapelLöschen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.stapelLöschen.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.stapelLöschen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.stapelLöschen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stapelLöschen.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stapelLöschen.Location = new System.Drawing.Point(402, 442);
+            this.stapelLöschen.Name = "stapelLöschen";
+            this.stapelLöschen.Size = new System.Drawing.Size(165, 43);
+            this.stapelLöschen.TabIndex = 12;
+            this.stapelLöschen.Text = "löschen";
+            this.stapelLöschen.UseVisualStyleBackColor = true;
+            this.stapelLöschen.Click += new System.EventHandler(this.stapelLöschen_Click);
+            // 
             // StapelBearbeitenView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1212, 675);
+            this.Controls.Add(this.stapelLöschen);
             this.Controls.Add(this.listBoxStapel);
             this.Controls.Add(this.stapelAktualisieren);
             this.Controls.Add(this.dachPanel);
@@ -285,5 +303,6 @@ namespace AnsichtsFenster.Fenster
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button stapelAktualisieren;
         private System.Windows.Forms.ListBox listBoxStapel;
+        private System.Windows.Forms.Button stapelLöschen;
     }
 }

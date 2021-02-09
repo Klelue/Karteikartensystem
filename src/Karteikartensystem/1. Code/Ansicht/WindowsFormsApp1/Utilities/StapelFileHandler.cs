@@ -24,7 +24,7 @@ namespace AnsichtsFenster.Utilities
             {
                File.WriteAllText(pfad + @"\" +  stapelName  + ".sed", text);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

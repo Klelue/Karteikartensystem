@@ -10,16 +10,15 @@ namespace DatenbankEngine
     public class SqlFileDatabaseEngine : IDatenbankEngine
 
     {
-        private readonly string connectionString;
         private readonly SqlConnection connection;
 
         private string fileDatabasePath = ConfigurationManager.ConnectionStrings["Path"].ConnectionString;
 
         public SqlFileDatabaseEngine()
         {
-            connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" 
-                               + fileDatabasePath 
-                               + "Integrated Security=True;Connect Timeout=30";
+            var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" 
+                                   + fileDatabasePath 
+                                   + "Integrated Security=True;Connect Timeout=30";
 
             connection = new SqlConnection(connectionString);
         }
@@ -53,7 +52,7 @@ namespace DatenbankEngine
         public int ExecuteQuery(SqlCommand sqlCommand)
         {
 
-            int rowsAffected = 0;
+            int rowsAffected;
 
             Console.WriteLine(sqlCommand);
 

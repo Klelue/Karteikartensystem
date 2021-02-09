@@ -165,11 +165,10 @@ namespace AnsichtsFenster.Fenster
 
         private void txt_StapelSuche_Enter(object sender, EventArgs e)
         {
-            if (txt_StapelSuche.Text == "Suche nach dein Stapel")
-            {
-                txt_StapelSuche.Clear();
-                txt_StapelSuche.ForeColor = Color.Black;
-            }
+
+            txt_StapelSuche.Clear();
+            txt_StapelSuche.ForeColor = Color.Black;
+
         }
 
         private void txt_StapelSuche_Leave(object sender, EventArgs e)
@@ -223,15 +222,9 @@ namespace AnsichtsFenster.Fenster
 
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
-            if (selectedItem != null)
-            {
-                ChallengeAbfrage();
-            }
+            ChallengeAbfrageView challengeAbfrageView = new ChallengeAbfrageView();
 
-            else
-            {
-                ErrorMessageBox("Kein Stapel ausgewählt");
-            }
+            challengeAbfrageView.Show();
         }
 
         public void ChallengeAbfrage()
