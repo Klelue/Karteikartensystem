@@ -9,6 +9,9 @@ namespace Model
         public string Antwort { get; set; }
         public long StapelId { get; set; }
         public int Schwierigkeitsgrad { get; set; }
+        public string FalschAntowrt1 { get; set; }
+        public string FalschAntowrt2 { get; set; }
+        public string FalschAntowrt3 { get; set; }
 
     }
 }
