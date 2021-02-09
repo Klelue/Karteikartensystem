@@ -43,15 +43,15 @@ namespace AnsichtsFenster.Fenster
 
         private void dateiAuswählen_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using (OpenFileDialog fileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = @"Stapel-Export-Datei|*.sed";
+                fileDialog.Filter = @"Stapel-Export-Datei|*.sed";
             
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
 
-                    string pfad = openFileDialog.FileName;
+                    string pfad = fileDialog.FileName;
 
                     string[] pfadGesplitet = pfad.Split('\\');
 
@@ -99,9 +99,7 @@ namespace AnsichtsFenster.Fenster
                 selectedPath = folderBrowserDialog.SelectedPath;
             }
 
-            Stapel[] alleStapel = new StapelRepository().GetAlleStapel();
-
-             Stapel selectedStapel = (Stapel) listBoxStapel.SelectedItem;
+            Stapel selectedStapel = (Stapel) listBoxStapel.SelectedItem;
 
             if (selectedStapel == null)
             {
@@ -125,7 +123,7 @@ namespace AnsichtsFenster.Fenster
 
             if (selectedStapel == null)
             {
-                MessageBox.Show("Bevor Sie ein Stapel umbenennen müssen sie ein Stapel auswählen", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Stapel wählen", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -136,6 +134,21 @@ namespace AnsichtsFenster.Fenster
 
         private void StapelBearbeitenView_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void stapelLöschen_Click(object sender, EventArgs e)
+        {
+            Stapel selectedStapel = (Stapel) listBoxStapel.SelectedItem;
+
+            if (selectedStapel == null)
+            {
+                MessageBox.Show("Stapel wählen", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                stapelRepository.StapelLöschen(selectedStapel.Id);
+            }
 
         }
     }
