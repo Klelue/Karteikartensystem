@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
-using AnsichtsFenster.Controller;
-using AnsichtsFenster.Utilities;
-using Model;
 using Repositories;
+using Model;
+using System.Linq;
+using AnsichtsFenster.Utilities;
 
 
 namespace AnsichtsFenster.Fenster
@@ -149,37 +147,5 @@ namespace AnsichtsFenster.Fenster
             lblZeitAngabe.Visible = false;
             FrageSetzen();
         }
-
-
-        /****************************************/
-        private Point LastPoint;
-        private void dachPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                this.Left += e.X - LastPoint.X;
-                this.Top += e.Y - LastPoint.Y;
-            }
-        }
-        private void dachPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            LastPoint = new Point(e.X, e.Y);
-        }
-
-        private void StapelWählenButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new JetztLernenView().Show();
-        }
-
-        private void MinimierenButton_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
     }
 }

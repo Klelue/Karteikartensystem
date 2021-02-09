@@ -5,25 +5,31 @@ using Repositories;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Drawing;
-using AnsichtsFenster.Controller;
 using AnsichtsFenster.Utilities;
 
 namespace AnsichtsFenster.Fenster
 {
     public partial class HinzufuegenKarten : Form
     {
-        private Karte selectedKarte;
         private List<Karte> alleKarten;
+        private Karte selectedKarte;
         private KarteRepository repository;
-        private ViewController viewController;
-
         private long stapelId;
         private Stapel[] allesStapel = new StapelRepository().GetAlleStapel();
+
+        public HinzufuegenKarten(string stapelName, long stapelId)
+        {
+            InitializeComponent();
+            this.stapelId = stapelId;
+            repository = new KarteRepository();
+            alleKarten = repository.GetAlleKartenEinesStapels(stapelId).ToList();
+            ListViewFormatieren();
+        }
+
 
         public HinzufuegenKarten()
         {
             InitializeComponent();
-            viewController = new ViewController();
             repository = new KarteRepository();
             alleKarten = new List<Karte>();
             comboBoxLaden();
@@ -55,10 +61,14 @@ namespace AnsichtsFenster.Fenster
             if (richTxt_Vorderseite.Text.Trim() != "" && richTxt_Rueckseite.Text.Trim() != "")
             {
                 if (repository.KarteHinzufügen(KartenAnlegen()))
-                    viewController.OkMessageBox("Die karte wurde gespeichert", "Es hat geklappt");
+                    MessageBox.Show("Die karte wurde gespeichert", "Es hat geklappt", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
             else
-                viewController.ExclamationsMessageBox("Es wurde nicht in eins oder in beiden Felder etwas geschrieben", "Sorry");
+            {
+                MessageBox.Show("Es wurde nicht in eins oder in beiden Felder etwas geschrieben", "Sorry",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private Karte KartenAnlegen()
@@ -74,7 +84,7 @@ namespace AnsichtsFenster.Fenster
         {
             listView_KartenAnzeige.Clear();
             listView_KartenAnzeige.View = View.Details;
-            listView_KartenAnzeige.Columns.Add("Fragen").Width = listView_KartenAnzeige.Size.Width - 20;
+            listView_KartenAnzeige.Columns.Add("Fragen");
             KartenAnzeigen(alleKarten);
         }
 
@@ -102,7 +112,8 @@ namespace AnsichtsFenster.Fenster
 
             if (ergebnisListe.Count < 1)
             {
-                viewController.InformationsMessageBox("Leider kein Eintrag gefunden");
+                MessageBox.Show("Leider kein Eintrag gefunden", "Sorry", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 KartenAnzeigen(alleKarten);
             }
 
@@ -122,7 +133,7 @@ namespace AnsichtsFenster.Fenster
                 if (repository.KarteLöschen(selectedKarte.Id))
                 {
                     selectedKarte = null;
-                    viewController.OkMessageBox("Es hat geklappt", "Yeah");
+                    MessageBox.Show("Es hat geklappt", "Yeah", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -136,11 +147,32 @@ namespace AnsichtsFenster.Fenster
                 if (repository.KarteAktualisieren(selectedKarte))
                 { 
                     selectedKarte = null;
-                    viewController.OkMessageBox("Es hat geklappt", "Yeah");
-                }
+                    MessageBox.Show("Es hat geklappt", "Yeah", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }           
             }
         }
 
+/***************************************/
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            StapelUebersichtView stubvView = new StapelUebersichtView();
+            stubvView.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HinzufuegenKarten hkView = new HinzufuegenKarten();
+            hkView.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            JetztLernenView elv = new JetztLernenView();
+            elv.Show();
+        }
 
         private void txt_KartenSuche_KeyDown(object sender, KeyEventArgs e)
         {
@@ -151,7 +183,7 @@ namespace AnsichtsFenster.Fenster
                 else
                     KartenSucheAnzeigen(txt_KartenSuche.Text);
                 txt_KartenSuche.Clear();
-                selectedKarte = null;
+				selectedKarte = null;
             }
         }
 
@@ -173,16 +205,6 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            if (txt_KartenSuche.Text.Trim() == "")
-                KartenAnzeigen(alleKarten);
-            else
-                KartenSucheAnzeigen(txt_KartenSuche.Text);
-            txt_KartenSuche.Clear();
-        }
-
-        /*********************************/
         private Point lastPoint;
 
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)
@@ -199,30 +221,13 @@ namespace AnsichtsFenster.Fenster
             lastPoint = new Point(e.X, e.Y);
         }
 
-        private void ÜbersichtButton_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new StapelUebersichtView().Show();
-        }
-        private void KarteBearbeitenButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new HinzufuegenKarten().Show();
-        }
-        private void StapelBearbeitenButton_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void JetztLernenButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new JetztLernenView().Show();
-        }
-
-
-        private void ChallengeButton_Click(object sender, EventArgs e)
-        {
-
+            if (txt_KartenSuche.Text.Trim() == "")
+                KartenAnzeigen(alleKarten);
+            else
+                KartenSucheAnzeigen(txt_KartenSuche.Text);
+            txt_KartenSuche.Clear();
         }
 
         private void MinimierenButton_Click(object sender, EventArgs e)
@@ -233,6 +238,7 @@ namespace AnsichtsFenster.Fenster
         {
             Application.Exit();
         }
+
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using AnsichtsFenster.Utilities;
@@ -151,5 +152,59 @@ namespace AnsichtsFenster.Fenster
             }
 
         }
+
+
+        /****************************************/
+
+        private Point LastPoint;
+        private void dachPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - LastPoint.X;
+                this.Top += e.Y - LastPoint.Y;
+            }
+        }
+        private void dachPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            LastPoint = new Point(e.X, e.Y);
+        }
+
+        private void ÜbersichtButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new StapelUebersichtView().Show();
+        }
+        private void KarteBearbeitenButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new HinzufuegenKarten().Show();
+        }
+        private void StapelBearbeitenButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void JetztLernenButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new JetztLernenView().Show();
+        }
+
+        private void ChallengeButton_Click(object sender, EventArgs e)
+        {
+           // this.Hide();
+          //  new ChallengeView().Show();
+        }
+
+        private void MinimierenButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }

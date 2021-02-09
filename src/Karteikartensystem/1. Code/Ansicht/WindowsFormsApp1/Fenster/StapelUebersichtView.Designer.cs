@@ -32,61 +32,57 @@ namespace AnsichtsFenster.Fenster
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StapelUebersichtView));
             this.dachPanel = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.StapelBearbeitenButton = new System.Windows.Forms.Button();
             this.ChallengeButton = new System.Windows.Forms.Button();
             this.MinimierenButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.JetztLernenButton = new System.Windows.Forms.Button();
+            this.KarteBearbeitenButton = new System.Windows.Forms.Button();
+            this.ÜbersichtButton = new System.Windows.Forms.Button();
             this.txt_StapelSuche = new System.Windows.Forms.TextBox();
             this.listView_Ausgabe = new System.Windows.Forms.ListView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pnl_btn = new System.Windows.Forms.Panel();
-            this.btn_KartenHinzufuegen = new System.Windows.Forms.Button();
-            this.btn_Entfernen = new System.Windows.Forms.Button();
             this.InhaltPanel = new System.Windows.Forms.Panel();
             this.dachPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pnl_btn.SuspendLayout();
             this.InhaltPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // dachPanel
             // 
             this.dachPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(70)))), ((int)(((byte)(190)))));
-            this.dachPanel.Controls.Add(this.button4);
+            this.dachPanel.Controls.Add(this.StapelBearbeitenButton);
             this.dachPanel.Controls.Add(this.ChallengeButton);
             this.dachPanel.Controls.Add(this.MinimierenButton);
             this.dachPanel.Controls.Add(this.CloseButton);
-            this.dachPanel.Controls.Add(this.button3);
-            this.dachPanel.Controls.Add(this.button2);
-            this.dachPanel.Controls.Add(this.button1);
+            this.dachPanel.Controls.Add(this.JetztLernenButton);
+            this.dachPanel.Controls.Add(this.KarteBearbeitenButton);
+            this.dachPanel.Controls.Add(this.ÜbersichtButton);
             this.dachPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.dachPanel.Location = new System.Drawing.Point(0, 0);
             this.dachPanel.Name = "dachPanel";
-            this.dachPanel.Size = new System.Drawing.Size(1200, 55);
+            this.dachPanel.Size = new System.Drawing.Size(1400, 60);
             this.dachPanel.TabIndex = 7;
             this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseDown);
             this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseMove);
             // 
-            // button4
+            // StapelBearbeitenButton
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.button4.Location = new System.Drawing.Point(703, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(150, 40);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Challenge";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.StapelBearbeiten_Click);
+            this.StapelBearbeitenButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
+            this.StapelBearbeitenButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.StapelBearbeitenButton.FlatAppearance.BorderSize = 0;
+            this.StapelBearbeitenButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
+            this.StapelBearbeitenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
+            this.StapelBearbeitenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StapelBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StapelBearbeitenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
+            this.StapelBearbeitenButton.Location = new System.Drawing.Point(470, 7);
+            this.StapelBearbeitenButton.Name = "StapelBearbeitenButton";
+            this.StapelBearbeitenButton.Size = new System.Drawing.Size(250, 45);
+            this.StapelBearbeitenButton.TabIndex = 10;
+            this.StapelBearbeitenButton.Text = "Stapel bearbeiten";
+            this.StapelBearbeitenButton.UseVisualStyleBackColor = false;
+            this.StapelBearbeitenButton.Click += new System.EventHandler(this.StapelBearbeitenButton_Click);
             // 
             // ChallengeButton
             // 
@@ -96,11 +92,11 @@ namespace AnsichtsFenster.Fenster
             this.ChallengeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
             this.ChallengeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
             this.ChallengeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ChallengeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChallengeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChallengeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.ChallengeButton.Location = new System.Drawing.Point(547, 7);
+            this.ChallengeButton.Location = new System.Drawing.Point(960, 7);
             this.ChallengeButton.Name = "ChallengeButton";
-            this.ChallengeButton.Size = new System.Drawing.Size(150, 40);
+            this.ChallengeButton.Size = new System.Drawing.Size(160, 45);
             this.ChallengeButton.TabIndex = 9;
             this.ChallengeButton.Text = "Challenge";
             this.ChallengeButton.UseVisualStyleBackColor = false;
@@ -108,15 +104,16 @@ namespace AnsichtsFenster.Fenster
             // 
             // MinimierenButton
             // 
+            this.MinimierenButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MinimierenButton.FlatAppearance.BorderSize = 0;
             this.MinimierenButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
             this.MinimierenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
             this.MinimierenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimierenButton.Font = new System.Drawing.Font("Showcard Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinimierenButton.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimierenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.MinimierenButton.Location = new System.Drawing.Point(1135, 0);
+            this.MinimierenButton.Location = new System.Drawing.Point(1325, 0);
             this.MinimierenButton.Name = "MinimierenButton";
-            this.MinimierenButton.Size = new System.Drawing.Size(35, 31);
+            this.MinimierenButton.Size = new System.Drawing.Size(45, 35);
             this.MinimierenButton.TabIndex = 8;
             this.MinimierenButton.Text = "__";
             this.MinimierenButton.UseVisualStyleBackColor = true;
@@ -124,84 +121,85 @@ namespace AnsichtsFenster.Fenster
             // 
             // CloseButton
             // 
+            this.CloseButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseButton.FlatAppearance.BorderSize = 0;
             this.CloseButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
             this.CloseButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.CloseButton.Location = new System.Drawing.Point(1165, 0);
+            this.CloseButton.Location = new System.Drawing.Point(1365, 0);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(35, 31);
+            this.CloseButton.Size = new System.Drawing.Size(35, 35);
             this.CloseButton.TabIndex = 7;
             this.CloseButton.Text = "X";
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // button3
+            // JetztLernenButton
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.button3.Location = new System.Drawing.Point(380, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(150, 40);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Jetzt lernen";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.JetztLernenButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
+            this.JetztLernenButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.JetztLernenButton.FlatAppearance.BorderSize = 0;
+            this.JetztLernenButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
+            this.JetztLernenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
+            this.JetztLernenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.JetztLernenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JetztLernenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
+            this.JetztLernenButton.Location = new System.Drawing.Point(740, 7);
+            this.JetztLernenButton.Name = "JetztLernenButton";
+            this.JetztLernenButton.Size = new System.Drawing.Size(200, 45);
+            this.JetztLernenButton.TabIndex = 3;
+            this.JetztLernenButton.Text = "Jetzt lernen";
+            this.JetztLernenButton.UseVisualStyleBackColor = false;
+            this.JetztLernenButton.Click += new System.EventHandler(this.JetztLernenButton_Click);
             // 
-            // button2
+            // KarteBearbeitenButton
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.button2.Location = new System.Drawing.Point(159, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(215, 40);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Karte bearbeiten";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.KarteBearbeitenButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
+            this.KarteBearbeitenButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.KarteBearbeitenButton.FlatAppearance.BorderSize = 0;
+            this.KarteBearbeitenButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
+            this.KarteBearbeitenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
+            this.KarteBearbeitenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KarteBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KarteBearbeitenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
+            this.KarteBearbeitenButton.Location = new System.Drawing.Point(210, 7);
+            this.KarteBearbeitenButton.Name = "KarteBearbeitenButton";
+            this.KarteBearbeitenButton.Size = new System.Drawing.Size(240, 45);
+            this.KarteBearbeitenButton.TabIndex = 2;
+            this.KarteBearbeitenButton.Text = "Karte bearbeiten";
+            this.KarteBearbeitenButton.UseVisualStyleBackColor = false;
+            this.KarteBearbeitenButton.Click += new System.EventHandler(this.KarteBearbeitenButton_Click);
             // 
-            // button1
+            // ÜbersichtButton
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(80)))), ((int)(((byte)(204)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.button1.Location = new System.Drawing.Point(29, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 40);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Übersicht";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.ÜbersichtButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(80)))), ((int)(((byte)(204)))));
+            this.ÜbersichtButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ÜbersichtButton.FlatAppearance.BorderSize = 0;
+            this.ÜbersichtButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
+            this.ÜbersichtButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
+            this.ÜbersichtButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ÜbersichtButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ÜbersichtButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
+            this.ÜbersichtButton.Location = new System.Drawing.Point(35, 7);
+            this.ÜbersichtButton.Name = "ÜbersichtButton";
+            this.ÜbersichtButton.Size = new System.Drawing.Size(150, 45);
+            this.ÜbersichtButton.TabIndex = 1;
+            this.ÜbersichtButton.Text = "Übersicht";
+            this.ÜbersichtButton.UseVisualStyleBackColor = false;
+            this.ÜbersichtButton.Click += new System.EventHandler(this.ÜbersichtButton_Click);
             // 
             // txt_StapelSuche
             // 
             this.txt_StapelSuche.BackColor = System.Drawing.SystemColors.Window;
             this.txt_StapelSuche.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_StapelSuche.Font = new System.Drawing.Font("Yu Gothic UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_StapelSuche.Location = new System.Drawing.Point(357, 30);
+            this.txt_StapelSuche.Location = new System.Drawing.Point(150, 45);
             this.txt_StapelSuche.Margin = new System.Windows.Forms.Padding(7, 4, 4, 4);
             this.txt_StapelSuche.Name = "txt_StapelSuche";
-            this.txt_StapelSuche.Size = new System.Drawing.Size(698, 31);
-            this.txt_StapelSuche.TabIndex = 0;
+            this.txt_StapelSuche.Size = new System.Drawing.Size(1024, 31);
+            this.txt_StapelSuche.TabIndex = 4;
             this.txt_StapelSuche.Enter += new System.EventHandler(this.txt_StapelSuche_Enter);
             this.txt_StapelSuche.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_StapelSuche_KeyDown);
             this.txt_StapelSuche.Leave += new System.EventHandler(this.txt_StapelSuche_Leave);
@@ -210,14 +208,15 @@ namespace AnsichtsFenster.Fenster
             // 
             this.listView_Ausgabe.BackColor = System.Drawing.SystemColors.Window;
             this.listView_Ausgabe.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listView_Ausgabe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.listView_Ausgabe.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView_Ausgabe.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.listView_Ausgabe.GridLines = true;
             this.listView_Ausgabe.HideSelection = false;
-            this.listView_Ausgabe.Location = new System.Drawing.Point(357, 121);
+            this.listView_Ausgabe.Location = new System.Drawing.Point(150, 130);
             this.listView_Ausgabe.Margin = new System.Windows.Forms.Padding(4);
             this.listView_Ausgabe.Name = "listView_Ausgabe";
-            this.listView_Ausgabe.Size = new System.Drawing.Size(755, 414);
+            this.listView_Ausgabe.Size = new System.Drawing.Size(1100, 500);
             this.listView_Ausgabe.TabIndex = 1;
             this.listView_Ausgabe.UseCompatibleStateImageBehavior = false;
             this.listView_Ausgabe.View = System.Windows.Forms.View.Details;
@@ -227,8 +226,9 @@ namespace AnsichtsFenster.Fenster
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1080, 30);
+            this.pictureBox1.Location = new System.Drawing.Point(1218, 45);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 31);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -236,75 +236,25 @@ namespace AnsichtsFenster.Fenster
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // pnl_btn
-            // 
-            this.pnl_btn.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnl_btn.Controls.Add(this.btn_KartenHinzufuegen);
-            this.pnl_btn.Controls.Add(this.btn_Entfernen);
-            this.pnl_btn.Location = new System.Drawing.Point(29, 89);
-            this.pnl_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.pnl_btn.Name = "pnl_btn";
-            this.pnl_btn.Size = new System.Drawing.Size(262, 158);
-            this.pnl_btn.TabIndex = 6;
-            // 
-            // btn_KartenHinzufuegen
-            // 
-            this.btn_KartenHinzufuegen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
-            this.btn_KartenHinzufuegen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_KartenHinzufuegen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(70)))), ((int)(((byte)(190)))));
-            this.btn_KartenHinzufuegen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btn_KartenHinzufuegen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btn_KartenHinzufuegen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_KartenHinzufuegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_KartenHinzufuegen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btn_KartenHinzufuegen.Location = new System.Drawing.Point(18, 32);
-            this.btn_KartenHinzufuegen.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_KartenHinzufuegen.Name = "btn_KartenHinzufuegen";
-            this.btn_KartenHinzufuegen.Size = new System.Drawing.Size(222, 43);
-            this.btn_KartenHinzufuegen.TabIndex = 8;
-            this.btn_KartenHinzufuegen.Text = "Karten Hinzufügen";
-            this.btn_KartenHinzufuegen.UseVisualStyleBackColor = false;
-            this.btn_KartenHinzufuegen.Click += new System.EventHandler(this.btn_KartenHinzufuegen_Click);
-            // 
-            // btn_Entfernen
-            // 
-            this.btn_Entfernen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
-            this.btn_Entfernen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Entfernen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(70)))), ((int)(((byte)(190)))));
-            this.btn_Entfernen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btn_Entfernen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btn_Entfernen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Entfernen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Entfernen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btn_Entfernen.Location = new System.Drawing.Point(22, 93);
-            this.btn_Entfernen.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_Entfernen.Name = "btn_Entfernen";
-            this.btn_Entfernen.Size = new System.Drawing.Size(218, 43);
-            this.btn_Entfernen.TabIndex = 7;
-            this.btn_Entfernen.Text = "Entfernen";
-            this.btn_Entfernen.UseVisualStyleBackColor = false;
-            this.btn_Entfernen.Click += new System.EventHandler(this.btn_Entfernen_Click);
-            // 
             // InhaltPanel
             // 
             this.InhaltPanel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.InhaltPanel.Controls.Add(this.pnl_btn);
             this.InhaltPanel.Controls.Add(this.pictureBox1);
             this.InhaltPanel.Controls.Add(this.listView_Ausgabe);
             this.InhaltPanel.Controls.Add(this.txt_StapelSuche);
             this.InhaltPanel.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.InhaltPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.InhaltPanel.Location = new System.Drawing.Point(0, 55);
+            this.InhaltPanel.Location = new System.Drawing.Point(0, 60);
             this.InhaltPanel.Margin = new System.Windows.Forms.Padding(0);
             this.InhaltPanel.Name = "InhaltPanel";
-            this.InhaltPanel.Size = new System.Drawing.Size(1200, 595);
+            this.InhaltPanel.Size = new System.Drawing.Size(1400, 690);
             this.InhaltPanel.TabIndex = 3;
             // 
             // StapelUebersichtView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 650);
+            this.ClientSize = new System.Drawing.Size(1400, 750);
             this.Controls.Add(this.InhaltPanel);
             this.Controls.Add(this.dachPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -315,7 +265,6 @@ namespace AnsichtsFenster.Fenster
             this.Text = "Stapel Übersicht";
             this.dachPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pnl_btn.ResumeLayout(false);
             this.InhaltPanel.ResumeLayout(false);
             this.InhaltPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -324,20 +273,17 @@ namespace AnsichtsFenster.Fenster
 
         #endregion
         private System.Windows.Forms.Panel dachPanel;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button JetztLernenButton;
+        private System.Windows.Forms.Button KarteBearbeitenButton;
+        private System.Windows.Forms.Button ÜbersichtButton;
         private System.Windows.Forms.TextBox txt_StapelSuche;
         private System.Windows.Forms.ListView listView_Ausgabe;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel pnl_btn;
-        private System.Windows.Forms.Button btn_KartenHinzufuegen;
-        private System.Windows.Forms.Button btn_Entfernen;
         private System.Windows.Forms.Panel InhaltPanel;
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Button MinimierenButton;
         private System.Windows.Forms.Button ChallengeButton;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button StapelBearbeitenButton;
     }
 }
 

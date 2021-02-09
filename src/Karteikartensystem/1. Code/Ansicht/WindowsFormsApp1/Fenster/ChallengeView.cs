@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Model;
@@ -14,9 +15,7 @@ namespace AnsichtsFenster.Fenster
         private int falscheAntworten;
         private int abschlussZeit;
 
-
         public ChallengeView(int abschlussZeit, int anzahl, Stapel aktuellerStapel, List<Karte> alleKarten)
-
         {
             InitializeComponent();
 
@@ -29,9 +28,11 @@ namespace AnsichtsFenster.Fenster
             timer_Anzeige.Start();
             lbl_Auswertung.Visible = false;
             FrageSetzen();
-
         }
-
+        public ChallengeView()
+        {
+            InitializeComponent();
+        }
 
         private void IsCorrect()
         {
@@ -55,8 +56,7 @@ namespace AnsichtsFenster.Fenster
 
             else
             {
-                lbl_Frage.Text = selectedKarte.Frage;
-
+                frage.Text = selectedKarte.Frage;
                 RadioButtonsAnlegen();
             }
         }
@@ -65,29 +65,36 @@ namespace AnsichtsFenster.Fenster
         {
             List<string> antworten = RandomAntwortenAnordnung();
 
-
             radioButtonAntwort1.Text = antworten[0];
             radioButtonAntwort2.Text = antworten[1];
+
+            antwort1.Text = antworten[0];
+            antwort2.Text = antworten[1];
+
 
             if (antworten.Count > 2)
             {
                 radioButtonAntwort3.Visible = true;
-                radioButtonAntwort3.Text = antworten[2];
+                antwort3.Visible = true;
+                antwort3.Text = antworten[2];
             }
             else
             {
                 radioButtonAntwort3.Visible = false;
+                antwort3.Visible = false;
             }
 
 
             if (antworten.Count > 3)
             {
                 radioButtonAntwort4.Visible = true;
-                radioButtonAntwort4.Text = antworten[3];
+                antwort4.Visible = true;
+                antwort4.Text = antworten[3];
             }
             else
-            {
+            { 
                 radioButtonAntwort4.Visible = false;
+                antwort4.Visible = false;
             }
 
             radioButtonAntwort1.Checked = true;
@@ -229,5 +236,64 @@ namespace AnsichtsFenster.Fenster
                 Auswertung();
             }
         }
+
+
+
+        /****************************************/
+        private Point LastPoint;
+        private void dachPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - LastPoint.X;
+                this.Top += e.Y - LastPoint.Y;
+            }
+        }
+        private void dachPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            LastPoint = new Point(e.X, e.Y);
+        }
+
+        private void ÜbersichtButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new StapelUebersichtView().Show();
+        }
+        private void KarteBearbeitenButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new HinzufuegenKarten().Show();
+        }
+        private void StapelBearbeitenButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void JetztLernenButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new JetztLernenView().Show();
+        }
+
+        private void ChallengeButton_Click(object sender, EventArgs e)
+        {
+            //this.Hide();
+            //new ChallengeView().Show();
+        }
+
+        private void MinimierenButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+
+
+
+
+
     }
 }

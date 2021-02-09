@@ -27,9 +27,7 @@ namespace AnsichtsFenster.Fenster
             kartenUebersicht.Show();
         }
 
-
-
-        /***********************************/
+        /******************************/
         private Point LastPoint;
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)
         {
@@ -39,40 +37,34 @@ namespace AnsichtsFenster.Fenster
                 this.Top += e.Y - LastPoint.Y;
             }
         }
+
         private void dachPanel_MouseDown(object sender, MouseEventArgs e)
         {
             LastPoint = new Point(e.X, e.Y);
         }
 
-        private void ÜbersichtButton_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new StapelUebersichtView().Show();
+            StapelUebersichtView stubvView = new StapelUebersichtView();
+            stubvView.Show();
         }
-        private void KarteBearbeitenButton_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new HinzufuegenKarten().Show();
+            HinzufuegenKarten hkView = new HinzufuegenKarten();
+            hkView.Show();
         }
-        private void StapelBearbeitenButton_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void JetztLernenButton_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new JetztLernenView().Show();
+            JetztLernenView elv = new JetztLernenView();
+            elv.Show();
         }
-
-
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
-            //if (selectedItem != null)
-            //    ChallengeAbfrage();
-            //else
-            //    ErrorMessageBox("Kein Stapel ausgewählt");
-        }
 
+        }
         private void MinimierenButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -81,6 +73,7 @@ namespace AnsichtsFenster.Fenster
         {
             Application.Exit();
         }
+
 
     }
 }

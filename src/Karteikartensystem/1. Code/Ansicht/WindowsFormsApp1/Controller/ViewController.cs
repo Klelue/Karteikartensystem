@@ -9,7 +9,6 @@ namespace AnsichtsFenster.Controller
     {
         internal KartenUebersicht BuildKartenUebersicht(ListViewItem item)
         {
-            
             string panelName = item.SubItems[1].Text;
             int panelId = Convert.ToInt32(item.SubItems[0].Text);
 
@@ -20,11 +19,46 @@ namespace AnsichtsFenster.Controller
             return new KartenUebersicht(stapel);
         }
 
-        internal HinzufuegenKarten BuildHinzufuegenKarten(ListViewItem item)
+
+        /*** OkMessageBox ***/
+        internal void OkMessageBox(string txt1, string txt2)
         {
-            string panelName = item.SubItems[1].Text;
-            return new HinzufuegenKarten(panelName, Convert.ToInt32(item.SubItems[0].Text));
+            MessageBox.Show(txt1, txt2, MessageBoxButtons.OK);
         }
+
+        /*** ExclamationsMessageBox ***/
+        internal void ExclamationsMessageBox(string txt1, string txt2)
+        {
+            MessageBox.Show(txt1, txt2, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        /*** InformationsMessageBox ***/
+        internal void InformationsMessageBox(string txt)
+        {
+            MessageBox.Show(txt, "Achtung!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /*** WarningsMessageBox ***/
+        internal void WarningsMessageBox(string txt)
+        {
+            MessageBox.Show(txt, "Achtung!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        /*** ErrorMessageBox ***/
+        internal void ErrorMessageBox(string txt)
+        {
+            MessageBox.Show(txt, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+
+
+
+
+        //internal HinzufuegenKarten BuildHinzufuegenKarten(ListViewItem item)
+        //{
+        //    string panelName = item.SubItems[1].Text;
+        //    return new HinzufuegenKarten(panelName, Convert.ToInt32(item.SubItems[0].Text));
+        //}
 
         internal bool ShowMessageBoxChoiceStapelLoeschen(ListViewItem item)
         {

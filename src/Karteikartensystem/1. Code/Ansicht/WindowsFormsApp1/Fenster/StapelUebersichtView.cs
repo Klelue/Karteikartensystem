@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,7 +10,6 @@ namespace AnsichtsFenster.Fenster
 {
     public partial class StapelUebersichtView : Form
     {
-        //TODO OTHER WAY TO STORE ITEM STATE?
         private ListViewItem selectedItem;
         private StapelListController listController;
         private ViewController viewController;
@@ -25,10 +23,57 @@ namespace AnsichtsFenster.Fenster
             listView_Ausgabe = listController.CreateView(listView_Ausgabe);
             listView_Ausgabe = listController.UpdateView(listView_Ausgabe);
 			
-            txt_StapelSuche.Height = 50;
             txt_StapelSuche.Text = "Suche nach dein Stapel";
             txt_StapelSuche.ForeColor = Color.Gray;			
         }
+
+
+        //public void ChallengeAbfrage()
+        //{
+
+        //    Form ChallengeWerte = new Form()
+        //    {
+        //        Width = 500,
+        //        Height = 150,
+        //        FormBorderStyle = FormBorderStyle.FixedDialog,
+        //        Text = "Werte für die Challenge",
+        //        StartPosition = FormStartPosition.CenterScreen
+        //    };
+        //    Label lbl_KartenAnzahl = new Label() { Left = 50, Top = 20, Width = 200, Text = "Gebe die Anzahl der Karten an" };
+        //    TextBox txt_KartenAnzahl = new TextBox() { Left = 50, Top = 50, Width = 200 };
+        //    Label lbl_Zeit = new Label() { Left = 250, Top = 20, Width = 200, Text = "Bearbeitungszeit in Minuten" };
+        //    TextBox txt_Zeit = new TextBox() { Left = 250, Top = 50, Width = 200 };
+        //    Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+        //    confirmation.Click += (sender, e) => { ChallengeWerte.Close(); };
+        //    ChallengeWerte.Controls.Add(lbl_KartenAnzahl);
+        //    ChallengeWerte.Controls.Add(txt_KartenAnzahl);
+        //    ChallengeWerte.Controls.Add(txt_Zeit);
+        //    ChallengeWerte.Controls.Add(lbl_Zeit);
+        //    ChallengeWerte.Controls.Add(confirmation);
+        //    ChallengeWerte.AcceptButton = confirmation;
+
+        //    if (ChallengeWerte.ShowDialog() == DialogResult.OK)
+        //    {
+        //        if (Int32.TryParse(txt_Zeit.Text, out int time))
+        //        {
+        //            if (Int32.TryParse(txt_KartenAnzahl.Text, out int anzahl) && anzahl > 0)
+        //            {
+        //                Stapel[] alleStapel = new StapelRepository().GetAlleStapel();
+        //                Stapel stapelMitAusgewähltenName =
+        //                    alleStapel.First(stapel => stapel.Name == selectedItem.SubItems[0].Text);
+        //                ChallengeView challengeView = new ChallengeView(time, anzahl, stapelMitAusgewähltenName.Id);
+        //                challengeView.Show();
+        //            }
+
+        //            else
+        //                viewController.ErrorMessageBox("Es wurde keine Gültige Anzahl angegeben");
+        //        }
+
+        //        else
+        //            viewController.ErrorMessageBox("Es wurde keine richtige Zeit angegeben");
+        //    }
+        //}
+
 
         private void listView_Ausgabe_Click(object sender, EventArgs e)
         {
@@ -45,106 +90,45 @@ namespace AnsichtsFenster.Fenster
             listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
 
-        private void btn_Entfernen_Click(object sender, EventArgs e)
-        {
-            if (selectedItem != null)
-            {
-                if (viewController.ShowMessageBoxChoiceStapelLoeschen(selectedItem))
-                {
-                    listView_Ausgabe = listController.DeleteItem(listView_Ausgabe, selectedItem, out bool geloescht);
-                    if (geloescht)
-                        viewController.ShowMessageBoxErfolgreichGeloescht();
-                    else
-                        viewController.ShowMessageBoxLoeschenNichtErfolgreich();
-                }
-            }
-            else
-                viewController.ShowMessageBoxKeinElementGewaehlt();
-        }
-
-
-        //TODO selectedItem von string zu Stapel ändern
-        private void btn_KartenHinzufuegen_Click(object sender, EventArgs e)
-        {
-            if (selectedItem != null)
-            {
-                viewController.BuildHinzufuegenKarten(selectedItem).Show();
-            }
-            else
-            {
-                viewController.ShowMessageBoxKeinElementGewaehlt();
-            }
-        }
-
-        public static string ShowDialog(string text, string caption)
-        {
-            Form prompt = new Form()
-            {
-                Width = 500,
-                Height = 150,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                Text = caption,
-                StartPosition = FormStartPosition.CenterScreen
-            };
-            Label textLabel = new Label() { Left = 50, Top = 20, Width = 200, Text = text };
-            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
-            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
-            confirmation.Click += (sender, e) => { prompt.Close(); };
-            prompt.Controls.Add(textBox);
-            prompt.Controls.Add(confirmation);
-            prompt.Controls.Add(textLabel);
-            prompt.AcceptButton = confirmation;
-
-            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "Es wurde nichts angegeben";
-        }
-        
-        private void StapelHinzufuegen(string stapelname)
-        {
-            if (stapelname.Trim().Length != 0)
-            {
-                Stapel stapel = new Stapel();
-                stapel.Name = stapelname;
-
-                if (new StapelRepository().StapelHinzufügen(stapel))
-                    viewController.ShowMessageBoxHinzufuegenErfolgreich();
-                else
-                    viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
-            }
-            else
-                viewController.ShowMessageBoxKeineEingabe();
-        }
-
         private void txt_StapelSuche_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txt_StapelSuche.Text.Trim() == "")
-                {
-                    listView_Ausgabe = listController.UpdateView(listView_Ausgabe);
-                }
-                else
-                {
-                    listView_Ausgabe = listController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
-                }
+                listView_Ausgabe = txt_StapelSuche.Text.Trim() == "" 
+                    ? listController.UpdateView(listView_Ausgabe) 
+                    : listController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
+
                 txt_StapelSuche.Clear();
             }
         }
 
-        // TODO schauen, ob Stapel mindestens eine Karte besitzt
-        private void btn_StapelHinzufuegen_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            string stapelName = ShowDialog("Gib den Namen des Stapels an", "Stapel hinzufügen");
-            if (stapelName != "Es wurde nichts angegeben")
+            listView_Ausgabe = txt_StapelSuche.Text.Trim() == "" 
+                ? listController.UpdateView(listView_Ausgabe) 
+                : listController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
+            
+            txt_StapelSuche.Clear();
+        }
+
+        private void txt_StapelSuche_Enter(object sender, EventArgs e)
+        {
+            if (txt_StapelSuche.Text == "Suche nach dein Stapel")
             {
-                StapelHinzufuegen(stapelName);
+                txt_StapelSuche.Clear();
+                txt_StapelSuche.ForeColor = Color.Black;
             }
         }
 
-        private void JetztLernenEvent(object sender, EventArgs e)
+        private void txt_StapelSuche_Leave(object sender, EventArgs e)
         {
-            JetztLernenView jetztLernenView = new JetztLernenView();
-            jetztLernenView.Show();
+            if (txt_StapelSuche.Text == "")
+            {
+                txt_StapelSuche.Text = "Suche nach dein Stapel";
+                txt_StapelSuche.ForeColor = Color.Gray;
+            }
         }
+
 
         /****************************************/
 
@@ -157,57 +141,36 @@ namespace AnsichtsFenster.Fenster
                 this.Top  += e.Y - LastPoint.Y;
             }
         }
-
         private void dachPanel_MouseDown(object sender, MouseEventArgs e)
         {
             LastPoint = new Point(e.X, e.Y);
         }
 
-        private void txt_StapelSuche_Enter(object sender, EventArgs e)
-        {
-
-            txt_StapelSuche.Clear();
-            txt_StapelSuche.ForeColor = Color.Black;
-
-        }
-
-        private void txt_StapelSuche_Leave(object sender, EventArgs e)
-        {
-            if (txt_StapelSuche.Text == "")
-            {
-                txt_StapelSuche.Text = "Suche nach dein Stapel";
-                txt_StapelSuche.ForeColor = Color.Gray;
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void ÜbersichtButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            StapelUebersichtView stubvView = new StapelUebersichtView();
-            stubvView.Show();
+            new StapelUebersichtView().Show();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void KarteBearbeitenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            HinzufuegenKarten hkView = new HinzufuegenKarten();
-            hkView.Show();
+            new HinzufuegenKarten().Show();
         }
+        private void StapelBearbeitenButton_Click(object sender, EventArgs e)
+        {
 
-        private void button3_Click(object sender, EventArgs e)
+        }
+        private void JetztLernenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            JetztLernenView elv = new JetztLernenView();
-            elv.Show();
+            new JetztLernenView().Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void ChallengeButton_Click(object sender, EventArgs e)
         {
-            if (txt_StapelSuche.Text.Trim() == "")
-                listView_Ausgabe = listController.UpdateView(listView_Ausgabe);
-            else
-                listView_Ausgabe = listController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
-            txt_StapelSuche.Clear();
+            this.Hide();
+           // new ChallengeView().Show();
+            new ChallengeAbfrageView().Show();
         }
 
         private void MinimierenButton_Click(object sender, EventArgs e)
@@ -220,77 +183,6 @@ namespace AnsichtsFenster.Fenster
             Application.Exit();
         }
 
-        private void ChallengeButton_Click(object sender, EventArgs e)
-        {
-            ChallengeAbfrageView challengeAbfrageView = new ChallengeAbfrageView();
 
-            challengeAbfrageView.Show();
-        }
-
-        public void ChallengeAbfrage()
-        {
-
-            Form ChallengeWerte = new Form()
-            {
-                Width = 500,
-                Height = 150,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                Text = "Werte für die Challenge",
-                StartPosition = FormStartPosition.CenterScreen
-            };
-            Label lbl_KartenAnzahl = new Label() { Left = 50, Top = 20, Width = 200, Text = "Gebe die Anzahl der Karten an" };
-            TextBox txt_KartenAnzahl = new TextBox() { Left = 50, Top = 50, Width = 200 };
-            Label lbl_Zeit = new Label() { Left = 250, Top = 20, Width = 200, Text = "Bearbeitungszeit in Minuten" };
-            TextBox txt_Zeit = new TextBox() { Left = 250, Top = 50, Width = 200 };
-            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
-            confirmation.Click += (sender, e) => { ChallengeWerte.Close(); };
-            ChallengeWerte.Controls.Add(lbl_KartenAnzahl);
-            ChallengeWerte.Controls.Add(txt_KartenAnzahl);
-            ChallengeWerte.Controls.Add(txt_Zeit);
-            ChallengeWerte.Controls.Add(lbl_Zeit);
-            ChallengeWerte.Controls.Add(confirmation);
-            ChallengeWerte.AcceptButton = confirmation;
-
-            if (ChallengeWerte.ShowDialog() == DialogResult.OK)
-            {
-                if (Int32.TryParse(txt_Zeit.Text, out int time) && time > 0)
-                {
-                    Stapel[] alleStapel = new StapelRepository().GetAlleStapel();
-                    Stapel stapelMitAusgewähltenName = alleStapel.First(stapel => stapel.Name == selectedItem.SubItems[0].Text);
-                    KarteRepository repository = new KarteRepository();
-                        List<Karte> alleKartenDerID = repository.GetAlleKartenEinesStapels(stapelMitAusgewähltenName.Id)
-                            .ToList();
-
-                    if (Int32.TryParse(txt_KartenAnzahl.Text, out int anzahl) && anzahl > 0 && anzahl <= alleKartenDerID.Count)
-                    {
-                        ChallengeView challengeView = new ChallengeView(time, anzahl, stapelMitAusgewähltenName, alleKartenDerID);
-                        challengeView.Show();
-                    }
-
-                    else
-                    {
-                        ErrorMessageBox("Es wurde keine Gültige Anzahl angegeben");
-                    }
-                }
-
-                else
-                {
-                    ErrorMessageBox("Es wurde keine richtige Zeit angegeben");
-                }
-            }
-        }
-
-        private static void ErrorMessageBox(string text)
-        {
-            MessageBox.Show(text, "Error", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-        }
-
-        private void StapelBearbeiten_Click(object sender, EventArgs e)
-        {
-            StapelBearbeitenView stapelBearbeitenView = new StapelBearbeitenView();
-
-            stapelBearbeitenView.Show();
-        }
     }
 }
