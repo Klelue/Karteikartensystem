@@ -23,7 +23,7 @@ namespace AnsichtsFenster.Fenster
             listView_Ausgabe = listController.CreateView(listView_Ausgabe);
             listView_Ausgabe = listController.UpdateView(listView_Ausgabe);
 			
-            txt_StapelSuche.Text = "Suche nach dein Stapel";
+            txt_StapelSuche.Text = "Stapel suchen";
             txt_StapelSuche.ForeColor = Color.Gray;			
         }
 
@@ -113,7 +113,7 @@ namespace AnsichtsFenster.Fenster
 
         private void txt_StapelSuche_Enter(object sender, EventArgs e)
         {
-            if (txt_StapelSuche.Text == "Suche nach dein Stapel")
+            if (txt_StapelSuche.Text == "Stapel suchen")
             {
                 txt_StapelSuche.Clear();
                 txt_StapelSuche.ForeColor = Color.Black;
@@ -124,7 +124,7 @@ namespace AnsichtsFenster.Fenster
         {
             if (txt_StapelSuche.Text == "")
             {
-                txt_StapelSuche.Text = "Suche nach dein Stapel";
+                txt_StapelSuche.Text = "Stapel suchen";
                 txt_StapelSuche.ForeColor = Color.Gray;
             }
         }
@@ -158,7 +158,8 @@ namespace AnsichtsFenster.Fenster
         }
         private void StapelBearbeitenButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            new StapelBearbeitenView().Show();
         }
         private void JetztLernenButton_Click(object sender, EventArgs e)
         {

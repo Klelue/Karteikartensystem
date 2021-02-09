@@ -37,8 +37,13 @@ namespace AnsichtsFenster.Fenster
             this.radioButtonAntwort3 = new System.Windows.Forms.RadioButton();
             this.radioButtonAntwort4 = new System.Windows.Forms.RadioButton();
             this.pnl_FrageAntwort = new System.Windows.Forms.Panel();
-            this.lbl_Auswertung = new System.Windows.Forms.Label();
             this.lbl_Zeit = new System.Windows.Forms.Label();
+            this.antwort4 = new System.Windows.Forms.RichTextBox();
+            this.antwort3 = new System.Windows.Forms.RichTextBox();
+            this.antwort2 = new System.Windows.Forms.RichTextBox();
+            this.antwort1 = new System.Windows.Forms.RichTextBox();
+            this.frage = new System.Windows.Forms.RichTextBox();
+            this.lbl_Auswertung = new System.Windows.Forms.Label();
             this.timer_Anzeige = new System.Windows.Forms.Timer(this.components);
             this.InhaltPanel = new System.Windows.Forms.Panel();
             this.dachPanel = new System.Windows.Forms.Panel();
@@ -49,11 +54,6 @@ namespace AnsichtsFenster.Fenster
             this.JetztLernenButton = new System.Windows.Forms.Button();
             this.KarteBearbeitenButton = new System.Windows.Forms.Button();
             this.ÜbersichtButton = new System.Windows.Forms.Button();
-            this.frage = new System.Windows.Forms.RichTextBox();
-            this.antwort1 = new System.Windows.Forms.RichTextBox();
-            this.antwort2 = new System.Windows.Forms.RichTextBox();
-            this.antwort3 = new System.Windows.Forms.RichTextBox();
-            this.antwort4 = new System.Windows.Forms.RichTextBox();
             this.pnl_FrageAntwort.SuspendLayout();
             this.InhaltPanel.SuspendLayout();
             this.dachPanel.SuspendLayout();
@@ -61,6 +61,11 @@ namespace AnsichtsFenster.Fenster
             // 
             // btn_Next
             // 
+            this.btn_Next.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.btn_Next.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Next.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.btn_Next.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btn_Next.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btn_Next.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Next.Location = new System.Drawing.Point(494, 536);
             this.btn_Next.Margin = new System.Windows.Forms.Padding(4);
@@ -68,11 +73,16 @@ namespace AnsichtsFenster.Fenster
             this.btn_Next.Size = new System.Drawing.Size(150, 45);
             this.btn_Next.TabIndex = 3;
             this.btn_Next.Text = "Nächste";
-            this.btn_Next.UseVisualStyleBackColor = true;
+            this.btn_Next.UseVisualStyleBackColor = false;
             this.btn_Next.Click += new System.EventHandler(this.btn_Next_Click);
             // 
             // btn_finish
             // 
+            this.btn_finish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.btn_finish.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_finish.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.btn_finish.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btn_finish.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btn_finish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_finish.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_finish.Location = new System.Drawing.Point(1204, 632);
@@ -81,12 +91,13 @@ namespace AnsichtsFenster.Fenster
             this.btn_finish.Size = new System.Drawing.Size(150, 45);
             this.btn_finish.TabIndex = 5;
             this.btn_finish.Text = "Abgeben";
-            this.btn_finish.UseVisualStyleBackColor = true;
+            this.btn_finish.UseVisualStyleBackColor = false;
             this.btn_finish.Click += new System.EventHandler(this.btn_finish_Click);
             // 
             // radioButtonAntwort1
             // 
             this.radioButtonAntwort1.AutoSize = true;
+            this.radioButtonAntwort1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioButtonAntwort1.Font = new System.Drawing.Font("Yu Gothic UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonAntwort1.Location = new System.Drawing.Point(80, 172);
             this.radioButtonAntwort1.Margin = new System.Windows.Forms.Padding(4);
@@ -99,6 +110,7 @@ namespace AnsichtsFenster.Fenster
             // radioButtonAntwort2
             // 
             this.radioButtonAntwort2.AutoSize = true;
+            this.radioButtonAntwort2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioButtonAntwort2.Font = new System.Drawing.Font("Yu Gothic UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonAntwort2.Location = new System.Drawing.Point(80, 272);
             this.radioButtonAntwort2.Margin = new System.Windows.Forms.Padding(4);
@@ -111,6 +123,7 @@ namespace AnsichtsFenster.Fenster
             // radioButtonAntwort3
             // 
             this.radioButtonAntwort3.AutoSize = true;
+            this.radioButtonAntwort3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioButtonAntwort3.Font = new System.Drawing.Font("Yu Gothic UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonAntwort3.Location = new System.Drawing.Point(80, 372);
             this.radioButtonAntwort3.Margin = new System.Windows.Forms.Padding(4);
@@ -123,6 +136,7 @@ namespace AnsichtsFenster.Fenster
             // radioButtonAntwort4
             // 
             this.radioButtonAntwort4.AutoSize = true;
+            this.radioButtonAntwort4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioButtonAntwort4.Font = new System.Drawing.Font("Yu Gothic UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonAntwort4.Location = new System.Drawing.Point(80, 472);
             this.radioButtonAntwort4.Margin = new System.Windows.Forms.Padding(4);
@@ -151,17 +165,6 @@ namespace AnsichtsFenster.Fenster
             this.pnl_FrageAntwort.Size = new System.Drawing.Size(1100, 600);
             this.pnl_FrageAntwort.TabIndex = 14;
             // 
-            // lbl_Auswertung
-            // 
-            this.lbl_Auswertung.AutoSize = true;
-            this.lbl_Auswertung.Font = new System.Drawing.Font("Yu Gothic UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Auswertung.Location = new System.Drawing.Point(20, 17);
-            this.lbl_Auswertung.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_Auswertung.Name = "lbl_Auswertung";
-            this.lbl_Auswertung.Size = new System.Drawing.Size(165, 38);
-            this.lbl_Auswertung.TabIndex = 15;
-            this.lbl_Auswertung.Text = "Auswertung";
-            // 
             // lbl_Zeit
             // 
             this.lbl_Zeit.AutoSize = true;
@@ -172,6 +175,68 @@ namespace AnsichtsFenster.Fenster
             this.lbl_Zeit.Size = new System.Drawing.Size(57, 29);
             this.lbl_Zeit.TabIndex = 16;
             this.lbl_Zeit.Text = "Zeit";
+            // 
+            // antwort4
+            // 
+            this.antwort4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.antwort4.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.antwort4.Location = new System.Drawing.Point(110, 440);
+            this.antwort4.Name = "antwort4";
+            this.antwort4.Size = new System.Drawing.Size(850, 80);
+            this.antwort4.TabIndex = 14;
+            this.antwort4.Text = "";
+            // 
+            // antwort3
+            // 
+            this.antwort3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.antwort3.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.antwort3.Location = new System.Drawing.Point(110, 340);
+            this.antwort3.Name = "antwort3";
+            this.antwort3.Size = new System.Drawing.Size(850, 80);
+            this.antwort3.TabIndex = 13;
+            this.antwort3.Text = "";
+            // 
+            // antwort2
+            // 
+            this.antwort2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.antwort2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.antwort2.Location = new System.Drawing.Point(110, 240);
+            this.antwort2.Name = "antwort2";
+            this.antwort2.Size = new System.Drawing.Size(850, 80);
+            this.antwort2.TabIndex = 12;
+            this.antwort2.Text = "";
+            // 
+            // antwort1
+            // 
+            this.antwort1.BackColor = System.Drawing.SystemColors.Window;
+            this.antwort1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.antwort1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.antwort1.Location = new System.Drawing.Point(110, 140);
+            this.antwort1.Name = "antwort1";
+            this.antwort1.Size = new System.Drawing.Size(850, 80);
+            this.antwort1.TabIndex = 11;
+            this.antwort1.Text = "";
+            // 
+            // frage
+            // 
+            this.frage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.frage.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.frage.Location = new System.Drawing.Point(110, 20);
+            this.frage.Name = "frage";
+            this.frage.Size = new System.Drawing.Size(850, 100);
+            this.frage.TabIndex = 10;
+            this.frage.Text = "";
+            // 
+            // lbl_Auswertung
+            // 
+            this.lbl_Auswertung.AutoSize = true;
+            this.lbl_Auswertung.Font = new System.Drawing.Font("Yu Gothic UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Auswertung.Location = new System.Drawing.Point(20, 17);
+            this.lbl_Auswertung.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Auswertung.Name = "lbl_Auswertung";
+            this.lbl_Auswertung.Size = new System.Drawing.Size(165, 38);
+            this.lbl_Auswertung.TabIndex = 15;
+            this.lbl_Auswertung.Text = "Auswertung";
             // 
             // timer_Anzeige
             // 
@@ -330,57 +395,6 @@ namespace AnsichtsFenster.Fenster
             this.ÜbersichtButton.Text = "Übersicht";
             this.ÜbersichtButton.UseVisualStyleBackColor = false;
             this.ÜbersichtButton.Click += new System.EventHandler(this.ÜbersichtButton_Click);
-            // 
-            // frage
-            // 
-            this.frage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.frage.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.frage.Location = new System.Drawing.Point(110, 20);
-            this.frage.Name = "frage";
-            this.frage.Size = new System.Drawing.Size(850, 100);
-            this.frage.TabIndex = 10;
-            this.frage.Text = "";
-            // 
-            // antwort1
-            // 
-            this.antwort1.BackColor = System.Drawing.SystemColors.Window;
-            this.antwort1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.antwort1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.antwort1.Location = new System.Drawing.Point(110, 140);
-            this.antwort1.Name = "antwort1";
-            this.antwort1.Size = new System.Drawing.Size(850, 80);
-            this.antwort1.TabIndex = 11;
-            this.antwort1.Text = "";
-            // 
-            // antwort2
-            // 
-            this.antwort2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.antwort2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.antwort2.Location = new System.Drawing.Point(110, 240);
-            this.antwort2.Name = "antwort2";
-            this.antwort2.Size = new System.Drawing.Size(850, 80);
-            this.antwort2.TabIndex = 12;
-            this.antwort2.Text = "";
-            // 
-            // antwort3
-            // 
-            this.antwort3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.antwort3.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.antwort3.Location = new System.Drawing.Point(110, 340);
-            this.antwort3.Name = "antwort3";
-            this.antwort3.Size = new System.Drawing.Size(850, 80);
-            this.antwort3.TabIndex = 13;
-            this.antwort3.Text = "";
-            // 
-            // antwort4
-            // 
-            this.antwort4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.antwort4.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.antwort4.Location = new System.Drawing.Point(110, 440);
-            this.antwort4.Name = "antwort4";
-            this.antwort4.Size = new System.Drawing.Size(850, 80);
-            this.antwort4.TabIndex = 14;
-            this.antwort4.Text = "";
             // 
             // ChallengeView
             // 

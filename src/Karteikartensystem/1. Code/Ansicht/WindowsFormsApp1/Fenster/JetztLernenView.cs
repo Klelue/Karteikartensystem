@@ -56,7 +56,8 @@ namespace AnsichtsFenster.Fenster
         }
         private void StapelBearbeitenButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            new StapelBearbeitenView().Show();
         }
         private void JetztLernenButton_Click(object sender, EventArgs e)
         {

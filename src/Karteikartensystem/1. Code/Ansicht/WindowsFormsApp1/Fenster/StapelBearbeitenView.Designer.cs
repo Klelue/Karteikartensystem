@@ -54,22 +54,24 @@ namespace AnsichtsFenster.Fenster
             // 
             this.textBoxStapelName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxStapelName.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxStapelName.Location = new System.Drawing.Point(436, 28);
+            this.textBoxStapelName.Location = new System.Drawing.Point(631, 50);
+            this.textBoxStapelName.Multiline = true;
             this.textBoxStapelName.Name = "textBoxStapelName";
-            this.textBoxStapelName.Size = new System.Drawing.Size(448, 23);
+            this.textBoxStapelName.Size = new System.Drawing.Size(629, 37);
             this.textBoxStapelName.TabIndex = 0;
             // 
             // stapelAnlegen
             // 
             this.stapelAnlegen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.stapelAnlegen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.stapelAnlegen.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.stapelAnlegen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.stapelAnlegen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.stapelAnlegen.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
+            this.stapelAnlegen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.stapelAnlegen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stapelAnlegen.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stapelAnlegen.Location = new System.Drawing.Point(436, 76);
+            this.stapelAnlegen.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stapelAnlegen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.stapelAnlegen.Location = new System.Drawing.Point(631, 117);
             this.stapelAnlegen.Name = "stapelAnlegen";
-            this.stapelAnlegen.Size = new System.Drawing.Size(165, 43);
+            this.stapelAnlegen.Size = new System.Drawing.Size(165, 45);
             this.stapelAnlegen.TabIndex = 1;
             this.stapelAnlegen.Text = "Stapel erstellen";
             this.stapelAnlegen.UseVisualStyleBackColor = true;
@@ -83,14 +85,15 @@ namespace AnsichtsFenster.Fenster
             // dateiAuswählen
             // 
             this.dateiAuswählen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dateiAuswählen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.dateiAuswählen.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.dateiAuswählen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.dateiAuswählen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.dateiAuswählen.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
+            this.dateiAuswählen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dateiAuswählen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dateiAuswählen.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateiAuswählen.Location = new System.Drawing.Point(366, 482);
+            this.dateiAuswählen.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateiAuswählen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dateiAuswählen.Location = new System.Drawing.Point(960, 328);
             this.dateiAuswählen.Name = "dateiAuswählen";
-            this.dateiAuswählen.Size = new System.Drawing.Size(363, 35);
+            this.dateiAuswählen.Size = new System.Drawing.Size(300, 45);
             this.dateiAuswählen.TabIndex = 2;
             this.dateiAuswählen.Text = "Stapel importieren";
             this.dateiAuswählen.UseVisualStyleBackColor = true;
@@ -99,14 +102,15 @@ namespace AnsichtsFenster.Fenster
             // StapelExportieren
             // 
             this.StapelExportieren.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.StapelExportieren.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.StapelExportieren.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.StapelExportieren.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.StapelExportieren.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.StapelExportieren.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
+            this.StapelExportieren.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.StapelExportieren.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StapelExportieren.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StapelExportieren.Location = new System.Drawing.Point(63, 482);
+            this.StapelExportieren.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StapelExportieren.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.StapelExportieren.Location = new System.Drawing.Point(631, 328);
             this.StapelExportieren.Name = "StapelExportieren";
-            this.StapelExportieren.Size = new System.Drawing.Size(297, 37);
+            this.StapelExportieren.Size = new System.Drawing.Size(300, 45);
             this.StapelExportieren.TabIndex = 3;
             this.StapelExportieren.Text = "Stapel exportieren";
             this.StapelExportieren.UseVisualStyleBackColor = true;
@@ -115,14 +119,15 @@ namespace AnsichtsFenster.Fenster
             // stapelAktualisieren
             // 
             this.stapelAktualisieren.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.stapelAktualisieren.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.stapelAktualisieren.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.stapelAktualisieren.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.stapelAktualisieren.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.stapelAktualisieren.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
+            this.stapelAktualisieren.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.stapelAktualisieren.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stapelAktualisieren.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stapelAktualisieren.Location = new System.Drawing.Point(632, 76);
+            this.stapelAktualisieren.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stapelAktualisieren.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.stapelAktualisieren.Location = new System.Drawing.Point(1000, 117);
             this.stapelAktualisieren.Name = "stapelAktualisieren";
-            this.stapelAktualisieren.Size = new System.Drawing.Size(263, 43);
+            this.stapelAktualisieren.Size = new System.Drawing.Size(260, 45);
             this.stapelAktualisieren.TabIndex = 10;
             this.stapelAktualisieren.Text = "Stapelname aktualisieren";
             this.stapelAktualisieren.UseVisualStyleBackColor = true;
@@ -131,25 +136,27 @@ namespace AnsichtsFenster.Fenster
             // listBoxStapel
             // 
             this.listBoxStapel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxStapel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.listBoxStapel.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxStapel.FormattingEnabled = true;
             this.listBoxStapel.ItemHeight = 28;
-            this.listBoxStapel.Location = new System.Drawing.Point(63, 28);
+            this.listBoxStapel.Location = new System.Drawing.Point(70, 50);
             this.listBoxStapel.Name = "listBoxStapel";
-            this.listBoxStapel.Size = new System.Drawing.Size(313, 392);
+            this.listBoxStapel.Size = new System.Drawing.Size(493, 588);
             this.listBoxStapel.TabIndex = 11;
             // 
             // stapelLöschen
             // 
             this.stapelLöschen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.stapelLöschen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.stapelLöschen.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.stapelLöschen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.stapelLöschen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.stapelLöschen.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
+            this.stapelLöschen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.stapelLöschen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stapelLöschen.Font = new System.Drawing.Font("Yu Gothic UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stapelLöschen.Location = new System.Drawing.Point(404, 377);
+            this.stapelLöschen.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stapelLöschen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.stapelLöschen.Location = new System.Drawing.Point(631, 219);
             this.stapelLöschen.Name = "stapelLöschen";
-            this.stapelLöschen.Size = new System.Drawing.Size(165, 43);
+            this.stapelLöschen.Size = new System.Drawing.Size(165, 45);
             this.stapelLöschen.TabIndex = 12;
             this.stapelLöschen.Text = "löschen";
             this.stapelLöschen.UseVisualStyleBackColor = true;
