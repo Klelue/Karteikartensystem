@@ -64,10 +64,31 @@ namespace AnsichtsFenster.Fenster
         private void RadioButtonsAnlegen()
         {
             List<string> antworten = RandomAntwortenAnordnung();
+
+
             radioButtonAntwort1.Text = antworten[0];
             radioButtonAntwort2.Text = antworten[1];
-            radioButtonAntwort3.Text = antworten[2];
-            radioButtonAntwort4.Text = antworten[3];
+
+            if (antworten.Count > 2)
+            {
+                radioButtonAntwort3.Visible = true;
+                radioButtonAntwort3.Text = antworten[2];
+            }
+            else
+            {
+                radioButtonAntwort3.Visible = false;
+            }
+
+
+            if (antworten.Count > 3)
+            {
+                radioButtonAntwort4.Visible = true;
+                radioButtonAntwort4.Text = antworten[3];
+            }
+            else
+            {
+                radioButtonAntwort4.Visible = false;
+            }
 
             radioButtonAntwort1.Checked = true;
         }
@@ -79,6 +100,13 @@ namespace AnsichtsFenster.Fenster
             antworten.Add(selectedKarte.FalschAntwort1);
             antworten.Add(selectedKarte.FalschAntwort2);
             antworten.Add(selectedKarte.FalschAntwort3);
+
+            antworten = LeerEintraegeEntfernen(antworten);
+
+            if (antworten.Count < 2)
+            {
+                antworten.Add("Keien Fakeantwort vorhanden");
+            }
 
             Random random = new Random();
 
@@ -93,6 +121,21 @@ namespace AnsichtsFenster.Fenster
             return antworten;
         }
 
+        private List<string> LeerEintraegeEntfernen(List<string> antworten)
+        {
+            List<string> listeOhneLeereintreage = antworten;
+
+            for(int i = listeOhneLeereintreage.Count -1 ; i >= 0 ; i--)
+            {
+                if (listeOhneLeereintreage[i].Trim() == "")
+                {
+                    listeOhneLeereintreage.RemoveAt(i);
+                }
+            }
+
+            return listeOhneLeereintreage;
+        }
+
         private List<Karte> RandomKartenFromAlleKarten(int anzahl, List<Karte> alleKarten)
         {
             List<Karte> bearbeitendeList = alleKarten;
@@ -101,9 +144,22 @@ namespace AnsichtsFenster.Fenster
             Random random = new Random();
             for (int i = 0; i < anzahl; i++)
             {
-                int radomIndex = random.Next(bearbeitendeList.Count - i);
-                randomKarten.Add(bearbeitendeList[radomIndex]);
-                bearbeitendeList.RemoveAt(radomIndex);
+               // bool minEineFalscheAntwort = false;
+               // while (!minEineFalscheAntwort)
+               // {
+
+                    int randomIndex = random.Next(bearbeitendeList.Count - i);
+
+                  //  if (bearbeitendeList[randomIndex].FalschAntwort1.Trim() != "")
+                  //  {
+
+                        randomKarten.Add(bearbeitendeList[randomIndex]);
+                        bearbeitendeList.RemoveAt(randomIndex);
+
+                 //       minEineFalscheAntwort = true;
+                 //   }
+                 //}
+                
             }
 
             return randomKarten;
