@@ -8,19 +8,21 @@ namespace AnsichtsFenster.Utilities
 
     public class StapelFileHandler
     {
-        public string SeparierendesZeichen { get; set; }
-        public bool KartenAlsCsvDateiAnlegen(Karte[] karten, string pfad)
+        public string SeparierendesZeichen = "@";
+      
+
+        public bool KartenAlsCsvDateiAnlegen(string stapelName, Karte[] karten, string pfad)
         {
             string text = "";
 
             foreach (Karte karte in karten)
             {
-                text += $"{karte.Frage}{SeparierendesZeichen}{karte.Frage}{Environment.NewLine}";
+                text += $"{karte.Frage}{SeparierendesZeichen}{karte.Antwort}{Environment.NewLine}";
             }
 
             try
             {
-                File.WriteAllText(text,pfad);
+               File.WriteAllText(pfad + @"\" +  stapelName  + ".sed", text);
             }
             catch (Exception e)
             {
@@ -38,7 +40,7 @@ namespace AnsichtsFenster.Utilities
 
             foreach (string line in lines)
             {
-                string[] separierterkartenInhalt = line.Split(Convert.ToChar(SeparierendesZeichen));
+                string[] separierterkartenInhalt = line.Split('@');
 
                 Karte karte = new Karte();
 

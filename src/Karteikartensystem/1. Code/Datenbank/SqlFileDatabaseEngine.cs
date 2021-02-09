@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Configuration;
 
 namespace DatenbankEngine
@@ -53,6 +54,8 @@ namespace DatenbankEngine
         {
 
             int rowsAffected = 0;
+
+            Console.WriteLine(sqlCommand);
 
             sqlCommand.Connection = connection; 
 

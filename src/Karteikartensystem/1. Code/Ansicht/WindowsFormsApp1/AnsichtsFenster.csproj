@@ -99,6 +99,12 @@
     <Compile Include="Fenster\JetztLernenView.Designer.cs">
       <DependentUpon>JetztLernenView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fenster\StapelBearbeitenView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fenster\StapelBearbeitenView.Designer.cs">
+      <DependentUpon>StapelBearbeitenView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IKartenListView.cs" />
     <Compile Include="Interfaces\IListView.cs" />
     <Compile Include="Interfaces\IStapelListView.cs" />
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fenster\KartenUebersicht.resx">
       <DependentUpon>KartenUebersicht.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fenster\StapelBearbeitenView.resx">
+      <DependentUpon>StapelBearbeitenView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
