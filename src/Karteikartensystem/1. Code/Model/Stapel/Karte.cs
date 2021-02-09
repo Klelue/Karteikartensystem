@@ -1,6 +1,4 @@
-﻿
-
-namespace Model
+﻿namespace Model
 {
     public class Karte
     {
@@ -9,9 +7,8 @@ namespace Model
         public string Antwort { get; set; }
         public long StapelId { get; set; }
         public int Schwierigkeitsgrad { get; set; }
-        public string FalschAntowrt1 { get; set; }
-        public string FalschAntowrt2 { get; set; }
-        public string FalschAntowrt3 { get; set; }
-
+        public string FalschAntwort1 { get; set; }
+        public string FalschAntwort2 { get; set; }
+        public string FalschAntwort3 { get; set; }
     }
 }

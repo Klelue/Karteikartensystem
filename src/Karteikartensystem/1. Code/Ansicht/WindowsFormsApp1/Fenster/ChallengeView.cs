@@ -76,9 +76,9 @@ namespace AnsichtsFenster.Fenster
         {
             List<string> antworten = new List<string>();
             antworten.Add(selectedKarte.Antwort);
-            antworten.Add(selectedKarte.FalschAntowrt1);
-            antworten.Add(selectedKarte.FalschAntowrt2);
-            antworten.Add(selectedKarte.FalschAntowrt3);
+            antworten.Add(selectedKarte.FalschAntwort1);
+            antworten.Add(selectedKarte.FalschAntwort2);
+            antworten.Add(selectedKarte.FalschAntwort3);
 
             Random random = new Random();
 
