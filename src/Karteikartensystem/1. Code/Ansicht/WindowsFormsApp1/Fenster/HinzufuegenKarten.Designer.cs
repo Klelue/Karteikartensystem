@@ -283,7 +283,7 @@
             this.ChallengeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ChallengeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChallengeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.ChallengeButton.Location = new System.Drawing.Point(535, 7);
+            this.ChallengeButton.Location = new System.Drawing.Point(536, 7);
             this.ChallengeButton.Name = "ChallengeButton";
             this.ChallengeButton.Size = new System.Drawing.Size(150, 40);
             this.ChallengeButton.TabIndex = 10;
