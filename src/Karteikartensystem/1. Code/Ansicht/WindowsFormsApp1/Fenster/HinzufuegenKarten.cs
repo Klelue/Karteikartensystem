@@ -16,8 +16,7 @@ namespace AnsichtsFenster.Fenster
         private List<Karte> alleKarten;
         private KarteRepository repository;
         private ViewController viewController;
-       
-
+        
         private long stapelId;
         private Stapel[] allesStapel = new StapelRepository().GetAlleStapel();
 
@@ -64,10 +63,10 @@ namespace AnsichtsFenster.Fenster
             if (richTxt_Vorderseite.Text.Trim() != "" && richTxt_Rueckseite.Text.Trim() != "")
             {
                 if (repository.KarteHinzufügen(KartenAnlegen()))
-                    viewController.OkMessageBox("Die karte wurde gespeichert", "Es hat geklappt");
+                    viewController.ShowMessageBoxHinzufuegenErfolgreich();
             }
             else
-                viewController.ExclamationsMessageBox("Es wurde nicht in eins oder in beiden Felder etwas geschrieben", "Sorry");
+                viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
         }
 
         private Karte KartenAnlegen()
@@ -116,10 +115,9 @@ namespace AnsichtsFenster.Fenster
 
             if (ergebnisListe.Count < 1)
             {
-                viewController.InformationsMessageBox("Leider kein Eintrag gefunden");
+                viewController.ShowMessageBoxHinzufuegenErfolgreich();
                 KartenAnzeigen(alleKarten);
             }
-
             else
                KartenAnzeigen(ergebnisListe);
         }
@@ -136,7 +134,11 @@ namespace AnsichtsFenster.Fenster
                 if (repository.KarteLöschen(selectedKarte.Id))
                 {
                     selectedKarte = null;
-                    viewController.OkMessageBox("Es hat geklappt", "Yeah");
+                    viewController.ShowMessageBoxErfolgreichGeloescht();
+                }
+                else
+                {
+                    viewController.ShowMessageBoxLoeschenNichtErfolgreich();
                 }
             }
         }
@@ -153,11 +155,14 @@ namespace AnsichtsFenster.Fenster
                 if (repository.KarteAktualisieren(selectedKarte))
                 { 
                     selectedKarte = null;
-                    viewController.OkMessageBox("Es hat geklappt", "Yeah");
+                    viewController.ShowMessageBoxAktualisierenErfolgreich();
+                }
+                else
+                {
+                    viewController.ShowMessageBoxAktualisierenNichtErfolgreich();
                 }
             }
         }
-
 
         private void txt_KartenSuche_KeyDown(object sender, KeyEventArgs e)
         {
@@ -251,7 +256,7 @@ namespace AnsichtsFenster.Fenster
                 fackeAntwort2.ForeColor = Color.Gray;
             }
         }
-
+        
         private void fackeAntwort2_Enter(object sender, EventArgs e)
         {
             if (fackeAntwort2.Text == "Falsche Antwort 2 (Optional)")
@@ -328,13 +333,14 @@ namespace AnsichtsFenster.Fenster
         }
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
-
+            //TODO
         }
 
         private void MinimierenButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Application.Exit();

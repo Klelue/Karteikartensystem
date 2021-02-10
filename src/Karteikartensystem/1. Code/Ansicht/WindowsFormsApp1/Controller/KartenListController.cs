@@ -53,10 +53,5 @@ namespace AnsichtsFenster.Controller
         {
             throw new System.NotImplementedException();
         }
-
-        Stapel IListView.SelectStapel(ListView listView)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
