@@ -11,8 +11,12 @@ namespace AnsichtsFenster.Fenster
 {
     public partial class StapelBearbeitenView : Form
     {
-        private readonly StapelRepository stapelRepository;
-        private readonly ViewController viewController;
+
+        private StapelRepository stapelRepository;
+        private ViewController viewController;
+        private Point letzteMousekoordinaten;
+        
+
         public StapelBearbeitenView()
         {
             InitializeComponent();
@@ -40,8 +44,9 @@ namespace AnsichtsFenster.Fenster
             }
             else
             {
-                viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
+               viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
             }
+           
         }
 
         private void dateiAuswählen_Click(object sender, EventArgs e)
@@ -128,12 +133,9 @@ namespace AnsichtsFenster.Fenster
             {
                 selectedStapel.Name = textBoxStapelName.Text;
                 stapelRepository.StapelAktualisieren(selectedStapel);
+
+                viewController.ShowMessageBoxAktualisierenErfolgreich();
             }
-        }
-
-        private void StapelBearbeitenView_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void stapelLöschen_Click(object sender, EventArgs e)
@@ -147,22 +149,23 @@ namespace AnsichtsFenster.Fenster
             else
             {
                 stapelRepository.StapelLöschen(selectedStapel.Id);
+                viewController.ShowMessageBoxErfolgreichGeloescht();
             }
         }
 
-        private Point LastPoint;
+
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - LastPoint.X;
-                this.Top += e.Y - LastPoint.Y;
+                this.Left += e.X - letzteMousekoordinaten.X;
+                this.Top += e.Y - letzteMousekoordinaten.Y;
             }
         }
 
         private void dachPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            LastPoint = new Point(e.X, e.Y);
+            letzteMousekoordinaten = new Point(e.X, e.Y);
         }
 
         private void ÜbersichtButton_Click(object sender, EventArgs e)
@@ -174,10 +177,6 @@ namespace AnsichtsFenster.Fenster
         {
             this.Hide();
             new HinzufuegenKarten().Show();
-        }
-        private void StapelBearbeitenButton_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void JetztLernenButton_Click(object sender, EventArgs e)

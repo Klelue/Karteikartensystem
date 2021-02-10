@@ -42,7 +42,8 @@ namespace Repositories
 
         public Karte[] GetAlleKartenEinesStapels(long stapelId)
         {
-            string sql = "SELECT Id, frage, antwort, falsch_antwort1, falsch_antwort2, falsch_antwort3, stapel_id, schwierigkeitsgrad, challenge_mode FROM Karte WHERE stapel_id = @StapelId;";
+            string sql = "SELECT Id, frage, antwort, falsch_antwort1, falsch_antwort2, falsch_antwort3," +
+                         " stapel_id, schwierigkeitsgrad, challenge_mode FROM Karte WHERE stapel_id = @StapelId;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
@@ -117,7 +118,8 @@ namespace Repositories
         public bool KarteAktualisieren(Karte karte)
         {
             string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, falsch_antwort1 = @FalschAntwort1" +
-                         ", falsch_antwort2 = @FalschAntwort2, falsch_antwort3 = @FalschAntwort3, stapel_id = @StapelId, schwierigkeitsgrad = @Schwierigkeitsgrad, challenge_mode = @ChallengeMode WHERE Id = @Id;";
+                         ", falsch_antwort2 = @FalschAntwort2, falsch_antwort3 = @FalschAntwort3," +
+                         " stapel_id = @StapelId, schwierigkeitsgrad = @Schwierigkeitsgrad, challenge_mode = @ChallengeMode WHERE Id = @Id;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 

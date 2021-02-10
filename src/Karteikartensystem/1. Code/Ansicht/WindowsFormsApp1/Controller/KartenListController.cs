@@ -47,6 +47,7 @@ namespace AnsichtsFenster.Controller
         public ListViewItem CreateViewItem(Karte karte)
         {
             ListViewItem item = new ListViewItem((karte.Frage));
+
             item.SubItems.Add(karte.Frage);
 
             return item;

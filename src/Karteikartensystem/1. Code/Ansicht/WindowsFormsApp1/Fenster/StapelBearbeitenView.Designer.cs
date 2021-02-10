@@ -55,11 +55,11 @@ namespace AnsichtsFenster.Fenster
             // 
             this.textBoxStapelName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxStapelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxStapelName.Location = new System.Drawing.Point(473, 41);
-            this.textBoxStapelName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxStapelName.Location = new System.Drawing.Point(631, 50);
+            this.textBoxStapelName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxStapelName.Multiline = true;
             this.textBoxStapelName.Name = "textBoxStapelName";
-            this.textBoxStapelName.Size = new System.Drawing.Size(472, 30);
+            this.textBoxStapelName.Size = new System.Drawing.Size(629, 37);
             this.textBoxStapelName.TabIndex = 0;
             // 
             // stapelAnlegen
@@ -71,10 +71,10 @@ namespace AnsichtsFenster.Fenster
             this.stapelAnlegen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stapelAnlegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stapelAnlegen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stapelAnlegen.Location = new System.Drawing.Point(473, 95);
-            this.stapelAnlegen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.stapelAnlegen.Location = new System.Drawing.Point(631, 117);
+            this.stapelAnlegen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stapelAnlegen.Name = "stapelAnlegen";
-            this.stapelAnlegen.Size = new System.Drawing.Size(124, 37);
+            this.stapelAnlegen.Size = new System.Drawing.Size(165, 46);
             this.stapelAnlegen.TabIndex = 1;
             this.stapelAnlegen.Text = "Stapel erstellen";
             this.stapelAnlegen.UseVisualStyleBackColor = true;
@@ -94,10 +94,10 @@ namespace AnsichtsFenster.Fenster
             this.dateiAuswählen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dateiAuswählen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateiAuswählen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dateiAuswählen.Location = new System.Drawing.Point(720, 266);
-            this.dateiAuswählen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateiAuswählen.Location = new System.Drawing.Point(960, 327);
+            this.dateiAuswählen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateiAuswählen.Name = "dateiAuswählen";
-            this.dateiAuswählen.Size = new System.Drawing.Size(225, 37);
+            this.dateiAuswählen.Size = new System.Drawing.Size(300, 46);
             this.dateiAuswählen.TabIndex = 2;
             this.dateiAuswählen.Text = "Stapel importieren";
             this.dateiAuswählen.UseVisualStyleBackColor = true;
@@ -112,10 +112,10 @@ namespace AnsichtsFenster.Fenster
             this.StapelExportieren.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StapelExportieren.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StapelExportieren.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.StapelExportieren.Location = new System.Drawing.Point(473, 266);
-            this.StapelExportieren.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StapelExportieren.Location = new System.Drawing.Point(631, 327);
+            this.StapelExportieren.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StapelExportieren.Name = "StapelExportieren";
-            this.StapelExportieren.Size = new System.Drawing.Size(225, 37);
+            this.StapelExportieren.Size = new System.Drawing.Size(300, 46);
             this.StapelExportieren.TabIndex = 3;
             this.StapelExportieren.Text = "Stapel exportieren";
             this.StapelExportieren.UseVisualStyleBackColor = true;
@@ -130,10 +130,10 @@ namespace AnsichtsFenster.Fenster
             this.stapelAktualisieren.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stapelAktualisieren.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stapelAktualisieren.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stapelAktualisieren.Location = new System.Drawing.Point(750, 95);
-            this.stapelAktualisieren.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.stapelAktualisieren.Location = new System.Drawing.Point(1000, 117);
+            this.stapelAktualisieren.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stapelAktualisieren.Name = "stapelAktualisieren";
-            this.stapelAktualisieren.Size = new System.Drawing.Size(195, 37);
+            this.stapelAktualisieren.Size = new System.Drawing.Size(260, 46);
             this.stapelAktualisieren.TabIndex = 10;
             this.stapelAktualisieren.Text = "Stapelname aktualisieren";
             this.stapelAktualisieren.UseVisualStyleBackColor = true;
@@ -145,11 +145,11 @@ namespace AnsichtsFenster.Fenster
             this.listBoxStapel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.listBoxStapel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxStapel.FormattingEnabled = true;
-            this.listBoxStapel.ItemHeight = 20;
-            this.listBoxStapel.Location = new System.Drawing.Point(52, 41);
-            this.listBoxStapel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxStapel.ItemHeight = 25;
+            this.listBoxStapel.Location = new System.Drawing.Point(69, 50);
+            this.listBoxStapel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxStapel.Name = "listBoxStapel";
-            this.listBoxStapel.Size = new System.Drawing.Size(370, 460);
+            this.listBoxStapel.Size = new System.Drawing.Size(493, 550);
             this.listBoxStapel.TabIndex = 11;
             // 
             // stapelLöschen
@@ -161,10 +161,10 @@ namespace AnsichtsFenster.Fenster
             this.stapelLöschen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stapelLöschen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stapelLöschen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stapelLöschen.Location = new System.Drawing.Point(473, 178);
-            this.stapelLöschen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.stapelLöschen.Location = new System.Drawing.Point(631, 240);
+            this.stapelLöschen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stapelLöschen.Name = "stapelLöschen";
-            this.stapelLöschen.Size = new System.Drawing.Size(124, 37);
+            this.stapelLöschen.Size = new System.Drawing.Size(165, 46);
             this.stapelLöschen.TabIndex = 12;
             this.stapelLöschen.Text = "Löschen";
             this.stapelLöschen.UseVisualStyleBackColor = true;
@@ -182,9 +182,9 @@ namespace AnsichtsFenster.Fenster
             this.dachPanel.Controls.Add(this.ÜbersichtButton);
             this.dachPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.dachPanel.Location = new System.Drawing.Point(0, 0);
-            this.dachPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dachPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dachPanel.Name = "dachPanel";
-            this.dachPanel.Size = new System.Drawing.Size(1050, 49);
+            this.dachPanel.Size = new System.Drawing.Size(1400, 60);
             this.dachPanel.TabIndex = 13;
             this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseDown);
             this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseMove);
@@ -199,14 +199,13 @@ namespace AnsichtsFenster.Fenster
             this.StapelBearbeitenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StapelBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StapelBearbeitenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.StapelBearbeitenButton.Location = new System.Drawing.Point(352, 6);
-            this.StapelBearbeitenButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StapelBearbeitenButton.Location = new System.Drawing.Point(469, 7);
+            this.StapelBearbeitenButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StapelBearbeitenButton.Name = "StapelBearbeitenButton";
-            this.StapelBearbeitenButton.Size = new System.Drawing.Size(188, 37);
+            this.StapelBearbeitenButton.Size = new System.Drawing.Size(251, 46);
             this.StapelBearbeitenButton.TabIndex = 10;
             this.StapelBearbeitenButton.Text = "Stapel bearbeiten";
             this.StapelBearbeitenButton.UseVisualStyleBackColor = false;
-            this.StapelBearbeitenButton.Click += new System.EventHandler(this.StapelBearbeitenButton_Click);
             // 
             // ChallengeButton
             // 
@@ -218,10 +217,10 @@ namespace AnsichtsFenster.Fenster
             this.ChallengeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ChallengeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChallengeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.ChallengeButton.Location = new System.Drawing.Point(720, 6);
-            this.ChallengeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ChallengeButton.Location = new System.Drawing.Point(960, 7);
+            this.ChallengeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChallengeButton.Name = "ChallengeButton";
-            this.ChallengeButton.Size = new System.Drawing.Size(190, 37);
+            this.ChallengeButton.Size = new System.Drawing.Size(253, 46);
             this.ChallengeButton.TabIndex = 9;
             this.ChallengeButton.Text = "Challenge Mode";
             this.ChallengeButton.UseVisualStyleBackColor = false;
@@ -236,10 +235,10 @@ namespace AnsichtsFenster.Fenster
             this.MinimierenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MinimierenButton.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimierenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.MinimierenButton.Location = new System.Drawing.Point(994, 0);
-            this.MinimierenButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimierenButton.Location = new System.Drawing.Point(1325, 0);
+            this.MinimierenButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimierenButton.Name = "MinimierenButton";
-            this.MinimierenButton.Size = new System.Drawing.Size(34, 28);
+            this.MinimierenButton.Size = new System.Drawing.Size(45, 34);
             this.MinimierenButton.TabIndex = 8;
             this.MinimierenButton.Text = "__";
             this.MinimierenButton.UseVisualStyleBackColor = true;
@@ -254,10 +253,10 @@ namespace AnsichtsFenster.Fenster
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.CloseButton.Location = new System.Drawing.Point(1024, 0);
-            this.CloseButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CloseButton.Location = new System.Drawing.Point(1365, 0);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(26, 28);
+            this.CloseButton.Size = new System.Drawing.Size(35, 34);
             this.CloseButton.TabIndex = 7;
             this.CloseButton.Text = "X";
             this.CloseButton.UseVisualStyleBackColor = true;
@@ -273,10 +272,10 @@ namespace AnsichtsFenster.Fenster
             this.JetztLernenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.JetztLernenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JetztLernenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.JetztLernenButton.Location = new System.Drawing.Point(555, 6);
-            this.JetztLernenButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.JetztLernenButton.Location = new System.Drawing.Point(740, 7);
+            this.JetztLernenButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.JetztLernenButton.Name = "JetztLernenButton";
-            this.JetztLernenButton.Size = new System.Drawing.Size(150, 37);
+            this.JetztLernenButton.Size = new System.Drawing.Size(200, 46);
             this.JetztLernenButton.TabIndex = 3;
             this.JetztLernenButton.Text = "Jetzt lernen";
             this.JetztLernenButton.UseVisualStyleBackColor = false;
@@ -292,10 +291,10 @@ namespace AnsichtsFenster.Fenster
             this.KarteBearbeitenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.KarteBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KarteBearbeitenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.KarteBearbeitenButton.Location = new System.Drawing.Point(158, 6);
-            this.KarteBearbeitenButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.KarteBearbeitenButton.Location = new System.Drawing.Point(211, 7);
+            this.KarteBearbeitenButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.KarteBearbeitenButton.Name = "KarteBearbeitenButton";
-            this.KarteBearbeitenButton.Size = new System.Drawing.Size(188, 37);
+            this.KarteBearbeitenButton.Size = new System.Drawing.Size(251, 46);
             this.KarteBearbeitenButton.TabIndex = 2;
             this.KarteBearbeitenButton.Text = "Karten bearbeiten";
             this.KarteBearbeitenButton.UseVisualStyleBackColor = false;
@@ -311,10 +310,10 @@ namespace AnsichtsFenster.Fenster
             this.ÜbersichtButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ÜbersichtButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ÜbersichtButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.ÜbersichtButton.Location = new System.Drawing.Point(26, 6);
-            this.ÜbersichtButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ÜbersichtButton.Location = new System.Drawing.Point(35, 7);
+            this.ÜbersichtButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ÜbersichtButton.Name = "ÜbersichtButton";
-            this.ÜbersichtButton.Size = new System.Drawing.Size(112, 37);
+            this.ÜbersichtButton.Size = new System.Drawing.Size(149, 46);
             this.ÜbersichtButton.TabIndex = 1;
             this.ÜbersichtButton.Text = "Übersicht";
             this.ÜbersichtButton.UseVisualStyleBackColor = false;
@@ -330,28 +329,24 @@ namespace AnsichtsFenster.Fenster
             this.InhaltPanel.Controls.Add(this.stapelAktualisieren);
             this.InhaltPanel.Controls.Add(this.StapelExportieren);
             this.InhaltPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.InhaltPanel.Location = new System.Drawing.Point(0, 48);
-            this.InhaltPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InhaltPanel.Location = new System.Drawing.Point(0, 60);
+            this.InhaltPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InhaltPanel.Name = "InhaltPanel";
-            this.InhaltPanel.Size = new System.Drawing.Size(1050, 561);
+            this.InhaltPanel.Size = new System.Drawing.Size(1400, 690);
             this.InhaltPanel.TabIndex = 14;
             // 
             // StapelBearbeitenView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1050, 609);
+            this.ClientSize = new System.Drawing.Size(1400, 750);
             this.Controls.Add(this.InhaltPanel);
             this.Controls.Add(this.dachPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "StapelBearbeitenView";
             this.Text = "StapelBearbeitenView";
-            this.Load += new System.EventHandler(this.StapelBearbeitenView_Load);
             this.dachPanel.ResumeLayout(false);
             this.InhaltPanel.ResumeLayout(false);
             this.InhaltPanel.PerformLayout();
