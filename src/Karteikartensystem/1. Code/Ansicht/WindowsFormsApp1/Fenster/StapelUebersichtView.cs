@@ -18,60 +18,11 @@ namespace AnsichtsFenster.Fenster
 
             listView_Ausgabe = listController.CreateView(listView_Ausgabe);
             listView_Ausgabe = listController.UpdateView(listView_Ausgabe);
-			
+
             txt_StapelSuche.Text = "Stapel suchen";
-            txt_StapelSuche.ForeColor = Color.Gray;			
+            txt_StapelSuche.ForeColor = Color.Gray;
         }
 
-
-        
-        //public void ChallengeAbfrage()
-        //{
-
-        //    Form ChallengeWerte = new Form()
-        //    {
-        //        Width = 500,
-        //        Height = 150,
-        //        FormBorderStyle = FormBorderStyle.FixedDialog,
-        //        Text = "Werte für die Challenge",
-        //        StartPosition = FormStartPosition.CenterScreen
-        //    };
-        //    Label lbl_KartenAnzahl = new Label() { Left = 50, Top = 20, Width = 200, Text = "Gebe die Anzahl der Karten an" };
-        //    TextBox txt_KartenAnzahl = new TextBox() { Left = 50, Top = 50, Width = 200 };
-        //    Label lbl_Zeit = new Label() { Left = 250, Top = 20, Width = 200, Text = "Bearbeitungszeit in Minuten" };
-        //    TextBox txt_Zeit = new TextBox() { Left = 250, Top = 50, Width = 200 };
-        //    Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
-        //    confirmation.Click += (sender, e) => { ChallengeWerte.Close(); };
-        //    ChallengeWerte.Controls.Add(lbl_KartenAnzahl);
-        //    ChallengeWerte.Controls.Add(txt_KartenAnzahl);
-        //    ChallengeWerte.Controls.Add(txt_Zeit);
-        //    ChallengeWerte.Controls.Add(lbl_Zeit);
-        //    ChallengeWerte.Controls.Add(confirmation);
-        //    ChallengeWerte.AcceptButton = confirmation;
-
-        //    if (ChallengeWerte.ShowDialog() == DialogResult.OK)
-        //    {
-        //        if (Int32.TryParse(txt_Zeit.Text, out int time))
-        //        {
-        //            if (Int32.TryParse(txt_KartenAnzahl.Text, out int anzahl) && anzahl > 0)
-        //            {
-        //                Stapel[] alleStapel = new StapelRepository().GetAlleStapel();
-        //                Stapel stapelMitAusgewähltenName =
-        //                    alleStapel.First(stapel => stapel.Name == selectedItem.SubItems[0].Text);
-        //                ChallengeView challengeView = new ChallengeView(time, anzahl, stapelMitAusgewähltenName.Id);
-        //                challengeView.Show();
-        //            }
-
-        //            else
-        //                viewController.ErrorMessageBox("Es wurde keine Gültige Anzahl angegeben");
-        //        }
-
-        //        else
-        //            viewController.ErrorMessageBox("Es wurde keine richtige Zeit angegeben");
-        //    }
-        //}
-
-        
         private void listView_Ausgabe_DoubleClick(object sender, EventArgs e)
         {
             viewController.BuildKartenUebersicht(listController.SelectStapel(listView_Ausgabe)).Show();
@@ -86,8 +37,8 @@ namespace AnsichtsFenster.Fenster
         {
             if (e.KeyCode == Keys.Enter)
             {
-                listView_Ausgabe = txt_StapelSuche.Text.Trim() == "" 
-                    ? listController.UpdateView(listView_Ausgabe) 
+                listView_Ausgabe = txt_StapelSuche.Text.Trim() == ""
+                    ? listController.UpdateView(listView_Ausgabe)
                     : listController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
 
                 txt_StapelSuche.Clear();
@@ -96,10 +47,10 @@ namespace AnsichtsFenster.Fenster
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            listView_Ausgabe = txt_StapelSuche.Text.Trim() == "" 
-                ? listController.UpdateView(listView_Ausgabe) 
+            listView_Ausgabe = txt_StapelSuche.Text.Trim() == ""
+                ? listController.UpdateView(listView_Ausgabe)
                 : listController.UpdateSuchergebnis(txt_StapelSuche.Text, listView_Ausgabe);
-            
+
             txt_StapelSuche.Clear();
         }
 
@@ -121,16 +72,13 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-
-        /****************************************/
-
         private Point LastPoint;
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 this.Left += e.X - LastPoint.X;
-                this.Top  += e.Y - LastPoint.Y;
+                this.Top += e.Y - LastPoint.Y;
             }
         }
         private void dachPanel_MouseDown(object sender, MouseEventArgs e)
@@ -162,7 +110,6 @@ namespace AnsichtsFenster.Fenster
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-           // new ChallengeView().Show();
             new ChallengeAbfrageView().Show();
         }
 
@@ -175,7 +122,5 @@ namespace AnsichtsFenster.Fenster
         {
             Application.Exit();
         }
-
-
     }
 }
