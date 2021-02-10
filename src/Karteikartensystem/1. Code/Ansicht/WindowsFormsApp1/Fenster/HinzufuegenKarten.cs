@@ -16,7 +16,7 @@ namespace AnsichtsFenster.Fenster
         private List<Karte> alleKarten;
         private KarteRepository repository;
         private ViewController viewController;
-        
+
         private long stapelId;
         private Stapel[] allesStapel = new StapelRepository().GetAlleStapel();
 
@@ -41,7 +41,7 @@ namespace AnsichtsFenster.Fenster
             fackeAntwort3.ForeColor = Color.Gray;
         }
 
-        private void comboBoxLaden() 
+        private void comboBoxLaden()
         {
             comboBox1.Items.Clear();
             foreach (Stapel stapel in allesStapel)
@@ -50,6 +50,7 @@ namespace AnsichtsFenster.Fenster
             }
             comboBox1.SelectedItem = comboBox1.Items[0];
         }
+
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             string ausgewählteKategorie = comboBox1.SelectedItem.ToString();
@@ -119,7 +120,7 @@ namespace AnsichtsFenster.Fenster
                 KartenAnzeigen(alleKarten);
             }
             else
-               KartenAnzeigen(ergebnisListe);
+                KartenAnzeigen(ergebnisListe);
         }
 
         private void listView_KartenAnzeige_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -153,7 +154,7 @@ namespace AnsichtsFenster.Fenster
                 selectedKarte.FalschAntwort2 = fackeAntwort2.Text;
                 selectedKarte.FalschAntwort3 = fackeAntwort3.Text;
                 if (repository.KarteAktualisieren(selectedKarte))
-                { 
+                {
                     selectedKarte = null;
                     viewController.ShowMessageBoxAktualisierenErfolgreich();
                 }
@@ -256,7 +257,7 @@ namespace AnsichtsFenster.Fenster
                 fackeAntwort2.ForeColor = Color.Gray;
             }
         }
-        
+
         private void fackeAntwort2_Enter(object sender, EventArgs e)
         {
             if (fackeAntwort2.Text == "Falsche Antwort 2 (Optional)")
