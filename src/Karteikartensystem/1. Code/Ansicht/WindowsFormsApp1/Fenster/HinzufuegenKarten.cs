@@ -89,6 +89,17 @@ namespace AnsichtsFenster.Fenster
             karte.FalschAntwort2 = fackeAntwort2.Text;
             karte.FalschAntwort3 = fackeAntwort3.Text;
             karte.StapelId = stapelId;
+
+            if (karte.FalschAntwort1 != "" || karte.FalschAntwort2 != "" || karte.FalschAntwort3 != "")
+            {
+                karte.ChallengeMode = true;
+            }
+            else
+            {
+                karte.ChallengeMode = false;
+            }
+
+
             return karte;
         }
 
@@ -177,6 +188,16 @@ namespace AnsichtsFenster.Fenster
                 selectedKarte.FalschAntwort1 = fackeAntwort1.Text;
                 selectedKarte.FalschAntwort2 = fackeAntwort2.Text;
                 selectedKarte.FalschAntwort3 = fackeAntwort3.Text;
+
+                if (selectedKarte.FalschAntwort1 != "" || selectedKarte.FalschAntwort2 != "" || selectedKarte.FalschAntwort3 != "")
+                {
+                    selectedKarte.ChallengeMode = true;
+                }
+                else
+                {
+                    selectedKarte.ChallengeMode = false;
+                }
+                
                 if (repository.KarteAktualisieren(selectedKarte))
                 { 
                     selectedKarte = null;
