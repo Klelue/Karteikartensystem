@@ -9,7 +9,7 @@ namespace DatenbankEngine
     {
         private readonly SqlConnection connection;
 
-        private string fileDatabasePath = ConfigurationManager.ConnectionStrings["Path"].ConnectionString;
+        private readonly string fileDatabasePath = ConfigurationManager.ConnectionStrings["Path"].ConnectionString;
 
         public SqlFileDatabaseEngine()
         {

@@ -11,14 +11,6 @@ namespace AnsichtsFenster.Controller
             return new KartenUebersicht(stapel);
         }
 
-        internal bool ShowMessageBoxChoiceStapelLoeschen(ListViewItem item)
-        {
-            return MessageBox.Show(
-                "Möchtest du es wirklich den \"" + item.SubItems[0].Text +
-                "\" und alle darin enthaltenen Karten entfernen?", "Entfernen", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning) == DialogResult.Yes;
-        }
-
         internal void ShowMessageBoxErfolgreichGeloescht()
         {
             MessageBox.Show("Erfolgreich gelöscht", "Gelöscht",
@@ -54,9 +46,9 @@ namespace AnsichtsFenster.Controller
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        internal void ShowMessageBoxKeineEingabe()
+        internal void ShowMessageBoxKeineGueltigeEingabe()
         {
-            MessageBox.Show("Es wurde kein Name angegeben", "Kein Name angebenen",
+            MessageBox.Show("Es wurde kein gültiger Wert angegeben", "Kein gültiger Wert",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 

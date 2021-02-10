@@ -11,10 +11,12 @@ namespace AnsichtsFenster.Fenster
 {
     public partial class StapelBearbeitenView : Form
     {
+
         private StapelRepository stapelRepository;
         private ViewController viewController;
         private Point letzteMousekoordinaten;
         
+
         public StapelBearbeitenView()
         {
             InitializeComponent();
@@ -31,20 +33,20 @@ namespace AnsichtsFenster.Fenster
         {
             string stapelName = textBoxStapelName.Text;
 
-            Stapel stapel = new Stapel();
-
-            stapel.Name = stapelName;
+            Stapel stapel = new Stapel
+            {
+                Name = stapelName
+            };
 
             if (stapelRepository.StapelHinzufügen(stapel))
             {
-                viewController.ShowMessageBoxKeinElementGewaehlt();
-
+                viewController.ShowMessageBoxHinzufuegenErfolgreich();
             }
             else
             {
                viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
             }
-            
+           
         }
 
         private void dateiAuswählen_Click(object sender, EventArgs e)
@@ -52,11 +54,9 @@ namespace AnsichtsFenster.Fenster
             using (OpenFileDialog fileDialog = new OpenFileDialog())
             {
                 fileDialog.Filter = @"Stapel-Export-Datei|*.sed";
-            
-
+                
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-
                     string pfad = fileDialog.FileName;
 
                     string[] pfadGesplitet = pfad.Split('\\');
@@ -113,14 +113,12 @@ namespace AnsichtsFenster.Fenster
             }
             else
             {
-
                 StapelFileHandler fileHandler = new StapelFileHandler();
 
                 Karte[] alleKartenEinesStapels = new KarteRepository().GetAlleKartenEinesStapels(selectedStapel.Id);
 
                 fileHandler.KartenAlsCsvDateiAnlegen(selectedStapel.Name, alleKartenEinesStapels, selectedPath);
             }
-            
         }
 
         private void stapelAktualisieren_Click(object sender, EventArgs e)
@@ -129,7 +127,7 @@ namespace AnsichtsFenster.Fenster
 
             if (selectedStapel == null)
             {
-              viewController.ShowMessageBoxKeinElementGewaehlt();
+                viewController.ShowMessageBoxKeinElementGewaehlt();
             }
             else
             {
@@ -146,15 +144,15 @@ namespace AnsichtsFenster.Fenster
 
             if (selectedStapel == null)
             {
-               viewController.ShowMessageBoxKeinElementGewaehlt();
+                viewController.ShowMessageBoxKeinElementGewaehlt();
             }
             else
             {
                 stapelRepository.StapelLöschen(selectedStapel.Id);
                 viewController.ShowMessageBoxErfolgreichGeloescht();
             }
-
         }
+
 
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)
         {
@@ -164,6 +162,7 @@ namespace AnsichtsFenster.Fenster
                 this.Top += e.Y - letzteMousekoordinaten.Y;
             }
         }
+
         private void dachPanel_MouseDown(object sender, MouseEventArgs e)
         {
             letzteMousekoordinaten = new Point(e.X, e.Y);
@@ -179,13 +178,13 @@ namespace AnsichtsFenster.Fenster
             this.Hide();
             new HinzufuegenKarten().Show();
         }
-   
+
         private void JetztLernenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             new JetztLernenView().Show();
         }
-
+        
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -201,6 +200,5 @@ namespace AnsichtsFenster.Fenster
         {
             Application.Exit();
         }
-
     }
 }

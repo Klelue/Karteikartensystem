@@ -5,7 +5,7 @@ using Model;
 
 namespace AnsichtsFenster.Utilities
 {
-    public class KartenManager
+    public class ChallengeKartenManager
     {
         private List<Karte> leichteKarten { get; }
         private List<Karte> mittelKarten { get; }
@@ -14,7 +14,7 @@ namespace AnsichtsFenster.Utilities
 
         private int zähler;
 
-        public KartenManager(Karte[] karten)
+        public ChallengeKartenManager(Karte[] karten)
         {
             leichteKarten = new List<Karte>();
             mittelKarten = new List<Karte>();
@@ -60,9 +60,7 @@ namespace AnsichtsFenster.Utilities
                 {
                     gelernteKarten.Add(karte);
                 }
-
             }
-
         }
 
         public void RemoveKarte(Karte karte)
@@ -92,7 +90,6 @@ namespace AnsichtsFenster.Utilities
 
         public void AddZuMittelKarten(Karte karte)
         {
-
             RemoveKarte(karte);
             karte.Schwierigkeitsgrad = 1;
             mittelKarten.Add(karte);
@@ -111,6 +108,7 @@ namespace AnsichtsFenster.Utilities
             karte.Schwierigkeitsgrad = 3;
             gelernteKarten.Add(karte);
         }
+
         public Karte GetNextKarte()
         {
             zähler++;
