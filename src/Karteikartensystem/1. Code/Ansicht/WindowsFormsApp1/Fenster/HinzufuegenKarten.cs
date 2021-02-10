@@ -16,7 +16,8 @@ namespace AnsichtsFenster.Fenster
         private List<Karte> alleKarten;
         private KarteRepository repository;
         private ViewController viewController;
-
+        private KartenListController kartenListController;
+        
         private long stapelId;
         private Stapel[] allesStapel = new StapelRepository().GetAlleStapel();
 
@@ -26,6 +27,7 @@ namespace AnsichtsFenster.Fenster
             viewController = new ViewController();
             repository = new KarteRepository();
             alleKarten = new List<Karte>();
+            kartenListController = new KartenListController();
             comboBoxLaden();
             txt_KartenSuche.Text = "Suchen nach:";
             txt_KartenSuche.ForeColor = Color.Gray;
@@ -39,6 +41,7 @@ namespace AnsichtsFenster.Fenster
             fackeAntwort2.ForeColor = Color.Gray;
             fackeAntwort3.Text = "Falsche Antwort 3 (Optional)";
             fackeAntwort3.ForeColor = Color.Gray;
+            listView_KartenAnzeige.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         private void comboBoxLaden()
@@ -64,10 +67,20 @@ namespace AnsichtsFenster.Fenster
             if (richTxt_Vorderseite.Text.Trim() != "" && richTxt_Rueckseite.Text.Trim() != "")
             {
                 if (repository.KarteHinzufügen(KartenAnlegen()))
+                {
+                    string stapelName = comboBox1.SelectedItem.ToString();
+                    stapelId = allesStapel.FirstOrDefault(stapel => stapel.Name == stapelName).Id;
+                    Karte[] alleKartenEinesStapels = repository.GetAlleKartenEinesStapels(stapelId);
+                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige,
+                        alleKartenEinesStapels.ToList());
+                    listView_KartenAnzeige = listView;
                     viewController.ShowMessageBoxHinzufuegenErfolgreich();
+                }
             }
             else
+            {
                 viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
+            }
         }
 
         private Karte KartenAnlegen()
@@ -79,6 +92,16 @@ namespace AnsichtsFenster.Fenster
             karte.FalschAntwort2 = fackeAntwort2.Text;
             karte.FalschAntwort3 = fackeAntwort3.Text;
             karte.StapelId = stapelId;
+
+            if (karte.FalschAntwort1 != "" || karte.FalschAntwort2 != "" || karte.FalschAntwort3 != "")
+            {
+                karte.ChallengeMode = true;
+            }
+            else
+            {
+                karte.ChallengeMode = false;
+            }
+
             return karte;
         }
 
@@ -89,7 +112,7 @@ namespace AnsichtsFenster.Fenster
             listView_KartenAnzeige.Columns.Add("Fragen").Width = 550;
             KartenAnzeigen(alleKarten);
         }
-
+        
         private void KartenAnzeigen(List<Karte> anzeigeList)
         {
             listView_KartenAnzeige.Items.Clear();
@@ -99,10 +122,20 @@ namespace AnsichtsFenster.Fenster
         private void listView_KartenAnzeige_Click(object sender, EventArgs e)
         {
             selectedKarte = SelectedKarteAsKarte(listView_KartenAnzeige.SelectedItems[0].Text);
-            richTxt_Vorderseite.Text = selectedKarte.Frage;
-            richTxt_Rueckseite.Text = selectedKarte.Antwort;
-            richTxt_Vorderseite.ForeColor = Color.Black;
-            richTxt_Rueckseite.ForeColor = Color.Black;
+            if (selectedKarte == null)
+            {
+                viewController.ShowMessageBoxKeinElementGewaehlt();
+            }
+            else
+            {
+                richTxt_Vorderseite.Text = selectedKarte.Frage;
+                richTxt_Rueckseite.Text = selectedKarte.Antwort;
+                fackeAntwort1.Text = selectedKarte.FalschAntwort1;
+                fackeAntwort2.Text = selectedKarte.FalschAntwort2;
+                fackeAntwort3.Text = selectedKarte.FalschAntwort3;
+                richTxt_Vorderseite.ForeColor = Color.Black;
+                richTxt_Rueckseite.ForeColor = Color.Black;
+            }
         }
 
         private Karte SelectedKarteAsKarte(string karteFrage)
@@ -135,6 +168,11 @@ namespace AnsichtsFenster.Fenster
                 if (repository.KarteLöschen(selectedKarte.Id))
                 {
                     selectedKarte = null;
+                    string stapelName = comboBox1.SelectedItem.ToString();
+                    stapelId = allesStapel.FirstOrDefault(stapel => stapel.Name == stapelName).Id;
+                    Karte[] alleKartenEinesStapels = repository.GetAlleKartenEinesStapels(stapelId);
+                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKartenEinesStapels.ToList());
+                    listView_KartenAnzeige = listView;
                     viewController.ShowMessageBoxErfolgreichGeloescht();
                 }
                 else
@@ -153,9 +191,21 @@ namespace AnsichtsFenster.Fenster
                 selectedKarte.FalschAntwort1 = fackeAntwort1.Text;
                 selectedKarte.FalschAntwort2 = fackeAntwort2.Text;
                 selectedKarte.FalschAntwort3 = fackeAntwort3.Text;
+
+                if (selectedKarte.FalschAntwort1 != "" || selectedKarte.FalschAntwort2 != "" || selectedKarte.FalschAntwort3 != "")
+                {
+                    selectedKarte.ChallengeMode = true;
+                }
+                else
+                {
+                    selectedKarte.ChallengeMode = false;
+                }
+                
                 if (repository.KarteAktualisieren(selectedKarte))
                 {
                     selectedKarte = null;
+                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKarten);
+                    listView_KartenAnzeige = listView;
                     viewController.ShowMessageBoxAktualisierenErfolgreich();
                 }
                 else
@@ -310,7 +360,6 @@ namespace AnsichtsFenster.Fenster
         {
             lastPoint = new Point(e.X, e.Y);
         }
-
 
         private void ÜbersichtButton_Click(object sender, EventArgs e)
         {
