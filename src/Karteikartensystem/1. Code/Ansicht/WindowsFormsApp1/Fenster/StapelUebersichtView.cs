@@ -162,8 +162,8 @@ namespace AnsichtsFenster.Fenster
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-           // new ChallengeView().Show();
-            new ChallengeAbfrageView().Show();
+            new ChallengeView().Show();
+          //  new ChallengeAbfrageView().Show();
         }
 
         private void MinimierenButton_Click(object sender, EventArgs e)

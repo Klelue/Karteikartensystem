@@ -68,10 +68,8 @@ namespace AnsichtsFenster.Fenster
 
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
-            //if (selectedItem != null)
-            //    ChallengeAbfrage();
-            //else
-            //    ErrorMessageBox("Kein Stapel ausgewählt");
+            this.Hide();
+            new ChallengeView().Show();
         }
 
         private void MinimierenButton_Click(object sender, EventArgs e)

@@ -87,6 +87,10 @@ namespace AnsichtsFenster.Fenster
             listView_KartenAnzeige.Clear();
             listView_KartenAnzeige.View = View.Details;
             listView_KartenAnzeige.Columns.Add("Fragen").Width = 550;
+
+           // listView_KartenAnzeige.Columns.Add("Fragen");
+           // listView_KartenAnzeige.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+           // listView_KartenAnzeige.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             KartenAnzeigen(alleKarten);
         }
 
@@ -328,7 +332,8 @@ namespace AnsichtsFenster.Fenster
         }
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            new ChallengeView().Show();
         }
 
         private void MinimierenButton_Click(object sender, EventArgs e)
