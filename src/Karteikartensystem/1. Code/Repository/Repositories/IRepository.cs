@@ -1,6 +1,4 @@
-﻿
-
-namespace Repositories
+﻿namespace Repositories
 {
     public interface IRepository
     {

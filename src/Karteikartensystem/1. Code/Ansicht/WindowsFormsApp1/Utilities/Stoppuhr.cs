@@ -1,14 +1,10 @@
-﻿
-
-
-namespace AnsichtsFenster.Utilities
+﻿namespace AnsichtsFenster.Utilities
 {
     using System.Diagnostics;
 
     public class Stoppuhr
     {
         Stopwatch stopWatch = new Stopwatch();
-
 
         public void Start()
         {
@@ -22,7 +18,7 @@ namespace AnsichtsFenster.Utilities
 
         public int GetZeit()
         {
-          return  stopWatch.Elapsed.Minutes;
+            return stopWatch.Elapsed.Minutes;
         }
     }
 }

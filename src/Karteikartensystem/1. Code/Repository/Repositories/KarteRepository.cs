@@ -1,5 +1,4 @@
-﻿
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using DatenbankEngine;
 using Model;
@@ -17,9 +16,8 @@ namespace Repositories
 
         public bool KarteHinzufügen(Karte karte)
         {
-
-            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id, schwierigkeitsgrad, falsch_antwort1, falsch_antwort2, falsch_antwort3) " +
-                         $"VALUES(@Frage, @Antwort, @StapelId, @Schwierigkeitsgrad, @FalschAntwort1, @FalschAntwort2, @FalschAntwort3);";
+            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id, schwierigkeitsgrad, falsch_antwort1, falsch_antwort2, falsch_antwort3, challenge_mode) " +
+                         $"VALUES(@Frage, @Antwort, @StapelId, @Schwierigkeitsgrad, @FalschAntwort1, @FalschAntwort2, @FalschAntwort3, @ChallengeMode);";
 
                 SqlCommand sqlCommand = new SqlCommand(sql);
 
@@ -30,16 +28,16 @@ namespace Repositories
                 sqlCommand.Parameters.AddWithValue("@FalschAntwort3", karte.FalschAntwort3);
                 sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
                 sqlCommand.Parameters.AddWithValue("@Schwierigkeitsgrad", karte.Schwierigkeitsgrad);
+                sqlCommand.Parameters.AddWithValue("@ChallengeMode", karte.ChallengeMode);
 
-                int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
+            int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
-                if (anzahlBetrofenderReihen == 0)
-                {
-                    return false;
-                }
+            if (anzahlBetrofenderReihen == 0)
+            {
+                return false;
+            }
 
-                return true;
-
+            return true;
         }
 
         public Karte[] GetAlleKartenEinesStapels(long stapelId)
@@ -56,16 +54,16 @@ namespace Repositories
 
             for (int index = 0; index < dataTable.Rows.Count; index++)
             {
-                long id = (long) dataTable.Rows[index][0];
+                long id = (long)dataTable.Rows[index][0];
                 string frage = dataTable.Rows[index][1].ToString();
                 string antwort = dataTable.Rows[index][2].ToString();
                 string falschAntwort1 = dataTable.Rows[index][3].ToString();
                 string falschAntwort2 = dataTable.Rows[index][4].ToString();
                 string falschAntwort3 = dataTable.Rows[index][5].ToString();
-                long stapelidentifikation = (long) dataTable.Rows[index][6];
-                int status = (int) dataTable.Rows[index][7];
+                long stapelidentifikation = (long)dataTable.Rows[index][6];
+                int status = (int)dataTable.Rows[index][7];
                 bool challengeMode = (bool)dataTable.Rows[index][8];
-                
+
 
                 Karte karte = new Karte();
 
@@ -79,13 +77,11 @@ namespace Repositories
                 karte.FalschAntwort3 = falschAntwort3;
                 karte.ChallengeMode = challengeMode;
 
-                    kartenArray[index] = karte;
+                kartenArray[index] = karte;
             }
-
 
             return kartenArray;
         }
-
 
         public bool KarteLöschen(long id)
         {
@@ -115,15 +111,13 @@ namespace Repositories
 
             int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
-
             return anzahlBetrofenderReihen;
         }
 
         public bool KarteAktualisieren(Karte karte)
         {
-
             string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, falsch_antwort1 = @FalschAntwort1" +
-                         ", falsch_antwort2 = @FalschAntwort2, falsch_antwort3 = @FalschAntwort3, stapel_id = @StapelId, schwierigkeitsgrad = @Schwierigkeitsgrad WHERE Id = @Id;";
+                         ", falsch_antwort2 = @FalschAntwort2, falsch_antwort3 = @FalschAntwort3, stapel_id = @StapelId, schwierigkeitsgrad = @Schwierigkeitsgrad, challenge_mode = @ChallengeMode WHERE Id = @Id;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
@@ -135,6 +129,7 @@ namespace Repositories
             sqlCommand.Parameters.AddWithValue("@FalschAntwort3", karte.FalschAntwort3);
             sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
             sqlCommand.Parameters.AddWithValue("@Schwierigkeitsgrad", karte.Schwierigkeitsgrad);
+            sqlCommand.Parameters.AddWithValue("@ChallengeMode", karte.ChallengeMode);
 
             int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 

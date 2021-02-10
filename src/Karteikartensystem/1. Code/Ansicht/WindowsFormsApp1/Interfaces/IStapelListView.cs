@@ -8,5 +8,6 @@ namespace AnsichtsFenster.Controller
     {
         ListViewItem CreateViewItem(Stapel stapel);
         ListView ReloadView(ListView listView, List<Stapel> stapellListe);
+        Stapel SelectStapel(ListView listView);
     }
 }

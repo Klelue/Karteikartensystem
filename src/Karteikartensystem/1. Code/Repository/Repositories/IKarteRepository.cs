@@ -1,6 +1,5 @@
 ﻿using Model;
 
-
 namespace Repositories
 {
     public interface IKarteRepository : IRepository

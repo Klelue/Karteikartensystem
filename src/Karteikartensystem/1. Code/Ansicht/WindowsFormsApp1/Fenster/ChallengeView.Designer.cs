@@ -395,7 +395,7 @@ namespace AnsichtsFenster.Fenster
             this.StapelBearbeitenButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
             this.StapelBearbeitenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
             this.StapelBearbeitenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StapelBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StapelBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.StapelBearbeitenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.StapelBearbeitenButton.Location = new System.Drawing.Point(470, 7);
             this.StapelBearbeitenButton.Name = "StapelBearbeitenButton";
@@ -413,13 +413,13 @@ namespace AnsichtsFenster.Fenster
             this.ChallengeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
             this.ChallengeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
             this.ChallengeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ChallengeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChallengeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.ChallengeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.ChallengeButton.Location = new System.Drawing.Point(960, 7);
             this.ChallengeButton.Name = "ChallengeButton";
-            this.ChallengeButton.Size = new System.Drawing.Size(160, 45);
+            this.ChallengeButton.Size = new System.Drawing.Size(249, 45);
             this.ChallengeButton.TabIndex = 9;
-            this.ChallengeButton.Text = "Challenge";
+            this.ChallengeButton.Text = "Challenge Mode";
             this.ChallengeButton.UseVisualStyleBackColor = false;
             this.ChallengeButton.Click += new System.EventHandler(this.ChallengeButton_Click);
             // 
@@ -465,7 +465,7 @@ namespace AnsichtsFenster.Fenster
             this.JetztLernenButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
             this.JetztLernenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
             this.JetztLernenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.JetztLernenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JetztLernenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.JetztLernenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.JetztLernenButton.Location = new System.Drawing.Point(740, 7);
             this.JetztLernenButton.Name = "JetztLernenButton";
@@ -483,13 +483,13 @@ namespace AnsichtsFenster.Fenster
             this.KarteBearbeitenButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
             this.KarteBearbeitenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
             this.KarteBearbeitenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.KarteBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KarteBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.KarteBearbeitenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.KarteBearbeitenButton.Location = new System.Drawing.Point(210, 7);
             this.KarteBearbeitenButton.Name = "KarteBearbeitenButton";
             this.KarteBearbeitenButton.Size = new System.Drawing.Size(240, 45);
             this.KarteBearbeitenButton.TabIndex = 2;
-            this.KarteBearbeitenButton.Text = "Karte bearbeiten";
+            this.KarteBearbeitenButton.Text = "Karten bearbeiten";
             this.KarteBearbeitenButton.UseVisualStyleBackColor = false;
             this.KarteBearbeitenButton.Click += new System.EventHandler(this.KarteBearbeitenButton_Click);
             // 
@@ -501,7 +501,7 @@ namespace AnsichtsFenster.Fenster
             this.ÜbersichtButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
             this.ÜbersichtButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
             this.ÜbersichtButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ÜbersichtButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ÜbersichtButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.ÜbersichtButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.ÜbersichtButton.Location = new System.Drawing.Point(35, 7);
             this.ÜbersichtButton.Name = "ÜbersichtButton";

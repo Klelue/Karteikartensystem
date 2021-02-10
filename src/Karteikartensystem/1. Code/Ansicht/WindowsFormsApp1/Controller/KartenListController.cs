@@ -46,17 +46,26 @@ namespace AnsichtsFenster.Controller
 
         public ListViewItem CreateViewItem(Karte karte)
         {
-            throw new System.NotImplementedException();
+            ListViewItem item = new ListViewItem((karte.Frage));
+            item.SubItems.Add(karte.Frage);
+
+            return item;
         }
 
         public ListView ReloadView(ListView listView, List<Karte> kartenListe)
         {
-            throw new System.NotImplementedException();
-        }
+            List<ListViewItem> listViewItems = new List<ListViewItem>();
 
-        Stapel IListView.SelectStapel(ListView listView)
-        {
-            throw new System.NotImplementedException();
+            
+            foreach (Karte karte in kartenListe)
+            {
+                listViewItems.Add(CreateViewItem(karte));
+            }
+
+            listView.Items.Clear();
+            listView.Items.AddRange(listViewItems.ToArray());
+
+            return listView; 
         }
     }
 }

@@ -16,7 +16,7 @@ namespace AnsichtsFenster.Fenster
         private List<Karte> alleKarten;
         private KarteRepository repository;
         private ViewController viewController;
-       
+        private KartenListController kartenListController;
 
         private long stapelId;
         private Stapel[] allesStapel = new StapelRepository().GetAlleStapel();
@@ -27,6 +27,7 @@ namespace AnsichtsFenster.Fenster
             viewController = new ViewController();
             repository = new KarteRepository();
             alleKarten = new List<Karte>();
+            kartenListController = new KartenListController();
             comboBoxLaden();
             txt_KartenSuche.Text = "Suchen nach:";
             txt_KartenSuche.ForeColor = Color.Gray;
@@ -40,9 +41,10 @@ namespace AnsichtsFenster.Fenster
             fackeAntwort2.ForeColor = Color.Gray;
             fackeAntwort3.Text = "Falsche Antwort 3 (Optional)";
             fackeAntwort3.ForeColor = Color.Gray;
+            listView_KartenAnzeige.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
-        private void comboBoxLaden() 
+        private void comboBoxLaden()
         {
             comboBox1.Items.Clear();
             foreach (Stapel stapel in allesStapel)
@@ -51,6 +53,7 @@ namespace AnsichtsFenster.Fenster
             }
             comboBox1.SelectedItem = comboBox1.Items[0];
         }
+
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             string ausgewählteKategorie = comboBox1.SelectedItem.ToString();
@@ -61,13 +64,24 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_Hinzufuegen_Click(object sender, EventArgs e)
         {
-            if (richTxt_Vorderseite.Text.Trim() != "" && richTxt_Rueckseite.Text.Trim() != "")
+            if (richTxt_Vorderseite.Text.Trim() != "Frage" && richTxt_Rueckseite.Text.Trim() != "Richtige Antwort")
             {
                 if (repository.KarteHinzufügen(KartenAnlegen()))
-                    viewController.OkMessageBox("Die karte wurde gespeichert", "Es hat geklappt");
+                {
+                    string stapelName = comboBox1.SelectedItem.ToString();
+                    stapelId = allesStapel.FirstOrDefault(stapel => stapel.Name == stapelName).Id;
+                    Karte[] alleKartenEinesStapels = repository.GetAlleKartenEinesStapels(stapelId);
+                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige,
+                        alleKartenEinesStapels.ToList());
+                    listView_KartenAnzeige = listView;
+                    ClearTextFelder();
+                    viewController.ShowMessageBoxHinzufuegenErfolgreich();
+                }
             }
             else
-                viewController.ExclamationsMessageBox("Es wurde nicht in eins oder in beiden Felder etwas geschrieben", "Sorry");
+            {
+                viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
+            }
         }
 
         private Karte KartenAnlegen()
@@ -79,6 +93,16 @@ namespace AnsichtsFenster.Fenster
             karte.FalschAntwort2 = fackeAntwort2.Text;
             karte.FalschAntwort3 = fackeAntwort3.Text;
             karte.StapelId = stapelId;
+
+            if (karte.FalschAntwort1 != "Falsche Antwort 1 (Optional)" || karte.FalschAntwort2 != "Falsche Antwort 2 (Optional)" || karte.FalschAntwort3 != "Falsche Antwort 3 (Optional)")
+            {
+                karte.ChallengeMode = true;
+            }
+            else
+            {
+                karte.ChallengeMode = false;
+            }
+
             return karte;
         }
 
@@ -103,10 +127,29 @@ namespace AnsichtsFenster.Fenster
         private void listView_KartenAnzeige_Click(object sender, EventArgs e)
         {
             selectedKarte = SelectedKarteAsKarte(listView_KartenAnzeige.SelectedItems[0].Text);
-            richTxt_Vorderseite.Text = selectedKarte.Frage;
-            richTxt_Rueckseite.Text = selectedKarte.Antwort;
-            richTxt_Vorderseite.ForeColor = Color.Black;
-            richTxt_Rueckseite.ForeColor = Color.Black;
+            if (selectedKarte == null)
+            {
+                viewController.ShowMessageBoxKeinElementGewaehlt();
+            }
+            else
+            {
+                richTxt_Vorderseite.Text = selectedKarte.Frage;
+                richTxt_Rueckseite.Text = selectedKarte.Antwort;
+                fackeAntwort1.Text = selectedKarte.FalschAntwort1;
+                fackeAntwort2.Text = selectedKarte.FalschAntwort2;
+                fackeAntwort3.Text = selectedKarte.FalschAntwort3;
+                richTxt_Vorderseite.ForeColor = Color.Black;
+                richTxt_Rueckseite.ForeColor = Color.Black;
+            }
+        }
+
+        private void ClearTextFelder()
+        {
+            fackeAntwort1.Clear();
+            fackeAntwort2.Clear();
+            fackeAntwort3.Clear();
+            richTxt_Rueckseite.Clear();
+            richTxt_Vorderseite.Clear();
         }
 
         private Karte SelectedKarteAsKarte(string karteFrage)
@@ -116,16 +159,15 @@ namespace AnsichtsFenster.Fenster
 
         private void KartenSucheAnzeigen(string suchbegriff)
         {
-            List<Karte> ergebnisListe = StringSuchTool.GetSuchergebnis(suchbegriff, alleKarten);
+            List<Karte> ergebnisListe = ListenDurchsuchenTool.GetSuchergebnis(suchbegriff, alleKarten);
 
             if (ergebnisListe.Count < 1)
             {
-                viewController.InformationsMessageBox("Leider kein Eintrag gefunden");
+                viewController.ShowMessageBoxHinzufuegenErfolgreich();
                 KartenAnzeigen(alleKarten);
             }
-
             else
-               KartenAnzeigen(ergebnisListe);
+                KartenAnzeigen(ergebnisListe);
         }
 
         private void listView_KartenAnzeige_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -140,7 +182,17 @@ namespace AnsichtsFenster.Fenster
                 if (repository.KarteLöschen(selectedKarte.Id))
                 {
                     selectedKarte = null;
-                    viewController.OkMessageBox("Es hat geklappt", "Yeah");
+                    string stapelName = comboBox1.SelectedItem.ToString();
+                    stapelId = allesStapel.FirstOrDefault(stapel => stapel.Name == stapelName).Id;
+                    Karte[] alleKartenEinesStapels = repository.GetAlleKartenEinesStapels(stapelId);
+                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKartenEinesStapels.ToList());
+                    listView_KartenAnzeige = listView;
+                    ClearTextFelder();
+                    viewController.ShowMessageBoxErfolgreichGeloescht();
+                }
+                else
+                {
+                    viewController.ShowMessageBoxLoeschenNichtErfolgreich();
                 }
             }
         }
@@ -154,14 +206,31 @@ namespace AnsichtsFenster.Fenster
                 selectedKarte.FalschAntwort1 = fackeAntwort1.Text;
                 selectedKarte.FalschAntwort2 = fackeAntwort2.Text;
                 selectedKarte.FalschAntwort3 = fackeAntwort3.Text;
-                if (repository.KarteAktualisieren(selectedKarte))
-                { 
-                    selectedKarte = null;
-                    viewController.OkMessageBox("Es hat geklappt", "Yeah");
+
+                if (selectedKarte.FalschAntwort1 != "" || selectedKarte.FalschAntwort2 != "" || selectedKarte.FalschAntwort3 != "")
+                {
+                    selectedKarte.ChallengeMode = true;
                 }
+                else
+                {
+                    selectedKarte.ChallengeMode = false;
+                }
+
+                if (repository.KarteAktualisieren(selectedKarte))
+                {
+                    selectedKarte = null;
+                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKarten);
+                    listView_KartenAnzeige = listView;
+                    viewController.ShowMessageBoxAktualisierenErfolgreich();
+                }
+                else
+                {
+                    viewController.ShowMessageBoxAktualisierenNichtErfolgreich();
+                }
+
+                ClearTextFelder();
             }
         }
-
 
         private void txt_KartenSuche_KeyDown(object sender, KeyEventArgs e)
         {
@@ -283,7 +352,6 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (txt_KartenSuche.Text.Trim() == "")
@@ -308,7 +376,6 @@ namespace AnsichtsFenster.Fenster
         {
             lastPoint = new Point(e.X, e.Y);
         }
-
 
         private void ÜbersichtButton_Click(object sender, EventArgs e)
         {
@@ -340,10 +407,10 @@ namespace AnsichtsFenster.Fenster
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
         private void CloseButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
     }
 }

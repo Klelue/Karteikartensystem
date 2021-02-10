@@ -23,8 +23,7 @@ namespace AnsichtsFenster.Controller
             listView.Columns.Add("Stapelname").Width = 180;
             listView.Columns.Add("Zeit").Width = 180;
             listView.Columns.Add("Anzahl gelernter Karten").Width = 180;
-          
-
+            
             return listView;
         }
 
@@ -74,7 +73,7 @@ namespace AnsichtsFenster.Controller
         {
             //TODO alleStapel von DB lösen
             List<Stapel> alleStapel = GetAlleStapelVonDatenbank();
-            List<Stapel> ergebnisListe = StringSuchTool.GetSuchergebnis(suchbegriff, alleStapel);
+            List<Stapel> ergebnisListe = ListenDurchsuchenTool.GetSuchergebnis(suchbegriff, alleStapel);
 
             if (ergebnisListe.Count == 0)
             {
@@ -93,18 +92,15 @@ namespace AnsichtsFenster.Controller
             return stapelRepository.GetAlleStapel().ToList();
         }
 
-        //TODO INTERFACE TYP IMODEL ODER NUR KARTEN STATT STAPEL UND KARTEN
         public ListViewItem CreateViewItem(Stapel stapel)
         {
-
             ListViewItem item = new ListViewItem((stapel.Name));
             item.SubItems.Add(stapel.GelernteZeitInMinuten + " Minuten");
 
             int gelernteKarten = GelernteKartenBerechnen(stapel);
 
             item.SubItems.Add(gelernteKarten.ToString());
-            //TODO: ADD COUNT
-            //item.SubItems.Add(stapel.Karten.Count().ToString());
+
             return item;
         }
 
@@ -113,7 +109,6 @@ namespace AnsichtsFenster.Controller
             Karte[] alleKartenEinesStapels = new KarteRepository().GetAlleKartenEinesStapels(stapel.Id);
 
             return alleKartenEinesStapels.Count(karte => karte.Schwierigkeitsgrad == 3);
-
         }
 
         public ListView DeleteItem(ListView listView, ListViewItem listViewItem, out bool geloescht)

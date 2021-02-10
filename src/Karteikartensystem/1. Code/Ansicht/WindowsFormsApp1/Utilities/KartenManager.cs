@@ -81,8 +81,6 @@ namespace AnsichtsFenster.Utilities
             {
                 leichteKarten.Remove(karte);
             }
-
-
         }
 
         public void AddZuSchwereKarten(Karte karte)
@@ -90,7 +88,6 @@ namespace AnsichtsFenster.Utilities
             RemoveKarte(karte);
             karte.Schwierigkeitsgrad = 0;
             schwereKarten.Add(karte);
-            
         }
 
         public void AddZuMittelKarten(Karte karte)
