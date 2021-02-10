@@ -1,5 +1,4 @@
-﻿
-namespace AnsichtsFenster.Utilities
+﻿namespace AnsichtsFenster.Utilities
 {
     using System;
     using System.Collections.Generic;
@@ -9,7 +8,6 @@ namespace AnsichtsFenster.Utilities
     public class StapelFileHandler
     {
         public string SeparierendesZeichen = "@";
-      
 
         public bool KartenAlsCsvDateiAnlegen(string stapelName, Karte[] karten, string pfad)
         {
@@ -22,7 +20,7 @@ namespace AnsichtsFenster.Utilities
 
             try
             {
-               File.WriteAllText(pfad + @"\" +  stapelName  + ".sed", text);
+                File.WriteAllText(pfad + @"\" + stapelName + ".sed", text);
             }
             catch (Exception)
             {
@@ -51,7 +49,6 @@ namespace AnsichtsFenster.Utilities
             }
 
             return karten.ToArray();
-
         }
     }
 }
