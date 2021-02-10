@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using AnsichtsFenster.Controller;
-using Model;
-using Repositories;
 
 namespace AnsichtsFenster.Fenster
 {
@@ -27,62 +24,9 @@ namespace AnsichtsFenster.Fenster
             txt_StapelSuche.ForeColor = Color.Gray;			
         }
 
-
-        //public void ChallengeAbfrage()
-        //{
-
-        //    Form ChallengeWerte = new Form()
-        //    {
-        //        Width = 500,
-        //        Height = 150,
-        //        FormBorderStyle = FormBorderStyle.FixedDialog,
-        //        Text = "Werte für die Challenge",
-        //        StartPosition = FormStartPosition.CenterScreen
-        //    };
-        //    Label lbl_KartenAnzahl = new Label() { Left = 50, Top = 20, Width = 200, Text = "Gebe die Anzahl der Karten an" };
-        //    TextBox txt_KartenAnzahl = new TextBox() { Left = 50, Top = 50, Width = 200 };
-        //    Label lbl_Zeit = new Label() { Left = 250, Top = 20, Width = 200, Text = "Bearbeitungszeit in Minuten" };
-        //    TextBox txt_Zeit = new TextBox() { Left = 250, Top = 50, Width = 200 };
-        //    Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
-        //    confirmation.Click += (sender, e) => { ChallengeWerte.Close(); };
-        //    ChallengeWerte.Controls.Add(lbl_KartenAnzahl);
-        //    ChallengeWerte.Controls.Add(txt_KartenAnzahl);
-        //    ChallengeWerte.Controls.Add(txt_Zeit);
-        //    ChallengeWerte.Controls.Add(lbl_Zeit);
-        //    ChallengeWerte.Controls.Add(confirmation);
-        //    ChallengeWerte.AcceptButton = confirmation;
-
-        //    if (ChallengeWerte.ShowDialog() == DialogResult.OK)
-        //    {
-        //        if (Int32.TryParse(txt_Zeit.Text, out int time))
-        //        {
-        //            if (Int32.TryParse(txt_KartenAnzahl.Text, out int anzahl) && anzahl > 0)
-        //            {
-        //                Stapel[] alleStapel = new StapelRepository().GetAlleStapel();
-        //                Stapel stapelMitAusgewähltenName =
-        //                    alleStapel.First(stapel => stapel.Name == selectedItem.SubItems[0].Text);
-        //                ChallengeView challengeView = new ChallengeView(time, anzahl, stapelMitAusgewähltenName.Id);
-        //                challengeView.Show();
-        //            }
-
-        //            else
-        //                viewController.ErrorMessageBox("Es wurde keine Gültige Anzahl angegeben");
-        //        }
-
-        //        else
-        //            viewController.ErrorMessageBox("Es wurde keine richtige Zeit angegeben");
-        //    }
-        //}
-
-
         private void listView_Ausgabe_Click(object sender, EventArgs e)
         {
             selectedItem = listController.SelectItem(listView_Ausgabe);
-        }
-
-        private void listView_Ausgabe_DoubleClick(object sender, EventArgs e)
-        {
-            viewController.BuildKartenUebersicht(selectedItem).Show();
         }
 
         private void ListViewColumnClick(object sender, ColumnClickEventArgs e)

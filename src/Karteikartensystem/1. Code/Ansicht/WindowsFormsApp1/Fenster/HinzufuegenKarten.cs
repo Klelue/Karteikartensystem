@@ -29,6 +29,16 @@ namespace AnsichtsFenster.Fenster
             comboBoxLaden();
             txt_KartenSuche.Text = "Suchen nach:";
             txt_KartenSuche.ForeColor = Color.Gray;
+            richTxt_Vorderseite.Text = "Frage";
+            richTxt_Vorderseite.ForeColor = Color.Gray;
+            richTxt_Rueckseite.Text = "Richtige Antwort";
+            richTxt_Rueckseite.ForeColor = Color.Gray;
+            fackeAntwort1.Text = "Falsche Antwort 1 (Optional)";
+            fackeAntwort1.ForeColor = Color.Gray;
+            fackeAntwort2.Text = "Falsche Antwort 2 (Optional)";
+            fackeAntwort2.ForeColor = Color.Gray;
+            fackeAntwort3.Text = "Falsche Antwort 3 (Optional)";
+            fackeAntwort3.ForeColor = Color.Gray;
         }
 
         private void comboBoxLaden() 
@@ -40,8 +50,6 @@ namespace AnsichtsFenster.Fenster
             }
             comboBox1.SelectedItem = comboBox1.Items[0];
         }
-
-
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             string ausgewählteKategorie = comboBox1.SelectedItem.ToString();
@@ -74,7 +82,7 @@ namespace AnsichtsFenster.Fenster
         {
             listView_KartenAnzeige.Clear();
             listView_KartenAnzeige.View = View.Details;
-            listView_KartenAnzeige.Columns.Add("Fragen").Width = listView_KartenAnzeige.Size.Width - 20;
+            listView_KartenAnzeige.Columns.Add("Fragen").Width = 550;
             KartenAnzeigen(alleKarten);
         }
 
@@ -89,6 +97,8 @@ namespace AnsichtsFenster.Fenster
             selectedKarte = SelectedKarteAsKarte(listView_KartenAnzeige.SelectedItems[0].Text);
             richTxt_Vorderseite.Text = selectedKarte.Frage;
             richTxt_Rueckseite.Text = selectedKarte.Antwort;
+            richTxt_Vorderseite.ForeColor = Color.Black;
+            richTxt_Rueckseite.ForeColor = Color.Black;
         }
 
         private Karte SelectedKarteAsKarte(string karteFrage)
@@ -173,6 +183,96 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
+        private void richTxt_Vorderseite_Leave(object sender, EventArgs e)
+        {
+            if (richTxt_Vorderseite.Text == "")
+            {
+                richTxt_Vorderseite.Text = "Frage";
+                richTxt_Vorderseite.ForeColor = Color.Gray;
+            }
+        }
+
+        private void richTxt_Vorderseite_Enter(object sender, EventArgs e)
+        {
+            if (richTxt_Vorderseite.Text == "Frage")
+            {
+                richTxt_Vorderseite.Clear();
+                richTxt_Vorderseite.ForeColor = Color.Black;
+            }
+        }
+        private void richTxt_Rueckseite_Leave(object sender, EventArgs e)
+        {
+            if (richTxt_Rueckseite.Text == "")
+            {
+                richTxt_Rueckseite.Text = "Richtige Antwort";
+                richTxt_Rueckseite.ForeColor = Color.Gray;
+            }
+        }
+
+        private void richTxt_Rueckseite_Enter(object sender, EventArgs e)
+        {
+            if (richTxt_Rueckseite.Text == "Richtige Antwort")
+            {
+                richTxt_Rueckseite.Clear();
+                richTxt_Rueckseite.ForeColor = Color.Black;
+            }
+        }
+
+        private void fackeAntwort1_Leave(object sender, EventArgs e)
+        {
+            if (fackeAntwort1.Text == "")
+            {
+                fackeAntwort1.Text = "Falsche Antwort 1 (Optional)";
+                fackeAntwort1.ForeColor = Color.Gray;
+            }
+        }
+
+        private void fackeAntwort1_Enter(object sender, EventArgs e)
+        {
+            if (fackeAntwort1.Text == "Falsche Antwort 1 (Optional)")
+            {
+                fackeAntwort1.Clear();
+                fackeAntwort1.ForeColor = Color.Black;
+            }
+        }
+
+        private void fackeAntwort2_Leave(object sender, EventArgs e)
+        {
+            if (fackeAntwort2.Text == "")
+            {
+                fackeAntwort2.Text = "Falsche Antwort 2 (Optional)";
+                fackeAntwort2.ForeColor = Color.Gray;
+            }
+        }
+
+        private void fackeAntwort2_Enter(object sender, EventArgs e)
+        {
+            if (fackeAntwort2.Text == "Falsche Antwort 2 (Optional)")
+            {
+                fackeAntwort2.Clear();
+                fackeAntwort2.ForeColor = Color.Black;
+            }
+        }
+
+        private void fackeAntwort3_Leave(object sender, EventArgs e)
+        {
+            if (fackeAntwort3.Text == "")
+            {
+                fackeAntwort3.Text = "Falsche Antwort 3 (Optional)";
+                fackeAntwort3.ForeColor = Color.Gray;
+            }
+        }
+
+        private void fackeAntwort3_Enter(object sender, EventArgs e)
+        {
+            if (fackeAntwort3.Text == "Falsche Antwort 3 (Optional)")
+            {
+                fackeAntwort3.Clear();
+                fackeAntwort3.ForeColor = Color.Black;
+            }
+        }
+
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (txt_KartenSuche.Text.Trim() == "")
@@ -193,11 +293,11 @@ namespace AnsichtsFenster.Fenster
                 this.Top += e.Y - lastPoint.Y;
             }
         }
-
         private void dachPanel_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
         }
+
 
         private void ÜbersichtButton_Click(object sender, EventArgs e)
         {
@@ -219,8 +319,6 @@ namespace AnsichtsFenster.Fenster
             this.Hide();
             new JetztLernenView().Show();
         }
-
-
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
 

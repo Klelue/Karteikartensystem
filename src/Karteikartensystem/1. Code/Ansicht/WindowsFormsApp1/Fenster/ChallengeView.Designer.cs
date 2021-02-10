@@ -54,6 +54,7 @@ namespace AnsichtsFenster.Fenster
             this.JetztLernenButton = new System.Windows.Forms.Button();
             this.KarteBearbeitenButton = new System.Windows.Forms.Button();
             this.ÜbersichtButton = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pnl_FrageAntwort.SuspendLayout();
             this.InhaltPanel.SuspendLayout();
             this.dachPanel.SuspendLayout();
@@ -231,7 +232,7 @@ namespace AnsichtsFenster.Fenster
             // 
             this.lbl_Auswertung.AutoSize = true;
             this.lbl_Auswertung.Font = new System.Drawing.Font("Yu Gothic UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Auswertung.Location = new System.Drawing.Point(20, 17);
+            this.lbl_Auswertung.Location = new System.Drawing.Point(57, 64);
             this.lbl_Auswertung.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Auswertung.Name = "lbl_Auswertung";
             this.lbl_Auswertung.Size = new System.Drawing.Size(165, 38);
@@ -396,6 +397,12 @@ namespace AnsichtsFenster.Fenster
             this.ÜbersichtButton.UseVisualStyleBackColor = false;
             this.ÜbersichtButton.Click += new System.EventHandler(this.ÜbersichtButton_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // ChallengeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -441,5 +448,6 @@ namespace AnsichtsFenster.Fenster
         private System.Windows.Forms.Button JetztLernenButton;
         private System.Windows.Forms.Button KarteBearbeitenButton;
         private System.Windows.Forms.Button ÜbersichtButton;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
