@@ -333,7 +333,7 @@ namespace AnsichtsFenster.Fenster
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(199, 37);
             this.StartButton.TabIndex = 10;
-            this.StartButton.Text = "Jetzt starten";
+            this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 

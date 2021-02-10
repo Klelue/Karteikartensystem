@@ -10,7 +10,7 @@ namespace AnsichtsFenster.Fenster
 {
     public partial class StapelBearbeitenView : Form
     {
-        private StapelRepository stapelRepository;
+        private readonly StapelRepository stapelRepository;
         public StapelBearbeitenView()
         {
             InitializeComponent();
@@ -26,9 +26,10 @@ namespace AnsichtsFenster.Fenster
         {
             string stapelName = textBoxStapelName.Text;
 
-            Stapel stapel = new Stapel();
-
-            stapel.Name = stapelName;
+            Stapel stapel = new Stapel
+            {
+                Name = stapelName
+            };
 
             if (stapelRepository.StapelHinzufügen(stapel))
             {
@@ -39,7 +40,6 @@ namespace AnsichtsFenster.Fenster
                 MessageBox.Show("Der Stapel konte nicht gespeicher werden", "Sorry",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            
         }
 
         private void dateiAuswählen_Click(object sender, EventArgs e)
@@ -47,8 +47,7 @@ namespace AnsichtsFenster.Fenster
             using (OpenFileDialog fileDialog = new OpenFileDialog())
             {
                 fileDialog.Filter = @"Stapel-Export-Datei|*.sed";
-            
-
+                
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
 
@@ -108,14 +107,12 @@ namespace AnsichtsFenster.Fenster
             }
             else
             {
-
                 StapelFileHandler fileHandler = new StapelFileHandler();
 
                 Karte[] alleKartenEinesStapels = new KarteRepository().GetAlleKartenEinesStapels(selectedStapel.Id);
 
                 fileHandler.KartenAlsCsvDateiAnlegen(selectedStapel.Name, alleKartenEinesStapels, selectedPath);
             }
-            
         }
 
         private void stapelAktualisieren_Click(object sender, EventArgs e)
@@ -150,11 +147,7 @@ namespace AnsichtsFenster.Fenster
             {
                 stapelRepository.StapelLöschen(selectedStapel.Id);
             }
-
         }
-
-
-        /****************************************/
 
         private Point LastPoint;
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)
@@ -165,6 +158,7 @@ namespace AnsichtsFenster.Fenster
                 this.Top += e.Y - LastPoint.Y;
             }
         }
+
         private void dachPanel_MouseDown(object sender, MouseEventArgs e)
         {
             LastPoint = new Point(e.X, e.Y);
@@ -184,12 +178,13 @@ namespace AnsichtsFenster.Fenster
         {
 
         }
+
         private void JetztLernenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             new JetztLernenView().Show();
         }
-
+        
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -205,6 +200,5 @@ namespace AnsichtsFenster.Fenster
         {
             Application.Exit();
         }
-
     }
 }
