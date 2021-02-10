@@ -109,12 +109,7 @@ namespace AnsichtsFenster.Fenster
             antworten.Add(selectedKarte.FalschAntwort3);
 
             antworten = LeerEintraegeEntfernen(antworten);
-
-            if (antworten.Count < 2)
-            {
-                antworten.Add("Keien Fakeantwort vorhanden");
-            }
-
+            
             Random random = new Random();
 
             for (int i = 0; i < antworten.Count; i++)
@@ -143,30 +138,19 @@ namespace AnsichtsFenster.Fenster
             return listeOhneLeereintreage;
         }
 
-        private List<Karte> RandomKartenFromAlleKarten(int anzahl, List<Karte> alleKarten)
+        private List<Karte> RandomKartenFromAlleKarten(int anzahl, List<Karte> alleChallengeKarten)
         {
-            List<Karte> bearbeitendeList = alleKarten;
             List<Karte> randomKarten = new List<Karte>();
 
             Random random = new Random();
+
             for (int i = 0; i < anzahl; i++)
             {
-               // bool minEineFalscheAntwort = false;
-               // while (!minEineFalscheAntwort)
-               // {
+                int randomIndex = random.Next(alleChallengeKarten.Count);
 
-                    int randomIndex = random.Next(bearbeitendeList.Count - i);
+                randomKarten.Add(alleChallengeKarten[randomIndex]);
+                alleChallengeKarten.RemoveAt(randomIndex);
 
-                  //  if (bearbeitendeList[randomIndex].FalschAntwort1.Trim() != "")
-                  //  {
-
-                        randomKarten.Add(bearbeitendeList[randomIndex]);
-                        bearbeitendeList.RemoveAt(randomIndex);
-
-                 //       minEineFalscheAntwort = true;
-                 //   }
-                 //}
-                
             }
 
             return randomKarten;

@@ -10,7 +10,6 @@ namespace AnsichtsFenster.Fenster
 {
     public partial class StapelUebersichtView : Form
     {
-        private ListViewItem selectedItem;
         private StapelListController listController;
         private ViewController viewController;
 
@@ -74,15 +73,10 @@ namespace AnsichtsFenster.Fenster
         //    }
         //}
 
-
-        private void listView_Ausgabe_Click(object sender, EventArgs e)
-        {
-            selectedItem = listController.SelectItem(listView_Ausgabe);
-        }
-
+        
         private void listView_Ausgabe_DoubleClick(object sender, EventArgs e)
         {
-            viewController.BuildKartenUebersicht(selectedItem).Show();
+            viewController.BuildKartenUebersicht(listController.SelectStapel(listView_Ausgabe)).Show();
         }
 
         private void ListViewColumnClick(object sender, ColumnClickEventArgs e)
