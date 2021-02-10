@@ -42,6 +42,7 @@ namespace AnsichtsFenster.Fenster
             fackeAntwort2.ForeColor = Color.Gray;
             fackeAntwort3.Text = "Falsche Antwort 3 (Optional)";
             fackeAntwort3.ForeColor = Color.Gray;
+            listView_KartenAnzeige.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         private void comboBoxLaden() 
