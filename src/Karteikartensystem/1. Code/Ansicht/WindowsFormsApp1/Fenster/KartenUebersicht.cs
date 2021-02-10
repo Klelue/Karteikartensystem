@@ -39,7 +39,6 @@ namespace AnsichtsFenster.Fenster
                 selectedKarte = karte;
             }
 
-          //  lblZeitAngabe.Parent = imgParty;
             stoppuhr = new Stoppuhr();
             stoppuhr.Start();
             FrageSetzen();
@@ -51,10 +50,9 @@ namespace AnsichtsFenster.Fenster
 
             Karte[] karten = kartenManager.GetAlleKarten();
 
-            selectetStapel.GelernteZeitInMinuten = stoppuhr.GetZeit();
+            selectetStapel.GelernteZeitInMinuten += stoppuhr.GetZeit();
 
             new StapelRepository().StapelAktualisieren(selectetStapel);
-
             foreach (Karte karte in karten)
             {
                 repository.KarteAktualisieren(karte);
@@ -171,7 +169,12 @@ namespace AnsichtsFenster.Fenster
 
         private void StapelWählenButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+           
+            selectetStapel.GelernteZeitInMinuten += stoppuhr.GetZeit();
+            new StapelRepository().StapelAktualisieren(selectetStapel);
+
+
+            Hide();
             new JetztLernenView().Show();
         }
 

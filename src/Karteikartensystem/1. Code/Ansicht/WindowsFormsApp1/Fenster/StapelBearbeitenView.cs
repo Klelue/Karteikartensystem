@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using AnsichtsFenster.Controller;
 using AnsichtsFenster.Utilities;
 using Model;
 using Repositories;
@@ -11,11 +12,15 @@ namespace AnsichtsFenster.Fenster
     public partial class StapelBearbeitenView : Form
     {
         private StapelRepository stapelRepository;
+        private ViewController viewController;
+        private Point letzteMousekoordinaten;
+        
         public StapelBearbeitenView()
         {
             InitializeComponent();
 
             stapelRepository = new StapelRepository();
+            viewController = new ViewController();
 
             Object[] alleStapel = stapelRepository.GetAlleStapel();
 
@@ -32,12 +37,12 @@ namespace AnsichtsFenster.Fenster
 
             if (stapelRepository.StapelHinzufügen(stapel))
             {
-                MessageBox.Show("Der Stapel wurde gespeichert", "Es hat geklappt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                viewController.ShowMessageBoxKeinElementGewaehlt();
+
             }
             else
             {
-                MessageBox.Show("Der Stapel konte nicht gespeicher werden", "Sorry",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+               viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
             }
             
         }
@@ -104,7 +109,7 @@ namespace AnsichtsFenster.Fenster
 
             if (selectedStapel == null)
             {
-                MessageBox.Show("Bevor Sie ein Stapel umbenennen müssen sie ein Stapel auswählen", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                viewController.ShowMessageBoxKeinElementGewaehlt();
             }
             else
             {
@@ -124,18 +129,15 @@ namespace AnsichtsFenster.Fenster
 
             if (selectedStapel == null)
             {
-                MessageBox.Show("Stapel wählen", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+              viewController.ShowMessageBoxKeinElementGewaehlt();
             }
             else
             {
                 selectedStapel.Name = textBoxStapelName.Text;
                 stapelRepository.StapelAktualisieren(selectedStapel);
+
+                viewController.ShowMessageBoxAktualisierenErfolgreich();
             }
-        }
-
-        private void StapelBearbeitenView_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void stapelLöschen_Click(object sender, EventArgs e)
@@ -144,30 +146,27 @@ namespace AnsichtsFenster.Fenster
 
             if (selectedStapel == null)
             {
-                MessageBox.Show("Stapel wählen", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               viewController.ShowMessageBoxKeinElementGewaehlt();
             }
             else
             {
                 stapelRepository.StapelLöschen(selectedStapel.Id);
+                viewController.ShowMessageBoxErfolgreichGeloescht();
             }
 
         }
 
-
-        /****************************************/
-
-        private Point LastPoint;
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - LastPoint.X;
-                this.Top += e.Y - LastPoint.Y;
+                this.Left += e.X - letzteMousekoordinaten.X;
+                this.Top += e.Y - letzteMousekoordinaten.Y;
             }
         }
         private void dachPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            LastPoint = new Point(e.X, e.Y);
+            letzteMousekoordinaten = new Point(e.X, e.Y);
         }
 
         private void ÜbersichtButton_Click(object sender, EventArgs e)
@@ -180,10 +179,7 @@ namespace AnsichtsFenster.Fenster
             this.Hide();
             new HinzufuegenKarten().Show();
         }
-        private void StapelBearbeitenButton_Click(object sender, EventArgs e)
-        {
-
-        }
+   
         private void JetztLernenButton_Click(object sender, EventArgs e)
         {
             this.Hide();

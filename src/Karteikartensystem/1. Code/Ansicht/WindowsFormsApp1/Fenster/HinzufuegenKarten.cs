@@ -127,20 +127,33 @@ namespace AnsichtsFenster.Fenster
         private void listView_KartenAnzeige_Click(object sender, EventArgs e)
         {
             selectedKarte = SelectedKarteAsKarte(listView_KartenAnzeige.SelectedItems[0].Text);
+
             if (selectedKarte == null)
             {
-                viewController.ShowMessageBoxKeinElementGewaehlt();
+                string stapelname = comboBox1.SelectedItem.ToString();
+
+                Stapel[] alleStapel = new StapelRepository().GetAlleStapel();
+
+                Stapel aktuellerStapel = alleStapel.First(stapel => stapel.Name == stapelname);
+
+                Karte[] alleKartenEinesStapels = repository.GetAlleKartenEinesStapels(aktuellerStapel.Id);
+
+                string zuletztAusgewählteFrage = listView_KartenAnzeige.Items[listView_KartenAnzeige.Items.Count - 1].Text; 
+
+                Karte zuletztAusgewälteKarte = alleKartenEinesStapels.First(karte => karte.Frage == zuletztAusgewählteFrage);
+
+                selectedKarte = zuletztAusgewälteKarte;
+             
             }
-            else
-            {
-                richTxt_Vorderseite.Text = selectedKarte.Frage;
-                richTxt_Rueckseite.Text = selectedKarte.Antwort;
-                fackeAntwort1.Text = selectedKarte.FalschAntwort1;
-                fackeAntwort2.Text = selectedKarte.FalschAntwort2;
-                fackeAntwort3.Text = selectedKarte.FalschAntwort3;
-                richTxt_Vorderseite.ForeColor = Color.Black;
-                richTxt_Rueckseite.ForeColor = Color.Black;
-            }
+
+            richTxt_Vorderseite.Text = selectedKarte.Frage;
+            richTxt_Rueckseite.Text = selectedKarte.Antwort;
+            fackeAntwort1.Text = selectedKarte.FalschAntwort1;
+            fackeAntwort2.Text = selectedKarte.FalschAntwort2;
+            fackeAntwort3.Text = selectedKarte.FalschAntwort3;
+            richTxt_Vorderseite.ForeColor = Color.Black;
+            richTxt_Rueckseite.ForeColor = Color.Black;
+
         }
 
         private void ClearTextFelder()
