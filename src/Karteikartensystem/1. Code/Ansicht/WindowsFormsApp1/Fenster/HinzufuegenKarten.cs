@@ -16,6 +16,7 @@ namespace AnsichtsFenster.Fenster
         private List<Karte> alleKarten;
         private KarteRepository repository;
         private ViewController viewController;
+        private KartenListController kartenListController;
        
 
         private long stapelId;
@@ -27,6 +28,7 @@ namespace AnsichtsFenster.Fenster
             viewController = new ViewController();
             repository = new KarteRepository();
             alleKarten = new List<Karte>();
+            kartenListController = new KartenListController();
             comboBoxLaden();
             txt_KartenSuche.Text = "Suchen nach:";
             txt_KartenSuche.ForeColor = Color.Gray;
@@ -64,7 +66,15 @@ namespace AnsichtsFenster.Fenster
             if (richTxt_Vorderseite.Text.Trim() != "" && richTxt_Rueckseite.Text.Trim() != "")
             {
                 if (repository.KarteHinzufügen(KartenAnlegen()))
+                {
+                    string stapelName = comboBox1.SelectedItem.ToString();
+                    stapelId = allesStapel.FirstOrDefault(stapel => stapel.Name == stapelName).Id;
+                    Karte[] alleKartenEinesStapels = repository.GetAlleKartenEinesStapels(stapelId);
+                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKartenEinesStapels.ToList());
+                    listView_KartenAnzeige = listView;
                     viewController.OkMessageBox("Die karte wurde gespeichert", "Es hat geklappt");
+                }
+                    
             }
             else
                 viewController.ExclamationsMessageBox("Es wurde nicht in eins oder in beiden Felder etwas geschrieben", "Sorry");
@@ -136,6 +146,11 @@ namespace AnsichtsFenster.Fenster
                 if (repository.KarteLöschen(selectedKarte.Id))
                 {
                     selectedKarte = null;
+                    string stapelName = comboBox1.SelectedItem.ToString();
+                    stapelId = allesStapel.FirstOrDefault(stapel => stapel.Name == stapelName).Id;
+                    Karte[] alleKartenEinesStapels = repository.GetAlleKartenEinesStapels(stapelId);
+                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKartenEinesStapels.ToList());
+                    listView_KartenAnzeige = listView;
                     viewController.OkMessageBox("Es hat geklappt", "Yeah");
                 }
             }
@@ -153,6 +168,8 @@ namespace AnsichtsFenster.Fenster
                 if (repository.KarteAktualisieren(selectedKarte))
                 { 
                     selectedKarte = null;
+                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKarten);
+                    listView_KartenAnzeige = listView;
                     viewController.OkMessageBox("Es hat geklappt", "Yeah");
                 }
             }
