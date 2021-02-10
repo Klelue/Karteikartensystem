@@ -18,12 +18,16 @@ namespace Repositories
         public bool KarteHinzufügen(Karte karte)
         {
 
-            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id, schwierigkeitsgrad) VALUES(@Frage, @Antwort, @StapelId, @Schwierigkeitsgrad);";
+            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id, schwierigkeitsgrad, falsch_antwort1, falsch_antwort2, falsch_antwort3) " +
+                         $"VALUES(@Frage, @Antwort, @StapelId, @Schwierigkeitsgrad, @FalschAntwort1, @FalschAntwort2, @FalschAntwort3);";
 
                 SqlCommand sqlCommand = new SqlCommand(sql);
 
                 sqlCommand.Parameters.AddWithValue("@Frage", karte.Frage);
                 sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
+                sqlCommand.Parameters.AddWithValue("@FalschAntwort1", karte.FalschAntwort1);
+                sqlCommand.Parameters.AddWithValue("@FalschAntwort2", karte.FalschAntwort2);
+                sqlCommand.Parameters.AddWithValue("@FalschAntwort3", karte.FalschAntwort3);
                 sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
                 sqlCommand.Parameters.AddWithValue("@Schwierigkeitsgrad", karte.Schwierigkeitsgrad);
 
@@ -118,13 +122,17 @@ namespace Repositories
         public bool KarteAktualisieren(Karte karte)
         {
 
-            string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, stapel_id = @StapelId, schwierigkeitsgrad = @Schwierigkeitsgrad WHERE Id = @Id;";
+            string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, falsch_antwort1 = @FalschAntwort1" +
+                         ", falsch_antwort2 = @FalschAntwort2, falsch_antwort3 = @FalschAntwort3, stapel_id = @StapelId, schwierigkeitsgrad = @Schwierigkeitsgrad WHERE Id = @Id;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
             sqlCommand.Parameters.AddWithValue("@Id", karte.Id);
             sqlCommand.Parameters.AddWithValue("@Frage", karte.Frage);
             sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
+            sqlCommand.Parameters.AddWithValue("@FalschAntwort1", karte.FalschAntwort1);
+            sqlCommand.Parameters.AddWithValue("@FalschAntwort2", karte.FalschAntwort2);
+            sqlCommand.Parameters.AddWithValue("@FalschAntwort3", karte.FalschAntwort3);
             sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
             sqlCommand.Parameters.AddWithValue("@Schwierigkeitsgrad", karte.Schwierigkeitsgrad);
 

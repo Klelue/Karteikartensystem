@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using AnsichtsFenster.Controller;
-using Model;
-using Repositories;
 
 namespace AnsichtsFenster.Fenster
 {
@@ -27,6 +24,7 @@ namespace AnsichtsFenster.Fenster
         }
 
 
+        
         //public void ChallengeAbfrage()
         //{
 

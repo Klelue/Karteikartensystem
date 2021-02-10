@@ -42,13 +42,17 @@
             this.listView_KartenAnzeige = new System.Windows.Forms.ListView();
             this.InhaltPanel = new System.Windows.Forms.Panel();
             this.dachPanel = new System.Windows.Forms.Panel();
+            this.StapelBearbeitenButton = new System.Windows.Forms.Button();
             this.ChallengeButton = new System.Windows.Forms.Button();
             this.MinimierenButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
             this.JetztLernenButton = new System.Windows.Forms.Button();
             this.KarteBearbeitenButton = new System.Windows.Forms.Button();
             this.ÜbersichtButton = new System.Windows.Forms.Button();
-            this.StapelBearbeitenButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.fackeAntwort1 = new System.Windows.Forms.RichTextBox();
+            this.fackeAntwort2 = new System.Windows.Forms.RichTextBox();
+            this.fackeAntwort3 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.InhaltPanel.SuspendLayout();
             this.dachPanel.SuspendLayout();
@@ -59,46 +63,50 @@
             this.richTxt_Vorderseite.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTxt_Vorderseite.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTxt_Vorderseite.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.richTxt_Vorderseite.Location = new System.Drawing.Point(485, 110);
+            this.richTxt_Vorderseite.Location = new System.Drawing.Point(485, 64);
             this.richTxt_Vorderseite.Margin = new System.Windows.Forms.Padding(4);
             this.richTxt_Vorderseite.Name = "richTxt_Vorderseite";
-            this.richTxt_Vorderseite.Size = new System.Drawing.Size(430, 450);
-            this.richTxt_Vorderseite.TabIndex = 0;
+            this.richTxt_Vorderseite.Size = new System.Drawing.Size(430, 496);
+            this.richTxt_Vorderseite.TabIndex = 100;
             this.richTxt_Vorderseite.Text = "";
+            this.richTxt_Vorderseite.Enter += new System.EventHandler(this.richTxt_Vorderseite_Enter);
+            this.richTxt_Vorderseite.Leave += new System.EventHandler(this.richTxt_Vorderseite_Leave);
             // 
             // richTxt_Rueckseite
             // 
             this.richTxt_Rueckseite.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTxt_Rueckseite.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTxt_Rueckseite.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.richTxt_Rueckseite.Location = new System.Drawing.Point(945, 110);
+            this.richTxt_Rueckseite.Location = new System.Drawing.Point(940, 64);
             this.richTxt_Rueckseite.Margin = new System.Windows.Forms.Padding(4);
             this.richTxt_Rueckseite.Name = "richTxt_Rueckseite";
-            this.richTxt_Rueckseite.Size = new System.Drawing.Size(430, 450);
+            this.richTxt_Rueckseite.Size = new System.Drawing.Size(430, 110);
             this.richTxt_Rueckseite.TabIndex = 1;
             this.richTxt_Rueckseite.Text = "";
+            this.richTxt_Rueckseite.Enter += new System.EventHandler(this.richTxt_Rueckseite_Enter);
+            this.richTxt_Rueckseite.Leave += new System.EventHandler(this.richTxt_Rueckseite_Leave);
             // 
             // lbl_Vorderseite
             // 
             this.lbl_Vorderseite.AutoSize = true;
             this.lbl_Vorderseite.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Vorderseite.Location = new System.Drawing.Point(585, 61);
+            this.lbl_Vorderseite.Location = new System.Drawing.Point(660, 20);
             this.lbl_Vorderseite.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Vorderseite.Name = "lbl_Vorderseite";
-            this.lbl_Vorderseite.Size = new System.Drawing.Size(198, 28);
+            this.lbl_Vorderseite.Size = new System.Drawing.Size(61, 28);
             this.lbl_Vorderseite.TabIndex = 2;
-            this.lbl_Vorderseite.Text = "Voderseite der Karte";
+            this.lbl_Vorderseite.Text = "Frage";
             // 
             // lbl_Rueckseite
             // 
             this.lbl_Rueckseite.AutoSize = true;
             this.lbl_Rueckseite.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Rueckseite.Location = new System.Drawing.Point(1046, 61);
+            this.lbl_Rueckseite.Location = new System.Drawing.Point(1060, 20);
             this.lbl_Rueckseite.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Rueckseite.Name = "lbl_Rueckseite";
-            this.lbl_Rueckseite.Size = new System.Drawing.Size(188, 28);
+            this.lbl_Rueckseite.Size = new System.Drawing.Size(164, 28);
             this.lbl_Rueckseite.TabIndex = 3;
-            this.lbl_Rueckseite.Text = "Rückseite der Karte";
+            this.lbl_Rueckseite.Text = "Richtige Antwort";
             // 
             // btn_Hinzufuegen
             // 
@@ -136,7 +144,7 @@
             this.btn_Save.TabIndex = 6;
             this.btn_Save.Text = "Editieren";
             this.btn_Save.UseVisualStyleBackColor = false;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            this.btn_Save.Click += new System.EventHandler(this.btn_editieren_Click);
             // 
             // btn_Delete
             // 
@@ -215,6 +223,10 @@
             // 
             // InhaltPanel
             // 
+            this.InhaltPanel.Controls.Add(this.fackeAntwort3);
+            this.InhaltPanel.Controls.Add(this.fackeAntwort2);
+            this.InhaltPanel.Controls.Add(this.fackeAntwort1);
+            this.InhaltPanel.Controls.Add(this.label1);
             this.InhaltPanel.Controls.Add(this.listView_KartenAnzeige);
             this.InhaltPanel.Controls.Add(this.pictureBox1);
             this.InhaltPanel.Controls.Add(this.txt_KartenSuche);
@@ -250,6 +262,24 @@
             this.dachPanel.TabIndex = 8;
             this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseDown);
             this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseMove);
+            // 
+            // StapelBearbeitenButton
+            // 
+            this.StapelBearbeitenButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
+            this.StapelBearbeitenButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.StapelBearbeitenButton.FlatAppearance.BorderSize = 0;
+            this.StapelBearbeitenButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
+            this.StapelBearbeitenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
+            this.StapelBearbeitenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StapelBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StapelBearbeitenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
+            this.StapelBearbeitenButton.Location = new System.Drawing.Point(470, 7);
+            this.StapelBearbeitenButton.Name = "StapelBearbeitenButton";
+            this.StapelBearbeitenButton.Size = new System.Drawing.Size(250, 45);
+            this.StapelBearbeitenButton.TabIndex = 11;
+            this.StapelBearbeitenButton.Text = "Stapel bearbeiten";
+            this.StapelBearbeitenButton.UseVisualStyleBackColor = false;
+            this.StapelBearbeitenButton.Click += new System.EventHandler(this.StapelBearbeitenButton_Click);
             // 
             // ChallengeButton
             // 
@@ -357,23 +387,57 @@
             this.ÜbersichtButton.UseVisualStyleBackColor = false;
             this.ÜbersichtButton.Click += new System.EventHandler(this.ÜbersichtButton_Click);
             // 
-            // StapelBearbeitenButton
+            // label1
             // 
-            this.StapelBearbeitenButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(226)))));
-            this.StapelBearbeitenButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.StapelBearbeitenButton.FlatAppearance.BorderSize = 0;
-            this.StapelBearbeitenButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
-            this.StapelBearbeitenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(50)))), ((int)(((byte)(190)))));
-            this.StapelBearbeitenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StapelBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StapelBearbeitenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.StapelBearbeitenButton.Location = new System.Drawing.Point(470, 7);
-            this.StapelBearbeitenButton.Name = "StapelBearbeitenButton";
-            this.StapelBearbeitenButton.Size = new System.Drawing.Size(250, 45);
-            this.StapelBearbeitenButton.TabIndex = 11;
-            this.StapelBearbeitenButton.Text = "Stapel bearbeiten";
-            this.StapelBearbeitenButton.UseVisualStyleBackColor = false;
-            this.StapelBearbeitenButton.Click += new System.EventHandler(this.StapelBearbeitenButton_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1060, 187);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(179, 28);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Falsche Antworten";
+            // 
+            // fackeAntwort1
+            // 
+            this.fackeAntwort1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.fackeAntwort1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fackeAntwort1.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.fackeAntwort1.Location = new System.Drawing.Point(940, 230);
+            this.fackeAntwort1.Margin = new System.Windows.Forms.Padding(4);
+            this.fackeAntwort1.Name = "fackeAntwort1";
+            this.fackeAntwort1.Size = new System.Drawing.Size(430, 100);
+            this.fackeAntwort1.TabIndex = 11;
+            this.fackeAntwort1.Text = "";
+            this.fackeAntwort1.Enter += new System.EventHandler(this.fackeAntwort1_Enter);
+            this.fackeAntwort1.Leave += new System.EventHandler(this.fackeAntwort1_Leave);
+            // 
+            // fackeAntwort2
+            // 
+            this.fackeAntwort2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.fackeAntwort2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fackeAntwort2.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.fackeAntwort2.Location = new System.Drawing.Point(940, 345);
+            this.fackeAntwort2.Margin = new System.Windows.Forms.Padding(4);
+            this.fackeAntwort2.Name = "fackeAntwort2";
+            this.fackeAntwort2.Size = new System.Drawing.Size(430, 100);
+            this.fackeAntwort2.TabIndex = 12;
+            this.fackeAntwort2.Text = "";
+            this.fackeAntwort2.Enter += new System.EventHandler(this.fackeAntwort2_Enter);
+            this.fackeAntwort2.Leave += new System.EventHandler(this.fackeAntwort2_Leave);
+            // 
+            // fackeAntwort3
+            // 
+            this.fackeAntwort3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.fackeAntwort3.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fackeAntwort3.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.fackeAntwort3.Location = new System.Drawing.Point(940, 460);
+            this.fackeAntwort3.Margin = new System.Windows.Forms.Padding(4);
+            this.fackeAntwort3.Name = "fackeAntwort3";
+            this.fackeAntwort3.Size = new System.Drawing.Size(430, 100);
+            this.fackeAntwort3.TabIndex = 13;
+            this.fackeAntwort3.Text = "";
+            this.fackeAntwort3.Enter += new System.EventHandler(this.fackeAntwort3_Enter);
+            this.fackeAntwort3.Leave += new System.EventHandler(this.fackeAntwort3_Leave);
             // 
             // HinzufuegenKarten
             // 
@@ -418,5 +482,9 @@
         private System.Windows.Forms.Button KarteBearbeitenButton;
         private System.Windows.Forms.Button ÜbersichtButton;
         private System.Windows.Forms.Button StapelBearbeitenButton;
+        private System.Windows.Forms.RichTextBox fackeAntwort3;
+        private System.Windows.Forms.RichTextBox fackeAntwort2;
+        private System.Windows.Forms.RichTextBox fackeAntwort1;
+        private System.Windows.Forms.Label label1;
     }
 }

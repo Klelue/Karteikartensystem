@@ -221,8 +221,10 @@ namespace AnsichtsFenster.Fenster
             this.listView_Ausgabe.UseCompatibleStateImageBehavior = false;
             this.listView_Ausgabe.View = System.Windows.Forms.View.Details;
             this.listView_Ausgabe.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListViewColumnClick);
+
             this.listView_Ausgabe.DoubleClick += new System.EventHandler(this.listView_Ausgabe_DoubleClick);
-            // 
+
+
             // pictureBox1
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
