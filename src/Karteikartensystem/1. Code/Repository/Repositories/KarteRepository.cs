@@ -18,12 +18,16 @@ namespace Repositories
         public bool KarteHinzufügen(Karte karte)
         {
 
-            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id, schwierigkeitsgrad) VALUES(@Frage, @Antwort, @StapelId, @Schwierigkeitsgrad);";
+            string sql = $"INSERT INTO Karte (frage, antwort, stapel_id, schwierigkeitsgrad, falsch_antwort1, falsch_antwort2, falsch_antwort3) " +
+                         $"VALUES(@Frage, @Antwort, @StapelId, @Schwierigkeitsgrad, @FalschAntwort1, @FalschAntwort2, @FalschAntwort3);";
 
                 SqlCommand sqlCommand = new SqlCommand(sql);
 
                 sqlCommand.Parameters.AddWithValue("@Frage", karte.Frage);
                 sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
+                sqlCommand.Parameters.AddWithValue("@FalschAntwort1", karte.FalschAntwort1);
+                sqlCommand.Parameters.AddWithValue("@FalschAntwort2", karte.FalschAntwort2);
+                sqlCommand.Parameters.AddWithValue("@FalschAntwort3", karte.FalschAntwort3);
                 sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
                 sqlCommand.Parameters.AddWithValue("@Schwierigkeitsgrad", karte.Schwierigkeitsgrad);
 
@@ -40,7 +44,7 @@ namespace Repositories
 
         public Karte[] GetAlleKartenEinesStapels(long stapelId)
         {
-            string sql = "SELECT Id, frage, antwort, falsch_antwort1, falsch_antwort2, falsch_antwort3, stapel_id, schwierigkeitsgrad FROM Karte WHERE stapel_id = @StapelId;";
+            string sql = "SELECT Id, frage, antwort, falsch_antwort1, falsch_antwort2, falsch_antwort3, stapel_id, schwierigkeitsgrad, challenge_mode FROM Karte WHERE stapel_id = @StapelId;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
@@ -60,6 +64,7 @@ namespace Repositories
                 string falschAntwort3 = dataTable.Rows[index][5].ToString();
                 long stapelidentifikation = (long) dataTable.Rows[index][6];
                 int status = (int) dataTable.Rows[index][7];
+                bool challengeMode = (bool)dataTable.Rows[index][8];
                 
 
                 Karte karte = new Karte();
@@ -72,8 +77,9 @@ namespace Repositories
                 karte.FalschAntwort1 = falschAntwort1;
                 karte.FalschAntwort2 = falschAntwort2;
                 karte.FalschAntwort3 = falschAntwort3;
+                karte.ChallengeMode = challengeMode;
 
-                kartenArray[index] = karte;
+                    kartenArray[index] = karte;
             }
 
 
@@ -116,13 +122,17 @@ namespace Repositories
         public bool KarteAktualisieren(Karte karte)
         {
 
-            string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, stapel_id = @StapelId, schwierigkeitsgrad = @Schwierigkeitsgrad WHERE Id = @Id;";
+            string sql = "UPDATE Karte SET frage = @Frage, antwort = @Antwort, falsch_antwort1 = @FalschAntwort1" +
+                         ", falsch_antwort2 = @FalschAntwort2, falsch_antwort3 = @FalschAntwort3, stapel_id = @StapelId, schwierigkeitsgrad = @Schwierigkeitsgrad WHERE Id = @Id;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
             sqlCommand.Parameters.AddWithValue("@Id", karte.Id);
             sqlCommand.Parameters.AddWithValue("@Frage", karte.Frage);
             sqlCommand.Parameters.AddWithValue("@Antwort", karte.Antwort);
+            sqlCommand.Parameters.AddWithValue("@FalschAntwort1", karte.FalschAntwort1);
+            sqlCommand.Parameters.AddWithValue("@FalschAntwort2", karte.FalschAntwort2);
+            sqlCommand.Parameters.AddWithValue("@FalschAntwort3", karte.FalschAntwort3);
             sqlCommand.Parameters.AddWithValue("@StapelId", karte.StapelId);
             sqlCommand.Parameters.AddWithValue("@Schwierigkeitsgrad", karte.Schwierigkeitsgrad);
 

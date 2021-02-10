@@ -7,16 +7,9 @@ namespace AnsichtsFenster.Controller
 {
     internal class ViewController
     {
-        internal KartenUebersicht BuildKartenUebersicht(ListViewItem item)
+        internal KartenUebersicht BuildKartenUebersicht(Stapel stapel)
         {
-            string panelName = item.SubItems[1].Text;
-            int panelId = Convert.ToInt32(item.SubItems[0].Text);
-
-            Stapel stapel = new Stapel();
-            stapel.Name = panelName;
-            stapel.Id = panelId;
-
-            return new KartenUebersicht(stapel);
+           return new KartenUebersicht(stapel);
         }
 
 

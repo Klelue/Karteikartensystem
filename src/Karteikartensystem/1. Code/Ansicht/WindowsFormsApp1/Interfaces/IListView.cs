@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Model;
 
 namespace AnsichtsFenster.Controller
 {
@@ -13,7 +14,7 @@ namespace AnsichtsFenster.Controller
         ListView UpdateSuchergebnis(string suchbegriff, ListView listView);
         //
         
-        ListViewItem SelectItem(ListView listView);
+        Stapel SelectStapel(ListView listView);
         ListView DeleteItem(ListView listView, ListViewItem listViewItem, out bool geloescht);
 
         //TODO CHECK FOR NEED
