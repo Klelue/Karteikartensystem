@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using AnsichtsFenster.Controller;
 using Model;
 using Repositories;
 
@@ -10,6 +11,7 @@ namespace AnsichtsFenster.Fenster
 {
     public partial class ChallengeView : Form
     {
+        private readonly ViewController viewController;
         private Karte selectedKarte;
         private List<Karte> kartenListe = new List<Karte>();
         private int richtigeAntworten;
@@ -21,6 +23,7 @@ namespace AnsichtsFenster.Fenster
         public ChallengeView()
         {
             InitializeComponent();
+            viewController = new ViewController();
             Object[] alleStapel = new StapelRepository().GetAlleStapel();
             listBoxStapel.Items.AddRange(alleStapel);
             listBoxStapel.SetSelected(0, true);
@@ -282,14 +285,12 @@ namespace AnsichtsFenster.Fenster
                 }
                 else
                 {
-                    MessageBox.Show("Es wurde keine Gültige Anzahl an Karten angegeben", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    viewController.ShowMessageBoxKeineGueltigeEingabe();
                 }
             }
             else
             {
-                MessageBox.Show("Es wurde keine Gültige Zeit angegeben", "Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                viewController.ShowMessageBoxKeineGueltigeEingabe();    
             }
         }
     }

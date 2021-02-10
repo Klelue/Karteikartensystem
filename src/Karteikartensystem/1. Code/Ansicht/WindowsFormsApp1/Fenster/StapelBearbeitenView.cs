@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using AnsichtsFenster.Controller;
 using AnsichtsFenster.Utilities;
 using Model;
 using Repositories;
@@ -11,11 +12,13 @@ namespace AnsichtsFenster.Fenster
     public partial class StapelBearbeitenView : Form
     {
         private readonly StapelRepository stapelRepository;
+        private readonly ViewController viewController;
         public StapelBearbeitenView()
         {
             InitializeComponent();
 
             stapelRepository = new StapelRepository();
+            viewController = new ViewController();
 
             Object[] alleStapel = stapelRepository.GetAlleStapel();
 
@@ -33,12 +36,11 @@ namespace AnsichtsFenster.Fenster
 
             if (stapelRepository.StapelHinzufügen(stapel))
             {
-                MessageBox.Show("Der Stapel wurde gespeichert", "Es hat geklappt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                viewController.ShowMessageBoxHinzufuegenErfolgreich();
             }
             else
             {
-                MessageBox.Show("Der Stapel konte nicht gespeicher werden", "Sorry",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
             }
         }
 
@@ -50,7 +52,6 @@ namespace AnsichtsFenster.Fenster
                 
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-
                     string pfad = fileDialog.FileName;
 
                     string[] pfadGesplitet = pfad.Split('\\');
@@ -103,7 +104,7 @@ namespace AnsichtsFenster.Fenster
 
             if (selectedStapel == null)
             {
-                MessageBox.Show("Bevor Sie ein Stapel umbenennen müssen sie ein Stapel auswählen", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                viewController.ShowMessageBoxKeinElementGewaehlt();
             }
             else
             {
@@ -121,7 +122,7 @@ namespace AnsichtsFenster.Fenster
 
             if (selectedStapel == null)
             {
-                MessageBox.Show("Stapel wählen", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                viewController.ShowMessageBoxKeinElementGewaehlt();
             }
             else
             {
@@ -141,7 +142,7 @@ namespace AnsichtsFenster.Fenster
 
             if (selectedStapel == null)
             {
-                MessageBox.Show("Stapel wählen", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                viewController.ShowMessageBoxKeinElementGewaehlt();
             }
             else
             {
