@@ -29,6 +29,7 @@ namespace AnsichtsFenster.Fenster
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StapelBearbeitenView));
             this.textBoxStapelName = new System.Windows.Forms.TextBox();
             this.stapelAnlegen = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -343,7 +344,11 @@ namespace AnsichtsFenster.Fenster
             this.Controls.Add(this.InhaltPanel);
             this.Controls.Add(this.dachPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+
             this.Name = "StapelBearbeitenView";
             this.Text = "StapelBearbeitenView";
             this.Load += new System.EventHandler(this.StapelBearbeitenView_Load);

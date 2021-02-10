@@ -3,48 +3,44 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using AnsichtsFenster.Controller;
 using Model;
+using Repositories;
 
 namespace AnsichtsFenster.Fenster
 {
     public partial class ChallengeView : Form
     {
         private Karte selectedKarte;
-        private readonly List<Karte> kartenListe;
+        private List<Karte> kartenListe = new List<Karte>();
         private int richtigeAntworten;
         private int falscheAntworten;
         private int abschlussZeit;
 
-        public ChallengeView(int abschlussZeit, int anzahl, Stapel aktuellerStapel, List<Karte> alleKarten)
-        {
-            InitializeComponent();
+        private Stapel selectedStapel;
 
-            kartenListe = RandomKartenFromAlleKarten(anzahl, alleKarten);
-
-            selectedKarte = kartenListe[0];
-
-            this.abschlussZeit = abschlussZeit * 60;
-
-            timer_Anzeige.Start();
-            lbl_Auswertung.Visible = false;
-            FrageSetzen();
-        }
         public ChallengeView()
         {
             InitializeComponent();
+            Object[] alleStapel = new StapelRepository().GetAlleStapel();
+            listBoxStapel.Items.AddRange(alleStapel);
+            listBoxStapel.SetSelected(0, true);
+            ZeitUpDown.Value = 1;
+            AnzahlKartenUpDown.Value = 1;
+            ZeitUpDown.Maximum = 30;
+            AnzahlKartenUpDown.Maximum = 30;
+            //  ZeitUpDown.Minimum = -100;            
+            //  AnzahlKartenUpDown.Minimum = -100;
+            btn_finish.Visible = false;
         }
 
         private void IsCorrect()
         {
             RadioButton checkedRadioButton = pnl_FrageAntwort.Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked == true);
             if (selectedKarte.Antwort == checkedRadioButton.Text)
-            {
                 richtigeAntworten++;
-            }
             else
-            {
                 falscheAntworten++;
-            }
         }
 
         private void FrageSetzen()
@@ -67,7 +63,6 @@ namespace AnsichtsFenster.Fenster
 
             radioButtonAntwort1.Text = antworten[0];
             radioButtonAntwort2.Text = antworten[1];
-
             antwort1.Text = antworten[0];
             antwort2.Text = antworten[1];
 
@@ -83,7 +78,6 @@ namespace AnsichtsFenster.Fenster
                 radioButtonAntwort3.Visible = false;
                 antwort3.Visible = false;
             }
-
 
             if (antworten.Count > 3)
             {
@@ -130,9 +124,7 @@ namespace AnsichtsFenster.Fenster
             for(int i = listeOhneLeereintreage.Count -1 ; i >= 0 ; i--)
             {
                 if (listeOhneLeereintreage[i].Trim() == "")
-                {
                     listeOhneLeereintreage.RemoveAt(i);
-                }
             }
 
             return listeOhneLeereintreage;
@@ -141,18 +133,14 @@ namespace AnsichtsFenster.Fenster
         private List<Karte> RandomKartenFromAlleKarten(int anzahl, List<Karte> alleChallengeKarten)
         {
             List<Karte> randomKarten = new List<Karte>();
-
             Random random = new Random();
 
             for (int i = 0; i < anzahl; i++)
             {
                 int randomIndex = random.Next(alleChallengeKarten.Count);
-
                 randomKarten.Add(alleChallengeKarten[randomIndex]);
                 alleChallengeKarten.RemoveAt(randomIndex);
-
             }
-
             return randomKarten;
         }
 
@@ -164,19 +152,13 @@ namespace AnsichtsFenster.Fenster
 
         private void NaechsteKarte()
         {
-
             IsCorrect();
-
             int indexAktuell = kartenListe.IndexOf(selectedKarte);
 
             if (indexAktuell + 1 < kartenListe.Count)
-            {
                 selectedKarte = kartenListe[indexAktuell + 1];
-            }
             else
-            {
                 selectedKarte = null;
-            }
         }
 
         private void btn_finish_Click(object sender, EventArgs e)
@@ -222,7 +204,6 @@ namespace AnsichtsFenster.Fenster
         }
 
 
-
         /****************************************/
         private Point LastPoint;
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)
@@ -261,8 +242,8 @@ namespace AnsichtsFenster.Fenster
 
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
-            //this.Hide();
-            //new ChallengeView().Show();
+            this.Hide();
+            new ChallengeView().Show();
         }
 
         private void MinimierenButton_Click(object sender, EventArgs e)
@@ -276,9 +257,42 @@ namespace AnsichtsFenster.Fenster
         }
 
 
+        /*************************************************/
+        private void StartButton_Click(object sender, EventArgs e)
+        {
+            selectedStapel = (Stapel)listBoxStapel.SelectedItem;
+            if (int.TryParse(ZeitUpDown.Text, out int zeitInMinuten) && zeitInMinuten > 0)
+            {
+                List<Karte> alleKartenEinesStapels = new KarteRepository().GetAlleKartenEinesStapels(selectedStapel.Id).ToList();
+                List<Karte> alleChallengKartenEinesStapels = alleKartenEinesStapels.Where(karte => karte.ChallengeMode).ToList();
 
+                if (int.TryParse(AnzahlKartenUpDown.Text, out int anzahlKarten) && anzahlKarten > 0 && anzahlKarten <= alleChallengKartenEinesStapels.Count)
+                {
+                    kartenListe = RandomKartenFromAlleKarten(anzahlKarten, alleChallengKartenEinesStapels);
+                    selectedKarte = kartenListe[0];
+                    this.abschlussZeit = zeitInMinuten * 60;
+                    lbl_Auswertung.Visible = false;
+                    ChallengeAbfragePanel.Visible = false;
+                    pnl_FrageAntwort.Visible = true;
+                    btn_finish.Visible = true;
+                    timer_Anzeige.Start();
+                    FrageSetzen();
+                }
 
+                else
+                {
+                    MessageBox.Show("Es wurde keine Gültige Anzahl an Karten angegeben", "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
 
+            }
+
+            else
+            {
+                MessageBox.Show("Es wurde keine Gültige Zeit angegeben", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
 
     }
 }
