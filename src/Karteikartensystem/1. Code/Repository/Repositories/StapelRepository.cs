@@ -1,5 +1,4 @@
-﻿
-namespace Repositories
+﻿namespace Repositories
 {
     using DatenbankEngine;
     using System.Data;
@@ -41,7 +40,6 @@ namespace Repositories
                 stapelArray[index] = stapel;
             }
 
-
             return stapelArray;
         }
 
@@ -62,7 +60,6 @@ namespace Repositories
             }
 
             return true;
-
         }
 
         public bool StapelLöschen(long id)
@@ -89,7 +86,6 @@ namespace Repositories
 
         public bool StapelAktualisieren(Stapel stapel)
         {
-
             string sql = "UPDATE Stapel SET name = @Name, gelernte_zeit_in_minuten = @GelernteZeitInMinuten WHERE Id = @Id;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
@@ -98,7 +94,6 @@ namespace Repositories
             sqlCommand.Parameters.AddWithValue("@Name", stapel.Name);
             sqlCommand.Parameters.AddWithValue("@GelernteZeitInMinuten", stapel.GelernteZeitInMinuten); 
             
-
             int anzahlBetrofenderReihen = datenbankEngine.ExecuteQuery(sqlCommand);
 
             if (anzahlBetrofenderReihen == 0)
@@ -108,7 +103,5 @@ namespace Repositories
 
             return true;
         }
-
-
     }
 }
