@@ -64,7 +64,7 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_Hinzufuegen_Click(object sender, EventArgs e)
         {
-            if (richTxt_Vorderseite.Text.Trim() != "" && richTxt_Rueckseite.Text.Trim() != "")
+            if (richTxt_Vorderseite.Text.Trim() != "Frage" && richTxt_Rueckseite.Text.Trim() != "Richtige Antwort")
             {
                 if (repository.KarteHinzufügen(KartenAnlegen()))
                 {
@@ -74,6 +74,7 @@ namespace AnsichtsFenster.Fenster
                     ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKartenEinesStapels.ToList());
                     listView_KartenAnzeige = listView;
                     viewController.OkMessageBox("Die karte wurde gespeichert", "Es hat geklappt");
+                    ClearTextFelder();
                 }
                     
             }
@@ -91,7 +92,7 @@ namespace AnsichtsFenster.Fenster
             karte.FalschAntwort3 = fackeAntwort3.Text;
             karte.StapelId = stapelId;
 
-            if (karte.FalschAntwort1 != "" || karte.FalschAntwort2 != "" || karte.FalschAntwort3 != "")
+            if (karte.FalschAntwort1 != "Falsche Antwort 1 (Optional)" || karte.FalschAntwort2 != "Falsche Antwort 2 (Optional)" || karte.FalschAntwort3 != "Falsche Antwort 3 (Optional)")
             {
                 karte.ChallengeMode = true;
             }
@@ -139,6 +140,15 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
+        private void ClearTextFelder()
+        {
+            fackeAntwort1.Clear();
+            fackeAntwort2.Clear();
+            fackeAntwort3.Clear();
+            richTxt_Rueckseite.Clear();
+            richTxt_Vorderseite.Clear();
+        }
+
         private Karte SelectedKarteAsKarte(string karteFrage)
         {
             return alleKarten.Find(karte => karte.Frage == karteFrage);
@@ -176,6 +186,8 @@ namespace AnsichtsFenster.Fenster
                     ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKartenEinesStapels.ToList());
                     listView_KartenAnzeige = listView;
                     viewController.OkMessageBox("Es hat geklappt", "Yeah");
+
+                    ClearTextFelder();
                 }
             }
         }
@@ -206,6 +218,8 @@ namespace AnsichtsFenster.Fenster
                     listView_KartenAnzeige = listView;
                     viewController.OkMessageBox("Es hat geklappt", "Yeah");
                 }
+
+                ClearTextFelder();
             }
         }
 
