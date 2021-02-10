@@ -33,7 +33,7 @@ namespace AnsichtsFenster.Fenster
             this.btn_home = new System.Windows.Forms.Button();
             this.richTxt = new System.Windows.Forms.RichTextBox();
             this.InhaltPanel = new System.Windows.Forms.Panel();
-            this.lblZeitAngabe = new System.Windows.Forms.Label();
+            this.lblAuswertungUnten = new System.Windows.Forms.Label();
             this.btnStapelErneutLernen = new System.Windows.Forms.Button();
             this.btnNichtNochmal = new System.Windows.Forms.Button();
             this.btnEinfach = new System.Windows.Forms.Button();
@@ -45,8 +45,11 @@ namespace AnsichtsFenster.Fenster
             this.StapelWählenButton = new System.Windows.Forms.Button();
             this.MinimierenButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.lblAuswertungOben = new System.Windows.Forms.Label();
+            this.imgParty = new System.Windows.Forms.PictureBox();
             this.InhaltPanel.SuspendLayout();
             this.dachPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgParty)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_home
@@ -88,7 +91,9 @@ namespace AnsichtsFenster.Fenster
             // InhaltPanel
             // 
             this.InhaltPanel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.InhaltPanel.Controls.Add(this.lblZeitAngabe);
+            this.InhaltPanel.Controls.Add(this.imgParty);
+            this.InhaltPanel.Controls.Add(this.lblAuswertungOben);
+            this.InhaltPanel.Controls.Add(this.lblAuswertungUnten);
             this.InhaltPanel.Controls.Add(this.btnStapelErneutLernen);
             this.InhaltPanel.Controls.Add(this.btnNichtNochmal);
             this.InhaltPanel.Controls.Add(this.btnEinfach);
@@ -103,16 +108,16 @@ namespace AnsichtsFenster.Fenster
             this.InhaltPanel.Size = new System.Drawing.Size(1400, 690);
             this.InhaltPanel.TabIndex = 5;
             // 
-            // lblZeitAngabe
+            // lblAuswertungUnten
             // 
-            this.lblZeitAngabe.AutoSize = true;
-            this.lblZeitAngabe.Font = new System.Drawing.Font("Yu Gothic UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZeitAngabe.Location = new System.Drawing.Point(195, 252);
-            this.lblZeitAngabe.Name = "lblZeitAngabe";
-            this.lblZeitAngabe.Size = new System.Drawing.Size(91, 38);
-            this.lblZeitAngabe.TabIndex = 15;
-            this.lblZeitAngabe.Text = "label1";
-            this.lblZeitAngabe.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblAuswertungUnten.AutoSize = true;
+            this.lblAuswertungUnten.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAuswertungUnten.Location = new System.Drawing.Point(368, 75);
+            this.lblAuswertungUnten.Name = "lblAuswertungUnten";
+            this.lblAuswertungUnten.Size = new System.Drawing.Size(290, 41);
+            this.lblAuswertungUnten.TabIndex = 15;
+            this.lblAuswertungUnten.Text = "lblAuswertungUnten";
+            this.lblAuswertungUnten.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnStapelErneutLernen
             // 
@@ -311,6 +316,27 @@ namespace AnsichtsFenster.Fenster
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
+            // lblAuswertungOben
+            // 
+            this.lblAuswertungOben.AutoSize = true;
+            this.lblAuswertungOben.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAuswertungOben.Location = new System.Drawing.Point(518, 24);
+            this.lblAuswertungOben.Name = "lblAuswertungOben";
+            this.lblAuswertungOben.Size = new System.Drawing.Size(354, 51);
+            this.lblAuswertungOben.TabIndex = 16;
+            this.lblAuswertungOben.Text = "lblAuswertungOben";
+            this.lblAuswertungOben.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // imgParty
+            // 
+            this.imgParty.Image = global::AnsichtsFenster.Properties.Resources.celebration;
+            this.imgParty.Location = new System.Drawing.Point(62, 162);
+            this.imgParty.Name = "imgParty";
+            this.imgParty.Size = new System.Drawing.Size(690, 485);
+            this.imgParty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgParty.TabIndex = 17;
+            this.imgParty.TabStop = false;
+            // 
             // KartenUebersicht
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -330,6 +356,7 @@ namespace AnsichtsFenster.Fenster
             this.InhaltPanel.PerformLayout();
             this.dachPanel.ResumeLayout(false);
             this.dachPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgParty)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -346,9 +373,11 @@ namespace AnsichtsFenster.Fenster
         private System.Windows.Forms.Button btnNichtNochmal;
         private System.Windows.Forms.Panel dachPanel;
         private System.Windows.Forms.Button btnStapelErneutLernen;
-        private System.Windows.Forms.Label lblZeitAngabe;
+        private System.Windows.Forms.Label lblAuswertungUnten;
         private System.Windows.Forms.Button MinimierenButton;
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Button StapelWählenButton;
+        private System.Windows.Forms.Label lblAuswertungOben;
+        private System.Windows.Forms.PictureBox imgParty;
     }
 }
