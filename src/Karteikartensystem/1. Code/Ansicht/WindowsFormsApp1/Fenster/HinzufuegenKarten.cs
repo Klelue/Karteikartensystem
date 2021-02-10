@@ -112,7 +112,7 @@ namespace AnsichtsFenster.Fenster
 
         private void KartenSucheAnzeigen(string suchbegriff)
         {
-            List<Karte> ergebnisListe = StringSuchTool.GetSuchergebnis(suchbegriff, alleKarten);
+            List<Karte> ergebnisListe = ListenDurchsuchenTool.GetSuchergebnis(suchbegriff, alleKarten);
 
             if (ergebnisListe.Count < 1)
             {

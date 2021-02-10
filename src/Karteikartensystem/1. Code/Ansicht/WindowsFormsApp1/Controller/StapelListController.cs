@@ -74,7 +74,7 @@ namespace AnsichtsFenster.Controller
         {
             //TODO alleStapel von DB lösen
             List<Stapel> alleStapel = GetAlleStapelVonDatenbank();
-            List<Stapel> ergebnisListe = StringSuchTool.GetSuchergebnis(suchbegriff, alleStapel);
+            List<Stapel> ergebnisListe = ListenDurchsuchenTool.GetSuchergebnis(suchbegriff, alleStapel);
 
             if (ergebnisListe.Count == 0)
             {

@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 namespace DatenbankEngine
 {
     public class SqlFileDatabaseEngine : IDatenbankEngine
-
     {
         private readonly SqlConnection connection;
 
@@ -14,8 +13,8 @@ namespace DatenbankEngine
 
         public SqlFileDatabaseEngine()
         {
-            var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" 
-                                   + fileDatabasePath 
+            var connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="
+                                   + fileDatabasePath
                                    + "Integrated Security=True;Connect Timeout=30";
 
             connection = new SqlConnection(connectionString);
@@ -52,7 +51,7 @@ namespace DatenbankEngine
 
             Console.WriteLine(sqlCommand);
 
-            sqlCommand.Connection = connection; 
+            sqlCommand.Connection = connection;
 
             connection.Open();
 
