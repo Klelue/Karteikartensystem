@@ -1,12 +1,10 @@
-﻿
-using System;
+﻿using System;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace DatenbankEngine
 {
-    using System.Data;
-    using System.Data.SqlClient;
-
     public class SqlFileDatabaseEngine : IDatenbankEngine
 
     {
@@ -23,7 +21,6 @@ namespace DatenbankEngine
             connection = new SqlConnection(connectionString);
         }
 
-        
         public DataTable ExecuteSelectQuery(SqlCommand sqlCommand)
         {
             DataTable dataTable = new DataTable();
@@ -51,7 +48,6 @@ namespace DatenbankEngine
 
         public int ExecuteQuery(SqlCommand sqlCommand)
         {
-
             int rowsAffected;
 
             Console.WriteLine(sqlCommand);
@@ -71,6 +67,5 @@ namespace DatenbankEngine
 
             return rowsAffected;
         }
-
     }
 }
