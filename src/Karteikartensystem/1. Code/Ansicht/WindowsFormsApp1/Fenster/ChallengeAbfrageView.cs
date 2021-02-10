@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Windows.Forms;
 using Model;
 using Repositories;
+
 
 namespace AnsichtsFenster.Fenster
 {
@@ -15,10 +17,13 @@ namespace AnsichtsFenster.Fenster
         {
             InitializeComponent();
 
+
             Object[] alleStapel = new StapelRepository().GetAlleStapel();
 
             listBoxStapel.Items.AddRange(alleStapel);
         }
+
+
 
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -27,20 +32,21 @@ namespace AnsichtsFenster.Fenster
 
             if (int.TryParse(textBoxZeit.Text, out int zeitInMinuten) && zeitInMinuten > 0)
             {
+                List<Karte> alleKartenEinesStapels = new KarteRepository().GetAlleKartenEinesStapels(selectedStapel.Id).ToList();
+                List<Karte> alleChallengKartenEinesStapels = alleKartenEinesStapels.Where(karte => karte.ChallengeMode).ToList();
 
-                if (int.TryParse(textBoxAnzahlKarten.Text, out int anzahlKarten) && anzahlKarten > 0)
+                if (int.TryParse(textBoxAnzahlKarten.Text, out int anzahlKarten) && anzahlKarten > 0 && anzahlKarten <= alleChallengKartenEinesStapels.Count)
                 {
-                    Karte[] alleKartenEinesStapels = new KarteRepository().GetAlleKartenEinesStapels(selectedStapel.Id);
 
                     ChallengeView challengeView = new ChallengeView(zeitInMinuten, anzahlKarten, selectedStapel,
-                        alleKartenEinesStapels.ToList());
+                        alleChallengKartenEinesStapels);
 
                     challengeView.Show();
                 }
 
                 else
                 {
-                    MessageBox.Show("Es wurde keine Gültige Zeit angegeben", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show("Es wurde keine Gültige Anzahl an Karten angegeben", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
 
@@ -48,10 +54,15 @@ namespace AnsichtsFenster.Fenster
 
             else
             {
-                MessageBox.Show("Es wurde keine Gültige Anzahl an Karten angegeben", "Error", MessageBoxButtons.OK,
+                MessageBox.Show("Es wurde keine Gültige Zeit angegeben", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
 
+        }
+
+        private void listBoxStapel_Click(object sender, EventArgs e)
+        {
+            selectedStapel = (Stapel)listBoxStapel.SelectedItems[0];
         }
     }
 

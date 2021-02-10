@@ -10,5 +10,6 @@
         public string FalschAntwort1 { get; set; }
         public string FalschAntwort2 { get; set; }
         public string FalschAntwort3 { get; set; }
+        public bool ChallengeMode { get; set; }
     }
 }

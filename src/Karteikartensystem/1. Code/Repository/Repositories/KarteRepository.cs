@@ -44,7 +44,7 @@ namespace Repositories
 
         public Karte[] GetAlleKartenEinesStapels(long stapelId)
         {
-            string sql = "SELECT Id, frage, antwort, falsch_antwort1, falsch_antwort2, falsch_antwort3, stapel_id, schwierigkeitsgrad FROM Karte WHERE stapel_id = @StapelId;";
+            string sql = "SELECT Id, frage, antwort, falsch_antwort1, falsch_antwort2, falsch_antwort3, stapel_id, schwierigkeitsgrad, challenge_mode FROM Karte WHERE stapel_id = @StapelId;";
 
             SqlCommand sqlCommand = new SqlCommand(sql);
 
@@ -64,6 +64,7 @@ namespace Repositories
                 string falschAntwort3 = dataTable.Rows[index][5].ToString();
                 long stapelidentifikation = (long) dataTable.Rows[index][6];
                 int status = (int) dataTable.Rows[index][7];
+                bool challengeMode = (bool)dataTable.Rows[index][8];
                 
 
                 Karte karte = new Karte();
@@ -76,8 +77,9 @@ namespace Repositories
                 karte.FalschAntwort1 = falschAntwort1;
                 karte.FalschAntwort2 = falschAntwort2;
                 karte.FalschAntwort3 = falschAntwort3;
+                karte.ChallengeMode = challengeMode;
 
-                kartenArray[index] = karte;
+                    kartenArray[index] = karte;
             }
 
 

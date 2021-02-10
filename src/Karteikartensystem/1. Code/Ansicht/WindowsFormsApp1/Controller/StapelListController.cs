@@ -64,10 +64,10 @@ namespace AnsichtsFenster.Controller
             return listView;
         }
 
-        public ListViewItem SelectItem(ListView listView)
+        public Stapel SelectStapel(ListView listView)
         {
             //TODO TRY FOR NULL
-            return listView.SelectedItems[0];
+            return GetAlleStapelVonDatenbank().Find(stapel => stapel.Name == listView.SelectedItems[0].Text);
         }
 
         public ListView UpdateSuchergebnis(string suchbegriff, ListView listView)
