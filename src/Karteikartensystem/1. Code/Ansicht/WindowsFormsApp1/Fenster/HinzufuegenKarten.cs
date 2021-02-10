@@ -16,6 +16,7 @@ namespace AnsichtsFenster.Fenster
         private List<Karte> alleKarten;
         private KarteRepository repository;
         private ViewController viewController;
+       
 
         private long stapelId;
         private Stapel[] allesStapel = new StapelRepository().GetAlleStapel();
@@ -74,6 +75,9 @@ namespace AnsichtsFenster.Fenster
             Karte karte = new Karte();
             karte.Frage = richTxt_Vorderseite.Text;
             karte.Antwort = richTxt_Rueckseite.Text;
+            karte.FalschAntwort1 = fackeAntwort1.Text;
+            karte.FalschAntwort2 = fackeAntwort2.Text;
+            karte.FalschAntwort3 = fackeAntwort3.Text;
             karte.StapelId = stapelId;
             return karte;
         }
@@ -137,12 +141,15 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void btn_Save_Click(object sender, EventArgs e)
+        private void btn_editieren_Click(object sender, EventArgs e)
         {
             if (selectedKarte != null)
             {
                 selectedKarte.Frage = richTxt_Vorderseite.Text;
                 selectedKarte.Antwort = richTxt_Rueckseite.Text;
+                selectedKarte.FalschAntwort1 = fackeAntwort1.Text;
+                selectedKarte.FalschAntwort2 = fackeAntwort2.Text;
+                selectedKarte.FalschAntwort3 = fackeAntwort3.Text;
                 if (repository.KarteAktualisieren(selectedKarte))
                 { 
                     selectedKarte = null;

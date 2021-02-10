@@ -144,7 +144,7 @@
             this.btn_Save.TabIndex = 6;
             this.btn_Save.Text = "Editieren";
             this.btn_Save.UseVisualStyleBackColor = false;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            this.btn_Save.Click += new System.EventHandler(this.btn_editieren_Click);
             // 
             // btn_Delete
             // 
