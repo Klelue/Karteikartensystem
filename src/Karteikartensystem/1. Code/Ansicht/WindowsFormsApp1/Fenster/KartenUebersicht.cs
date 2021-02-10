@@ -13,7 +13,7 @@ namespace AnsichtsFenster.Fenster
     {
         private Karte selectedKarte;
         private Stapel selectetStapel;
-        private KartenManager kartenManager;
+        private ChallengeKartenManager _challengeKartenManager;
         private KarteRepository repository;
         private Stoppuhr stoppuhr;
 
@@ -25,11 +25,11 @@ namespace AnsichtsFenster.Fenster
 
             repository = new KarteRepository();
             var alleKarten = repository.GetAlleKartenEinesStapels(stapel.Id).ToList();
-            kartenManager = new KartenManager(alleKarten.ToArray());
+            _challengeKartenManager = new ChallengeKartenManager(alleKarten.ToArray());
 
             if (alleKarten.Count >= 1)
             {
-                selectedKarte = kartenManager.GetNextKarte();
+                selectedKarte = _challengeKartenManager.GetNextKarte();
             }
             else // falls keine Karten vorhanden
             {
@@ -49,7 +49,7 @@ namespace AnsichtsFenster.Fenster
         {
             stoppuhr.Stop();
 
-            Karte[] karten = kartenManager.GetAlleKarten();
+            Karte[] karten = _challengeKartenManager.GetAlleKarten();
 
             selectetStapel.GelernteZeitInMinuten = stoppuhr.GetZeit();
 
@@ -91,7 +91,7 @@ namespace AnsichtsFenster.Fenster
         {
 
            // imgParty.Visible = false;
-            selectedKarte = kartenManager.GetNextKarte();
+            selectedKarte = _challengeKartenManager.GetNextKarte();
             btnEinfach.Visible = false;
             btnNochmal.Visible = false;
             btnGut.Visible = false;
@@ -123,31 +123,31 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_Nochmal(object sender, EventArgs e)
         {
-            kartenManager.AddZuSchwereKarten(selectedKarte);
+            _challengeKartenManager.AddZuSchwereKarten(selectedKarte);
             FrageSetzen();
         }
 
         private void btn_Gut_Click(object sender, EventArgs e)
         {
-            kartenManager.AddZuMittelKarten(selectedKarte);
+            _challengeKartenManager.AddZuMittelKarten(selectedKarte);
             FrageSetzen();
         }
 
         private void btn_Einfach(object sender, EventArgs e)
         {
-            kartenManager.AddZuLeichteKarten(selectedKarte);
+            _challengeKartenManager.AddZuLeichteKarten(selectedKarte);
             FrageSetzen();
         }
 
         private void btn_nichtNochmal(object sender, EventArgs e)
         {
-            kartenManager.AddZuGelerntenKarten(selectedKarte);
+            _challengeKartenManager.AddZuGelerntenKarten(selectedKarte);
             FrageSetzen();
         }
 
         private void btnErneutLernen(object sender, EventArgs e)
         {
-            kartenManager.Reset();
+            _challengeKartenManager.Reset();
             richTxt.Visible = true;
             lblAuswertungUnten.Visible = false;
             FrageSetzen();
