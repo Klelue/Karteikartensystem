@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using AnsichtsFenster.Controller;
 using AnsichtsFenster.Utilities;
 using Model;
 using Repositories;
@@ -43,7 +42,6 @@ namespace AnsichtsFenster.Fenster
           //  lblZeitAngabe.Parent = imgParty;
             stoppuhr = new Stoppuhr();
             stoppuhr.Start();
-            lblZeitAngabe.Visible = false;
             FrageSetzen();
         }
 
@@ -98,12 +96,17 @@ namespace AnsichtsFenster.Fenster
             btnNochmal.Visible = false;
             btnGut.Visible = false;
             btnNichtNochmal.Visible = false;
+            lblAuswertungUnten.Visible = false;
+            lblAuswertungOben.Visible = false;
+            imgParty.Visible = false;
 
             if (selectedKarte == null)
             {
-            //    imgParty.Visible = true;
-                lblZeitAngabe.Visible = true;
-                lblZeitAngabe.Text = $" Herzlichen Glückwunsch sie haben den Stapel in {stoppuhr.GetZeit()} Minuten gelernt";
+                imgParty.Visible = true;
+                lblAuswertungOben.Visible = true;
+                lblAuswertungUnten.Visible = true;
+                lblAuswertungOben.Text = "Herzlichen Glückwunsch!";
+                lblAuswertungUnten.Text = $"Sie haben den Stapel {selectetStapel.Name} in {stoppuhr.GetZeit()} Minuten gelernt";
                 richTxt.Visible = false;
                 btnStapelErneutLernen.Visible = true;
                 btn_Antwort.Visible = false;
@@ -146,7 +149,7 @@ namespace AnsichtsFenster.Fenster
         {
             kartenManager.Reset();
             richTxt.Visible = true;
-            lblZeitAngabe.Visible = false;
+            lblAuswertungUnten.Visible = false;
             FrageSetzen();
         }
 
