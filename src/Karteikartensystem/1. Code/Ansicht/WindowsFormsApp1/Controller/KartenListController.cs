@@ -34,7 +34,7 @@ namespace AnsichtsFenster.Controller
             throw new System.NotImplementedException();
         }
 
-        public ListViewItem SelectItem(ListView listView)
+        public ListViewItem SelectStapel(ListView listView)
         {
             throw new System.NotImplementedException();
         }
@@ -50,6 +50,11 @@ namespace AnsichtsFenster.Controller
         }
 
         public ListView ReloadView(ListView listView, List<Karte> kartenListe)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        Stapel IListView.SelectStapel(ListView listView)
         {
             throw new System.NotImplementedException();
         }
