@@ -383,7 +383,7 @@ namespace AnsichtsFenster.Fenster
             txt_KartenSuche.Clear();
         }
 
-        /*********************************/
+      
         private Point lastPoint;
 
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)

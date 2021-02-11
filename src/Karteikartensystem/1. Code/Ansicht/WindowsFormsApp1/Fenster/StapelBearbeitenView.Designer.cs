@@ -351,6 +351,7 @@ namespace AnsichtsFenster.Fenster
             this.listViewAusgabe.Size = new System.Drawing.Size(332, 504);
             this.listViewAusgabe.TabIndex = 13;
             this.listViewAusgabe.UseCompatibleStateImageBehavior = false;
+            this.listViewAusgabe.Click += new System.EventHandler(this.listViewAusgabe_Click);
             // 
             // StapelBearbeitenView
             // 
