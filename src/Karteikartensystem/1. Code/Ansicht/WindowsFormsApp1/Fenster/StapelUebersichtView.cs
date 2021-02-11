@@ -9,6 +9,9 @@ namespace AnsichtsFenster.Fenster
     {
         private StapelListController listController;
         private ViewController viewController;
+      
+
+        private Point letzteMouseKoordinaten;
 
         public StapelUebersichtView()
         {
@@ -33,7 +36,7 @@ namespace AnsichtsFenster.Fenster
             listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
 
-        private void txt_StapelSuche_KeyDown(object sender, KeyEventArgs e)
+        private void textBox_StapelSuche_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -45,7 +48,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBox_Lupe_Click(object sender, EventArgs e)
         {
             listView_Ausgabe = txt_StapelSuche.Text.Trim() == ""
                 ? listController.UpdateView(listView_Ausgabe)
@@ -54,7 +57,7 @@ namespace AnsichtsFenster.Fenster
             txt_StapelSuche.Clear();
         }
 
-        private void txt_StapelSuche_Enter(object sender, EventArgs e)
+        private void textBox_StapelSuche_Enter(object sender, EventArgs e)
         {
             if (txt_StapelSuche.Text == "Stapel suchen")
             {
@@ -63,7 +66,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void txt_StapelSuche_Leave(object sender, EventArgs e)
+        private void textBox_StapelSuche_Leave(object sender, EventArgs e)
         {
             if (txt_StapelSuche.Text == "")
             {
@@ -72,18 +75,17 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private Point LastPoint;
-        private void dachPanel_MouseMove(object sender, MouseEventArgs e)
+        private void menuPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - LastPoint.X;
-                this.Top += e.Y - LastPoint.Y;
+                 this.Left += e.X - letzteMouseKoordinaten.X;
+                 this.Top += e.Y - letzteMouseKoordinaten.Y;
             }
         }
-        private void dachPanel_MouseDown(object sender, MouseEventArgs e)
+        private void menuPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            LastPoint = new Point(e.X, e.Y);
+            letzteMouseKoordinaten = new Point(e.X, e.Y);
         }
 
         private void ÜbersichtButton_Click(object sender, EventArgs e)

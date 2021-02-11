@@ -32,5 +32,11 @@ namespace AnsichtsFenster.Controller
         {
             return repository.GetAlleKartenEinesStapels(id).ToList();
         }
+
+        public int CountAlleKartenEinesStapels(long stapelId)
+        {
+            return repository.GetAlleKartenEinesStapels(stapelId).Length;
+        }
     }
+
 }

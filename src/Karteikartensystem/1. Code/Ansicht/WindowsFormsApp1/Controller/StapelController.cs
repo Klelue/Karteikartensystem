@@ -41,5 +41,7 @@ namespace AnsichtsFenster.Controller
         {
             return repository.StapelHinzufügen(stapel);
         }
+
+        
     }
 }

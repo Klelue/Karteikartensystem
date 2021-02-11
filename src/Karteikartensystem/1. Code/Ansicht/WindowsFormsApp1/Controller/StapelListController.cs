@@ -10,20 +10,23 @@ namespace AnsichtsFenster.Controller
 {
     public class StapelListController : IStapelListView
     {
-        private StapelRepository stapelRepository;
+        private StapelController stapelController;
+        private KarteController karteController;
 
         public StapelListController()
         {
-            stapelRepository = new StapelRepository();
+            stapelController = new StapelController();
+            karteController = new KarteController();
         }
 
         public ListView CreateView(ListView listView)
         {
             listView.View = View.Details;
-            listView.Columns.Add("Stapelname").Width = 180;
-            listView.Columns.Add("Zeit").Width = 180;
-            listView.Columns.Add("Anzahl gelernter Karten").Width = 180;
-            
+            listView.Columns.Add("Stapelname").Width = 198;
+            listView.Columns.Add("Anzahl Karten").Width = 198;
+            listView.Columns.Add("Anzahl gelernter Karten").Width = 198;
+            listView.Columns.Add("Zeit").Width = 198;
+
             return listView;
         }
 
@@ -89,7 +92,7 @@ namespace AnsichtsFenster.Controller
         //TODO TRY CATCH!
         private List<Stapel> GetAlleStapelVonDatenbank()
         {
-            return stapelRepository.GetAlleStapel().ToList();
+            return stapelController.GetAlleStapel();
         }
 
         public ListViewItem CreateViewItem(Stapel stapel)
@@ -97,8 +100,10 @@ namespace AnsichtsFenster.Controller
             ListViewItem item = new ListViewItem((stapel.Name));
             item.SubItems.Add(stapel.GelernteZeitInMinuten + " Minuten");
 
-            int gelernteKarten = GelernteKartenBerechnen(stapel);
+            int anzahlKarten = karteController.CountAlleKartenEinesStapels(stapel.Id);
+            item.SubItems.Add(anzahlKarten.ToString());
 
+            int gelernteKarten = GelernteKartenBerechnen(stapel);
             item.SubItems.Add(gelernteKarten.ToString());
 
             return item;
@@ -113,13 +118,12 @@ namespace AnsichtsFenster.Controller
 
         public ListView DeleteItem(ListView listView, ListViewItem listViewItem, out bool geloescht)
         {
-            Stapel[] alleStapel = stapelRepository.GetAlleStapel();
-            Stapel stapelMitAusgewähltenName = alleStapel.First(stapel => stapel.Name == listViewItem.SubItems[0].Text);
+            string stapelName = listViewItem.SubItems[0].Text;
 
-            int itemDatenbankIndex = Convert.ToInt32(stapelMitAusgewähltenName.Id);
-
-            geloescht = stapelRepository.StapelLöschen(itemDatenbankIndex);
+            Stapel stapelMitAusgewähltenName = stapelController.GetStapel(stapelName);
+            geloescht = stapelController.Löschen(stapelMitAusgewähltenName.Id);
             listView.Items.Remove(listViewItem);
+
             return listView;
         }
     }
