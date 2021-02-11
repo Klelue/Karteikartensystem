@@ -38,6 +38,14 @@ namespace AnsichtsFenster.Fenster
             this.radioButtonAntwort3 = new System.Windows.Forms.RadioButton();
             this.radioButtonAntwort4 = new System.Windows.Forms.RadioButton();
             this.pnl_FrageAntwort = new System.Windows.Forms.Panel();
+            this.ChallengeAbfragePanel = new System.Windows.Forms.Panel();
+            this.ZeitUpDown = new System.Windows.Forms.NumericUpDown();
+            this.AnzahlKartenUpDown = new System.Windows.Forms.NumericUpDown();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.StartButton = new System.Windows.Forms.Button();
+            this.listBoxStapel = new System.Windows.Forms.ListBox();
+            this.lblZeit = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbl_Zeit = new System.Windows.Forms.Label();
             this.antwort4 = new System.Windows.Forms.RichTextBox();
             this.antwort3 = new System.Windows.Forms.RichTextBox();
@@ -47,14 +55,6 @@ namespace AnsichtsFenster.Fenster
             this.lbl_Auswertung = new System.Windows.Forms.Label();
             this.timer_Anzeige = new System.Windows.Forms.Timer(this.components);
             this.InhaltPanel = new System.Windows.Forms.Panel();
-            this.ChallengeAbfragePanel = new System.Windows.Forms.Panel();
-            this.ZeitUpDown = new System.Windows.Forms.NumericUpDown();
-            this.AnzahlKartenUpDown = new System.Windows.Forms.NumericUpDown();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.StartButton = new System.Windows.Forms.Button();
-            this.listBoxStapel = new System.Windows.Forms.ListBox();
-            this.lblZeit = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.dachPanel = new System.Windows.Forms.Panel();
             this.StapelBearbeitenButton = new System.Windows.Forms.Button();
             this.ChallengeButton = new System.Windows.Forms.Button();
@@ -65,11 +65,11 @@ namespace AnsichtsFenster.Fenster
             this.ÜbersichtButton = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pnl_FrageAntwort.SuspendLayout();
-            this.InhaltPanel.SuspendLayout();
             this.ChallengeAbfragePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ZeitUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnzahlKartenUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.InhaltPanel.SuspendLayout();
             this.dachPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,6 +173,111 @@ namespace AnsichtsFenster.Fenster
             this.pnl_FrageAntwort.Size = new System.Drawing.Size(825, 488);
             this.pnl_FrageAntwort.TabIndex = 14;
             // 
+            // ChallengeAbfragePanel
+            // 
+            this.ChallengeAbfragePanel.Controls.Add(this.ZeitUpDown);
+            this.ChallengeAbfragePanel.Controls.Add(this.AnzahlKartenUpDown);
+            this.ChallengeAbfragePanel.Controls.Add(this.pictureBox1);
+            this.ChallengeAbfragePanel.Controls.Add(this.StartButton);
+            this.ChallengeAbfragePanel.Controls.Add(this.listBoxStapel);
+            this.ChallengeAbfragePanel.Controls.Add(this.lblZeit);
+            this.ChallengeAbfragePanel.Controls.Add(this.label1);
+            this.ChallengeAbfragePanel.Location = new System.Drawing.Point(0, 2);
+            this.ChallengeAbfragePanel.Margin = new System.Windows.Forms.Padding(2);
+            this.ChallengeAbfragePanel.Name = "ChallengeAbfragePanel";
+            this.ChallengeAbfragePanel.Size = new System.Drawing.Size(826, 488);
+            this.ChallengeAbfragePanel.TabIndex = 16;
+            // 
+            // ZeitUpDown
+            // 
+            this.ZeitUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZeitUpDown.Location = new System.Drawing.Point(602, 77);
+            this.ZeitUpDown.Margin = new System.Windows.Forms.Padding(2);
+            this.ZeitUpDown.Name = "ZeitUpDown";
+            this.ZeitUpDown.Size = new System.Drawing.Size(54, 26);
+            this.ZeitUpDown.TabIndex = 12;
+            this.ZeitUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // AnzahlKartenUpDown
+            // 
+            this.AnzahlKartenUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AnzahlKartenUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AnzahlKartenUpDown.Location = new System.Drawing.Point(602, 43);
+            this.AnzahlKartenUpDown.Margin = new System.Windows.Forms.Padding(2);
+            this.AnzahlKartenUpDown.Name = "AnzahlKartenUpDown";
+            this.AnzahlKartenUpDown.Size = new System.Drawing.Size(54, 22);
+            this.AnzahlKartenUpDown.TabIndex = 11;
+            this.AnzahlKartenUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AnsichtsFenster.Properties.Resources.winner;
+            this.pictureBox1.Location = new System.Drawing.Point(489, 221);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(167, 159);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // StartButton
+            // 
+            this.StartButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.StartButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.StartButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.StartButton.Location = new System.Drawing.Point(458, 140);
+            this.StartButton.Margin = new System.Windows.Forms.Padding(2);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(199, 28);
+            this.StartButton.TabIndex = 10;
+            this.StartButton.Text = "Start";
+            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
+            // listBoxStapel
+            // 
+            this.listBoxStapel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxStapel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxStapel.FormattingEnabled = true;
+            this.listBoxStapel.ItemHeight = 22;
+            this.listBoxStapel.Location = new System.Drawing.Point(112, 28);
+            this.listBoxStapel.Margin = new System.Windows.Forms.Padding(2);
+            this.listBoxStapel.Name = "listBoxStapel";
+            this.listBoxStapel.Size = new System.Drawing.Size(310, 418);
+            this.listBoxStapel.TabIndex = 4;
+            // 
+            // lblZeit
+            // 
+            this.lblZeit.AutoSize = true;
+            this.lblZeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblZeit.Location = new System.Drawing.Point(454, 81);
+            this.lblZeit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblZeit.Name = "lblZeit";
+            this.lblZeit.Size = new System.Drawing.Size(128, 20);
+            this.lblZeit.TabIndex = 9;
+            this.lblZeit.Text = "Zeit in Minuten";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(454, 42);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(122, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Anzahl Karten";
+            // 
             // lbl_Zeit
             // 
             this.lbl_Zeit.AutoSize = true;
@@ -188,7 +293,7 @@ namespace AnsichtsFenster.Fenster
             this.antwort4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.antwort4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.antwort4.Location = new System.Drawing.Point(79, 358);
-            this.antwort4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.antwort4.Margin = new System.Windows.Forms.Padding(2);
             this.antwort4.Name = "antwort4";
             this.antwort4.ReadOnly = true;
             this.antwort4.Size = new System.Drawing.Size(638, 65);
@@ -200,7 +305,7 @@ namespace AnsichtsFenster.Fenster
             this.antwort3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.antwort3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.antwort3.Location = new System.Drawing.Point(79, 276);
-            this.antwort3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.antwort3.Margin = new System.Windows.Forms.Padding(2);
             this.antwort3.Name = "antwort3";
             this.antwort3.ReadOnly = true;
             this.antwort3.Size = new System.Drawing.Size(638, 65);
@@ -212,7 +317,7 @@ namespace AnsichtsFenster.Fenster
             this.antwort2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.antwort2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.antwort2.Location = new System.Drawing.Point(79, 195);
-            this.antwort2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.antwort2.Margin = new System.Windows.Forms.Padding(2);
             this.antwort2.Name = "antwort2";
             this.antwort2.ReadOnly = true;
             this.antwort2.Size = new System.Drawing.Size(638, 65);
@@ -225,7 +330,7 @@ namespace AnsichtsFenster.Fenster
             this.antwort1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.antwort1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.antwort1.Location = new System.Drawing.Point(79, 114);
-            this.antwort1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.antwort1.Margin = new System.Windows.Forms.Padding(2);
             this.antwort1.Name = "antwort1";
             this.antwort1.ReadOnly = true;
             this.antwort1.Size = new System.Drawing.Size(638, 65);
@@ -237,7 +342,7 @@ namespace AnsichtsFenster.Fenster
             this.frage.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.frage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frage.Location = new System.Drawing.Point(79, 16);
-            this.frage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.frage.Margin = new System.Windows.Forms.Padding(2);
             this.frage.Name = "frage";
             this.frage.ReadOnly = true;
             this.frage.Size = new System.Drawing.Size(638, 81);
@@ -266,115 +371,10 @@ namespace AnsichtsFenster.Fenster
             this.InhaltPanel.Controls.Add(this.lbl_Auswertung);
             this.InhaltPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.InhaltPanel.Location = new System.Drawing.Point(0, 48);
-            this.InhaltPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InhaltPanel.Margin = new System.Windows.Forms.Padding(2);
             this.InhaltPanel.Name = "InhaltPanel";
             this.InhaltPanel.Size = new System.Drawing.Size(1050, 561);
             this.InhaltPanel.TabIndex = 17;
-            // 
-            // ChallengeAbfragePanel
-            // 
-            this.ChallengeAbfragePanel.Controls.Add(this.ZeitUpDown);
-            this.ChallengeAbfragePanel.Controls.Add(this.AnzahlKartenUpDown);
-            this.ChallengeAbfragePanel.Controls.Add(this.pictureBox1);
-            this.ChallengeAbfragePanel.Controls.Add(this.StartButton);
-            this.ChallengeAbfragePanel.Controls.Add(this.listBoxStapel);
-            this.ChallengeAbfragePanel.Controls.Add(this.lblZeit);
-            this.ChallengeAbfragePanel.Controls.Add(this.label1);
-            this.ChallengeAbfragePanel.Location = new System.Drawing.Point(0, 2);
-            this.ChallengeAbfragePanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ChallengeAbfragePanel.Name = "ChallengeAbfragePanel";
-            this.ChallengeAbfragePanel.Size = new System.Drawing.Size(826, 488);
-            this.ChallengeAbfragePanel.TabIndex = 16;
-            // 
-            // ZeitUpDown
-            // 
-            this.ZeitUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ZeitUpDown.Location = new System.Drawing.Point(570, 77);
-            this.ZeitUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ZeitUpDown.Name = "ZeitUpDown";
-            this.ZeitUpDown.Size = new System.Drawing.Size(54, 26);
-            this.ZeitUpDown.TabIndex = 12;
-            this.ZeitUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // AnzahlKartenUpDown
-            // 
-            this.AnzahlKartenUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AnzahlKartenUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AnzahlKartenUpDown.Location = new System.Drawing.Point(570, 43);
-            this.AnzahlKartenUpDown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.AnzahlKartenUpDown.Name = "AnzahlKartenUpDown";
-            this.AnzahlKartenUpDown.Size = new System.Drawing.Size(54, 22);
-            this.AnzahlKartenUpDown.TabIndex = 11;
-            this.AnzahlKartenUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::AnsichtsFenster.Properties.Resources.winner;
-            this.pictureBox1.Location = new System.Drawing.Point(489, 221);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(167, 159);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // StartButton
-            // 
-            this.StartButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.StartButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.StartButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.StartButton.Location = new System.Drawing.Point(458, 140);
-            this.StartButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(199, 28);
-            this.StartButton.TabIndex = 10;
-            this.StartButton.Text = "Start";
-            this.StartButton.UseVisualStyleBackColor = true;
-            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
-            // 
-            // listBoxStapel
-            // 
-            this.listBoxStapel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxStapel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxStapel.FormattingEnabled = true;
-            this.listBoxStapel.ItemHeight = 22;
-            this.listBoxStapel.Location = new System.Drawing.Point(112, 28);
-            this.listBoxStapel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.listBoxStapel.Name = "listBoxStapel";
-            this.listBoxStapel.Size = new System.Drawing.Size(310, 418);
-            this.listBoxStapel.TabIndex = 4;
-            // 
-            // lblZeit
-            // 
-            this.lblZeit.AutoSize = true;
-            this.lblZeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZeit.Location = new System.Drawing.Point(454, 81);
-            this.lblZeit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblZeit.Name = "lblZeit";
-            this.lblZeit.Size = new System.Drawing.Size(128, 20);
-            this.lblZeit.TabIndex = 9;
-            this.lblZeit.Text = "Zeit in Minuten";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(454, 42);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 20);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Anzahl Karten";
             // 
             // dachPanel
             // 
@@ -388,7 +388,7 @@ namespace AnsichtsFenster.Fenster
             this.dachPanel.Controls.Add(this.ÜbersichtButton);
             this.dachPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.dachPanel.Location = new System.Drawing.Point(0, 0);
-            this.dachPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dachPanel.Margin = new System.Windows.Forms.Padding(2);
             this.dachPanel.Name = "dachPanel";
             this.dachPanel.Size = new System.Drawing.Size(1050, 49);
             this.dachPanel.TabIndex = 18;
@@ -406,7 +406,7 @@ namespace AnsichtsFenster.Fenster
             this.StapelBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.StapelBearbeitenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.StapelBearbeitenButton.Location = new System.Drawing.Point(352, 6);
-            this.StapelBearbeitenButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StapelBearbeitenButton.Margin = new System.Windows.Forms.Padding(2);
             this.StapelBearbeitenButton.Name = "StapelBearbeitenButton";
             this.StapelBearbeitenButton.Size = new System.Drawing.Size(188, 37);
             this.StapelBearbeitenButton.TabIndex = 10;
@@ -425,7 +425,7 @@ namespace AnsichtsFenster.Fenster
             this.ChallengeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.ChallengeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.ChallengeButton.Location = new System.Drawing.Point(720, 6);
-            this.ChallengeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ChallengeButton.Margin = new System.Windows.Forms.Padding(2);
             this.ChallengeButton.Name = "ChallengeButton";
             this.ChallengeButton.Size = new System.Drawing.Size(187, 37);
             this.ChallengeButton.TabIndex = 9;
@@ -443,7 +443,7 @@ namespace AnsichtsFenster.Fenster
             this.MinimierenButton.Font = new System.Drawing.Font("Cooper Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimierenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.MinimierenButton.Location = new System.Drawing.Point(994, 0);
-            this.MinimierenButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimierenButton.Margin = new System.Windows.Forms.Padding(2);
             this.MinimierenButton.Name = "MinimierenButton";
             this.MinimierenButton.Size = new System.Drawing.Size(34, 28);
             this.MinimierenButton.TabIndex = 8;
@@ -461,7 +461,7 @@ namespace AnsichtsFenster.Fenster
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.CloseButton.Location = new System.Drawing.Point(1024, 0);
-            this.CloseButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(2);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(26, 28);
             this.CloseButton.TabIndex = 7;
@@ -480,7 +480,7 @@ namespace AnsichtsFenster.Fenster
             this.JetztLernenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.JetztLernenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.JetztLernenButton.Location = new System.Drawing.Point(555, 6);
-            this.JetztLernenButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.JetztLernenButton.Margin = new System.Windows.Forms.Padding(2);
             this.JetztLernenButton.Name = "JetztLernenButton";
             this.JetztLernenButton.Size = new System.Drawing.Size(150, 37);
             this.JetztLernenButton.TabIndex = 3;
@@ -499,7 +499,7 @@ namespace AnsichtsFenster.Fenster
             this.KarteBearbeitenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.KarteBearbeitenButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.KarteBearbeitenButton.Location = new System.Drawing.Point(158, 6);
-            this.KarteBearbeitenButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.KarteBearbeitenButton.Margin = new System.Windows.Forms.Padding(2);
             this.KarteBearbeitenButton.Name = "KarteBearbeitenButton";
             this.KarteBearbeitenButton.Size = new System.Drawing.Size(180, 37);
             this.KarteBearbeitenButton.TabIndex = 2;
@@ -518,7 +518,7 @@ namespace AnsichtsFenster.Fenster
             this.ÜbersichtButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.ÜbersichtButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.ÜbersichtButton.Location = new System.Drawing.Point(26, 6);
-            this.ÜbersichtButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ÜbersichtButton.Margin = new System.Windows.Forms.Padding(2);
             this.ÜbersichtButton.Name = "ÜbersichtButton";
             this.ÜbersichtButton.Size = new System.Drawing.Size(112, 37);
             this.ÜbersichtButton.TabIndex = 1;
@@ -545,13 +545,13 @@ namespace AnsichtsFenster.Fenster
             this.Text = "ChallengeView";
             this.pnl_FrageAntwort.ResumeLayout(false);
             this.pnl_FrageAntwort.PerformLayout();
-            this.InhaltPanel.ResumeLayout(false);
-            this.InhaltPanel.PerformLayout();
             this.ChallengeAbfragePanel.ResumeLayout(false);
             this.ChallengeAbfragePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ZeitUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnzahlKartenUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.InhaltPanel.ResumeLayout(false);
+            this.InhaltPanel.PerformLayout();
             this.dachPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
