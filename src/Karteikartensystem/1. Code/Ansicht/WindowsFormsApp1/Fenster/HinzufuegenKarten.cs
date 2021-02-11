@@ -25,12 +25,16 @@ namespace AnsichtsFenster.Fenster
         public HinzufuegenKarten()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(0, 0);
+
             viewController = new ViewController(); 
             stapelController = new StapelController();
             karteController = new KarteController();
             alleKarten = new List<Karte>();
             kartenListController = new KartenListController();
             comboBoxLaden();
+
             txt_KartenSuche.Text = "Suchen nach:";
             txt_KartenSuche.ForeColor = Color.Gray;
             richTxt_Vorderseite.Text = "Frage";

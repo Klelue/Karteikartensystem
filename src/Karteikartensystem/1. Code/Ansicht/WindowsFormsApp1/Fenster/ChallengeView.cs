@@ -23,6 +23,9 @@ namespace AnsichtsFenster.Fenster
         public ChallengeView()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(0, 0);
+
             viewController = new ViewController();
             object[] alleStapel = new StapelController().GetAlleStapel().ToArray();
             listBoxStapel.Items.AddRange(alleStapel);

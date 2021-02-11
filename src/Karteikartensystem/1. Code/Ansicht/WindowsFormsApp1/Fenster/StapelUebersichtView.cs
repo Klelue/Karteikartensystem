@@ -16,6 +16,9 @@ namespace AnsichtsFenster.Fenster
         public StapelUebersichtView()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(0, 0);
+
             listController = new StapelListController();
             viewController = new ViewController();
 
