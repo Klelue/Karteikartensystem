@@ -164,6 +164,11 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
+        private void listViewAusgabe_Click(object sender, EventArgs e)
+        {
+            textBoxStapelName.Text = listViewAusgabe.SelectedItems[0].Text;
+        }
+
         private void menuPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
