@@ -36,7 +36,6 @@ namespace AnsichtsFenster.Fenster
             this.dateiAuswählen = new System.Windows.Forms.Button();
             this.StapelExportieren = new System.Windows.Forms.Button();
             this.stapelAktualisieren = new System.Windows.Forms.Button();
-            this.listBoxStapel = new System.Windows.Forms.ListBox();
             this.stapelLöschen = new System.Windows.Forms.Button();
             this.dachPanel = new System.Windows.Forms.Panel();
             this.StapelBearbeitenButton = new System.Windows.Forms.Button();
@@ -47,15 +46,18 @@ namespace AnsichtsFenster.Fenster
             this.KarteBearbeitenButton = new System.Windows.Forms.Button();
             this.ÜbersichtButton = new System.Windows.Forms.Button();
             this.InhaltPanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.listViewAusgabe = new System.Windows.Forms.ListView();
             this.dachPanel.SuspendLayout();
             this.InhaltPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxStapelName
             // 
             this.textBoxStapelName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxStapelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxStapelName.Location = new System.Drawing.Point(631, 50);
+            this.textBoxStapelName.Location = new System.Drawing.Point(495, 83);
             this.textBoxStapelName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxStapelName.Multiline = true;
             this.textBoxStapelName.Name = "textBoxStapelName";
@@ -69,14 +71,14 @@ namespace AnsichtsFenster.Fenster
             this.stapelAnlegen.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.stapelAnlegen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.stapelAnlegen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stapelAnlegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stapelAnlegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stapelAnlegen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stapelAnlegen.Location = new System.Drawing.Point(631, 117);
+            this.stapelAnlegen.Location = new System.Drawing.Point(726, 154);
             this.stapelAnlegen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stapelAnlegen.Name = "stapelAnlegen";
-            this.stapelAnlegen.Size = new System.Drawing.Size(165, 46);
+            this.stapelAnlegen.Size = new System.Drawing.Size(194, 34);
             this.stapelAnlegen.TabIndex = 1;
-            this.stapelAnlegen.Text = "Stapel erstellen";
+            this.stapelAnlegen.Text = "Hinzufügen";
             this.stapelAnlegen.UseVisualStyleBackColor = true;
             this.stapelAnlegen.Click += new System.EventHandler(this.stapelAnlegen_Click);
             // 
@@ -92,14 +94,14 @@ namespace AnsichtsFenster.Fenster
             this.dateiAuswählen.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.dateiAuswählen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dateiAuswählen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dateiAuswählen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateiAuswählen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateiAuswählen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dateiAuswählen.Location = new System.Drawing.Point(960, 327);
+            this.dateiAuswählen.Location = new System.Drawing.Point(495, 338);
             this.dateiAuswählen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateiAuswählen.Name = "dateiAuswählen";
             this.dateiAuswählen.Size = new System.Drawing.Size(300, 46);
             this.dateiAuswählen.TabIndex = 2;
-            this.dateiAuswählen.Text = "Stapel importieren";
+            this.dateiAuswählen.Text = " importieren";
             this.dateiAuswählen.UseVisualStyleBackColor = true;
             this.dateiAuswählen.Click += new System.EventHandler(this.dateiAuswählen_Click);
             // 
@@ -110,14 +112,14 @@ namespace AnsichtsFenster.Fenster
             this.StapelExportieren.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.StapelExportieren.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.StapelExportieren.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StapelExportieren.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StapelExportieren.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StapelExportieren.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.StapelExportieren.Location = new System.Drawing.Point(631, 327);
+            this.StapelExportieren.Location = new System.Drawing.Point(495, 415);
             this.StapelExportieren.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StapelExportieren.Name = "StapelExportieren";
             this.StapelExportieren.Size = new System.Drawing.Size(300, 46);
             this.StapelExportieren.TabIndex = 3;
-            this.StapelExportieren.Text = "Stapel exportieren";
+            this.StapelExportieren.Text = " exportieren";
             this.StapelExportieren.UseVisualStyleBackColor = true;
             this.StapelExportieren.Click += new System.EventHandler(this.StapelExportieren_Click);
             // 
@@ -128,29 +130,16 @@ namespace AnsichtsFenster.Fenster
             this.stapelAktualisieren.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.stapelAktualisieren.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.stapelAktualisieren.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stapelAktualisieren.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stapelAktualisieren.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stapelAktualisieren.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stapelAktualisieren.Location = new System.Drawing.Point(1000, 117);
+            this.stapelAktualisieren.Location = new System.Drawing.Point(495, 154);
             this.stapelAktualisieren.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stapelAktualisieren.Name = "stapelAktualisieren";
-            this.stapelAktualisieren.Size = new System.Drawing.Size(260, 46);
+            this.stapelAktualisieren.Size = new System.Drawing.Size(206, 34);
             this.stapelAktualisieren.TabIndex = 10;
-            this.stapelAktualisieren.Text = "Stapelname aktualisieren";
+            this.stapelAktualisieren.Text = "Editieren";
             this.stapelAktualisieren.UseVisualStyleBackColor = true;
             this.stapelAktualisieren.Click += new System.EventHandler(this.stapelAktualisieren_Click);
-            // 
-            // listBoxStapel
-            // 
-            this.listBoxStapel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxStapel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.listBoxStapel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxStapel.FormattingEnabled = true;
-            this.listBoxStapel.ItemHeight = 25;
-            this.listBoxStapel.Location = new System.Drawing.Point(69, 50);
-            this.listBoxStapel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listBoxStapel.Name = "listBoxStapel";
-            this.listBoxStapel.Size = new System.Drawing.Size(493, 550);
-            this.listBoxStapel.TabIndex = 11;
             // 
             // stapelLöschen
             // 
@@ -159,12 +148,12 @@ namespace AnsichtsFenster.Fenster
             this.stapelLöschen.FlatAppearance.CheckedBackColor = System.Drawing.Color.Silver;
             this.stapelLöschen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.stapelLöschen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stapelLöschen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stapelLöschen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stapelLöschen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stapelLöschen.Location = new System.Drawing.Point(631, 240);
+            this.stapelLöschen.Location = new System.Drawing.Point(959, 154);
             this.stapelLöschen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stapelLöschen.Name = "stapelLöschen";
-            this.stapelLöschen.Size = new System.Drawing.Size(165, 46);
+            this.stapelLöschen.Size = new System.Drawing.Size(165, 34);
             this.stapelLöschen.TabIndex = 12;
             this.stapelLöschen.Text = "Löschen";
             this.stapelLöschen.UseVisualStyleBackColor = true;
@@ -186,8 +175,8 @@ namespace AnsichtsFenster.Fenster
             this.dachPanel.Name = "dachPanel";
             this.dachPanel.Size = new System.Drawing.Size(1400, 60);
             this.dachPanel.TabIndex = 13;
-            this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseDown);
-            this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseMove);
+            this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuPanel_MouseDown);
+            this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.menuPanel_MouseMove);
             // 
             // StapelBearbeitenButton
             // 
@@ -224,7 +213,7 @@ namespace AnsichtsFenster.Fenster
             this.ChallengeButton.TabIndex = 9;
             this.ChallengeButton.Text = "Challenge Mode";
             this.ChallengeButton.UseVisualStyleBackColor = false;
-            this.ChallengeButton.Click += new System.EventHandler(this.ChallengeButton_Click);
+            this.ChallengeButton.Click += new System.EventHandler(this.challengeButton_Click);
             // 
             // MinimierenButton
             // 
@@ -242,7 +231,7 @@ namespace AnsichtsFenster.Fenster
             this.MinimierenButton.TabIndex = 8;
             this.MinimierenButton.Text = "__";
             this.MinimierenButton.UseVisualStyleBackColor = true;
-            this.MinimierenButton.Click += new System.EventHandler(this.MinimierenButton_Click);
+            this.MinimierenButton.Click += new System.EventHandler(this.minimierenButton_Click);
             // 
             // CloseButton
             // 
@@ -260,7 +249,7 @@ namespace AnsichtsFenster.Fenster
             this.CloseButton.TabIndex = 7;
             this.CloseButton.Text = "X";
             this.CloseButton.UseVisualStyleBackColor = true;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            this.CloseButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // JetztLernenButton
             // 
@@ -279,7 +268,7 @@ namespace AnsichtsFenster.Fenster
             this.JetztLernenButton.TabIndex = 3;
             this.JetztLernenButton.Text = "Jetzt lernen";
             this.JetztLernenButton.UseVisualStyleBackColor = false;
-            this.JetztLernenButton.Click += new System.EventHandler(this.JetztLernenButton_Click);
+            this.JetztLernenButton.Click += new System.EventHandler(this.jetztLernenButton_Click);
             // 
             // KarteBearbeitenButton
             // 
@@ -321,7 +310,8 @@ namespace AnsichtsFenster.Fenster
             // 
             // InhaltPanel
             // 
-            this.InhaltPanel.Controls.Add(this.listBoxStapel);
+            this.InhaltPanel.Controls.Add(this.pictureBox1);
+            this.InhaltPanel.Controls.Add(this.listViewAusgabe);
             this.InhaltPanel.Controls.Add(this.textBoxStapelName);
             this.InhaltPanel.Controls.Add(this.stapelLöschen);
             this.InhaltPanel.Controls.Add(this.stapelAnlegen);
@@ -334,6 +324,28 @@ namespace AnsichtsFenster.Fenster
             this.InhaltPanel.Name = "InhaltPanel";
             this.InhaltPanel.Size = new System.Drawing.Size(1400, 690);
             this.InhaltPanel.TabIndex = 14;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AnsichtsFenster.Properties.Resources.export;
+            this.pictureBox1.Location = new System.Drawing.Point(869, 325);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(180, 151);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
+            // listViewAusgabe
+            // 
+            this.listViewAusgabe.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewAusgabe.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewAusgabe.GridLines = true;
+            this.listViewAusgabe.HideSelection = false;
+            this.listViewAusgabe.Location = new System.Drawing.Point(61, 83);
+            this.listViewAusgabe.Name = "listViewAusgabe";
+            this.listViewAusgabe.Size = new System.Drawing.Size(332, 484);
+            this.listViewAusgabe.TabIndex = 13;
+            this.listViewAusgabe.UseCompatibleStateImageBehavior = false;
             // 
             // StapelBearbeitenView
             // 
@@ -350,6 +362,7 @@ namespace AnsichtsFenster.Fenster
             this.dachPanel.ResumeLayout(false);
             this.InhaltPanel.ResumeLayout(false);
             this.InhaltPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -362,7 +375,6 @@ namespace AnsichtsFenster.Fenster
         private System.Windows.Forms.Button dateiAuswählen;
         private System.Windows.Forms.Button StapelExportieren;
         private System.Windows.Forms.Button stapelAktualisieren;
-        private System.Windows.Forms.ListBox listBoxStapel;
         private System.Windows.Forms.Button stapelLöschen;
         private System.Windows.Forms.Panel dachPanel;
         private System.Windows.Forms.Button StapelBearbeitenButton;
@@ -373,5 +385,7 @@ namespace AnsichtsFenster.Fenster
         private System.Windows.Forms.Button KarteBearbeitenButton;
         private System.Windows.Forms.Button ÜbersichtButton;
         private System.Windows.Forms.Panel InhaltPanel;
+        private System.Windows.Forms.ListView listViewAusgabe;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

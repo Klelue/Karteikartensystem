@@ -1,32 +1,40 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using AnsichtsFenster.Controller;
 using AnsichtsFenster.Utilities;
 using Model;
-using Repositories;
+
 
 namespace AnsichtsFenster.Fenster
 {
     public partial class StapelBearbeitenView : Form
     {
-
-        private StapelRepository stapelRepository;
         private ViewController viewController;
-        private Point letzteMousekoordinaten;
-        
+        private StapelListController listController;
+        private StapelController stapelController;
+        private StapelFileHandler fileHandler;
 
+        private Point letzteMouseKoordinaten;
         public StapelBearbeitenView()
         {
             InitializeComponent();
 
-            stapelRepository = new StapelRepository();
             viewController = new ViewController();
+            listController = new StapelListController();
+            stapelController = new StapelController();
+            fileHandler = new StapelFileHandler();
 
-            Object[] alleStapel = stapelRepository.GetAlleStapel();
+            // listViewAusgabe.View = View.Details;
+            // listController.ClearView(listViewAusgabe);
 
-            listBoxStapel.Items.AddRange(alleStapel);
+            listViewAusgabe.View = View.Details;
+            listViewAusgabe.Columns.Add("Stapel").Width = 180;
+
+            //listViewAusgabe = listController.CreateView(listViewAusgabe);
+            listController.UpdateView(listViewAusgabe);
+
+            
         }
 
         private void stapelAnlegen_Click(object sender, EventArgs e)
@@ -38,15 +46,54 @@ namespace AnsichtsFenster.Fenster
                 Name = stapelName
             };
 
-            if (stapelRepository.StapelHinzufügen(stapel))
+            if (stapelController.Hinzufügen(stapel))
             {
+                listController.ReloadView(listViewAusgabe, stapelController.GetAlleStapel());
                 viewController.ShowMessageBoxHinzufuegenErfolgreich();
             }
             else
             {
-               viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
+                viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
             }
-           
+
+        }
+
+        private void stapelAktualisieren_Click(object sender, EventArgs e)
+        {
+            string selectedStapelName = listViewAusgabe.SelectedItems[0].Text;
+            Stapel selectedStapel = stapelController.GetStapel(selectedStapelName);
+
+            if (selectedStapel != null)
+            {
+                selectedStapel.Name = textBoxStapelName.Text;
+                stapelController.Aktualisieren(selectedStapel);
+                listController.ReloadView(listViewAusgabe, stapelController.GetAlleStapel());
+
+                viewController.ShowMessageBoxAktualisierenErfolgreich();
+            }
+            else
+            {
+                viewController.ShowMessageBoxKeinElementGewaehlt();
+            }
+        }
+
+        private void stapelLöschen_Click(object sender, EventArgs e)
+        {
+            string selectedStapelName = listViewAusgabe.SelectedItems[0].Text;
+            Stapel selectedStapel = stapelController.GetStapel(selectedStapelName);
+
+            if (selectedStapel != null)
+            {
+                selectedStapel.Name = textBoxStapelName.Text;
+                stapelController.Löschen(selectedStapel.Id);
+                listController.ReloadView(listViewAusgabe, stapelController.GetAlleStapel());
+
+                viewController.ShowMessageBoxErfolgreichGeloescht();
+            }
+            else
+            {
+                viewController.ShowMessageBoxKeinElementGewaehlt();
+            }
         }
 
         private void dateiAuswählen_Click(object sender, EventArgs e)
@@ -59,37 +106,13 @@ namespace AnsichtsFenster.Fenster
                 {
                     string pfad = fileDialog.FileName;
 
-                    string[] pfadGesplitet = pfad.Split('\\');
+                    if (fileHandler.SepDateiEinlesen(pfad)){
 
-                    string dateiname = pfadGesplitet[pfadGesplitet.Length - 1];
-
-                    string[] dateinameGesplitet = dateiname.Split('.');
-
-                    StapelFileHandler stapelFileHandler = new StapelFileHandler();
-
-                    Karte[] kartenCsvEinlesen = stapelFileHandler.KartenCsvEinlesen(pfad);
-
-                    StapelRepository stapelHinzufügen = new StapelRepository();
-
-                    Stapel neuerStapel = new Stapel();
-
-                    string dateinameOhneDateiendung = dateinameGesplitet[0];
-
-                    neuerStapel.Name = dateinameOhneDateiendung;
-
-                    stapelHinzufügen.StapelHinzufügen(neuerStapel);
-
-                    Stapel[] alleStapel = stapelHinzufügen.GetAlleStapel();
-
-                    Stapel first = alleStapel.First(stapel => stapel.Name == neuerStapel.Name);
-
-                    KarteRepository karteRepository = new KarteRepository();
-
-                    foreach (Karte karte in kartenCsvEinlesen)
+                        viewController.ShowMessageBoxHinzufuegenErfolgreich();
+                    }
+                    else
                     {
-                        karte.StapelId = first.Id;
-                        karte.Schwierigkeitsgrad = 0;
-                        karteRepository.KarteHinzufügen(karte);
+                        viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
                     }
                 }
             }
@@ -105,67 +128,40 @@ namespace AnsichtsFenster.Fenster
                 selectedPath = folderBrowserDialog.SelectedPath;
             }
 
-            Stapel selectedStapel = (Stapel) listBoxStapel.SelectedItem;
+            string selectedStapelName = listViewAusgabe.SelectedItems[0].Text;
+            Stapel selectedStapel = stapelController.GetStapel(selectedStapelName);
 
-            if (selectedStapel == null)
+            if (selectedStapel != null)
             {
-                viewController.ShowMessageBoxKeinElementGewaehlt();
+                
+                if(fileHandler.StapelAlsSepDateiAnlegen(selectedStapel, selectedPath))
+                {
+                    viewController.ShowMessageBoxHinzufuegenErfolgreich();
+                }
+                else
+                {
+                    viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
+                }
+
             }
             else
             {
-                StapelFileHandler fileHandler = new StapelFileHandler();
-
-                Karte[] alleKartenEinesStapels = new KarteRepository().GetAlleKartenEinesStapels(selectedStapel.Id);
-
-                fileHandler.KartenAlsCsvDateiAnlegen(selectedStapel.Name, alleKartenEinesStapels, selectedPath);
-            }
-        }
-
-        private void stapelAktualisieren_Click(object sender, EventArgs e)
-        {
-            Stapel selectedStapel = (Stapel) listBoxStapel.SelectedItem;
-
-            if (selectedStapel == null)
-            {
                 viewController.ShowMessageBoxKeinElementGewaehlt();
             }
-            else
-            {
-                selectedStapel.Name = textBoxStapelName.Text;
-                stapelRepository.StapelAktualisieren(selectedStapel);
-
-                viewController.ShowMessageBoxAktualisierenErfolgreich();
-            }
         }
 
-        private void stapelLöschen_Click(object sender, EventArgs e)
-        {
-            Stapel selectedStapel = (Stapel) listBoxStapel.SelectedItem;
-
-            if (selectedStapel == null)
-            {
-                viewController.ShowMessageBoxKeinElementGewaehlt();
-            }
-            else
-            {
-                stapelRepository.StapelLöschen(selectedStapel.Id);
-                viewController.ShowMessageBoxErfolgreichGeloescht();
-            }
-        }
-
-
-        private void dachPanel_MouseMove(object sender, MouseEventArgs e)
+        private void menuPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - letzteMousekoordinaten.X;
-                this.Top += e.Y - letzteMousekoordinaten.Y;
+                this.Left += e.X - letzteMouseKoordinaten.X;
+                this.Top += e.Y - letzteMouseKoordinaten.Y;
             }
         }
 
-        private void dachPanel_MouseDown(object sender, MouseEventArgs e)
+        private void menuPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            letzteMousekoordinaten = new Point(e.X, e.Y);
+            letzteMouseKoordinaten = new Point(e.X, e.Y);
         }
 
         private void ÜbersichtButton_Click(object sender, EventArgs e)
@@ -179,24 +175,24 @@ namespace AnsichtsFenster.Fenster
             new HinzufuegenKarten().Show();
         }
 
-        private void JetztLernenButton_Click(object sender, EventArgs e)
+        private void jetztLernenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             new JetztLernenView().Show();
         }
         
-        private void ChallengeButton_Click(object sender, EventArgs e)
+        private void challengeButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             new ChallengeView().Show();
         }
 
-        private void MinimierenButton_Click(object sender, EventArgs e)
+        private void minimierenButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void CloseButton_Click(object sender, EventArgs e)
+        private void closeButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
