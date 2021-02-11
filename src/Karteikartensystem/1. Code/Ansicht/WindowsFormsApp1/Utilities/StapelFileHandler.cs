@@ -23,7 +23,7 @@ namespace AnsichtsFenster.Utilities
             try
             {
                 string text = "";
-                List<Karte> karten = karteController.getAlleKartenEinesStapels(stapel.Id);
+                List<Karte> karten = karteController.GetAlleKartenEinesStapels(stapel.Id);
                 foreach (Karte karte in karten)
                 {
                     text += $"{karte.Frage}{SeparierendesZeichen}{karte.Antwort}{Environment.NewLine}";
