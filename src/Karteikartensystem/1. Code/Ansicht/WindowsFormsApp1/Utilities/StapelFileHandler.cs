@@ -1,26 +1,35 @@
-﻿namespace AnsichtsFenster.Utilities
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using Model;
+﻿using AnsichtsFenster.Controller;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Model;
 
+namespace AnsichtsFenster.Utilities
+{
     public class StapelFileHandler
     {
-        public string SeparierendesZeichen = "@";
+        private StapelController stapelController;
+        private KarteController karteController;
+        private string SeparierendesZeichen = "@";
 
-        public bool KartenAlsCsvDateiAnlegen(string stapelName, Karte[] karten, string pfad)
+        public StapelFileHandler()
         {
-            string text = "";
+            stapelController = new StapelController();
+            karteController = new KarteController();
+        }
 
-            foreach (Karte karte in karten)
-            {
-                text += $"{karte.Frage}{SeparierendesZeichen}{karte.Antwort}{Environment.NewLine}";
-            }
-
+        public bool StapelAlsSepDateiAnlegen(Stapel stapel, string pfad)
+        {
             try
             {
-                File.WriteAllText(pfad + @"\" + stapelName + ".sed", text);
+                string text = "";
+                List<Karte> karten = karteController.getAlleKartenEinesStapels(stapel.Id);
+                foreach (Karte karte in karten)
+                {
+                    text += $"{karte.Frage}{SeparierendesZeichen}{karte.Antwort}{Environment.NewLine}";
+                }
+
+                File.WriteAllText(pfad + @"\" + stapel.Name + ".sed", text);
             }
             catch (Exception)
             {
@@ -30,25 +39,56 @@
             return true;
         }
 
-        public Karte[] KartenCsvEinlesen(string pfad)
+        public bool SepDateiEinlesen(string pfad)
         {
-            string[] lines = File.ReadAllLines(pfad);
+                string stapelName = getKartenNamenVonDateiPfad(pfad);
+                Stapel stapel = new Stapel();
+                stapel.Name = stapelName;
+                stapelController.Hinzufügen(stapel);
 
-            List<Karte> karten = new List<Karte>();
+                Stapel stapelMitAngelegterId = stapelController.GetStapel(stapelName);
+                List<Karte> karten = new List<Karte>();
+                string[] lines = File.ReadAllLines(pfad);
 
-            foreach (string line in lines)
-            {
-                string[] separierterkartenInhalt = line.Split('@');
+                foreach (string line in lines)
+                {
+                    string[] separierterkartenInhalt = line.Split('@');
 
-                Karte karte = new Karte();
+                    Karte karte = new Karte();
 
-                karte.Frage = separierterkartenInhalt[0];
-                karte.Antwort = separierterkartenInhalt[1];
+                    karte.Frage = separierterkartenInhalt[0];
+                    karte.Antwort = separierterkartenInhalt[1];
+                    karte.StapelId = stapelMitAngelegterId.Id;
+                    karte.Schwierigkeitsgrad = 0;
+                    karte.FalschAntwort1 = "";
+                    karte.FalschAntwort2 = "";
+                    karte.FalschAntwort3 = "";
 
-                karten.Add(karte);
-            }
+                    karten.Add(karte);
+                }
 
-            return karten.ToArray();
+                if (!karteController.Hinzufügen(karten))
+                {
+                    return false;
+                }
+
+                return true;
         }
+
+        private string getKartenNamenVonDateiPfad(string pfad)
+        {
+            string[] pfadGesplitet = pfad.Split('\\');
+            string dateiname = pfadGesplitet[pfadGesplitet.Length - 1];
+            string[] dateinameGesplitet = dateiname.Split('.');
+
+            string dateinameOhneDateiendung = dateinameGesplitet[0];
+
+            return dateinameOhneDateiendung;
+        }
+
+
+
+
+
     }
 }

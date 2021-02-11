@@ -94,7 +94,8 @@ namespace AnsichtsFenster.Fenster
             karte.FalschAntwort3 = fackeAntwort3.Text;
             karte.StapelId = stapelId;
 
-            if (karte.FalschAntwort1 != "Falsche Antwort 1 (Optional)" || karte.FalschAntwort2 != "Falsche Antwort 2 (Optional)" || karte.FalschAntwort3 != "Falsche Antwort 3 (Optional)")
+            if (karte.FalschAntwort1 != "Falsche Antwort 1 (Optional)" || karte.FalschAntwort2 !=
+                "Falsche Antwort 2 (Optional)" || karte.FalschAntwort3 != "Falsche Antwort 3 (Optional)")
             {
                 karte.ChallengeMode = true;
             }
