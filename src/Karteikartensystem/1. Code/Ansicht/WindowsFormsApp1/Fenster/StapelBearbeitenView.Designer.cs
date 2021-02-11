@@ -56,13 +56,15 @@ namespace AnsichtsFenster.Fenster
             // textBoxStapelName
             // 
             this.textBoxStapelName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxStapelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxStapelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.textBoxStapelName.Location = new System.Drawing.Point(495, 83);
             this.textBoxStapelName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxStapelName.Multiline = true;
             this.textBoxStapelName.Name = "textBoxStapelName";
-            this.textBoxStapelName.Size = new System.Drawing.Size(629, 37);
+            this.textBoxStapelName.Size = new System.Drawing.Size(629, 30);
             this.textBoxStapelName.TabIndex = 0;
+            this.textBoxStapelName.Enter += new System.EventHandler(this.textBoxStapelName_Enter);
+            this.textBoxStapelName.Leave += new System.EventHandler(this.textBoxStapelName_Leave);
             // 
             // stapelAnlegen
             // 
@@ -73,7 +75,7 @@ namespace AnsichtsFenster.Fenster
             this.stapelAnlegen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stapelAnlegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stapelAnlegen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stapelAnlegen.Location = new System.Drawing.Point(726, 154);
+            this.stapelAnlegen.Location = new System.Drawing.Point(495, 139);
             this.stapelAnlegen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stapelAnlegen.Name = "stapelAnlegen";
             this.stapelAnlegen.Size = new System.Drawing.Size(194, 34);
@@ -132,7 +134,7 @@ namespace AnsichtsFenster.Fenster
             this.stapelAktualisieren.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stapelAktualisieren.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stapelAktualisieren.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stapelAktualisieren.Location = new System.Drawing.Point(495, 154);
+            this.stapelAktualisieren.Location = new System.Drawing.Point(717, 139);
             this.stapelAktualisieren.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stapelAktualisieren.Name = "stapelAktualisieren";
             this.stapelAktualisieren.Size = new System.Drawing.Size(206, 34);
@@ -150,7 +152,7 @@ namespace AnsichtsFenster.Fenster
             this.stapelLöschen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stapelLöschen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stapelLöschen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.stapelLöschen.Location = new System.Drawing.Point(959, 154);
+            this.stapelLöschen.Location = new System.Drawing.Point(959, 139);
             this.stapelLöschen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stapelLöschen.Name = "stapelLöschen";
             this.stapelLöschen.Size = new System.Drawing.Size(165, 34);
@@ -337,13 +339,16 @@ namespace AnsichtsFenster.Fenster
             // 
             // listViewAusgabe
             // 
+            this.listViewAusgabe.AllowColumnReorder = true;
             this.listViewAusgabe.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewAusgabe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.listViewAusgabe.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewAusgabe.GridLines = true;
             this.listViewAusgabe.HideSelection = false;
-            this.listViewAusgabe.Location = new System.Drawing.Point(61, 83);
+            this.listViewAusgabe.HoverSelection = true;
+            this.listViewAusgabe.Location = new System.Drawing.Point(81, 44);
             this.listViewAusgabe.Name = "listViewAusgabe";
-            this.listViewAusgabe.Size = new System.Drawing.Size(332, 484);
+            this.listViewAusgabe.Size = new System.Drawing.Size(332, 504);
             this.listViewAusgabe.TabIndex = 13;
             this.listViewAusgabe.UseCompatibleStateImageBehavior = false;
             // 

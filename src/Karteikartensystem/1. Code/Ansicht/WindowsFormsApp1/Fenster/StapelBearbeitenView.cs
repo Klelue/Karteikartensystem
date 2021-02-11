@@ -25,11 +25,15 @@ namespace AnsichtsFenster.Fenster
             stapelController = new StapelController();
             fileHandler = new StapelFileHandler();
 
+            textBoxStapelName.Text = "Stapel";
+            textBoxStapelName.ForeColor = Color.Gray;
+
+
             // listViewAusgabe.View = View.Details;
             // listController.ClearView(listViewAusgabe);
 
             listViewAusgabe.View = View.Details;
-            listViewAusgabe.Columns.Add("Stapel").Width = 180;
+            listViewAusgabe.Columns.Add("Stapel").Width = 245;
 
             //listViewAusgabe = listController.CreateView(listViewAusgabe);
             listController.UpdateView(listViewAusgabe);
@@ -39,17 +43,25 @@ namespace AnsichtsFenster.Fenster
 
         private void stapelAnlegen_Click(object sender, EventArgs e)
         {
+
             string stapelName = textBoxStapelName.Text;
 
-            Stapel stapel = new Stapel
+            if (stapelName != "Stapel")
             {
-                Name = stapelName
-            };
+                Stapel stapel = new Stapel
+                {
+                    Name = stapelName
+                };
 
-            if (stapelController.Hinzufügen(stapel))
-            {
-                listController.ReloadView(listViewAusgabe, stapelController.GetAlleStapel());
-                viewController.ShowMessageBoxHinzufuegenErfolgreich();
+                if (stapelController.Hinzufügen(stapel))
+                {
+                    listController.ReloadView(listViewAusgabe, stapelController.GetAlleStapel());
+                    viewController.ShowMessageBoxHinzufuegenErfolgreich();
+                }
+                else
+                {
+                    viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
+                }
             }
             else
             {
@@ -195,6 +207,25 @@ namespace AnsichtsFenster.Fenster
         private void closeButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+
+        private void textBoxStapelName_Enter(object sender, EventArgs e)
+        {
+            if (textBoxStapelName.Text == "Stapel")
+            {
+                textBoxStapelName.Clear();
+                textBoxStapelName.ForeColor = Color.Gray; ;
+            }
+        }
+
+        private void textBoxStapelName_Leave(object sender, EventArgs e)
+        {
+            if (textBoxStapelName.Text == "")
+            {
+                textBoxStapelName.Text = "Stapel";
+                textBoxStapelName.ForeColor = Color.Black;
+            }
         }
     }
 }
