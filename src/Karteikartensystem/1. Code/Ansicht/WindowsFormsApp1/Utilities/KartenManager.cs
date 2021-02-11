@@ -5,7 +5,7 @@ using Model;
 
 namespace AnsichtsFenster.Utilities
 {
-    public class ChallengeKartenManager
+    public class KartenManager
     {
         private List<Karte> leichteKarten { get; }
         private List<Karte> mittelKarten { get; }
@@ -14,7 +14,7 @@ namespace AnsichtsFenster.Utilities
 
         private int zähler;
 
-        public ChallengeKartenManager(Karte[] karten)
+        public KartenManager(Karte[] karten)
         {
             leichteKarten = new List<Karte>();
             mittelKarten = new List<Karte>();

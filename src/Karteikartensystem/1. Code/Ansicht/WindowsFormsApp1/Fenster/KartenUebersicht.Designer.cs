@@ -33,6 +33,7 @@ namespace AnsichtsFenster.Fenster
             this.btn_home = new System.Windows.Forms.Button();
             this.richTxt = new System.Windows.Forms.RichTextBox();
             this.InhaltPanel = new System.Windows.Forms.Panel();
+            this.lblAuswertungOben = new System.Windows.Forms.Label();
             this.lblAuswertungUnten = new System.Windows.Forms.Label();
             this.btnStapelErneutLernen = new System.Windows.Forms.Button();
             this.btnNichtNochmal = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@ namespace AnsichtsFenster.Fenster
             this.StapelWählenButton = new System.Windows.Forms.Button();
             this.MinimierenButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
-            this.lblAuswertungOben = new System.Windows.Forms.Label();
             this.imgParty = new System.Windows.Forms.PictureBox();
             this.InhaltPanel.SuspendLayout();
             this.dachPanel.SuspendLayout();
@@ -107,6 +107,17 @@ namespace AnsichtsFenster.Fenster
             this.InhaltPanel.Name = "InhaltPanel";
             this.InhaltPanel.Size = new System.Drawing.Size(1400, 690);
             this.InhaltPanel.TabIndex = 5;
+            // 
+            // lblAuswertungOben
+            // 
+            this.lblAuswertungOben.AutoSize = true;
+            this.lblAuswertungOben.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAuswertungOben.Location = new System.Drawing.Point(518, 24);
+            this.lblAuswertungOben.Name = "lblAuswertungOben";
+            this.lblAuswertungOben.Size = new System.Drawing.Size(283, 41);
+            this.lblAuswertungOben.TabIndex = 16;
+            this.lblAuswertungOben.Text = "lblAuswertungOben";
+            this.lblAuswertungOben.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblAuswertungUnten
             // 
@@ -315,17 +326,6 @@ namespace AnsichtsFenster.Fenster
             this.CloseButton.Text = "X";
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
-            // lblAuswertungOben
-            // 
-            this.lblAuswertungOben.AutoSize = true;
-            this.lblAuswertungOben.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAuswertungOben.Location = new System.Drawing.Point(518, 24);
-            this.lblAuswertungOben.Name = "lblAuswertungOben";
-            this.lblAuswertungOben.Size = new System.Drawing.Size(354, 51);
-            this.lblAuswertungOben.TabIndex = 16;
-            this.lblAuswertungOben.Text = "lblAuswertungOben";
-            this.lblAuswertungOben.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // imgParty
             // 

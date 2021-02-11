@@ -24,7 +24,7 @@ namespace AnsichtsFenster.Fenster
         {
             InitializeComponent();
             viewController = new ViewController();
-            Object[] alleStapel = new StapelRepository().GetAlleStapel();
+            object[] alleStapel = new StapelController().GetAlleStapel().ToArray();
             listBoxStapel.Items.AddRange(alleStapel);
             listBoxStapel.SetSelected(0, true);
             ZeitUpDown.Value = 1;

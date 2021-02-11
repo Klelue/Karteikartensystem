@@ -125,7 +125,7 @@
     <Compile Include="Fenster\KartenUebersicht.Designer.cs">
       <DependentUpon>KartenUebersicht.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\ChallengeKartenManager.cs" />
+    <Compile Include="Utilities\KartenManager.cs" />
     <Compile Include="Utilities\ListViewItemComparer.cs" />
     <Compile Include="Fenster\StapelUebersichtView.cs">
       <SubType>Form</SubType>
@@ -221,6 +221,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trophy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\winner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
