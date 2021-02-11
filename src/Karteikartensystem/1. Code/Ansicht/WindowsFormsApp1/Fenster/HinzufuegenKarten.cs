@@ -14,7 +14,8 @@ namespace AnsichtsFenster.Fenster
     {
         private Karte selectedKarte;
         private List<Karte> alleKarten;
-        private KarteRepository repository;
+        private StapelController stapelController;
+        private KarteController karteController;
         private ViewController viewController;
         private KartenListController kartenListController;
 
@@ -24,8 +25,9 @@ namespace AnsichtsFenster.Fenster
         public HinzufuegenKarten()
         {
             InitializeComponent();
-            viewController = new ViewController();
-            repository = new KarteRepository();
+            viewController = new ViewController(); 
+            stapelController = new StapelController();
+            karteController = new KarteController();
             alleKarten = new List<Karte>();
             kartenListController = new KartenListController();
             comboBoxLaden();
@@ -56,9 +58,10 @@ namespace AnsichtsFenster.Fenster
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            string ausgewählteKategorie = comboBox1.SelectedItem.ToString();
-            stapelId = allesStapel.FirstOrDefault(stapel => stapel.Name == ausgewählteKategorie).Id;
-            alleKarten = repository.GetAlleKartenEinesStapels(stapelId).ToList();
+            string ausgewählterStapel = comboBox1.SelectedItem.ToString();
+
+            stapelId = stapelController.GetStapel(ausgewählterStapel).Id;
+            alleKarten = karteController.GetAlleKartenEinesStapels(stapelId);
             ListViewFormatieren();
         }
 
@@ -66,14 +69,17 @@ namespace AnsichtsFenster.Fenster
         {
             if (richTxt_Vorderseite.Text.Trim() != "Frage" && richTxt_Rueckseite.Text.Trim() != "Richtige Antwort")
             {
-                if (repository.KarteHinzufügen(KartenAnlegen()))
+                if (karteController.Hinzufügen(KartenAnlegen()))
                 {
                     string stapelName = comboBox1.SelectedItem.ToString();
-                    stapelId = allesStapel.FirstOrDefault(stapel => stapel.Name == stapelName).Id;
-                    Karte[] alleKartenEinesStapels = repository.GetAlleKartenEinesStapels(stapelId);
+                    Stapel newStapel = stapelController.GetStapel(stapelName);
+                    stapelId = newStapel.Id;
+                    List<Karte> alleKartenEinesStapels = karteController.GetAlleKartenEinesStapels(stapelId);
+
                     ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige,
-                        alleKartenEinesStapels.ToList());
+                        alleKartenEinesStapels);
                     listView_KartenAnzeige = listView;
+
                     ClearTextFelder();
                     viewController.ShowMessageBoxHinzufuegenErfolgreich();
                 }
@@ -133,16 +139,11 @@ namespace AnsichtsFenster.Fenster
             {
                 string stapelname = comboBox1.SelectedItem.ToString();
 
-                Stapel[] alleStapel = new StapelRepository().GetAlleStapel();
-
-                Stapel aktuellerStapel = alleStapel.First(stapel => stapel.Name == stapelname);
-
-                Karte[] alleKartenEinesStapels = repository.GetAlleKartenEinesStapels(aktuellerStapel.Id);
-
+                Stapel aktuellerStapel = stapelController.GetStapel(stapelname);
+                List<Karte> alleKartenEinesStapels = karteController.GetAlleKartenEinesStapels(aktuellerStapel.Id);
                 string zuletztAusgewählteFrage = listView_KartenAnzeige.Items[listView_KartenAnzeige.Items.Count - 1].Text; 
 
                 Karte zuletztAusgewälteKarte = alleKartenEinesStapels.First(karte => karte.Frage == zuletztAusgewählteFrage);
-
                 selectedKarte = zuletztAusgewälteKarte;
              
             }
@@ -193,13 +194,16 @@ namespace AnsichtsFenster.Fenster
         {
             if (selectedKarte != null)
             {
-                if (repository.KarteLöschen(selectedKarte.Id))
+                if (karteController.Löschen(selectedKarte.Id))
                 {
                     selectedKarte = null;
                     string stapelName = comboBox1.SelectedItem.ToString();
-                    stapelId = allesStapel.FirstOrDefault(stapel => stapel.Name == stapelName).Id;
-                    Karte[] alleKartenEinesStapels = repository.GetAlleKartenEinesStapels(stapelId);
-                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKartenEinesStapels.ToList());
+
+                    Stapel stapel = stapelController.GetStapel(stapelName);
+                    stapelId = stapel.Id;
+                    List<Karte> alleKartenEinesStapels = karteController.GetAlleKartenEinesStapels(stapelId);
+
+                    ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKartenEinesStapels);
                     listView_KartenAnzeige = listView;
                     ClearTextFelder();
                     viewController.ShowMessageBoxErfolgreichGeloescht();
@@ -230,7 +234,7 @@ namespace AnsichtsFenster.Fenster
                     selectedKarte.ChallengeMode = false;
                 }
 
-                if (repository.KarteAktualisieren(selectedKarte))
+                if (karteController.Aktualisieren(selectedKarte))
                 {
                     selectedKarte = null;
                     ListView listView = kartenListController.ReloadView(this.listView_KartenAnzeige, alleKarten);

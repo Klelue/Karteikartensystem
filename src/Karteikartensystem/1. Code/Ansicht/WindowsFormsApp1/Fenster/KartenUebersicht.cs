@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
+using AnsichtsFenster.Controller;
 using AnsichtsFenster.Utilities;
 using Model;
 using Repositories;
@@ -13,8 +13,8 @@ namespace AnsichtsFenster.Fenster
     {
         private Karte selectedKarte;
         private Stapel selectetStapel;
-        private ChallengeKartenManager _challengeKartenManager;
-        private KarteRepository repository;
+        private KartenManager kartenManager;
+        private KarteController karteController;
         private Stoppuhr stoppuhr;
 
         public KartenUebersicht(Stapel stapel)
@@ -23,13 +23,14 @@ namespace AnsichtsFenster.Fenster
             selectetStapel = stapel;
             lbl_StapelName.Text = stapel.Name;
 
-            repository = new KarteRepository();
-            var alleKarten = repository.GetAlleKartenEinesStapels(stapel.Id).ToList();
-            _challengeKartenManager = new ChallengeKartenManager(alleKarten.ToArray());
+            karteController = new KarteController();
+
+            var alleKarten = karteController.GetAlleKartenEinesStapels(stapel.Id);
+            kartenManager = new KartenManager(alleKarten.ToArray());
 
             if (alleKarten.Count >= 1)
             {
-                selectedKarte = _challengeKartenManager.GetNextKarte();
+                selectedKarte = kartenManager.GetNextKarte();
             }
             else // falls keine Karten vorhanden
             {
@@ -47,24 +48,19 @@ namespace AnsichtsFenster.Fenster
         private void btn_home_Click(object sender, EventArgs e)
         {
             stoppuhr.Stop();
-
-            Karte[] karten = _challengeKartenManager.GetAlleKarten();
-
+            Karte[] karten = kartenManager.GetAlleKarten();
             selectetStapel.GelernteZeitInMinuten += stoppuhr.GetZeit();
 
             new StapelRepository().StapelAktualisieren(selectetStapel);
             foreach (Karte karte in karten)
             {
-                repository.KarteAktualisieren(karte);
+                karteController.Aktualisieren(karte);
             }
 
             stoppuhr.Stop();
-
-            // base.Dispose();
             this.Hide();
             StapelUebersichtView stubvView = new StapelUebersichtView();
             stubvView.Show();
-
         }
 
         private void btn_Antwort_Click(object sender, EventArgs e)
@@ -87,9 +83,7 @@ namespace AnsichtsFenster.Fenster
 
         private void FrageSetzen()
         {
-
-           // imgParty.Visible = false;
-            selectedKarte = _challengeKartenManager.GetNextKarte();
+            selectedKarte = kartenManager.GetNextKarte();
             btnEinfach.Visible = false;
             btnNochmal.Visible = false;
             btnGut.Visible = false;
@@ -121,38 +115,36 @@ namespace AnsichtsFenster.Fenster
 
         private void btn_Nochmal(object sender, EventArgs e)
         {
-            _challengeKartenManager.AddZuSchwereKarten(selectedKarte);
+            kartenManager.AddZuSchwereKarten(selectedKarte);
             FrageSetzen();
         }
 
         private void btn_Gut_Click(object sender, EventArgs e)
         {
-            _challengeKartenManager.AddZuMittelKarten(selectedKarte);
+            kartenManager.AddZuMittelKarten(selectedKarte);
             FrageSetzen();
         }
 
         private void btn_Einfach(object sender, EventArgs e)
         {
-            _challengeKartenManager.AddZuLeichteKarten(selectedKarte);
+            kartenManager.AddZuLeichteKarten(selectedKarte);
             FrageSetzen();
         }
 
         private void btn_nichtNochmal(object sender, EventArgs e)
         {
-            _challengeKartenManager.AddZuGelerntenKarten(selectedKarte);
+            kartenManager.AddZuGelerntenKarten(selectedKarte);
             FrageSetzen();
         }
 
         private void btnErneutLernen(object sender, EventArgs e)
         {
-            _challengeKartenManager.Reset();
+            kartenManager.Reset();
             richTxt.Visible = true;
             lblAuswertungUnten.Visible = false;
             FrageSetzen();
         }
 
-
-        /****************************************/
         private Point LastPoint;
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)
         {

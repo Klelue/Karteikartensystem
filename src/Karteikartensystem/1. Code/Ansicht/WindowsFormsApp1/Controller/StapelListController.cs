@@ -98,13 +98,14 @@ namespace AnsichtsFenster.Controller
         public ListViewItem CreateViewItem(Stapel stapel)
         {
             ListViewItem item = new ListViewItem((stapel.Name));
-            item.SubItems.Add(stapel.GelernteZeitInMinuten + " Minuten");
 
             int anzahlKarten = karteController.CountAlleKartenEinesStapels(stapel.Id);
             item.SubItems.Add(anzahlKarten.ToString());
 
             int gelernteKarten = GelernteKartenBerechnen(stapel);
             item.SubItems.Add(gelernteKarten.ToString());
+
+            item.SubItems.Add(stapel.GelernteZeitInMinuten + " Minuten");
 
             return item;
         }

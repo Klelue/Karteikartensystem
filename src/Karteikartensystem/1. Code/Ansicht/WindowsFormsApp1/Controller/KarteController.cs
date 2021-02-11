@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Model;
 using Repositories;
@@ -15,6 +14,11 @@ namespace AnsichtsFenster.Controller
             repository = new KarteRepository();
         }
 
+        public bool Hinzufügen(Karte karte)
+        {
+            return repository.KarteHinzufügen(karte);
+        }
+
         public bool Hinzufügen(List<Karte> karten)
         {
             foreach (Karte karte in karten)
@@ -28,7 +32,17 @@ namespace AnsichtsFenster.Controller
             return true;
         }
 
-        public List<Karte> getAlleKartenEinesStapels(long id)
+        public bool Löschen(long id)
+        {
+            return repository.KarteLöschen(id);
+        }
+
+        public bool Aktualisieren(Karte karte)
+        {
+            return repository.KarteAktualisieren(karte);
+        }
+
+        public List<Karte> GetAlleKartenEinesStapels(long id)
         {
             return repository.GetAlleKartenEinesStapels(id).ToList();
         }
