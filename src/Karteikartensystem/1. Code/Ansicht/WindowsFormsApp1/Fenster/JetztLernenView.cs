@@ -11,9 +11,10 @@ namespace AnsichtsFenster.Fenster
         public JetztLernenView()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(0, 0);
 
             Object[] alleStapel = new StapelRepository().GetAlleStapel();
-
             listBoxLampe.Items.AddRange(alleStapel);
         }
 
@@ -28,8 +29,6 @@ namespace AnsichtsFenster.Fenster
         }
 
 
-
-        /***********************************/
         private Point LastPoint;
         private void dachPanel_MouseMove(object sender, MouseEventArgs e)
         {

@@ -20,9 +20,11 @@ namespace AnsichtsFenster.Fenster
         public KartenUebersicht(Stapel stapel)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(0, 0);
+
             selectetStapel = stapel;
             lbl_StapelName.Text = stapel.Name;
-
             karteController = new KarteController();
 
             var alleKarten = karteController.GetAlleKartenEinesStapels(stapel.Id);
