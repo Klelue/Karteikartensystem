@@ -1,26 +1,22 @@
 ﻿
-
-using System.Collections.Generic;
-using System.Linq;
-using Model;
-using Repositories;
-
 namespace AnsichtsFenster.Controller
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Model;
+    using Repositories;
     public class StapelController
     {
-        private StapelRepository repository;
+        private readonly StapelRepository repository;
         public StapelController()
         {
             repository = new StapelRepository();
         }
 
-      
         public List<Stapel> GetAlleStapel()
         {
             return repository.GetAlleStapel().ToList();
         }
-
 
         public Stapel GetStapel(string name)
         {
@@ -42,6 +38,5 @@ namespace AnsichtsFenster.Controller
             return repository.StapelHinzufügen(stapel);
         }
 
-        
     }
 }

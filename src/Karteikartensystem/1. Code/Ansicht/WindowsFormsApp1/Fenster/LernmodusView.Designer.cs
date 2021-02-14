@@ -1,7 +1,7 @@
 ﻿
 namespace AnsichtsFenster.Fenster
 {
-    partial class KartenUebersicht
+    partial class LernmodusView
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace AnsichtsFenster.Fenster
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KartenUebersicht));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LernmodusView));
             this.btn_home = new System.Windows.Forms.Button();
             this.richTxt = new System.Windows.Forms.RichTextBox();
             this.InhaltPanel = new System.Windows.Forms.Panel();
@@ -71,7 +71,7 @@ namespace AnsichtsFenster.Fenster
             this.btn_home.Text = "Lernen beenden";
             this.btn_home.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btn_home.UseVisualStyleBackColor = false;
-            this.btn_home.Click += new System.EventHandler(this.BtnHomeClick);
+            this.btn_home.Click += new System.EventHandler(this.btn_home_Click);
             // 
             // richTxt
             // 
@@ -147,7 +147,7 @@ namespace AnsichtsFenster.Fenster
             this.btnStapelErneutLernen.TabIndex = 12;
             this.btnStapelErneutLernen.Text = "Stapel erneut lernen";
             this.btnStapelErneutLernen.UseVisualStyleBackColor = false;
-            this.btnStapelErneutLernen.Click += new System.EventHandler(this.BtnErneutLernenClick);
+            this.btnStapelErneutLernen.Click += new System.EventHandler(this.btnErneutLernen);
             // 
             // btnNichtNochmal
             // 
@@ -166,7 +166,7 @@ namespace AnsichtsFenster.Fenster
             this.btnNichtNochmal.TabIndex = 11;
             this.btnNichtNochmal.Text = "Nicht nochmal ";
             this.btnNichtNochmal.UseVisualStyleBackColor = false;
-            this.btnNichtNochmal.Click += new System.EventHandler(this.BtnNichtNochmalClick);
+            this.btnNichtNochmal.Click += new System.EventHandler(this.btn_nichtNochmal);
             // 
             // btnEinfach
             // 
@@ -185,7 +185,7 @@ namespace AnsichtsFenster.Fenster
             this.btnEinfach.TabIndex = 10;
             this.btnEinfach.Text = "Einfach";
             this.btnEinfach.UseVisualStyleBackColor = false;
-            this.btnEinfach.Click += new System.EventHandler(this.BtnEinfachClick);
+            this.btnEinfach.Click += new System.EventHandler(this.btn_Einfach);
             // 
             // btn_Antwort
             // 
@@ -204,7 +204,7 @@ namespace AnsichtsFenster.Fenster
             this.btn_Antwort.TabIndex = 6;
             this.btn_Antwort.Text = "Antwort anzeigen";
             this.btn_Antwort.UseVisualStyleBackColor = false;
-            this.btn_Antwort.Click += new System.EventHandler(this.BtnAntwortClick);
+            this.btn_Antwort.Click += new System.EventHandler(this.btn_Antwort_Click);
             // 
             // btnGut
             // 
@@ -223,7 +223,7 @@ namespace AnsichtsFenster.Fenster
             this.btnGut.TabIndex = 9;
             this.btnGut.Text = "Gut";
             this.btnGut.UseVisualStyleBackColor = false;
-            this.btnGut.Click += new System.EventHandler(this.BtnGutClick);
+            this.btnGut.Click += new System.EventHandler(this.btn_Gut_Click);
             // 
             // btnNochmal
             // 
@@ -242,7 +242,7 @@ namespace AnsichtsFenster.Fenster
             this.btnNochmal.TabIndex = 8;
             this.btnNochmal.Text = "Nochmal";
             this.btnNochmal.UseVisualStyleBackColor = false;
-            this.btnNochmal.Click += new System.EventHandler(this.BtnNochmalClick);
+            this.btnNochmal.Click += new System.EventHandler(this.btn_Nochmal);
             // 
             // lbl_StapelName
             // 
@@ -269,8 +269,8 @@ namespace AnsichtsFenster.Fenster
             this.dachPanel.Name = "dachPanel";
             this.dachPanel.Size = new System.Drawing.Size(1400, 60);
             this.dachPanel.TabIndex = 7;
-            this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuMouseDown);
-            this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuMouseMove);
+            this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseDown);
+            this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseMove);
             // 
             // StapelWählenButton
             // 
@@ -291,7 +291,7 @@ namespace AnsichtsFenster.Fenster
             this.StapelWählenButton.Text = "Stapel wählen";
             this.StapelWählenButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.StapelWählenButton.UseVisualStyleBackColor = false;
-            this.StapelWählenButton.Click += new System.EventHandler(this.StapelWählenButtonClick);
+            this.StapelWählenButton.Click += new System.EventHandler(this.StapelWählenButton_Click);
             // 
             // MinimierenButton
             // 
@@ -308,7 +308,7 @@ namespace AnsichtsFenster.Fenster
             this.MinimierenButton.TabIndex = 10;
             this.MinimierenButton.Text = "__";
             this.MinimierenButton.UseVisualStyleBackColor = true;
-            this.MinimierenButton.Click += new System.EventHandler(this.MinimierenButtonClick);
+            this.MinimierenButton.Click += new System.EventHandler(this.MinimierenButton_Click);
             // 
             // CloseButton
             // 
@@ -325,7 +325,7 @@ namespace AnsichtsFenster.Fenster
             this.CloseButton.TabIndex = 9;
             this.CloseButton.Text = "X";
             this.CloseButton.UseVisualStyleBackColor = true;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButtonClick);
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // imgParty
             // 

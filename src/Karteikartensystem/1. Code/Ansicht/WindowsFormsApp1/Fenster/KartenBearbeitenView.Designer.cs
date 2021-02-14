@@ -1,6 +1,6 @@
 ﻿namespace AnsichtsFenster.Fenster
 {
-    partial class HinzufuegenKarten
+    partial class KartenBearbeitenView
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HinzufuegenKarten));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KartenBearbeitenView));
             this.richTxt_Vorderseite = new System.Windows.Forms.RichTextBox();
             this.richTxt_Rueckseite = new System.Windows.Forms.RichTextBox();
             this.lbl_Vorderseite = new System.Windows.Forms.Label();
@@ -69,8 +69,8 @@
             this.richTxt_Vorderseite.Size = new System.Drawing.Size(429, 496);
             this.richTxt_Vorderseite.TabIndex = 100;
             this.richTxt_Vorderseite.Text = "";
-            this.richTxt_Vorderseite.Enter += new System.EventHandler(this.RichTxtVorderseiteEnter);
-            this.richTxt_Vorderseite.Leave += new System.EventHandler(this.RichTxtVorderseiteLeave);
+            this.richTxt_Vorderseite.Enter += new System.EventHandler(this.richTxt_Vorderseite_Enter);
+            this.richTxt_Vorderseite.Leave += new System.EventHandler(this.richTxt_Vorderseite_Leave);
             // 
             // richTxt_Rueckseite
             // 
@@ -83,8 +83,8 @@
             this.richTxt_Rueckseite.Size = new System.Drawing.Size(429, 110);
             this.richTxt_Rueckseite.TabIndex = 1;
             this.richTxt_Rueckseite.Text = "";
-            this.richTxt_Rueckseite.Enter += new System.EventHandler(this.RichTxtRueckseiteEnter);
-            this.richTxt_Rueckseite.Leave += new System.EventHandler(this.RichTxtRueckseiteLeave);
+            this.richTxt_Rueckseite.Enter += new System.EventHandler(this.richTxt_Rueckseite_Enter);
+            this.richTxt_Rueckseite.Leave += new System.EventHandler(this.richTxt_Rueckseite_Leave);
             // 
             // lbl_Vorderseite
             // 
@@ -125,7 +125,7 @@
             this.btn_Hinzufuegen.TabIndex = 4;
             this.btn_Hinzufuegen.Text = "Hinzufügen";
             this.btn_Hinzufuegen.UseVisualStyleBackColor = false;
-            this.btn_Hinzufuegen.Click += new System.EventHandler(this.BtnHinzufuegenClick);
+            this.btn_Hinzufuegen.Click += new System.EventHandler(this.btn_Hinzufuegen_Click);
             // 
             // btn_Save
             // 
@@ -144,7 +144,7 @@
             this.btn_Save.TabIndex = 6;
             this.btn_Save.Text = "Editieren";
             this.btn_Save.UseVisualStyleBackColor = false;
-            this.btn_Save.Click += new System.EventHandler(this.BtnBtnEditierenClick);
+            this.btn_Save.Click += new System.EventHandler(this.btn_editieren_Click);
             // 
             // btn_Delete
             // 
@@ -163,7 +163,7 @@
             this.btn_Delete.TabIndex = 5;
             this.btn_Delete.Text = "Löschen";
             this.btn_Delete.UseVisualStyleBackColor = false;
-            this.btn_Delete.Click += new System.EventHandler(this.BtnDeleteClick);
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
             // 
             // txt_KartenSuche
             // 
@@ -176,9 +176,9 @@
             this.txt_KartenSuche.Name = "txt_KartenSuche";
             this.txt_KartenSuche.Size = new System.Drawing.Size(368, 31);
             this.txt_KartenSuche.TabIndex = 9;
-            this.txt_KartenSuche.Enter += new System.EventHandler(this.TxtKartenSucheEnter);
-            this.txt_KartenSuche.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKartenSucheKeyDown);
-            this.txt_KartenSuche.Leave += new System.EventHandler(this.TxtKartenSucheLeave);
+            this.txt_KartenSuche.Enter += new System.EventHandler(this.txt_KartenSuche_Enter);
+            this.txt_KartenSuche.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_KartenSuche_KeyDown);
+            this.txt_KartenSuche.Leave += new System.EventHandler(this.txt_KartenSuche_Leave);
             // 
             // pictureBox1
             // 
@@ -191,7 +191,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1Click);
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // comboBox1
             // 
@@ -204,7 +204,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(156, 28);
             this.comboBox1.TabIndex = 7;
-            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.ComboBox1SelectedValueChanged);
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // listView_KartenAnzeige
             // 
@@ -220,8 +220,8 @@
             this.listView_KartenAnzeige.Size = new System.Drawing.Size(429, 450);
             this.listView_KartenAnzeige.TabIndex = 1;
             this.listView_KartenAnzeige.UseCompatibleStateImageBehavior = false;
-            this.listView_KartenAnzeige.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewKartenAnzeigeColumnClick);
-            this.listView_KartenAnzeige.Click += new System.EventHandler(this.listViewKartenAnzeigeClick);
+            this.listView_KartenAnzeige.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_KartenAnzeige_ColumnClick);
+            this.listView_KartenAnzeige.Click += new System.EventHandler(this.listView_KartenAnzeige_Click);
             // 
             // InhaltPanel
             // 
@@ -258,8 +258,8 @@
             this.fackeAntwort3.Size = new System.Drawing.Size(429, 100);
             this.fackeAntwort3.TabIndex = 13;
             this.fackeAntwort3.Text = "";
-            this.fackeAntwort3.Enter += new System.EventHandler(this.FackeAntwort3Enter);
-            this.fackeAntwort3.Leave += new System.EventHandler(this.FackeAntwort3Leave);
+            this.fackeAntwort3.Enter += new System.EventHandler(this.fackeAntwort3_Enter);
+            this.fackeAntwort3.Leave += new System.EventHandler(this.fackeAntwort3_Leave);
             // 
             // fackeAntwort2
             // 
@@ -272,8 +272,8 @@
             this.fackeAntwort2.Size = new System.Drawing.Size(429, 100);
             this.fackeAntwort2.TabIndex = 12;
             this.fackeAntwort2.Text = "";
-            this.fackeAntwort2.Enter += new System.EventHandler(this.FackeAntwort2Enter);
-            this.fackeAntwort2.Leave += new System.EventHandler(this.FackeAntwort2Leave);
+            this.fackeAntwort2.Enter += new System.EventHandler(this.fackeAntwort2_Enter);
+            this.fackeAntwort2.Leave += new System.EventHandler(this.fackeAntwort2_Leave);
             // 
             // fackeAntwort1
             // 
@@ -286,8 +286,8 @@
             this.fackeAntwort1.Size = new System.Drawing.Size(429, 100);
             this.fackeAntwort1.TabIndex = 11;
             this.fackeAntwort1.Text = "";
-            this.fackeAntwort1.Enter += new System.EventHandler(this.FackeAntwort1Enter);
-            this.fackeAntwort1.Leave += new System.EventHandler(this.FackeAntwort1Leave);
+            this.fackeAntwort1.Enter += new System.EventHandler(this.fackeAntwort1_Enter);
+            this.fackeAntwort1.Leave += new System.EventHandler(this.fackeAntwort1_Leave);
             // 
             // label1
             // 
@@ -316,8 +316,8 @@
             this.dachPanel.Name = "dachPanel";
             this.dachPanel.Size = new System.Drawing.Size(1400, 60);
             this.dachPanel.TabIndex = 8;
-            this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuMouseDown);
-            this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuMouseMove);
+            this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseDown);
+            this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dachPanel_MouseMove);
             // 
             // StapelBearbeitenButton
             // 
@@ -336,7 +336,7 @@
             this.StapelBearbeitenButton.TabIndex = 11;
             this.StapelBearbeitenButton.Text = "Stapel bearbeiten";
             this.StapelBearbeitenButton.UseVisualStyleBackColor = false;
-            this.StapelBearbeitenButton.Click += new System.EventHandler(this.StapelBearbeitenButtonClick);
+            this.StapelBearbeitenButton.Click += new System.EventHandler(this.StapelBearbeitenButton_Click);
             // 
             // ChallengeButton
             // 
@@ -355,7 +355,7 @@
             this.ChallengeButton.TabIndex = 9;
             this.ChallengeButton.Text = "Challenge Modus";
             this.ChallengeButton.UseVisualStyleBackColor = false;
-            this.ChallengeButton.Click += new System.EventHandler(this.ChallengeButtonClick);
+            this.ChallengeButton.Click += new System.EventHandler(this.ChallengeButton_Click);
             // 
             // MinimierenButton
             // 
@@ -373,7 +373,7 @@
             this.MinimierenButton.TabIndex = 8;
             this.MinimierenButton.Text = "__";
             this.MinimierenButton.UseVisualStyleBackColor = true;
-            this.MinimierenButton.Click += new System.EventHandler(this.MinimierenButtonClick);
+            this.MinimierenButton.Click += new System.EventHandler(this.MinimierenButton_Click);
             // 
             // CloseButton
             // 
@@ -391,7 +391,7 @@
             this.CloseButton.TabIndex = 7;
             this.CloseButton.Text = "X";
             this.CloseButton.UseVisualStyleBackColor = true;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButtonClick);
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // JetztLernenButton
             // 
@@ -410,7 +410,7 @@
             this.JetztLernenButton.TabIndex = 3;
             this.JetztLernenButton.Text = "Jetzt lernen";
             this.JetztLernenButton.UseVisualStyleBackColor = false;
-            this.JetztLernenButton.Click += new System.EventHandler(this.JetztLernenButtonClick);
+            this.JetztLernenButton.Click += new System.EventHandler(this.JetztLernenButton_Click);
             // 
             // KarteBearbeitenButton
             // 
@@ -429,7 +429,7 @@
             this.KarteBearbeitenButton.TabIndex = 2;
             this.KarteBearbeitenButton.Text = "Karten bearbeiten";
             this.KarteBearbeitenButton.UseVisualStyleBackColor = false;
-            this.KarteBearbeitenButton.Click += new System.EventHandler(this.KarteBearbeitenButtonClick);
+            this.KarteBearbeitenButton.Click += new System.EventHandler(this.KarteBearbeitenButton_Click);
             // 
             // ÜbersichtButton
             // 
@@ -448,7 +448,7 @@
             this.ÜbersichtButton.TabIndex = 1;
             this.ÜbersichtButton.Text = "Übersicht";
             this.ÜbersichtButton.UseVisualStyleBackColor = false;
-            this.ÜbersichtButton.Click += new System.EventHandler(this.ÜbersichtButtonClick);
+            this.ÜbersichtButton.Click += new System.EventHandler(this.ÜbersichtButton_Click);
             // 
             // HinzufuegenKarten
             // 

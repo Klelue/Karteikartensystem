@@ -1,16 +1,14 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using AnsichtsFenster.Controller;
-
+﻿
 namespace AnsichtsFenster.Fenster
 {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using Controller;
     public partial class StapelUebersichtView : Form
     {
-        private StapelListController listController;
-        private ViewController viewController;
-      
-
+        private readonly StapelListController listController;
+        private readonly ViewController viewController;
         private Point letzteMouseKoordinaten;
 
         public StapelUebersichtView()
@@ -39,7 +37,7 @@ namespace AnsichtsFenster.Fenster
             listView_Ausgabe.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
 
-        private void textBox_StapelSuche_KeyDown(object sender, KeyEventArgs e)
+        private void TextBoxStapelSucheKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -51,7 +49,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void pictureBox_Lupe_Click(object sender, EventArgs e)
+        private void PictureBoxLupeClick(object sender, EventArgs e)
         {
             listView_Ausgabe = txt_StapelSuche.Text.Trim() == ""
                 ? listController.UpdateView(listView_Ausgabe)
@@ -60,7 +58,7 @@ namespace AnsichtsFenster.Fenster
             txt_StapelSuche.Clear();
         }
 
-        private void textBox_StapelSuche_Enter(object sender, EventArgs e)
+        private void TextBoxStapelSucheEnter(object sender, EventArgs e)
         {
             if (txt_StapelSuche.Text == "Stapel suchen")
             {
@@ -69,7 +67,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void textBox_StapelSuche_Leave(object sender, EventArgs e)
+        private void TextBoxStapelSucheLeave(object sender, EventArgs e)
         {
             if (txt_StapelSuche.Text == "")
             {
@@ -78,7 +76,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void menuPanel_MouseMove(object sender, MouseEventArgs e)
+        private void MenuMouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {

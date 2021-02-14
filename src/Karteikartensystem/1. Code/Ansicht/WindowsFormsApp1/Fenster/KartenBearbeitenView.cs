@@ -1,27 +1,28 @@
-﻿
+﻿using Model;
+using System;
+using System.Linq;
+using Repositories;
+using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Drawing;
+using AnsichtsFenster.Controller;
+using AnsichtsFenster.Utilities;
+
 namespace AnsichtsFenster.Fenster
 {
-    using Model;
-    using System;
-    using System.Linq;
-    using Repositories;
-    using System.Windows.Forms;
-    using System.Collections.Generic;
-    using System.Drawing;
-    using Controller;
-    using Utilities;
-    public partial class HinzufuegenKarten : Form
+    public partial class KartenBearbeitenView : Form
     {
         private Karte selectedKarte;
         private List<Karte> alleKarten;
-        private readonly StapelController stapelController;
-        private readonly KarteController karteController;
-        private readonly ViewController viewController;
-        private readonly KartenListController kartenListController;
-        private long stapelId;
-        private readonly Stapel[] allesStapel = new StapelRepository().GetAlleStapel();
+        private StapelController stapelController;
+        private KarteController karteController;
+        private ViewController viewController;
+        private KartenListController kartenListController;
 
-        public HinzufuegenKarten()
+        private long stapelId;
+        private Stapel[] allesStapel = new StapelRepository().GetAlleStapel();
+
+        public KartenBearbeitenView()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
@@ -32,13 +33,13 @@ namespace AnsichtsFenster.Fenster
             karteController = new KarteController();
             alleKarten = new List<Karte>();
             kartenListController = new KartenListController();
-            ComboBoxLaden();
+            comboBoxLaden();
 
             txt_KartenSuche.Text = "Suchen nach:";
             txt_KartenSuche.ForeColor = Color.Gray;
-            richTxt_Vorderseite.Text = @"Frage";
+            richTxt_Vorderseite.Text = "Frage";
             richTxt_Vorderseite.ForeColor = Color.Gray;
-            richTxt_Rueckseite.Text = @"Richtige Antwort";
+            richTxt_Rueckseite.Text = "Richtige Antwort";
             richTxt_Rueckseite.ForeColor = Color.Gray;
             fackeAntwort1.Text = "Falsche Antwort 1 (Optional)";
             fackeAntwort1.ForeColor = Color.Gray;
@@ -49,7 +50,7 @@ namespace AnsichtsFenster.Fenster
             listView_KartenAnzeige.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
-        private void ComboBoxLaden()
+        private void comboBoxLaden()
         {
             comboBox1.Items.Clear();
             foreach (Stapel stapel in allesStapel)
@@ -59,7 +60,7 @@ namespace AnsichtsFenster.Fenster
             comboBox1.SelectedItem = comboBox1.Items[0];
         }
 
-        private void ComboBox1SelectedValueChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             string ausgewählterStapel = comboBox1.SelectedItem.ToString();
 
@@ -68,7 +69,7 @@ namespace AnsichtsFenster.Fenster
             ListViewFormatieren();
         }
 
-        private void BtnHinzufuegenClick(object sender, EventArgs e)
+        private void btn_Hinzufuegen_Click(object sender, EventArgs e)
         {
             if (richTxt_Vorderseite.Text.Trim() != "Frage" && richTxt_Rueckseite.Text.Trim() != "Richtige Antwort")
             {
@@ -95,15 +96,13 @@ namespace AnsichtsFenster.Fenster
 
         private Karte KartenAnlegen()
         {
-            Karte karte = new Karte
-            {
-                Frage = richTxt_Vorderseite.Text,
-                Antwort = richTxt_Rueckseite.Text,
-                FalschAntwort1 = fackeAntwort1.Text,
-                FalschAntwort2 = fackeAntwort2.Text,
-                FalschAntwort3 = fackeAntwort3.Text,
-                StapelId = stapelId
-            };
+            Karte karte = new Karte();
+            karte.Frage = richTxt_Vorderseite.Text;
+            karte.Antwort = richTxt_Rueckseite.Text;
+            karte.FalschAntwort1 = fackeAntwort1.Text;
+            karte.FalschAntwort2 = fackeAntwort2.Text;
+            karte.FalschAntwort3 = fackeAntwort3.Text;
+            karte.StapelId = stapelId;
 
             if (karte.FalschAntwort1 != "Falsche Antwort 1 (Optional)" || karte.FalschAntwort2 !=
                 "Falsche Antwort 2 (Optional)" || karte.FalschAntwort3 != "Falsche Antwort 3 (Optional)")
@@ -123,6 +122,10 @@ namespace AnsichtsFenster.Fenster
             listView_KartenAnzeige.Clear();
             listView_KartenAnzeige.View = View.Details;
             listView_KartenAnzeige.Columns.Add("Fragen").Width = 550;
+
+           // listView_KartenAnzeige.Columns.Add("Fragen");
+           // listView_KartenAnzeige.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+           // listView_KartenAnzeige.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             KartenAnzeigen(alleKarten);
         }
 
@@ -132,7 +135,7 @@ namespace AnsichtsFenster.Fenster
             listView_KartenAnzeige.Items.AddRange(anzeigeList.Select(karte => new ListViewItem(karte.Frage)).ToArray());
         }
 
-        private void listViewKartenAnzeigeClick(object sender, EventArgs e)
+        private void listView_KartenAnzeige_Click(object sender, EventArgs e)
         {
             selectedKarte = SelectedKarteAsKarte(listView_KartenAnzeige.SelectedItems[0].Text);
 
@@ -186,12 +189,12 @@ namespace AnsichtsFenster.Fenster
                 KartenAnzeigen(ergebnisListe);
         }
 
-        private void listViewKartenAnzeigeColumnClick(object sender, ColumnClickEventArgs e)
+        private void listView_KartenAnzeige_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             this.listView_KartenAnzeige.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
 
-        private void BtnDeleteClick(object sender, EventArgs e)
+        private void btn_Delete_Click(object sender, EventArgs e)
         {
             if (selectedKarte != null)
             {
@@ -216,7 +219,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void BtnBtnEditierenClick(object sender, EventArgs e)
+        private void btn_editieren_Click(object sender, EventArgs e)
         {
             if (selectedKarte != null)
             {
@@ -251,7 +254,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void TxtKartenSucheKeyDown(object sender, KeyEventArgs e)
+        private void txt_KartenSuche_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -264,7 +267,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void TxtKartenSucheLeave(object sender, EventArgs e)
+        private void txt_KartenSuche_Leave(object sender, EventArgs e)
         {
             if (txt_KartenSuche.Text == "")
             {
@@ -273,7 +276,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void TxtKartenSucheEnter(object sender, EventArgs e)
+        private void txt_KartenSuche_Enter(object sender, EventArgs e)
         {
             if (txt_KartenSuche.Text == "Suchen nach:")
             {
@@ -282,7 +285,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void RichTxtVorderseiteLeave(object sender, EventArgs e)
+        private void richTxt_Vorderseite_Leave(object sender, EventArgs e)
         {
             if (richTxt_Vorderseite.Text == "")
             {
@@ -291,7 +294,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void RichTxtVorderseiteEnter(object sender, EventArgs e)
+        private void richTxt_Vorderseite_Enter(object sender, EventArgs e)
         {
             if (richTxt_Vorderseite.Text == "Frage")
             {
@@ -299,7 +302,7 @@ namespace AnsichtsFenster.Fenster
                 richTxt_Vorderseite.ForeColor = Color.Black;
             }
         }
-        private void RichTxtRueckseiteLeave(object sender, EventArgs e)
+        private void richTxt_Rueckseite_Leave(object sender, EventArgs e)
         {
             if (richTxt_Rueckseite.Text == "")
             {
@@ -308,7 +311,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void RichTxtRueckseiteEnter(object sender, EventArgs e)
+        private void richTxt_Rueckseite_Enter(object sender, EventArgs e)
         {
             if (richTxt_Rueckseite.Text == "Richtige Antwort")
             {
@@ -317,7 +320,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void FackeAntwort1Leave(object sender, EventArgs e)
+        private void fackeAntwort1_Leave(object sender, EventArgs e)
         {
             if (fackeAntwort1.Text == "")
             {
@@ -326,7 +329,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void FackeAntwort1Enter(object sender, EventArgs e)
+        private void fackeAntwort1_Enter(object sender, EventArgs e)
         {
             if (fackeAntwort1.Text == "Falsche Antwort 1 (Optional)")
             {
@@ -335,7 +338,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void FackeAntwort2Leave(object sender, EventArgs e)
+        private void fackeAntwort2_Leave(object sender, EventArgs e)
         {
             if (fackeAntwort2.Text == "")
             {
@@ -344,7 +347,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void FackeAntwort2Enter(object sender, EventArgs e)
+        private void fackeAntwort2_Enter(object sender, EventArgs e)
         {
             if (fackeAntwort2.Text == "Falsche Antwort 2 (Optional)")
             {
@@ -353,7 +356,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void FackeAntwort3Leave(object sender, EventArgs e)
+        private void fackeAntwort3_Leave(object sender, EventArgs e)
         {
             if (fackeAntwort3.Text == "")
             {
@@ -362,7 +365,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void FackeAntwort3Enter(object sender, EventArgs e)
+        private void fackeAntwort3_Enter(object sender, EventArgs e)
         {
             if (fackeAntwort3.Text == "Falsche Antwort 3 (Optional)")
             {
@@ -371,7 +374,7 @@ namespace AnsichtsFenster.Fenster
             }
         }
 
-        private void PictureBox1Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (txt_KartenSuche.Text.Trim() == "")
                 KartenAnzeigen(alleKarten);
@@ -383,7 +386,7 @@ namespace AnsichtsFenster.Fenster
       
         private Point lastPoint;
 
-        private void MenuMouseMove(object sender, MouseEventArgs e)
+        private void dachPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -391,43 +394,43 @@ namespace AnsichtsFenster.Fenster
                 this.Top += e.Y - lastPoint.Y;
             }
         }
-        private void MenuMouseDown(object sender, MouseEventArgs e)
+        private void dachPanel_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
         }
 
-        private void ÜbersichtButtonClick(object sender, EventArgs e)
+        private void ÜbersichtButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             new StapelUebersichtView().Show();
         }
-        private void KarteBearbeitenButtonClick(object sender, EventArgs e)
+        private void KarteBearbeitenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new HinzufuegenKarten().Show();
+            new KartenBearbeitenView().Show();
         }
-        private void StapelBearbeitenButtonClick(object sender, EventArgs e)
+        private void StapelBearbeitenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             new StapelBearbeitenView().Show();
         }
-        private void JetztLernenButtonClick(object sender, EventArgs e)
+        private void JetztLernenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             new JetztLernenView().Show();
         }
-        private void ChallengeButtonClick(object sender, EventArgs e)
+        private void ChallengeButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             new ChallengeView().Show();
         }
 
-        private void MinimierenButtonClick(object sender, EventArgs e)
+        private void MinimierenButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void CloseButtonClick(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }

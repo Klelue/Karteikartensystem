@@ -1,46 +1,37 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using AnsichtsFenster.Controller;
-using AnsichtsFenster.Utilities;
-using Model;
-
-
+﻿
 namespace AnsichtsFenster.Fenster
 {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using Controller;
+    using Utilities;
+    using Model;
     public partial class StapelBearbeitenView : Form
     {
-        private ViewController viewController;
-        private StapelListController listController;
-        private StapelController stapelController;
-        private StapelFileHandler fileHandler;
+        private readonly ViewController viewController;
+        private readonly StapelListController listController;
+        private readonly StapelController stapelController;
+        private readonly StapelFileHandler fileHandler;
 
         private Point letzteMouseKoordinaten;
         public StapelBearbeitenView()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(0, 0);
+            this.StartPosition = FormStartPosition.CenterParent;
 
-            viewController = new ViewController();
-            listController = new StapelListController();
-            stapelController = new StapelController();
-            fileHandler = new StapelFileHandler();
+            this.viewController = new ViewController();
+            this.listController = new StapelListController();
+            this.stapelController = new StapelController();
+            this.fileHandler = new StapelFileHandler();
 
             textBoxStapelName.Text = "Stapel";
             textBoxStapelName.ForeColor = Color.Gray;
 
-
-            // listViewAusgabe.View = View.Details;
-            // listController.ClearView(listViewAusgabe);
-
             listViewAusgabe.View = View.Details;
             listViewAusgabe.Columns.Add("Stapel").Width = 245;
 
-            //listViewAusgabe = listController.CreateView(listViewAusgabe);
             listController.UpdateView(listViewAusgabe);
-
-            
         }
 
         private void stapelAnlegen_Click(object sender, EventArgs e)
@@ -121,7 +112,7 @@ namespace AnsichtsFenster.Fenster
                     string pfad = fileDialog.FileName;
 
                     if (fileHandler.SepDateiEinlesen(pfad)){
-
+                        listController.ReloadView(listViewAusgabe, stapelController.GetAlleStapel());
                         viewController.ShowMessageBoxHinzufuegenErfolgreich();
                     }
                     else
@@ -142,13 +133,17 @@ namespace AnsichtsFenster.Fenster
                 selectedPath = folderBrowserDialog.SelectedPath;
             }
 
-            string selectedStapelName = listViewAusgabe.SelectedItems[0].Text;
-            Stapel selectedStapel = stapelController.GetStapel(selectedStapelName);
+            Stapel selectedStapel = null;
+
+            if (listViewAusgabe.SelectedItems.Count == 1)
+            {
+                string selectedStapelName = listViewAusgabe.SelectedItems[0].Text;
+                selectedStapel = stapelController.GetStapel(selectedStapelName);
+            }
 
             if (selectedStapel != null)
             {
-                
-                if(fileHandler.StapelAlsSepDateiAnlegen(selectedStapel, selectedPath))
+                if (fileHandler.StapelAlsSepDateiAnlegen(selectedStapel, selectedPath))
                 {
                     viewController.ShowMessageBoxHinzufuegenErfolgreich();
                 }
@@ -156,7 +151,6 @@ namespace AnsichtsFenster.Fenster
                 {
                     viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
                 }
-
             }
             else
             {

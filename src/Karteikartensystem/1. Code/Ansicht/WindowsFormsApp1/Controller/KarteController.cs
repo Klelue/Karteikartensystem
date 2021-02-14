@@ -7,7 +7,7 @@ namespace AnsichtsFenster.Controller
 {
     public class KarteController
     {
-        private KarteRepository repository;
+        private readonly KarteRepository repository;
 
         public KarteController()
         {

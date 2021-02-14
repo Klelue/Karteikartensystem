@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="timer_Anzeige.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>138, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>291, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -218,8 +212,5 @@
         AM/wAADP8AAAx/AAAOf////n//gP5//gA+P/wAHh/4AA4P8AAOD/AABB/wAAD/4AAB/+AAA//gAAP/4A
         AH/+AAB//wAAf/8AAH//gAD//4AB///gA///8Af/
 </value>
-  </data>
-  <data name="HinzufuegenKarten_HinzufuegenKarten_Suchen_nach_" xml:space="preserve">
-	  <value>Suchen nach:</value>
   </data>
 </root>

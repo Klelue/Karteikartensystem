@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using AnsichtsFenster.Utilities;
-using Model;
-using Repositories;
-
+﻿
 namespace AnsichtsFenster.Controller
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Utilities;
+    using Model;
+    using Repositories;
     public class StapelListController : IStapelListView
     {
-        private StapelController stapelController;
-        private KarteController karteController;
+        private readonly StapelController stapelController;
+        private readonly KarteController karteController;
 
         public StapelListController()
         {
@@ -39,6 +38,7 @@ namespace AnsichtsFenster.Controller
             {
                 listViewItems.Add(CreateViewItem(stapel));
             }
+
             listView.Items.Clear();
             listView.Items.AddRange(listViewItems.ToArray());
 

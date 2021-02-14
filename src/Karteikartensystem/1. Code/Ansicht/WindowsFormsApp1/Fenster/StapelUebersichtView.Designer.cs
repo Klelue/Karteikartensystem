@@ -65,7 +65,7 @@ namespace AnsichtsFenster.Fenster
             this.dachPanel.Size = new System.Drawing.Size(1400, 60);
             this.dachPanel.TabIndex = 7;
             this.dachPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuPanel_MouseDown);
-            this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.menuPanel_MouseMove);
+            this.dachPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuMouseMove);
             // 
             // StapelBearbeitenButton
             // 
@@ -208,9 +208,9 @@ namespace AnsichtsFenster.Fenster
             this.txt_StapelSuche.Name = "txt_StapelSuche";
             this.txt_StapelSuche.Size = new System.Drawing.Size(1015, 27);
             this.txt_StapelSuche.TabIndex = 4;
-            this.txt_StapelSuche.Enter += new System.EventHandler(this.textBox_StapelSuche_Enter);
-            this.txt_StapelSuche.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_StapelSuche_KeyDown);
-            this.txt_StapelSuche.Leave += new System.EventHandler(this.textBox_StapelSuche_Leave);
+            this.txt_StapelSuche.Enter += new System.EventHandler(this.TextBoxStapelSucheEnter);
+            this.txt_StapelSuche.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxStapelSucheKeyDown);
+            this.txt_StapelSuche.Leave += new System.EventHandler(this.TextBoxStapelSucheLeave);
             // 
             // listView_Ausgabe
             // 
@@ -242,7 +242,7 @@ namespace AnsichtsFenster.Fenster
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox_Lupe_Click);
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBoxLupeClick);
             // 
             // InhaltPanel
             // 

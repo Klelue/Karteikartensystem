@@ -1,34 +1,37 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using AnsichtsFenster.Controller;
-using AnsichtsFenster.Utilities;
-using Model;
-using Repositories;
-
-
+﻿
 namespace AnsichtsFenster.Fenster
 {
+    using System.Collections.Generic;
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using Controller;
+    using Utilities;
+    using Model;
+    using Repositories;
+
     public partial class KartenUebersicht : Form
     {
         private Karte selectedKarte;
-        private Stapel selectetStapel;
-        private KartenManager kartenManager;
-        private KarteController karteController;
-        private Stoppuhr stoppuhr;
+        private readonly Stapel selectetStapel;
+        private readonly KartenManager kartenManager;
+        private readonly KarteController karteController;
+        private readonly Stoppuhr stoppuhr;
+        private Point lezteMouseKoordinaten;
 
         public KartenUebersicht(Stapel stapel)
         {
             InitializeComponent();
+
+            // window position fix
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(0, 0);
 
-            selectetStapel = stapel;
-            lbl_StapelName.Text = stapel.Name;
-            karteController = new KarteController();
-
-            var alleKarten = karteController.GetAlleKartenEinesStapels(stapel.Id);
-            kartenManager = new KartenManager(alleKarten.ToArray());
+            this.selectetStapel = stapel;
+            this.lbl_StapelName.Text = stapel.Name; 
+            this.karteController = new KarteController();
+            List<Karte> alleKarten = karteController.GetAlleKartenEinesStapels(stapel.Id);
+            this.kartenManager = KartenManager.CreateInstance(alleKarten.ToArray());
 
             if (alleKarten.Count >= 1)
             {
@@ -36,41 +39,17 @@ namespace AnsichtsFenster.Fenster
             }
             else // falls keine Karten vorhanden
             {
-                Karte karte = new Karte();
-                karte.Frage = "Leider ist diese Liste leer";
-                karte.Antwort = "Da keine Karten vorhanden sind, \n sind auch keine Antworten vorhanden";
+                Karte karte = new Karte
+                {
+                    Frage = "Leider ist diese Liste leer",
+                    Antwort = "Da keine Karten vorhanden sind, \n sind auch keine Antworten vorhanden"
+                };
                 selectedKarte = karte;
             }
 
-            stoppuhr = new Stoppuhr();
-            stoppuhr.Start();
+            this.stoppuhr = new Stoppuhr();
+            this.stoppuhr.Start();
             FrageSetzen();
-        }
-
-        private void btn_home_Click(object sender, EventArgs e)
-        {
-            stoppuhr.Stop();
-            Karte[] karten = kartenManager.GetAlleKarten();
-            selectetStapel.GelernteZeitInMinuten += stoppuhr.GetZeit();
-
-            new StapelRepository().StapelAktualisieren(selectetStapel);
-            foreach (Karte karte in karten)
-            {
-                karteController.Aktualisieren(karte);
-            }
-
-            stoppuhr.Stop();
-            this.Hide();
-            StapelUebersichtView stubvView = new StapelUebersichtView();
-            stubvView.Show();
-        }
-
-        private void btn_Antwort_Click(object sender, EventArgs e)
-        {
-            if (selectedKarte != null)
-            {
-                AntwortSetzen();
-            }
         }
 
         private void AntwortSetzen()
@@ -99,8 +78,8 @@ namespace AnsichtsFenster.Fenster
                 imgParty.Visible = true;
                 lblAuswertungOben.Visible = true;
                 lblAuswertungUnten.Visible = true;
-                lblAuswertungOben.Text = "Herzlichen Glückwunsch!";
-                lblAuswertungUnten.Text = $"Sie haben den Stapel {selectetStapel.Name} in {stoppuhr.GetZeit()} Minuten gelernt";
+                lblAuswertungOben.Text = @"Herzlichen Glückwunsch!";
+                lblAuswertungUnten.Text = $@"Sie haben den Stapel {selectetStapel.Name} in {stoppuhr.GetZeit()} Minuten gelernt";
                 richTxt.Visible = false;
                 btnStapelErneutLernen.Visible = true;
                 btn_Antwort.Visible = false;
@@ -115,68 +94,93 @@ namespace AnsichtsFenster.Fenster
 
         }
 
-        private void btn_Nochmal(object sender, EventArgs e)
+        private void BtnHomeClick(object sender, EventArgs e)
         {
-            kartenManager.AddZuSchwereKarten(selectedKarte);
+            this.stoppuhr.Stop();
+            Karte[] karten = kartenManager.GetAlleKarten();
+            selectetStapel.GelernteZeitInMinuten += stoppuhr.GetZeit();
+
+            new StapelRepository().StapelAktualisieren(selectetStapel);
+            foreach (Karte karte in karten)
+            {
+                this.karteController.Aktualisieren(karte);
+            }
+
+            stoppuhr.Stop();
+            this.Hide();
+            StapelUebersichtView stubvView = new StapelUebersichtView();
+            stubvView.Show();
+        }
+
+        private void BtnAntwortClick(object sender, EventArgs e)
+        {
+            if (selectedKarte != null)
+            {
+                AntwortSetzen();
+            }
+        }
+
+        private void BtnNochmalClick(object sender, EventArgs e)
+        {
+            this.kartenManager.AddZuSchwereKarten(selectedKarte);
             FrageSetzen();
         }
 
-        private void btn_Gut_Click(object sender, EventArgs e)
+        private void BtnGutClick(object sender, EventArgs e)
         {
-            kartenManager.AddZuMittelKarten(selectedKarte);
+            this.kartenManager.AddZuMittelKarten(selectedKarte);
             FrageSetzen();
         }
 
-        private void btn_Einfach(object sender, EventArgs e)
+        private void BtnEinfachClick(object sender, EventArgs e)
         {
-            kartenManager.AddZuLeichteKarten(selectedKarte);
+            this.kartenManager.AddZuLeichteKarten(selectedKarte);
             FrageSetzen();
         }
 
-        private void btn_nichtNochmal(object sender, EventArgs e)
+        private void BtnNichtNochmalClick(object sender, EventArgs e)
         {
-            kartenManager.AddZuGelerntenKarten(selectedKarte);
+            this.kartenManager.AddZuGelerntenKarten(selectedKarte);
             FrageSetzen();
         }
 
-        private void btnErneutLernen(object sender, EventArgs e)
+        private void BtnErneutLernenClick(object sender, EventArgs e)
         {
-            kartenManager.Reset();
+            this.kartenManager.Reset();
             richTxt.Visible = true;
             lblAuswertungUnten.Visible = false;
             FrageSetzen();
         }
 
-        private Point LastPoint;
-        private void dachPanel_MouseMove(object sender, MouseEventArgs e)
+        private void MenuMouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - LastPoint.X;
-                this.Top += e.Y - LastPoint.Y;
+                this.Left += e.X - lezteMouseKoordinaten.X;
+                this.Top += e.Y - lezteMouseKoordinaten.Y;
             }
         }
-        private void dachPanel_MouseDown(object sender, MouseEventArgs e)
+        private void MenuMouseDown(object sender, MouseEventArgs e)
         {
-            LastPoint = new Point(e.X, e.Y);
+            this.lezteMouseKoordinaten = new Point(e.X, e.Y);
         }
 
-        private void StapelWählenButton_Click(object sender, EventArgs e)
+        private void StapelWählenButtonClick(object sender, EventArgs e)
         {
            
             selectetStapel.GelernteZeitInMinuten += stoppuhr.GetZeit();
             new StapelRepository().StapelAktualisieren(selectetStapel);
 
 
-            Hide();
+            this.Hide();
             new JetztLernenView().Show();
         }
 
-        private void MinimierenButton_Click(object sender, EventArgs e)
+        private void MinimierenButtonClick(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void CloseButton_Click(object sender, EventArgs e)
+        private void CloseButtonClick(object sender, EventArgs e)
         {
             Application.Exit();
         }

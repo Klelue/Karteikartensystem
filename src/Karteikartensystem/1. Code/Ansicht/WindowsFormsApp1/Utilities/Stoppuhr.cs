@@ -4,7 +4,7 @@
 
     public class Stoppuhr
     {
-        Stopwatch stopWatch = new Stopwatch();
+        readonly Stopwatch stopWatch = new Stopwatch();
 
         public void Start()
         {

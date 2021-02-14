@@ -1,147 +1,106 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Model;
-
+﻿
 namespace AnsichtsFenster.Utilities
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Model;
     public class KartenManager
     {
+        private int zähler;
         private List<Karte> leichteKarten { get; }
         private List<Karte> mittelKarten { get; }
         private List<Karte> schwereKarten { get; }
         private List<Karte> gelernteKarten { get; }
 
-        private int zähler;
-
-        public KartenManager(Karte[] karten)
+        public static KartenManager CreateInstance(Karte[] karten)
         {
-            leichteKarten = new List<Karte>();
-            mittelKarten = new List<Karte>();
-            schwereKarten = new List<Karte>();
-            gelernteKarten = new List<Karte>();
+            return new KartenManager(karten);
+        }
 
-            KartenAufDieStapelVerteilen(karten);
+        private KartenManager(Karte[] karten)
+        {
+            this.leichteKarten = new List<Karte>();
+            this.mittelKarten = new List<Karte>();
+            this.schwereKarten = new List<Karte>();
+            this.gelernteKarten = new List<Karte>();
+            this.KartenAufDieStapelVerteilen(karten);
         }
 
         public void Reset()
         {
             List<Karte> karten = new List<Karte>();
 
-            foreach (Karte karte in GetAlleKarten())
+            foreach (Karte karte in this.GetAlleKarten())
             {
                 karte.Schwierigkeitsgrad = 0;
                 karten.Add(karte);
             }
 
-            KartenAufDieStapelVerteilen(karten.ToArray());
-        }
-
-        private void KartenAufDieStapelVerteilen(Karte[] karten)
-        {
-            foreach (Karte karte in karten)
-            {
-                if (karte.Schwierigkeitsgrad == 0)
-                {
-                    schwereKarten.Add(karte);
-                }
-
-                if (karte.Schwierigkeitsgrad == 1)
-                {
-                    mittelKarten.Add(karte);
-                }
-
-                if (karte.Schwierigkeitsgrad == 2)
-                {
-                    leichteKarten.Add(karte);
-                }
-
-                if (karte.Schwierigkeitsgrad == 3)
-                {
-                    gelernteKarten.Add(karte);
-                }
-            }
-        }
-
-        public void RemoveKarte(Karte karte)
-        {
-            if (karte.Schwierigkeitsgrad == 0)
-            {
-                schwereKarten.Remove(karte);
-            }
-
-            if (karte.Schwierigkeitsgrad == 1)
-            {
-                mittelKarten.Remove(karte);
-            }
-
-            if (karte.Schwierigkeitsgrad == 2)
-            {
-                leichteKarten.Remove(karte);
-            }
+            this.KartenAufDieStapelVerteilen(karten.ToArray());
         }
 
         public void AddZuSchwereKarten(Karte karte)
         {
-            RemoveKarte(karte);
+            this.RemoveKarte(karte);
             karte.Schwierigkeitsgrad = 0;
-            schwereKarten.Add(karte);
+            this.schwereKarten.Add(karte);
         }
 
         public void AddZuMittelKarten(Karte karte)
         {
-            RemoveKarte(karte);
+            this.RemoveKarte(karte);
             karte.Schwierigkeitsgrad = 1;
-            mittelKarten.Add(karte);
+            this.mittelKarten.Add(karte);
         }
 
         public void AddZuLeichteKarten(Karte karte)
         {
-            RemoveKarte(karte);
+            this.RemoveKarte(karte);
             karte.Schwierigkeitsgrad = 2;
-            leichteKarten.Add(karte);
+            this.leichteKarten.Add(karte);
         }
 
         public void AddZuGelerntenKarten(Karte karte)
         {
-            RemoveKarte(karte);
+            this.RemoveKarte(karte);
             karte.Schwierigkeitsgrad = 3;
-            gelernteKarten.Add(karte);
+            this.gelernteKarten.Add(karte);
         }
 
         public Karte GetNextKarte()
         {
-            zähler++;
+            this.zähler++;
             Random random = new Random();
 
-            if (zähler % 5 == 0 && leichteKarten.Count > 0)
+            if (this.zähler % 5 == 0 && this.leichteKarten.Count > 0)
             {
-                int index = random.Next(leichteKarten.Count);
-                return leichteKarten[index];
+                int index = random.Next(this.leichteKarten.Count);
+                return this.leichteKarten[index];
             }
 
-            if (zähler % 3 == 0 && mittelKarten.Count > 0)
+            if (this.zähler % 3 == 0 && this.mittelKarten.Count > 0)
             {
-                int index = random.Next(mittelKarten.Count);
-                return mittelKarten[index];
+                int index = random.Next(this.mittelKarten.Count);
+                return this.mittelKarten[index];
             }
 
-            if (schwereKarten.Count > 0)
+            if (this.schwereKarten.Count > 0)
             {
-                int index = random.Next(schwereKarten.Count);
-                return schwereKarten[index];
+                int index = random.Next(this.schwereKarten.Count);
+                return this.schwereKarten[index];
             }
 
-            if (schwereKarten.Count == 0 && mittelKarten.Count > 0)
+            if (this.schwereKarten.Count == 0 && this.mittelKarten.Count > 0)
             {
-                int index = random.Next(schwereKarten.Count);
-                return mittelKarten[index];
+                int index = random.Next(this.mittelKarten.Count);
+                return this.mittelKarten[index];
             }
 
-            if (mittelKarten.Count == 0 && leichteKarten.Count > 0)
+            if (this.mittelKarten.Count == 0 && this.leichteKarten.Count > 0)
             {
-                int index = random.Next(mittelKarten.Count);
-                return leichteKarten[index];
+                int index = random.Next(this.leichteKarten.Count);
+                return this.leichteKarten[index];
             }
 
             return null;
@@ -149,7 +108,46 @@ namespace AnsichtsFenster.Utilities
 
         public Karte[] GetAlleKarten()
         {
-            return schwereKarten.Concat(mittelKarten).Concat(leichteKarten).Concat(gelernteKarten).ToArray();
+            return this.schwereKarten.Concat(this.mittelKarten).Concat(this.leichteKarten).Concat(this.gelernteKarten).ToArray();
         }
+
+        private void KartenAufDieStapelVerteilen(Karte[] karten)
+        {
+            foreach (Karte karte in karten)
+            {
+                switch (karte.Schwierigkeitsgrad)
+                {
+                    case 0:
+                        this.schwereKarten.Add(karte);
+                        break;
+                    case 1:
+                        this.mittelKarten.Add(karte);
+                        break;
+                    case 2:
+                        this.leichteKarten.Add(karte);
+                        break;
+                    case 3:
+                        this.gelernteKarten.Add(karte);
+                        break;
+                }
+            }
+        }
+
+        private void RemoveKarte(Karte karte)
+        {
+            switch (karte.Schwierigkeitsgrad)
+            {
+                case 0:
+                    this.schwereKarten.Remove(karte);
+                    break;
+                case 1:
+                    this.mittelKarten.Remove(karte);
+                    break;
+                case 2:
+                    this.leichteKarten.Remove(karte);
+                    break;
+            }
+        }
+
     }
 }

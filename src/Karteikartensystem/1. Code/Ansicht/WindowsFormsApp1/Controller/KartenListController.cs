@@ -7,11 +7,11 @@ namespace AnsichtsFenster.Controller
 {
     public class KartenListController : IKartenListView
     {
-        private KarteRepository karteRepository;
+        private readonly KarteRepository karteRepository1;
 
         public KartenListController()
         {
-            karteRepository = new KarteRepository();
+            karteRepository1 = new KarteRepository();
         }
 
         public ListView CreateView(ListView listView)
