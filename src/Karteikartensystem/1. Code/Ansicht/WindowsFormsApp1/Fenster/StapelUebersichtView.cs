@@ -9,13 +9,15 @@ namespace AnsichtsFenster.Fenster
     {
         private readonly StapelListController listController;
         private readonly ViewController viewController;
-        private Point letzteMouseKoordinaten;
+        private Point lastPoint;
 
-        public StapelUebersichtView()
+        public StapelUebersichtView(Point p)
         {
             InitializeComponent();
+
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(0, 0);
+            this.Left += p.X - lastPoint.X;
+            this.Top += p.Y - lastPoint.Y;
 
             listController = new StapelListController();
             viewController = new ViewController();
@@ -29,7 +31,8 @@ namespace AnsichtsFenster.Fenster
 
         private void listView_Ausgabe_DoubleClick(object sender, EventArgs e)
         {
-            viewController.BuildKartenUebersicht(listController.SelectStapel(listView_Ausgabe)).Show();
+            viewController.BuildKartenUebersicht(listController.SelectStapel(listView_Ausgabe), 
+                this.DesktopLocation).Show();
         }
 
         private void ListViewColumnClick(object sender, ColumnClickEventArgs e)
@@ -80,40 +83,41 @@ namespace AnsichtsFenster.Fenster
         {
             if (e.Button == MouseButtons.Left)
             {
-                 this.Left += e.X - letzteMouseKoordinaten.X;
-                 this.Top += e.Y - letzteMouseKoordinaten.Y;
+                 this.Left += e.X - lastPoint.X;
+                 this.Top += e.Y - lastPoint.Y;
             }
         }
         private void menuPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            letzteMouseKoordinaten = new Point(e.X, e.Y);
+            lastPoint = new Point(e.X, e.Y);
         }
+
 
         private void ÜbersichtButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new StapelUebersichtView().Show();
+            new StapelUebersichtView(this.DesktopLocation).Show();
         }
         private void KarteBearbeitenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new HinzufuegenKarten().Show();
+            new HinzufuegenKarten(this.DesktopLocation).Show();
         }
         private void StapelBearbeitenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new StapelBearbeitenView().Show();
+            new StapelBearbeitenView(this.DesktopLocation).Show();
         }
         private void JetztLernenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new JetztLernenView().Show();
+            new JetztLernenView(this.DesktopLocation).Show();
         }
 
         private void ChallengeButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new ChallengeView().Show();
+            new ChallengeView(this.DesktopLocation).Show();
         }
 
         private void MinimierenButton_Click(object sender, EventArgs e)

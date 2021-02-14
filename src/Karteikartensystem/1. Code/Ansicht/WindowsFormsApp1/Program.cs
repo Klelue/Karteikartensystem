@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using AnsichtsFenster.Fenster;
 
@@ -14,7 +15,7 @@ namespace AnsichtsFenster
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StapelUebersichtView());
+            Application.Run(new StapelUebersichtView(new Point(200, 200)));
         }
     }
 }

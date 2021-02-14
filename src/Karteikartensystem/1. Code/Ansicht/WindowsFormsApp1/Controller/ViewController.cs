@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using AnsichtsFenster.Fenster;
 using Model;
 
@@ -6,9 +7,9 @@ namespace AnsichtsFenster.Controller
 {
     internal class ViewController
     {
-        internal KartenUebersicht BuildKartenUebersicht(Stapel stapel)
+        internal KartenUebersicht BuildKartenUebersicht(Stapel stapel, Point p)
         {
-            return new KartenUebersicht(stapel);
+            return new KartenUebersicht(stapel, p);
         }
 
         internal void ShowMessageBoxErfolgreichGeloescht()

@@ -222,7 +222,7 @@ namespace AnsichtsFenster.Fenster
             this.listView_Ausgabe.GridLines = true;
             this.listView_Ausgabe.HideSelection = false;
             this.listView_Ausgabe.Location = new System.Drawing.Point(149, 130);
-            this.listView_Ausgabe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView_Ausgabe.Margin = new System.Windows.Forms.Padding(4);
             this.listView_Ausgabe.Name = "listView_Ausgabe";
             this.listView_Ausgabe.Size = new System.Drawing.Size(1064, 500);
             this.listView_Ausgabe.TabIndex = 1;
@@ -267,9 +267,8 @@ namespace AnsichtsFenster.Fenster
             this.Controls.Add(this.dachPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StapelUebersichtView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stapel Übersicht";
             this.dachPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -19,13 +19,17 @@ namespace AnsichtsFenster.Fenster
         private readonly Stoppuhr stoppuhr;
         private Point lezteMouseKoordinaten;
 
-        public KartenUebersicht(Stapel stapel)
+        private Point lastPoint;
+
+        public KartenUebersicht(Stapel stapel, Point p)
         {
             InitializeComponent();
 
             // window position fix
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(0, 0);
+
+            this.Left += p.X - lastPoint.X;
+            this.Top += p.Y - lastPoint.Y;
 
             this.selectetStapel = stapel;
             this.lbl_StapelName.Text = stapel.Name; 
@@ -108,7 +112,7 @@ namespace AnsichtsFenster.Fenster
 
             stoppuhr.Stop();
             this.Hide();
-            StapelUebersichtView stubvView = new StapelUebersichtView();
+            StapelUebersichtView stubvView = new StapelUebersichtView(this.DesktopLocation);
             stubvView.Show();
         }
 
@@ -173,8 +177,10 @@ namespace AnsichtsFenster.Fenster
 
 
             this.Hide();
-            new JetztLernenView().Show();
+            new JetztLernenView(this.DesktopLocation).Show();
         }
+
+
 
         private void MinimierenButtonClick(object sender, EventArgs e)
         {

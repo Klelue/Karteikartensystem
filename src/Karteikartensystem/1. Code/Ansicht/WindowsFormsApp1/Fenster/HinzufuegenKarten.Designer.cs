@@ -64,7 +64,7 @@
             this.richTxt_Vorderseite.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTxt_Vorderseite.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.richTxt_Vorderseite.Location = new System.Drawing.Point(485, 64);
-            this.richTxt_Vorderseite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTxt_Vorderseite.Margin = new System.Windows.Forms.Padding(4);
             this.richTxt_Vorderseite.Name = "richTxt_Vorderseite";
             this.richTxt_Vorderseite.Size = new System.Drawing.Size(429, 496);
             this.richTxt_Vorderseite.TabIndex = 100;
@@ -78,7 +78,7 @@
             this.richTxt_Rueckseite.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTxt_Rueckseite.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.richTxt_Rueckseite.Location = new System.Drawing.Point(940, 64);
-            this.richTxt_Rueckseite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTxt_Rueckseite.Margin = new System.Windows.Forms.Padding(4);
             this.richTxt_Rueckseite.Name = "richTxt_Rueckseite";
             this.richTxt_Rueckseite.Size = new System.Drawing.Size(429, 110);
             this.richTxt_Rueckseite.TabIndex = 1;
@@ -119,7 +119,7 @@
             this.btn_Hinzufuegen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Hinzufuegen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btn_Hinzufuegen.Location = new System.Drawing.Point(836, 590);
-            this.btn_Hinzufuegen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Hinzufuegen.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Hinzufuegen.Name = "btn_Hinzufuegen";
             this.btn_Hinzufuegen.Size = new System.Drawing.Size(149, 46);
             this.btn_Hinzufuegen.TabIndex = 4;
@@ -138,7 +138,7 @@
             this.btn_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Save.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btn_Save.Location = new System.Drawing.Point(535, 590);
-            this.btn_Save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Save.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(149, 46);
             this.btn_Save.TabIndex = 6;
@@ -157,7 +157,7 @@
             this.btn_Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Delete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btn_Delete.Location = new System.Drawing.Point(1135, 590);
-            this.btn_Delete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Delete.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Delete.Name = "btn_Delete";
             this.btn_Delete.Size = new System.Drawing.Size(149, 46);
             this.btn_Delete.TabIndex = 5;
@@ -215,7 +215,7 @@
             this.listView_KartenAnzeige.GridLines = true;
             this.listView_KartenAnzeige.HideSelection = false;
             this.listView_KartenAnzeige.Location = new System.Drawing.Point(25, 110);
-            this.listView_KartenAnzeige.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView_KartenAnzeige.Margin = new System.Windows.Forms.Padding(4);
             this.listView_KartenAnzeige.Name = "listView_KartenAnzeige";
             this.listView_KartenAnzeige.Size = new System.Drawing.Size(429, 450);
             this.listView_KartenAnzeige.TabIndex = 1;
@@ -253,7 +253,7 @@
             this.fackeAntwort3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fackeAntwort3.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.fackeAntwort3.Location = new System.Drawing.Point(940, 460);
-            this.fackeAntwort3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fackeAntwort3.Margin = new System.Windows.Forms.Padding(4);
             this.fackeAntwort3.Name = "fackeAntwort3";
             this.fackeAntwort3.Size = new System.Drawing.Size(429, 100);
             this.fackeAntwort3.TabIndex = 13;
@@ -267,7 +267,7 @@
             this.fackeAntwort2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fackeAntwort2.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.fackeAntwort2.Location = new System.Drawing.Point(940, 345);
-            this.fackeAntwort2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fackeAntwort2.Margin = new System.Windows.Forms.Padding(4);
             this.fackeAntwort2.Name = "fackeAntwort2";
             this.fackeAntwort2.Size = new System.Drawing.Size(429, 100);
             this.fackeAntwort2.TabIndex = 12;
@@ -281,7 +281,7 @@
             this.fackeAntwort1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fackeAntwort1.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.fackeAntwort1.Location = new System.Drawing.Point(940, 230);
-            this.fackeAntwort1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fackeAntwort1.Margin = new System.Windows.Forms.Padding(4);
             this.fackeAntwort1.Name = "fackeAntwort1";
             this.fackeAntwort1.Size = new System.Drawing.Size(429, 100);
             this.fackeAntwort1.TabIndex = 11;
@@ -459,7 +459,7 @@
             this.Controls.Add(this.InhaltPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "HinzufuegenKarten";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Karten Verwalten";

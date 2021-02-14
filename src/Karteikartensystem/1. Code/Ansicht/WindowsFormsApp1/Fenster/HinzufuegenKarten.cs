@@ -20,12 +20,16 @@ namespace AnsichtsFenster.Fenster
         private readonly KartenListController kartenListController;
         private long stapelId;
         private readonly Stapel[] allesStapel = new StapelRepository().GetAlleStapel();
+      
+        private Point lastPoint;
 
-        public HinzufuegenKarten()
+        public HinzufuegenKarten(Point p)
         {
             InitializeComponent();
+
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(0, 0);
+            this.Left += p.X - lastPoint.X;
+            this.Top += p.Y - lastPoint.Y;
 
             viewController = new ViewController(); 
             stapelController = new StapelController();
@@ -380,9 +384,7 @@ namespace AnsichtsFenster.Fenster
             txt_KartenSuche.Clear();
         }
 
-      
-        private Point lastPoint;
-
+        
         private void MenuMouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -399,27 +401,27 @@ namespace AnsichtsFenster.Fenster
         private void ÜbersichtButtonClick(object sender, EventArgs e)
         {
             this.Hide();
-            new StapelUebersichtView().Show();
+            new StapelUebersichtView(this.DesktopLocation).Show();
         }
         private void KarteBearbeitenButtonClick(object sender, EventArgs e)
         {
             this.Hide();
-            new HinzufuegenKarten().Show();
+            new HinzufuegenKarten(this.DesktopLocation).Show();
         }
         private void StapelBearbeitenButtonClick(object sender, EventArgs e)
         {
             this.Hide();
-            new StapelBearbeitenView().Show();
+            new StapelBearbeitenView(this.DesktopLocation).Show();
         }
         private void JetztLernenButtonClick(object sender, EventArgs e)
         {
             this.Hide();
-            new JetztLernenView().Show();
+            new JetztLernenView(this.DesktopLocation).Show();
         }
         private void ChallengeButtonClick(object sender, EventArgs e)
         {
             this.Hide();
-            new ChallengeView().Show();
+            new ChallengeView(this.DesktopLocation).Show();
         }
 
         private void MinimierenButtonClick(object sender, EventArgs e)
@@ -431,5 +433,6 @@ namespace AnsichtsFenster.Fenster
         {
             Application.Exit();
         }
+
     }
 }

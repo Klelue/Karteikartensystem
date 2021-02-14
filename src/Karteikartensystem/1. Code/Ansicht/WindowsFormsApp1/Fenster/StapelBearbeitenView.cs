@@ -14,11 +14,14 @@ namespace AnsichtsFenster.Fenster
         private readonly StapelController stapelController;
         private readonly StapelFileHandler fileHandler;
 
-        private Point letzteMouseKoordinaten;
-        public StapelBearbeitenView()
+        private Point lastPoint;
+        public StapelBearbeitenView(Point p)
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterParent;
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Left += p.X - lastPoint.X;
+            this.Top += p.Y - lastPoint.Y;
 
             this.viewController = new ViewController();
             this.listController = new StapelListController();
@@ -57,10 +60,7 @@ namespace AnsichtsFenster.Fenster
                 }
             }
             else
-            {
                 viewController.ShowMessageBoxHinzufuegenNichtErfolgreich();
-            }
-
         }
 
         private void stapelAktualisieren_Click(object sender, EventArgs e)
@@ -77,9 +77,7 @@ namespace AnsichtsFenster.Fenster
                 viewController.ShowMessageBoxAktualisierenErfolgreich();
             }
             else
-            {
                 viewController.ShowMessageBoxKeinElementGewaehlt();
-            }
         }
 
         private void stapelLöschen_Click(object sender, EventArgs e)
@@ -96,9 +94,7 @@ namespace AnsichtsFenster.Fenster
                 viewController.ShowMessageBoxErfolgreichGeloescht();
             }
             else
-            {
                 viewController.ShowMessageBoxKeinElementGewaehlt();
-            }
         }
 
         private void dateiAuswählen_Click(object sender, EventArgs e)
@@ -167,37 +163,41 @@ namespace AnsichtsFenster.Fenster
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - letzteMouseKoordinaten.X;
-                this.Top += e.Y - letzteMouseKoordinaten.Y;
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
             }
         }
 
         private void menuPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            letzteMouseKoordinaten = new Point(e.X, e.Y);
+            lastPoint = new Point(e.X, e.Y);
         }
 
         private void ÜbersichtButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new StapelUebersichtView().Show();
+            new StapelUebersichtView(this.DesktopLocation).Show();
         }
         private void KarteBearbeitenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new HinzufuegenKarten().Show();
+            new HinzufuegenKarten(this.DesktopLocation).Show();
         }
-
+        private void StapelBearbeitenButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new StapelBearbeitenView(this.DesktopLocation).Show();
+        }
         private void jetztLernenButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new JetztLernenView().Show();
+            new JetztLernenView(this.DesktopLocation).Show();
         }
         
         private void challengeButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new ChallengeView().Show();
+            new ChallengeView(this.DesktopLocation).Show();
         }
 
         private void minimierenButton_Click(object sender, EventArgs e)
@@ -228,5 +228,7 @@ namespace AnsichtsFenster.Fenster
                 textBoxStapelName.ForeColor = Color.Black;
             }
         }
+
+
     }
 }

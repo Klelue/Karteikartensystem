@@ -239,10 +239,10 @@ namespace AnsichtsFenster.Fenster
             // imgLampe
             // 
             this.imgLampe.Image = global::AnsichtsFenster.Properties.Resources.study__3_;
-            this.imgLampe.Location = new System.Drawing.Point(159, 79);
+            this.imgLampe.Location = new System.Drawing.Point(106, 109);
             this.imgLampe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.imgLampe.Name = "imgLampe";
-            this.imgLampe.Size = new System.Drawing.Size(409, 456);
+            this.imgLampe.Size = new System.Drawing.Size(530, 493);
             this.imgLampe.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgLampe.TabIndex = 1;
             this.imgLampe.TabStop = false;

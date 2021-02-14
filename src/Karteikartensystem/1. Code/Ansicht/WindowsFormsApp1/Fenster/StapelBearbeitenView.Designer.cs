@@ -197,6 +197,7 @@ namespace AnsichtsFenster.Fenster
             this.StapelBearbeitenButton.TabIndex = 10;
             this.StapelBearbeitenButton.Text = "Stapel bearbeiten";
             this.StapelBearbeitenButton.UseVisualStyleBackColor = false;
+            this.StapelBearbeitenButton.Click += new System.EventHandler(this.StapelBearbeitenButton_Click);
             // 
             // ChallengeButton
             // 
